@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DevOps / Pipeline &amp; Deployment : NamesAndRoles Sample JSON Object</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">DevOps / Pipeline &amp; Deployment</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1179353439.html">DevOps / Pipeline &amp; Deployment Home</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="DLX-Server-Documents_1541832718.html">DLX Server Documents</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="All-about-LTI-Integration_1284603908.html">All about LTI Integration</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            DevOps / Pipeline &amp; Deployment : NamesAndRoles Sample JSON Object
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                            
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Chris Park</span> on Sept 30, 2024
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <hr/><style type='text/css'>/*<![CDATA[*/
+div.rbtoc1748352955892 {padding: 0px;}
+div.rbtoc1748352955892 ul {list-style: none;margin-left: 0px;}
+div.rbtoc1748352955892 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style><div class='toc-macro rbtoc1748352955892'>
+<ul class='toc-indentation'>
+<li><a href='#NamesAndRolesSampleJSONObject-1.IMSGlobal'>1. IMS Global</a></li>
+<li><a href='#NamesAndRolesSampleJSONObject-2.BrightSpace(eConestoga)'>2. BrightSpace(eConestoga)</a></li>
+<li><a href='#NamesAndRolesSampleJSONObject-3.Moodle'>3. Moodle</a></li>
+</ul>
+</div><hr/><h1 id="NamesAndRolesSampleJSONObject-1.IMSGlobal">1. <strong>IMS Global</strong></h1><p>: The following screenshot is the meta data that can be obtained from the LMS side through the example NamesAndRoles service described in IMS Global.</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20240930-194743.png" width="451" loading="lazy" src="attachments/1369669660/1369014305.png?width=451" data-image-src="attachments/1369669660/1369014305.png" data-height="379" data-width="451" data-unresolved-comment-count="0" data-linked-resource-id="1369014305" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20240930-194743.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1369669660" data-linked-resource-container-version="1" data-media-id="00cbbe61-4109-4b14-b55e-91b6ba86dcae" data-media-type="file"></span><p /><hr/><h1 id="NamesAndRolesSampleJSONObject-2.BrightSpace(eConestoga)">2. <strong>BrightSpace</strong>(eConestoga)</h1><p>: Based on the BrightSpace documentation, the Tool Provider should set the 'keyset URL' to communicate with BrightSpace. </p><p> However, <strong>BrightSpace uses different ‘keyset endpoint’ compared to Moodle </strong>like the table below.</p><div class="table-wrap"><table data-table-width="564" data-layout="default" data-local-id="a978d385-33c3-4a1f-a73b-91384268f8d0" class="confluenceTable"><colgroup><col style="width: 159.0px;"/><col style="width: 405.0px;"/></colgroup><tbody><tr><th class="confluenceTh"><p><strong>Platform</strong></p></th><th class="confluenceTh"><p style="text-align: center;"><strong>keyset endpoint</strong></p></th></tr><tr><td class="confluenceTd"><p><strong>Moodle</strong></p></td><td class="confluenceTd"><p style="text-align: center;">'/keys'</p></td></tr><tr><td class="confluenceTd"><p><strong>BrightSpace</strong></p></td><td class="confluenceTd"><p style="text-align: center;">'/jwks'</p></td></tr></tbody></table></div><p> So, making sure whether the LTI service has a proper keyset endpoint you want to communicate with. </p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20240930-194139.png" width="400" loading="lazy" src="attachments/1369669660/1368948762.png?width=400" data-image-src="attachments/1369669660/1368948762.png" data-height="313" data-width="400" data-unresolved-comment-count="0" data-linked-resource-id="1368948762" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20240930-194139.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1369669660" data-linked-resource-container-version="1" data-media-id="fc178333-2d06-41c0-9925-25c2a4f1a286" data-media-type="file"></span><div id="expander-2090002870" class="expand-container"><div id="expander-control-2090002870" class="expand-control"><span class="expand-control-icon"><img style="vertical-align:middle;" class="expand-control-image" src="images/icons/grey_arrow_down.png"></span><span class="expand-control-text">Sample BrightSpace NamesAndRoles JSON object</span></div><div id="expander-content-2090002870" class="expand-content"><p>{</p><p>&quot;id&quot;:&quot;<a class="external-link" href="https://testconestoga.desire2learn.com/d2l/api/lti/nrps/2.0/deployment/178ce421-9978-4fb4-8deb-b24f11f79e84/orgunit/418015/memberships" rel="nofollow">https://testconestoga.desire2learn.com/d2l/api/lti/nrps/2.0/deployment/178ce421-9978-4fb4-8deb-b24f11f79e84/orgunit/418015/memberships</a>&quot;,</p><p>&quot;context&quot;:{&quot;id&quot;:&quot;418015&quot;,&quot;label&quot;:&quot;custom_shell_477263_7453616_20F&quot;,&quot;title&quot;:&quot;VARLAB-DEV1&quot;},</p><p>&quot;members&quot;:</p><p>[</p><p>{&quot;user_id&quot;:&quot;00129057-29b4-4bab-8470-67eaddc8042e_212555&quot;,&quot;status&quot;:&quot;Active&quot;,&quot;name&quot;:&quot;Jindo <a class="external-link" href="mailto:Kim&quot;,&quot;given_name&quot;:&quot;Jindo&quot;,&quot;family_name&quot;:&quot;Kim&quot;,&quot;email&quot;:&quot;jkim8918@conestogac.on.ca" rel="nofollow">Kim&quot;,&quot;given_name&quot;:&quot;Jindo&quot;,&quot;family_name&quot;:&quot;Kim&quot;,&quot;email&quot;:&quot;jkim8918@conestogac.on.ca</a>&quot;,&quot;roles&quot;:[&quot;<a class="external-link" href="http://purl.imsglobal.org/vocab/lis/v2/membership#Instructor&quot;]},{&quot;user_id&quot;:&quot;b52d9241-e75c-45bb-8578-31038b18d7df_211764&quot;,&quot;status&quot;:&quot;Active&quot;,&quot;name&quot;:&quot;Jonathan" rel="nofollow">http://purl.imsglobal.org/vocab/lis/v2/membership#Instructor&quot;]},{&quot;user_id&quot;:&quot;b52d9241-e75c-45bb-8578-31038b18d7df_211764&quot;,&quot;status&quot;:&quot;Active&quot;,&quot;name&quot;:&quot;Jonathan</a> <a class="external-link" href="mailto:Bezeau&quot;,&quot;given_name&quot;:&quot;Jonathan&quot;,&quot;family_name&quot;:&quot;Bezeau&quot;,&quot;email&quot;:&quot;jbezeau@conestogac.on.ca" rel="nofollow">Bezeau&quot;,&quot;given_name&quot;:&quot;Jonathan&quot;,&quot;family_name&quot;:&quot;Bezeau&quot;,&quot;email&quot;:&quot;jbezeau@conestogac.on.ca</a>&quot;,&quot;roles&quot;:[&quot;<a class="external-link" href="http://purl.imsglobal.org/vocab/lis/v2/membership#Instructor" rel="nofollow">http://purl.imsglobal.org/vocab/lis/v2/membership#Instructor</a>&quot;]},</p><p>{&quot;user_id&quot;:&quot;7b0bb820-04c7-4294-bcdc-6051e94b42f5_201710&quot;,&quot;status&quot;:&quot;Active&quot;,&quot;name&quot;:&quot;Chris <a class="external-link" href="mailto:Park&quot;,&quot;given_name&quot;:&quot;Chris&quot;,&quot;family_name&quot;:&quot;Park&quot;,&quot;email&quot;:&quot;hpark7884@conestogac.on.ca" rel="nofollow">Park&quot;,&quot;given_name&quot;:&quot;Chris&quot;,&quot;family_name&quot;:&quot;Park&quot;,&quot;email&quot;:&quot;hpark7884@conestogac.on.ca</a>&quot;,&quot;roles&quot;:[&quot;<a class="external-link" href="http://purl.imsglobal.org/vocab/lis/v2/membership#Instructor" rel="nofollow">http://purl.imsglobal.org/vocab/lis/v2/membership#Instructor</a>&quot;]},</p><p>{&quot;user_id&quot;:&quot;3c603911-f88c-4d67-8c18-5abff357270d_182753&quot;,&quot;status&quot;:&quot;Active&quot;,&quot;name&quot;:&quot;Dany <a class="external-link" href="mailto:Ko&quot;,&quot;given_name&quot;:&quot;Dany&quot;,&quot;family_name&quot;:&quot;Ko&quot;,&quot;email&quot;:&quot;dko8957@conestogac.on.ca" rel="nofollow">Ko&quot;,&quot;given_name&quot;:&quot;Dany&quot;,&quot;family_name&quot;:&quot;Ko&quot;,&quot;email&quot;:&quot;dko8957@conestogac.on.ca</a>&quot;,&quot;roles&quot;:[&quot;<a class="external-link" href="http://purl.imsglobal.org/vocab/lis/v2/membership#Instructor" rel="nofollow">http://purl.imsglobal.org/vocab/lis/v2/membership#Instructor</a>&quot;]}</p><p>]</p><p>}</p></div></div><hr/><h1 id="NamesAndRolesSampleJSONObject-3.Moodle"><strong>3. Moodle</strong></h1><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20240930-200355.png" width="552" loading="lazy" src="attachments/1369669660/1369374768.png?width=552" data-image-src="attachments/1369669660/1369374768.png" data-height="477" data-width="668" data-unresolved-comment-count="0" data-linked-resource-id="1369374768" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20240930-200355.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1369669660" data-linked-resource-container-version="1" data-media-id="fcc5416b-226f-4992-aa90-0c55b79a9780" data-media-type="file"></span><div id="expander-1576707770" class="expand-container"><div id="expander-control-1576707770" class="expand-control"><span class="expand-control-icon"><img style="vertical-align:middle;" class="expand-control-image" src="images/icons/grey_arrow_down.png"></span><span class="expand-control-text">Sample Moodle NamesAndRoles JSON object</span></div><div id="expander-content-1576707770" class="expand-content"><p>j:{</p><p>&quot;id&quot;:&quot;<a class="external-link" href="https://vconestoga.duckdns.org/mod/lti/services.php/CourseSection/12/bindings/359/memberships" rel="nofollow">https://vconestoga.duckdns.org/mod/lti/services.php/CourseSection/12/bindings/359/memberships</a>&quot;,</p><p>&quot;context&quot;:</p><p>{&quot;id&quot;:&quot;12&quot;,</p><p>&quot;label&quot;:&quot;test_course&quot;,</p><p>&quot;title&quot;:&quot;test_course&quot;},</p><p>&quot;members&quot;:</p><p>[</p><p>{&quot;status&quot;:&quot;Active&quot;,</p><p>&quot;roles&quot;: [&quot;Instructor&quot;,&quot;<a class="external-link" href="http://purl.imsglobal.org/vocab/lis/v2/person#Administrator" rel="nofollow">http://purl.imsglobal.org/vocab/lis/v2/person#Administrator</a>&quot;],</p><p>&quot;user_id&quot;:&quot;22&quot;,</p><p>&quot;lis_person_sourcedid&quot;:&quot;&quot;,</p><p>&quot;name&quot;:&quot;ChrisPark&quot;,</p><p>&quot;given_name&quot;:&quot;Chris&quot;,</p><p>&quot;family_name&quot;:&quot;Park&quot;,</p><p>&quot;<a class="external-link" href="mailto:email&quot;:&quot;cpark@conestogac.on.ca" rel="nofollow">email&quot;:&quot;cpark@conestogac.on.ca</a>&quot;}</p><p>]</p><p>}</p></div></div><hr/><p />
+                    </div>
+
+                                        <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1369669660/1368915993.docx">NamesAndRoles.docx</a> (application/vnd.openxmlformats-officedocument.wordprocessingml.document)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1369669660/1368948762.png">image-20240930-194139.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1369669660/1369014305.png">image-20240930-194743.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1369669660/1369374768.png">image-20240930-200355.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on May 27, 2025 13:35</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

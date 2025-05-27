@@ -1,0 +1,4868 @@
+{
+  "summary": {
+    "totalFilesWithErrorsNumber": 3,
+    "totalFilesLinted": 3,
+    "totalFoundErrorNumber": 0,
+    "totalFoundWarningNumber": 40,
+    "totalFoundInfoNumber": 283,
+    "totalFoundNumber": 323,
+    "totalFixedNumber": 0,
+    "totalRemainingNumber": 323,
+    "totalFixedErrorNumber": 0,
+    "totalFixedWarningNumber": 0,
+    "totalFixedInfoNumber": 0,
+    "totalRemainingErrorNumber": 0,
+    "totalRemainingWarningNumber": 40,
+    "totalRemainingInfoNumber": 283,
+    "detectedRules": {
+      "CatchException": 6,
+      "LineLength": 23,
+      "MethodReturnTypeRequired": 23,
+      "NoDef": 106,
+      "VariableTypeRequired": 52,
+      "DuplicateStringLiteral": 15,
+      "DuplicateNumberLiteral": 24,
+      "UnnecessaryGetter": 15,
+      "MethodParameterTypeRequired": 31,
+      "InvertedIfElse": 2,
+      "ImplicitClosureParameter": 6,
+      "CompileStatic": 3,
+      "JavaIoPackageAccess": 5,
+      "DuplicateMapLiteral": 3,
+      "ReturnsNullInsteadOfEmptyCollection": 1,
+      "SpaceAfterClosingBrace": 1,
+      "UnnecessaryElseStatement": 3,
+      "ParameterCount": 1,
+      "FactoryMethodName": 1,
+      "IfStatementCouldBeTernary": 1,
+      "ParameterReassignment": 1
+    },
+    "fixedRules": {}
+  },
+  "linesNumber": 409,
+  "files": {
+    "/var/lib/jenkins/workspace/PipelineForJenkins/PR-Pipeline/DevOps-Linux-Jenkins/groovy/generalHelper.groovy": {
+      "errors": [
+        {
+          "id": 103,
+          "line": 15,
+          "rule": "MethodReturnTypeRequired",
+          "severity": "info",
+          "msg": "Method \"cloneOrUpdateRepo\" has a dynamic return type",
+          "range": {
+            "start": {
+              "line": 15,
+              "character": 4
+            },
+            "end": {
+              "line": 15,
+              "character": 21
+            }
+          }
+        },
+        {
+          "id": 104,
+          "line": 15,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for method return type should not be used",
+          "range": {
+            "start": {
+              "line": 15,
+              "character": 0
+            },
+            "end": {
+              "line": 15,
+              "character": 3
+            }
+          }
+        },
+        {
+          "id": 105,
+          "line": 29,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for declaration should not be used",
+          "range": {
+            "start": {
+              "line": 29,
+              "character": 8
+            },
+            "end": {
+              "line": 29,
+              "character": 11
+            }
+          }
+        },
+        {
+          "id": 106,
+          "line": 29,
+          "rule": "VariableTypeRequired",
+          "severity": "info",
+          "msg": "The type is not specified for variable \"isGitRepo\"",
+          "range": {
+            "start": {
+              "line": 29,
+              "character": 12
+            },
+            "end": {
+              "line": 29,
+              "character": 21
+            }
+          }
+        },
+        {
+          "id": 107,
+          "line": 45,
+          "rule": "DuplicateStringLiteral",
+          "severity": "info",
+          "msg": "Duplicate String Literal: git branch --show-current",
+          "range": {
+            "start": {
+              "line": 45,
+              "character": 20
+            },
+            "end": {
+              "line": 45,
+              "character": 45
+            }
+          }
+        },
+        {
+          "id": 108,
+          "line": 52,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for declaration should not be used",
+          "range": {
+            "start": {
+              "line": 52,
+              "character": 16
+            },
+            "end": {
+              "line": 52,
+              "character": 19
+            }
+          }
+        },
+        {
+          "id": 109,
+          "line": 52,
+          "rule": "VariableTypeRequired",
+          "severity": "info",
+          "msg": "The type is not specified for variable \"output\"",
+          "range": {
+            "start": {
+              "line": 52,
+              "character": 20
+            },
+            "end": {
+              "line": 52,
+              "character": 26
+            }
+          }
+        },
+        {
+          "id": 110,
+          "line": 54,
+          "rule": "CatchException",
+          "severity": "warning",
+          "msg": "The type Exception should not be caught",
+          "range": {
+            "start": {
+              "line": 54,
+              "character": 21
+            },
+            "end": {
+              "line": 54,
+              "character": 30
+            }
+          }
+        },
+        {
+          "id": 111,
+          "line": 68,
+          "rule": "MethodReturnTypeRequired",
+          "severity": "info",
+          "msg": "Method \"getDefaultBranch\" has a dynamic return type",
+          "range": {
+            "start": {
+              "line": 68,
+              "character": 4
+            },
+            "end": {
+              "line": 68,
+              "character": 20
+            }
+          }
+        },
+        {
+          "id": 112,
+          "line": 68,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for method return type should not be used",
+          "range": {
+            "start": {
+              "line": 68,
+              "character": 0
+            },
+            "end": {
+              "line": 68,
+              "character": 3
+            }
+          }
+        },
+        {
+          "id": 113,
+          "line": 70,
+          "rule": "LineLength",
+          "severity": "warning",
+          "msg": "The line exceeds 120 characters. The line is 129 characters."
+        },
+        {
+          "id": 114,
+          "line": 70,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for declaration should not be used",
+          "range": {
+            "start": {
+              "line": 70,
+              "character": 4
+            },
+            "end": {
+              "line": 70,
+              "character": 7
+            }
+          }
+        },
+        {
+          "id": 115,
+          "line": 70,
+          "rule": "VariableTypeRequired",
+          "severity": "info",
+          "msg": "The type is not specified for variable \"defaultBranch\"",
+          "range": {
+            "start": {
+              "line": 70,
+              "character": 8
+            },
+            "end": {
+              "line": 70,
+              "character": 21
+            }
+          }
+        },
+        {
+          "id": 116,
+          "line": 85,
+          "rule": "MethodReturnTypeRequired",
+          "severity": "info",
+          "msg": "Method \"initializeEnvironment\" has a dynamic return type",
+          "range": {
+            "start": {
+              "line": 85,
+              "character": 4
+            },
+            "end": {
+              "line": 85,
+              "character": 25
+            }
+          }
+        },
+        {
+          "id": 117,
+          "line": 85,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for method return type should not be used",
+          "range": {
+            "start": {
+              "line": 85,
+              "character": 0
+            },
+            "end": {
+              "line": 85,
+              "character": 3
+            }
+          }
+        },
+        {
+          "id": 118,
+          "line": 98,
+          "rule": "MethodReturnTypeRequired",
+          "severity": "info",
+          "msg": "Method \"checkoutBranch\" has a dynamic return type",
+          "range": {
+            "start": {
+              "line": 98,
+              "character": 4
+            },
+            "end": {
+              "line": 98,
+              "character": 18
+            }
+          }
+        },
+        {
+          "id": 119,
+          "line": 98,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for method return type should not be used",
+          "range": {
+            "start": {
+              "line": 98,
+              "character": 0
+            },
+            "end": {
+              "line": 98,
+              "character": 3
+            }
+          }
+        },
+        {
+          "id": 120,
+          "line": 101,
+          "rule": "DuplicateNumberLiteral",
+          "severity": "info",
+          "msg": "Duplicate Number Literal: 0",
+          "range": {
+            "start": {
+              "line": 101,
+              "character": 194
+            },
+            "end": {
+              "line": 101,
+              "character": 195
+            }
+          }
+        },
+        {
+          "id": 121,
+          "line": 101,
+          "rule": "LineLength",
+          "severity": "warning",
+          "msg": "The line exceeds 120 characters. The line is 195 characters."
+        },
+        {
+          "id": 122,
+          "line": 120,
+          "rule": "MethodReturnTypeRequired",
+          "severity": "info",
+          "msg": "Method \"mergeBranchIfNeeded\" has a dynamic return type",
+          "range": {
+            "start": {
+              "line": 120,
+              "character": 4
+            },
+            "end": {
+              "line": 120,
+              "character": 23
+            }
+          }
+        },
+        {
+          "id": 123,
+          "line": 120,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for method return type should not be used",
+          "range": {
+            "start": {
+              "line": 120,
+              "character": 0
+            },
+            "end": {
+              "line": 120,
+              "character": 3
+            }
+          }
+        },
+        {
+          "id": 124,
+          "line": 121,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for declaration should not be used",
+          "range": {
+            "start": {
+              "line": 121,
+              "character": 4
+            },
+            "end": {
+              "line": 121,
+              "character": 7
+            }
+          }
+        },
+        {
+          "id": 125,
+          "line": 121,
+          "rule": "UnnecessaryGetter",
+          "severity": "info",
+          "msg": "getDefaultBranch() can probably be rewritten as defaultBranch"
+        },
+        {
+          "id": 126,
+          "line": 121,
+          "rule": "VariableTypeRequired",
+          "severity": "info",
+          "msg": "The type is not specified for variable \"destinationBranch\"",
+          "range": {
+            "start": {
+              "line": 121,
+              "character": 8
+            },
+            "end": {
+              "line": 121,
+              "character": 25
+            }
+          }
+        },
+        {
+          "id": 127,
+          "line": 124,
+          "rule": "DuplicateStringLiteral",
+          "severity": "info",
+          "msg": "Duplicate String Literal: git fetch origin",
+          "range": {
+            "start": {
+              "line": 124,
+              "character": 12
+            },
+            "end": {
+              "line": 124,
+              "character": 28
+            }
+          }
+        },
+        {
+          "id": 128,
+          "line": 127,
+          "rule": "DuplicateNumberLiteral",
+          "severity": "info",
+          "msg": "Duplicate Number Literal: 0",
+          "range": {
+            "start": {
+              "line": 127,
+              "character": 135
+            },
+            "end": {
+              "line": 127,
+              "character": 136
+            }
+          }
+        },
+        {
+          "id": 129,
+          "line": 127,
+          "rule": "LineLength",
+          "severity": "warning",
+          "msg": "The line exceeds 120 characters. The line is 136 characters."
+        },
+        {
+          "id": 130,
+          "line": 127,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for declaration should not be used",
+          "range": {
+            "start": {
+              "line": 127,
+              "character": 8
+            },
+            "end": {
+              "line": 127,
+              "character": 11
+            }
+          }
+        },
+        {
+          "id": 131,
+          "line": 127,
+          "rule": "VariableTypeRequired",
+          "severity": "info",
+          "msg": "The type is not specified for variable \"branchExists\"",
+          "range": {
+            "start": {
+              "line": 127,
+              "character": 12
+            },
+            "end": {
+              "line": 127,
+              "character": 24
+            }
+          }
+        },
+        {
+          "id": 132,
+          "line": 147,
+          "rule": "CatchException",
+          "severity": "warning",
+          "msg": "The type Exception should not be caught",
+          "range": {
+            "start": {
+              "line": 147,
+              "character": 13
+            },
+            "end": {
+              "line": 147,
+              "character": 22
+            }
+          }
+        },
+        {
+          "id": 133,
+          "line": 148,
+          "rule": "UnnecessaryGetter",
+          "severity": "info",
+          "msg": "getMessage() can probably be rewritten as message"
+        },
+        {
+          "id": 134,
+          "line": 149,
+          "rule": "DuplicateStringLiteral",
+          "severity": "info",
+          "msg": "Duplicate String Literal: Merge process failed.",
+          "range": {
+            "start": {
+              "line": 149,
+              "character": 15
+            },
+            "end": {
+              "line": 149,
+              "character": 36
+            }
+          }
+        },
+        {
+          "id": 135,
+          "line": 159,
+          "rule": "MethodReturnTypeRequired",
+          "severity": "info",
+          "msg": "Method \"isBranchUpToDateWithRemote\" has a dynamic return type",
+          "range": {
+            "start": {
+              "line": 159,
+              "character": 4
+            },
+            "end": {
+              "line": 159,
+              "character": 30
+            }
+          }
+        },
+        {
+          "id": 136,
+          "line": 159,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for method return type should not be used",
+          "range": {
+            "start": {
+              "line": 159,
+              "character": 0
+            },
+            "end": {
+              "line": 159,
+              "character": 3
+            }
+          }
+        },
+        {
+          "id": 137,
+          "line": 163,
+          "rule": "DuplicateNumberLiteral",
+          "severity": "info",
+          "msg": "Duplicate Number Literal: 0",
+          "range": {
+            "start": {
+              "line": 163,
+              "character": 9
+            },
+            "end": {
+              "line": 163,
+              "character": 10
+            }
+          }
+        },
+        {
+          "id": 138,
+          "line": 171,
+          "rule": "MethodParameterTypeRequired",
+          "severity": "info",
+          "msg": "\"destinationBranch\" parameter of \"isBranchUpToDateWithMain\" method is dynamically typed",
+          "range": {
+            "start": {
+              "line": 171,
+              "character": 29
+            },
+            "end": {
+              "line": 171,
+              "character": 46
+            }
+          }
+        },
+        {
+          "id": 139,
+          "line": 171,
+          "rule": "MethodReturnTypeRequired",
+          "severity": "info",
+          "msg": "Method \"isBranchUpToDateWithMain\" has a dynamic return type",
+          "range": {
+            "start": {
+              "line": 171,
+              "character": 4
+            },
+            "end": {
+              "line": 171,
+              "character": 28
+            }
+          }
+        },
+        {
+          "id": 140,
+          "line": 171,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for method return type should not be used",
+          "range": {
+            "start": {
+              "line": 171,
+              "character": 0
+            },
+            "end": {
+              "line": 171,
+              "character": 3
+            }
+          }
+        },
+        {
+          "id": 141,
+          "line": 171,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for method parameter type should not be used",
+          "range": {
+            "start": {
+              "line": 171,
+              "character": 0
+            },
+            "end": {
+              "line": 171,
+              "character": 3
+            }
+          }
+        },
+        {
+          "id": 142,
+          "line": 172,
+          "rule": "DuplicateNumberLiteral",
+          "severity": "info",
+          "msg": "Duplicate Number Literal: 0",
+          "range": {
+            "start": {
+              "line": 172,
+              "character": 107
+            },
+            "end": {
+              "line": 172,
+              "character": 108
+            }
+          }
+        },
+        {
+          "id": 143,
+          "line": 181,
+          "rule": "MethodReturnTypeRequired",
+          "severity": "info",
+          "msg": "Method \"tryMerge\" has a dynamic return type",
+          "range": {
+            "start": {
+              "line": 181,
+              "character": 4
+            },
+            "end": {
+              "line": 181,
+              "character": 12
+            }
+          }
+        },
+        {
+          "id": 144,
+          "line": 181,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for method return type should not be used",
+          "range": {
+            "start": {
+              "line": 181,
+              "character": 0
+            },
+            "end": {
+              "line": 181,
+              "character": 3
+            }
+          }
+        },
+        {
+          "id": 145,
+          "line": 183,
+          "rule": "DuplicateNumberLiteral",
+          "severity": "info",
+          "msg": "Duplicate Number Literal: 0",
+          "range": {
+            "start": {
+              "line": 183,
+              "character": 86
+            },
+            "end": {
+              "line": 183,
+              "character": 87
+            }
+          }
+        },
+        {
+          "id": 146,
+          "line": 194,
+          "rule": "MethodReturnTypeRequired",
+          "severity": "info",
+          "msg": "Method \"getFullCommitHash\" has a dynamic return type",
+          "range": {
+            "start": {
+              "line": 194,
+              "character": 4
+            },
+            "end": {
+              "line": 194,
+              "character": 21
+            }
+          }
+        },
+        {
+          "id": 147,
+          "line": 194,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for method return type should not be used",
+          "range": {
+            "start": {
+              "line": 194,
+              "character": 0
+            },
+            "end": {
+              "line": 194,
+              "character": 3
+            }
+          }
+        },
+        {
+          "id": 148,
+          "line": 195,
+          "rule": "LineLength",
+          "severity": "warning",
+          "msg": "The line exceeds 120 characters. The line is 132 characters."
+        },
+        {
+          "id": 149,
+          "line": 195,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for declaration should not be used",
+          "range": {
+            "start": {
+              "line": 195,
+              "character": 4
+            },
+            "end": {
+              "line": 195,
+              "character": 7
+            }
+          }
+        },
+        {
+          "id": 150,
+          "line": 195,
+          "rule": "VariableTypeRequired",
+          "severity": "info",
+          "msg": "The type is not specified for variable \"fullHash\"",
+          "range": {
+            "start": {
+              "line": 195,
+              "character": 8
+            },
+            "end": {
+              "line": 195,
+              "character": 16
+            }
+          }
+        },
+        {
+          "id": 151,
+          "line": 207,
+          "rule": "MethodReturnTypeRequired",
+          "severity": "info",
+          "msg": "Method \"getCurrentCommitHash\" has a dynamic return type",
+          "range": {
+            "start": {
+              "line": 207,
+              "character": 4
+            },
+            "end": {
+              "line": 207,
+              "character": 24
+            }
+          }
+        },
+        {
+          "id": 152,
+          "line": 207,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for method return type should not be used",
+          "range": {
+            "start": {
+              "line": 207,
+              "character": 0
+            },
+            "end": {
+              "line": 207,
+              "character": 3
+            }
+          }
+        },
+        {
+          "id": 153,
+          "line": 219,
+          "rule": "LineLength",
+          "severity": "warning",
+          "msg": "The line exceeds 120 characters. The line is 141 characters."
+        },
+        {
+          "id": 154,
+          "line": 221,
+          "rule": "MethodParameterTypeRequired",
+          "severity": "info",
+          "msg": "\"workspace\" parameter of \"sendBuildStatus\" method is dynamically typed",
+          "range": {
+            "start": {
+              "line": 221,
+              "character": 20
+            },
+            "end": {
+              "line": 221,
+              "character": 29
+            }
+          }
+        },
+        {
+          "id": 155,
+          "line": 221,
+          "rule": "MethodParameterTypeRequired",
+          "severity": "info",
+          "msg": "\"state\" parameter of \"sendBuildStatus\" method is dynamically typed",
+          "range": {
+            "start": {
+              "line": 221,
+              "character": 31
+            },
+            "end": {
+              "line": 221,
+              "character": 36
+            }
+          }
+        },
+        {
+          "id": 156,
+          "line": 221,
+          "rule": "MethodParameterTypeRequired",
+          "severity": "info",
+          "msg": "\"commitHash\" parameter of \"sendBuildStatus\" method is dynamically typed",
+          "range": {
+            "start": {
+              "line": 221,
+              "character": 38
+            },
+            "end": {
+              "line": 221,
+              "character": 48
+            }
+          }
+        },
+        {
+          "id": 157,
+          "line": 221,
+          "rule": "MethodParameterTypeRequired",
+          "severity": "info",
+          "msg": "\"deployment\" parameter of \"sendBuildStatus\" method is dynamically typed",
+          "range": {
+            "start": {
+              "line": 221,
+              "character": 50
+            },
+            "end": {
+              "line": 221,
+              "character": 60
+            }
+          }
+        },
+        {
+          "id": 158,
+          "line": 221,
+          "rule": "MethodParameterTypeRequired",
+          "severity": "info",
+          "msg": "\"javascript\" parameter of \"sendBuildStatus\" method is dynamically typed",
+          "range": {
+            "start": {
+              "line": 221,
+              "character": 70
+            },
+            "end": {
+              "line": 221,
+              "character": 80
+            }
+          }
+        },
+        {
+          "id": 159,
+          "line": 221,
+          "rule": "MethodReturnTypeRequired",
+          "severity": "info",
+          "msg": "Method \"sendBuildStatus\" has a dynamic return type",
+          "range": {
+            "start": {
+              "line": 221,
+              "character": 4
+            },
+            "end": {
+              "line": 221,
+              "character": 19
+            }
+          }
+        },
+        {
+          "id": 160,
+          "line": 221,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for method return type should not be used",
+          "range": {
+            "start": {
+              "line": 221,
+              "character": 0
+            },
+            "end": {
+              "line": 221,
+              "character": 3
+            }
+          }
+        },
+        {
+          "id": 161,
+          "line": 221,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for method parameter type should not be used",
+          "range": {
+            "start": {
+              "line": 221,
+              "character": 0
+            },
+            "end": {
+              "line": 221,
+              "character": 3
+            }
+          }
+        },
+        {
+          "id": 162,
+          "line": 221,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for method parameter type should not be used",
+          "range": {
+            "start": {
+              "line": 221,
+              "character": 0
+            },
+            "end": {
+              "line": 221,
+              "character": 3
+            }
+          }
+        },
+        {
+          "id": 163,
+          "line": 221,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for method parameter type should not be used",
+          "range": {
+            "start": {
+              "line": 221,
+              "character": 0
+            },
+            "end": {
+              "line": 221,
+              "character": 3
+            }
+          }
+        },
+        {
+          "id": 164,
+          "line": 221,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for method parameter type should not be used",
+          "range": {
+            "start": {
+              "line": 221,
+              "character": 0
+            },
+            "end": {
+              "line": 221,
+              "character": 3
+            }
+          }
+        },
+        {
+          "id": 165,
+          "line": 221,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for method parameter type should not be used",
+          "range": {
+            "start": {
+              "line": 221,
+              "character": 0
+            },
+            "end": {
+              "line": 221,
+              "character": 3
+            }
+          }
+        },
+        {
+          "id": 166,
+          "line": 223,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for declaration should not be used",
+          "range": {
+            "start": {
+              "line": 223,
+              "character": 8
+            },
+            "end": {
+              "line": 223,
+              "character": 11
+            }
+          }
+        },
+        {
+          "id": 167,
+          "line": 223,
+          "rule": "VariableTypeRequired",
+          "severity": "info",
+          "msg": "The type is not specified for variable \"pythonCommand\"",
+          "range": {
+            "start": {
+              "line": 223,
+              "character": 12
+            },
+            "end": {
+              "line": 223,
+              "character": 25
+            }
+          }
+        },
+        {
+          "id": 168,
+          "line": 231,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for declaration should not be used",
+          "range": {
+            "start": {
+              "line": 231,
+              "character": 8
+            },
+            "end": {
+              "line": 231,
+              "character": 11
+            }
+          }
+        },
+        {
+          "id": 169,
+          "line": 231,
+          "rule": "VariableTypeRequired",
+          "severity": "info",
+          "msg": "The type is not specified for variable \"exitCode\"",
+          "range": {
+            "start": {
+              "line": 231,
+              "character": 12
+            },
+            "end": {
+              "line": 231,
+              "character": 20
+            }
+          }
+        },
+        {
+          "id": 170,
+          "line": 232,
+          "rule": "DuplicateNumberLiteral",
+          "severity": "info",
+          "msg": "Duplicate Number Literal: 0",
+          "range": {
+            "start": {
+              "line": 232,
+              "character": 24
+            },
+            "end": {
+              "line": 232,
+              "character": 25
+            }
+          }
+        },
+        {
+          "id": 171,
+          "line": 235,
+          "rule": "CatchException",
+          "severity": "warning",
+          "msg": "The type Exception should not be caught",
+          "range": {
+            "start": {
+              "line": 235,
+              "character": 13
+            },
+            "end": {
+              "line": 235,
+              "character": 22
+            }
+          }
+        },
+        {
+          "id": 172,
+          "line": 236,
+          "rule": "UnnecessaryGetter",
+          "severity": "info",
+          "msg": "getMessage() can probably be rewritten as message"
+        },
+        {
+          "id": 173,
+          "line": 247,
+          "rule": "MethodParameterTypeRequired",
+          "severity": "info",
+          "msg": "\"branchName\" parameter of \"parseTicketNumber\" method is dynamically typed",
+          "range": {
+            "start": {
+              "line": 247,
+              "character": 22
+            },
+            "end": {
+              "line": 247,
+              "character": 32
+            }
+          }
+        },
+        {
+          "id": 174,
+          "line": 247,
+          "rule": "MethodReturnTypeRequired",
+          "severity": "info",
+          "msg": "Method \"parseTicketNumber\" has a dynamic return type",
+          "range": {
+            "start": {
+              "line": 247,
+              "character": 4
+            },
+            "end": {
+              "line": 247,
+              "character": 21
+            }
+          }
+        },
+        {
+          "id": 175,
+          "line": 247,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for method return type should not be used",
+          "range": {
+            "start": {
+              "line": 247,
+              "character": 0
+            },
+            "end": {
+              "line": 247,
+              "character": 3
+            }
+          }
+        },
+        {
+          "id": 176,
+          "line": 247,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for method parameter type should not be used",
+          "range": {
+            "start": {
+              "line": 247,
+              "character": 0
+            },
+            "end": {
+              "line": 247,
+              "character": 3
+            }
+          }
+        },
+        {
+          "id": 177,
+          "line": 248,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for declaration should not be used",
+          "range": {
+            "start": {
+              "line": 248,
+              "character": 4
+            },
+            "end": {
+              "line": 248,
+              "character": 7
+            }
+          }
+        },
+        {
+          "id": 178,
+          "line": 248,
+          "rule": "VariableTypeRequired",
+          "severity": "info",
+          "msg": "The type is not specified for variable \"patternMatches\"",
+          "range": {
+            "start": {
+              "line": 248,
+              "character": 8
+            },
+            "end": {
+              "line": 248,
+              "character": 22
+            }
+          }
+        },
+        {
+          "id": 179,
+          "line": 251,
+          "rule": "DuplicateNumberLiteral",
+          "severity": "info",
+          "msg": "Duplicate Number Literal: 0",
+          "range": {
+            "start": {
+              "line": 251,
+              "character": 30
+            },
+            "end": {
+              "line": 251,
+              "character": 31
+            }
+          }
+        },
+        {
+          "id": 180,
+          "line": 267,
+          "rule": "LineLength",
+          "severity": "warning",
+          "msg": "The line exceeds 120 characters. The line is 121 characters."
+        },
+        {
+          "id": 181,
+          "line": 267,
+          "rule": "MethodParameterTypeRequired",
+          "severity": "info",
+          "msg": "\"remoteProjectFolderName\" parameter of \"publishTestResultsHtmlToWebServer\" method is dynamically typed",
+          "range": {
+            "start": {
+              "line": 267,
+              "character": 38
+            },
+            "end": {
+              "line": 267,
+              "character": 61
+            }
+          }
+        },
+        {
+          "id": 182,
+          "line": 267,
+          "rule": "MethodParameterTypeRequired",
+          "severity": "info",
+          "msg": "\"ticketNumber\" parameter of \"publishTestResultsHtmlToWebServer\" method is dynamically typed",
+          "range": {
+            "start": {
+              "line": 267,
+              "character": 63
+            },
+            "end": {
+              "line": 267,
+              "character": 75
+            }
+          }
+        },
+        {
+          "id": 183,
+          "line": 267,
+          "rule": "MethodParameterTypeRequired",
+          "severity": "info",
+          "msg": "\"reportDir\" parameter of \"publishTestResultsHtmlToWebServer\" method is dynamically typed",
+          "range": {
+            "start": {
+              "line": 267,
+              "character": 77
+            },
+            "end": {
+              "line": 267,
+              "character": 86
+            }
+          }
+        },
+        {
+          "id": 184,
+          "line": 267,
+          "rule": "MethodParameterTypeRequired",
+          "severity": "info",
+          "msg": "\"reportType\" parameter of \"publishTestResultsHtmlToWebServer\" method is dynamically typed",
+          "range": {
+            "start": {
+              "line": 267,
+              "character": 88
+            },
+            "end": {
+              "line": 267,
+              "character": 98
+            }
+          }
+        },
+        {
+          "id": 185,
+          "line": 267,
+          "rule": "MethodParameterTypeRequired",
+          "severity": "info",
+          "msg": "\"buildNumber\" parameter of \"publishTestResultsHtmlToWebServer\" method is dynamically typed",
+          "range": {
+            "start": {
+              "line": 267,
+              "character": 100
+            },
+            "end": {
+              "line": 267,
+              "character": 111
+            }
+          }
+        },
+        {
+          "id": 186,
+          "line": 267,
+          "rule": "MethodReturnTypeRequired",
+          "severity": "info",
+          "msg": "Method \"publishTestResultsHtmlToWebServer\" has a dynamic return type",
+          "range": {
+            "start": {
+              "line": 267,
+              "character": 4
+            },
+            "end": {
+              "line": 267,
+              "character": 37
+            }
+          }
+        },
+        {
+          "id": 187,
+          "line": 267,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for method return type should not be used",
+          "range": {
+            "start": {
+              "line": 267,
+              "character": 0
+            },
+            "end": {
+              "line": 267,
+              "character": 3
+            }
+          }
+        },
+        {
+          "id": 188,
+          "line": 267,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for method parameter type should not be used",
+          "range": {
+            "start": {
+              "line": 267,
+              "character": 0
+            },
+            "end": {
+              "line": 267,
+              "character": 3
+            }
+          }
+        },
+        {
+          "id": 189,
+          "line": 267,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for method parameter type should not be used",
+          "range": {
+            "start": {
+              "line": 267,
+              "character": 0
+            },
+            "end": {
+              "line": 267,
+              "character": 3
+            }
+          }
+        },
+        {
+          "id": 190,
+          "line": 267,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for method parameter type should not be used",
+          "range": {
+            "start": {
+              "line": 267,
+              "character": 0
+            },
+            "end": {
+              "line": 267,
+              "character": 3
+            }
+          }
+        },
+        {
+          "id": 191,
+          "line": 267,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for method parameter type should not be used",
+          "range": {
+            "start": {
+              "line": 267,
+              "character": 0
+            },
+            "end": {
+              "line": 267,
+              "character": 3
+            }
+          }
+        },
+        {
+          "id": 192,
+          "line": 267,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for method parameter type should not be used",
+          "range": {
+            "start": {
+              "line": 267,
+              "character": 0
+            },
+            "end": {
+              "line": 267,
+              "character": 3
+            }
+          }
+        },
+        {
+          "id": 193,
+          "line": 269,
+          "rule": "LineLength",
+          "severity": "warning",
+          "msg": "The line exceeds 120 characters. The line is 237 characters."
+        },
+        {
+          "id": 194,
+          "line": 269,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for declaration should not be used",
+          "range": {
+            "start": {
+              "line": 269,
+              "character": 4
+            },
+            "end": {
+              "line": 269,
+              "character": 7
+            }
+          }
+        },
+        {
+          "id": 195,
+          "line": 269,
+          "rule": "VariableTypeRequired",
+          "severity": "info",
+          "msg": "The type is not specified for variable \"destinationDir\"",
+          "range": {
+            "start": {
+              "line": 269,
+              "character": 8
+            },
+            "end": {
+              "line": 269,
+              "character": 22
+            }
+          }
+        },
+        {
+          "id": 196,
+          "line": 288,
+          "rule": "MethodParameterTypeRequired",
+          "severity": "info",
+          "msg": "\"remoteProjectFolderName\" parameter of \"cleanMergedBranchReportsFromWebServer\" method is dynamically typed",
+          "range": {
+            "start": {
+              "line": 288,
+              "character": 42
+            },
+            "end": {
+              "line": 288,
+              "character": 65
+            }
+          }
+        },
+        {
+          "id": 197,
+          "line": 288,
+          "rule": "MethodParameterTypeRequired",
+          "severity": "info",
+          "msg": "\"ticketNumber\" parameter of \"cleanMergedBranchReportsFromWebServer\" method is dynamically typed",
+          "range": {
+            "start": {
+              "line": 288,
+              "character": 67
+            },
+            "end": {
+              "line": 288,
+              "character": 79
+            }
+          }
+        },
+        {
+          "id": 198,
+          "line": 288,
+          "rule": "MethodReturnTypeRequired",
+          "severity": "info",
+          "msg": "Method \"cleanMergedBranchReportsFromWebServer\" has a dynamic return type",
+          "range": {
+            "start": {
+              "line": 288,
+              "character": 4
+            },
+            "end": {
+              "line": 288,
+              "character": 41
+            }
+          }
+        },
+        {
+          "id": 199,
+          "line": 288,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for method return type should not be used",
+          "range": {
+            "start": {
+              "line": 288,
+              "character": 0
+            },
+            "end": {
+              "line": 288,
+              "character": 3
+            }
+          }
+        },
+        {
+          "id": 200,
+          "line": 288,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for method parameter type should not be used",
+          "range": {
+            "start": {
+              "line": 288,
+              "character": 0
+            },
+            "end": {
+              "line": 288,
+              "character": 3
+            }
+          }
+        },
+        {
+          "id": 201,
+          "line": 288,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for method parameter type should not be used",
+          "range": {
+            "start": {
+              "line": 288,
+              "character": 0
+            },
+            "end": {
+              "line": 288,
+              "character": 3
+            }
+          }
+        },
+        {
+          "id": 202,
+          "line": 300,
+          "rule": "MethodReturnTypeRequired",
+          "severity": "info",
+          "msg": "Method \"cleanUpPRBranch\" has a dynamic return type",
+          "range": {
+            "start": {
+              "line": 300,
+              "character": 4
+            },
+            "end": {
+              "line": 300,
+              "character": 19
+            }
+          }
+        },
+        {
+          "id": 203,
+          "line": 300,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for method return type should not be used",
+          "range": {
+            "start": {
+              "line": 300,
+              "character": 0
+            },
+            "end": {
+              "line": 300,
+              "character": 3
+            }
+          }
+        },
+        {
+          "id": 204,
+          "line": 302,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for declaration should not be used",
+          "range": {
+            "start": {
+              "line": 302,
+              "character": 4
+            },
+            "end": {
+              "line": 302,
+              "character": 7
+            }
+          }
+        },
+        {
+          "id": 205,
+          "line": 302,
+          "rule": "VariableTypeRequired",
+          "severity": "info",
+          "msg": "The type is not specified for variable \"findPath\"",
+          "range": {
+            "start": {
+              "line": 302,
+              "character": 8
+            },
+            "end": {
+              "line": 302,
+              "character": 16
+            }
+          }
+        },
+        {
+          "id": 206,
+          "line": 308,
+          "rule": "DuplicateNumberLiteral",
+          "severity": "info",
+          "msg": "Duplicate Number Literal: 0",
+          "range": {
+            "start": {
+              "line": 308,
+              "character": 29
+            },
+            "end": {
+              "line": 308,
+              "character": 30
+            }
+          }
+        },
+        {
+          "id": 207,
+          "line": 317,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for declaration should not be used",
+          "range": {
+            "start": {
+              "line": 317,
+              "character": 4
+            },
+            "end": {
+              "line": 317,
+              "character": 7
+            }
+          }
+        },
+        {
+          "id": 208,
+          "line": 317,
+          "rule": "VariableTypeRequired",
+          "severity": "info",
+          "msg": "The type is not specified for variable \"branchPaths\"",
+          "range": {
+            "start": {
+              "line": 317,
+              "character": 8
+            },
+            "end": {
+              "line": 317,
+              "character": 19
+            }
+          }
+        },
+        {
+          "id": 209,
+          "line": 318,
+          "rule": "InvertedIfElse",
+          "severity": "info",
+          "msg": "Testing the negative condition first can make an if statement confusing"
+        },
+        {
+          "id": 210,
+          "line": 318,
+          "rule": "UnnecessaryGetter",
+          "severity": "info",
+          "msg": "isEmpty() can probably be rewritten as empty"
+        },
+        {
+          "id": 211,
+          "line": 320,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for declaration should not be used",
+          "range": {
+            "start": {
+              "line": 320,
+              "character": 8
+            },
+            "end": {
+              "line": 320,
+              "character": 11
+            }
+          }
+        },
+        {
+          "id": 212,
+          "line": 320,
+          "rule": "VariableTypeRequired",
+          "severity": "info",
+          "msg": "The type is not specified for variable \"paths\"",
+          "range": {
+            "start": {
+              "line": 320,
+              "character": 12
+            },
+            "end": {
+              "line": 320,
+              "character": 17
+            }
+          }
+        },
+        {
+          "id": 213,
+          "line": 330,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for declaration should not be used",
+          "range": {
+            "start": {
+              "line": 330,
+              "character": 12
+            },
+            "end": {
+              "line": 330,
+              "character": 15
+            }
+          }
+        },
+        {
+          "id": 214,
+          "line": 330,
+          "rule": "VariableTypeRequired",
+          "severity": "info",
+          "msg": "The type is not specified for variable \"tmpPath\"",
+          "range": {
+            "start": {
+              "line": 330,
+              "character": 16
+            },
+            "end": {
+              "line": 330,
+              "character": 23
+            }
+          }
+        },
+        {
+          "id": 215,
+          "line": 331,
+          "rule": "DuplicateNumberLiteral",
+          "severity": "info",
+          "msg": "Duplicate Number Literal: 0",
+          "range": {
+            "start": {
+              "line": 331,
+              "character": 76
+            },
+            "end": {
+              "line": 331,
+              "character": 77
+            }
+          }
+        },
+        {
+          "id": 216,
+          "line": 353,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for declaration should not be used",
+          "range": {
+            "start": {
+              "line": 353,
+              "character": 8
+            },
+            "end": {
+              "line": 353,
+              "character": 11
+            }
+          }
+        },
+        {
+          "id": 217,
+          "line": 353,
+          "rule": "VariableTypeRequired",
+          "severity": "info",
+          "msg": "The type is not specified for variable \"openFiles\"",
+          "range": {
+            "start": {
+              "line": 353,
+              "character": 12
+            },
+            "end": {
+              "line": 353,
+              "character": 21
+            }
+          }
+        },
+        {
+          "id": 218,
+          "line": 355,
+          "rule": "InvertedIfElse",
+          "severity": "info",
+          "msg": "Testing the negative condition first can make an if statement confusing"
+        },
+        {
+          "id": 219,
+          "line": 355,
+          "rule": "UnnecessaryGetter",
+          "severity": "info",
+          "msg": "isEmpty() can probably be rewritten as empty"
+        },
+        {
+          "id": 220,
+          "line": 361,
+          "rule": "DuplicateStringLiteral",
+          "severity": "info",
+          "msg": "Duplicate String Literal: \n",
+          "range": {
+            "start": {
+              "line": 361,
+              "character": 0
+            },
+            "end": {
+              "line": 361,
+              "character": 0
+            }
+          }
+        },
+        {
+          "id": 221,
+          "line": 361,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for declaration should not be used",
+          "range": {
+            "start": {
+              "line": 361,
+              "character": 12
+            },
+            "end": {
+              "line": 361,
+              "character": 15
+            }
+          }
+        },
+        {
+          "id": 222,
+          "line": 361,
+          "rule": "VariableTypeRequired",
+          "severity": "info",
+          "msg": "The type is not specified for variable \"pids\"",
+          "range": {
+            "start": {
+              "line": 361,
+              "character": 16
+            },
+            "end": {
+              "line": 361,
+              "character": 20
+            }
+          }
+        },
+        {
+          "id": 223,
+          "line": 362,
+          "rule": "ImplicitClosureParameter",
+          "severity": "info",
+          "msg": "By convention closure parameters should be specified explicitly."
+        },
+        {
+          "id": 224,
+          "line": 362,
+          "rule": "ImplicitClosureParameter",
+          "severity": "info",
+          "msg": "By convention closure parameters should be specified explicitly."
+        },
+        {
+          "id": 225,
+          "line": 364,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for declaration should not be used",
+          "range": {
+            "start": {
+              "line": 364,
+              "character": 16
+            },
+            "end": {
+              "line": 364,
+              "character": 19
+            }
+          }
+        },
+        {
+          "id": 226,
+          "line": 364,
+          "rule": "VariableTypeRequired",
+          "severity": "info",
+          "msg": "The type is not specified for variable \"match\"",
+          "range": {
+            "start": {
+              "line": 364,
+              "character": 20
+            },
+            "end": {
+              "line": 364,
+              "character": 25
+            }
+          }
+        },
+        {
+          "id": 227,
+          "line": 365,
+          "rule": "DuplicateNumberLiteral",
+          "severity": "info",
+          "msg": "Duplicate Number Literal: 0",
+          "range": {
+            "start": {
+              "line": 365,
+              "character": 37
+            },
+            "end": {
+              "line": 365,
+              "character": 38
+            }
+          }
+        },
+        {
+          "id": 228,
+          "line": 376,
+          "rule": "DuplicateNumberLiteral",
+          "severity": "info",
+          "msg": "Duplicate Number Literal: 0",
+          "range": {
+            "start": {
+              "line": 376,
+              "character": 94
+            },
+            "end": {
+              "line": 376,
+              "character": 95
+            }
+          }
+        },
+        {
+          "id": 229,
+          "line": 376,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for declaration should not be used",
+          "range": {
+            "start": {
+              "line": 376,
+              "character": 20
+            },
+            "end": {
+              "line": 376,
+              "character": 23
+            }
+          }
+        },
+        {
+          "id": 230,
+          "line": 376,
+          "rule": "VariableTypeRequired",
+          "severity": "info",
+          "msg": "The type is not specified for variable \"pidExists\"",
+          "range": {
+            "start": {
+              "line": 376,
+              "character": 24
+            },
+            "end": {
+              "line": 376,
+              "character": 33
+            }
+          }
+        },
+        {
+          "id": 231,
+          "line": 391,
+          "rule": "CatchException",
+          "severity": "warning",
+          "msg": "The type Exception should not be caught",
+          "range": {
+            "start": {
+              "line": 391,
+              "character": 11
+            },
+            "end": {
+              "line": 391,
+              "character": 20
+            }
+          }
+        },
+        {
+          "id": 232,
+          "line": 403,
+          "rule": "CompileStatic",
+          "severity": "info",
+          "msg": "Class should be marked with one of @GrailsCompileStatic, @CompileStatic or @CompileDynamic"
+        }
+      ]
+    },
+    "/var/lib/jenkins/workspace/PipelineForJenkins/PR-Pipeline/DevOps-Linux-Jenkins/groovy/jsHelper.groovy": {
+      "errors": [
+        {
+          "id": 0,
+          "line": 11,
+          "rule": "MethodParameterTypeRequired",
+          "severity": "info",
+          "msg": "\"projectFolder\" parameter of \"findTestingDirs\" method is dynamically typed",
+          "range": {
+            "start": {
+              "line": 11,
+              "character": 20
+            },
+            "end": {
+              "line": 11,
+              "character": 33
+            }
+          }
+        },
+        {
+          "id": 1,
+          "line": 11,
+          "rule": "MethodReturnTypeRequired",
+          "severity": "info",
+          "msg": "Method \"findTestingDirs\" has a dynamic return type",
+          "range": {
+            "start": {
+              "line": 11,
+              "character": 4
+            },
+            "end": {
+              "line": 11,
+              "character": 19
+            }
+          }
+        },
+        {
+          "id": 2,
+          "line": 11,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for method return type should not be used",
+          "range": {
+            "start": {
+              "line": 11,
+              "character": 0
+            },
+            "end": {
+              "line": 11,
+              "character": 3
+            }
+          }
+        },
+        {
+          "id": 3,
+          "line": 11,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for method parameter type should not be used",
+          "range": {
+            "start": {
+              "line": 11,
+              "character": 0
+            },
+            "end": {
+              "line": 11,
+              "character": 3
+            }
+          }
+        },
+        {
+          "id": 4,
+          "line": 12,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for declaration should not be used",
+          "range": {
+            "start": {
+              "line": 12,
+              "character": 4
+            },
+            "end": {
+              "line": 12,
+              "character": 7
+            }
+          }
+        },
+        {
+          "id": 5,
+          "line": 12,
+          "rule": "VariableTypeRequired",
+          "severity": "info",
+          "msg": "The type is not specified for variable \"directoriesToTest\"",
+          "range": {
+            "start": {
+              "line": 12,
+              "character": 8
+            },
+            "end": {
+              "line": 12,
+              "character": 25
+            }
+          }
+        },
+        {
+          "id": 6,
+          "line": 13,
+          "rule": "JavaIoPackageAccess",
+          "severity": "warning",
+          "msg": "The use of java.io.File violates the Enterprise Java Bean specification"
+        },
+        {
+          "id": 7,
+          "line": 13,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for declaration should not be used",
+          "range": {
+            "start": {
+              "line": 13,
+              "character": 4
+            },
+            "end": {
+              "line": 13,
+              "character": 7
+            }
+          }
+        },
+        {
+          "id": 8,
+          "line": 13,
+          "rule": "VariableTypeRequired",
+          "severity": "info",
+          "msg": "The type is not specified for variable \"projectDir\"",
+          "range": {
+            "start": {
+              "line": 13,
+              "character": 8
+            },
+            "end": {
+              "line": 13,
+              "character": 18
+            }
+          }
+        },
+        {
+          "id": 9,
+          "line": 16,
+          "rule": "ImplicitClosureParameter",
+          "severity": "info",
+          "msg": "By convention closure parameters should be specified explicitly."
+        },
+        {
+          "id": 10,
+          "line": 16,
+          "rule": "ImplicitClosureParameter",
+          "severity": "info",
+          "msg": "By convention closure parameters should be specified explicitly."
+        },
+        {
+          "id": 11,
+          "line": 16,
+          "rule": "JavaIoPackageAccess",
+          "severity": "warning",
+          "msg": "The use of java.io.File violates the Enterprise Java Bean specification"
+        },
+        {
+          "id": 12,
+          "line": 16,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for declaration should not be used",
+          "range": {
+            "start": {
+              "line": 16,
+              "character": 4
+            },
+            "end": {
+              "line": 16,
+              "character": 7
+            }
+          }
+        },
+        {
+          "id": 13,
+          "line": 16,
+          "rule": "UnnecessaryGetter",
+          "severity": "info",
+          "msg": "isDirectory() can probably be rewritten as directory"
+        },
+        {
+          "id": 14,
+          "line": 16,
+          "rule": "VariableTypeRequired",
+          "severity": "info",
+          "msg": "The type is not specified for variable \"subDirs\"",
+          "range": {
+            "start": {
+              "line": 16,
+              "character": 8
+            },
+            "end": {
+              "line": 16,
+              "character": 15
+            }
+          }
+        },
+        {
+          "id": 15,
+          "line": 18,
+          "rule": "SpaceAfterClosingBrace",
+          "severity": "info",
+          "msg": "The closing brace for the block in class None is not followed by a space or whitespace"
+        },
+        {
+          "id": 16,
+          "line": 38,
+          "rule": "UnnecessaryGetter",
+          "severity": "info",
+          "msg": "isEmpty() can probably be rewritten as empty"
+        },
+        {
+          "id": 17,
+          "line": 43,
+          "rule": "DuplicateStringLiteral",
+          "severity": "info",
+          "msg": "Duplicate String Literal: ,",
+          "range": {
+            "start": {
+              "line": 43,
+              "character": 47
+            },
+            "end": {
+              "line": 43,
+              "character": 48
+            }
+          }
+        },
+        {
+          "id": 18,
+          "line": 46,
+          "rule": "JavaIoPackageAccess",
+          "severity": "warning",
+          "msg": "The use of java.io.File violates the Enterprise Java Bean specification"
+        },
+        {
+          "id": 19,
+          "line": 47,
+          "rule": "UnnecessaryGetter",
+          "severity": "info",
+          "msg": "isDirectory() can probably be rewritten as directory"
+        },
+        {
+          "id": 20,
+          "line": 61,
+          "rule": "JavaIoPackageAccess",
+          "severity": "warning",
+          "msg": "The use of java.io.File violates the Enterprise Java Bean specification"
+        },
+        {
+          "id": 21,
+          "line": 67,
+          "rule": "LineLength",
+          "severity": "warning",
+          "msg": "The line exceeds 120 characters. The line is 130 characters."
+        },
+        {
+          "id": 22,
+          "line": 71,
+          "rule": "DuplicateNumberLiteral",
+          "severity": "info",
+          "msg": "Duplicate Number Literal: 0",
+          "range": {
+            "start": {
+              "line": 71,
+              "character": 28
+            },
+            "end": {
+              "line": 71,
+              "character": 29
+            }
+          }
+        },
+        {
+          "id": 23,
+          "line": 82,
+          "rule": "DuplicateNumberLiteral",
+          "severity": "info",
+          "msg": "Duplicate Number Literal: 0",
+          "range": {
+            "start": {
+              "line": 82,
+              "character": 24
+            },
+            "end": {
+              "line": 82,
+              "character": 25
+            }
+          }
+        },
+        {
+          "id": 24,
+          "line": 101,
+          "rule": "UnnecessaryGetter",
+          "severity": "info",
+          "msg": "isEmpty() can probably be rewritten as empty"
+        },
+        {
+          "id": 25,
+          "line": 102,
+          "rule": "DuplicateStringLiteral",
+          "severity": "info",
+          "msg": "Duplicate String Literal: Testing directories don't exist."
+        },
+        {
+          "id": 26,
+          "line": 107,
+          "rule": "DuplicateStringLiteral",
+          "severity": "info",
+          "msg": "Duplicate String Literal: ,",
+          "range": {
+            "start": {
+              "line": 107,
+              "character": 47
+            },
+            "end": {
+              "line": 107,
+              "character": 48
+            }
+          }
+        },
+        {
+          "id": 27,
+          "line": 111,
+          "rule": "JavaIoPackageAccess",
+          "severity": "warning",
+          "msg": "The use of java.io.File violates the Enterprise Java Bean specification"
+        },
+        {
+          "id": 28,
+          "line": 112,
+          "rule": "UnnecessaryGetter",
+          "severity": "info",
+          "msg": "isDirectory() can probably be rewritten as directory"
+        },
+        {
+          "id": 29,
+          "line": 125,
+          "rule": "DuplicateNumberLiteral",
+          "severity": "info",
+          "msg": "Duplicate Number Literal: 0",
+          "range": {
+            "start": {
+              "line": 125,
+              "character": 24
+            },
+            "end": {
+              "line": 125,
+              "character": 25
+            }
+          }
+        },
+        {
+          "id": 30,
+          "line": 141,
+          "rule": "MethodReturnTypeRequired",
+          "severity": "info",
+          "msg": "Method \"checkNodeVersion\" has a dynamic return type",
+          "range": {
+            "start": {
+              "line": 141,
+              "character": 4
+            },
+            "end": {
+              "line": 141,
+              "character": 20
+            }
+          }
+        },
+        {
+          "id": 31,
+          "line": 141,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for method return type should not be used",
+          "range": {
+            "start": {
+              "line": 141,
+              "character": 0
+            },
+            "end": {
+              "line": 141,
+              "character": 3
+            }
+          }
+        },
+        {
+          "id": 32,
+          "line": 144,
+          "rule": "UnnecessaryGetter",
+          "severity": "info",
+          "msg": "isUnix() can probably be rewritten as unix"
+        },
+        {
+          "id": 33,
+          "line": 145,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for declaration should not be used",
+          "range": {
+            "start": {
+              "line": 145,
+              "character": 12
+            },
+            "end": {
+              "line": 145,
+              "character": 15
+            }
+          }
+        },
+        {
+          "id": 34,
+          "line": 145,
+          "rule": "VariableTypeRequired",
+          "severity": "info",
+          "msg": "The type is not specified for variable \"nodeVersion\"",
+          "range": {
+            "start": {
+              "line": 145,
+              "character": 16
+            },
+            "end": {
+              "line": 145,
+              "character": 27
+            }
+          }
+        },
+        {
+          "id": 35,
+          "line": 146,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for declaration should not be used",
+          "range": {
+            "start": {
+              "line": 146,
+              "character": 12
+            },
+            "end": {
+              "line": 146,
+              "character": 15
+            }
+          }
+        },
+        {
+          "id": 36,
+          "line": 146,
+          "rule": "VariableTypeRequired",
+          "severity": "info",
+          "msg": "The type is not specified for variable \"npmVersion\"",
+          "range": {
+            "start": {
+              "line": 146,
+              "character": 16
+            },
+            "end": {
+              "line": 146,
+              "character": 26
+            }
+          }
+        },
+        {
+          "id": 37,
+          "line": 147,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for declaration should not be used",
+          "range": {
+            "start": {
+              "line": 147,
+              "character": 12
+            },
+            "end": {
+              "line": 147,
+              "character": 15
+            }
+          }
+        },
+        {
+          "id": 38,
+          "line": 147,
+          "rule": "VariableTypeRequired",
+          "severity": "info",
+          "msg": "The type is not specified for variable \"npmConfig\"",
+          "range": {
+            "start": {
+              "line": 147,
+              "character": 16
+            },
+            "end": {
+              "line": 147,
+              "character": 25
+            }
+          }
+        },
+        {
+          "id": 39,
+          "line": 154,
+          "rule": "DuplicateMapLiteral",
+          "severity": "warning",
+          "msg": "Map [script:node -v, returnStdout:true] is duplicated."
+        },
+        {
+          "id": 40,
+          "line": 154,
+          "rule": "DuplicateStringLiteral",
+          "severity": "info",
+          "msg": "Duplicate String Literal: node -v",
+          "range": {
+            "start": {
+              "line": 154,
+              "character": 43
+            },
+            "end": {
+              "line": 154,
+              "character": 50
+            }
+          }
+        },
+        {
+          "id": 41,
+          "line": 154,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for declaration should not be used",
+          "range": {
+            "start": {
+              "line": 154,
+              "character": 12
+            },
+            "end": {
+              "line": 154,
+              "character": 15
+            }
+          }
+        },
+        {
+          "id": 42,
+          "line": 154,
+          "rule": "VariableTypeRequired",
+          "severity": "info",
+          "msg": "The type is not specified for variable \"nodeVersion\"",
+          "range": {
+            "start": {
+              "line": 154,
+              "character": 16
+            },
+            "end": {
+              "line": 154,
+              "character": 27
+            }
+          }
+        },
+        {
+          "id": 43,
+          "line": 155,
+          "rule": "DuplicateMapLiteral",
+          "severity": "warning",
+          "msg": "Map [script:npm -v, returnStdout:true] is duplicated."
+        },
+        {
+          "id": 44,
+          "line": 155,
+          "rule": "DuplicateStringLiteral",
+          "severity": "info",
+          "msg": "Duplicate String Literal: npm -v",
+          "range": {
+            "start": {
+              "line": 155,
+              "character": 42
+            },
+            "end": {
+              "line": 155,
+              "character": 48
+            }
+          }
+        },
+        {
+          "id": 45,
+          "line": 155,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for declaration should not be used",
+          "range": {
+            "start": {
+              "line": 155,
+              "character": 12
+            },
+            "end": {
+              "line": 155,
+              "character": 15
+            }
+          }
+        },
+        {
+          "id": 46,
+          "line": 155,
+          "rule": "VariableTypeRequired",
+          "severity": "info",
+          "msg": "The type is not specified for variable \"npmVersion\"",
+          "range": {
+            "start": {
+              "line": 155,
+              "character": 16
+            },
+            "end": {
+              "line": 155,
+              "character": 26
+            }
+          }
+        },
+        {
+          "id": 47,
+          "line": 156,
+          "rule": "DuplicateMapLiteral",
+          "severity": "warning",
+          "msg": "Map [script:npm config ls, returnStdout:true] is duplicated."
+        },
+        {
+          "id": 48,
+          "line": 156,
+          "rule": "DuplicateStringLiteral",
+          "severity": "info",
+          "msg": "Duplicate String Literal: npm config ls",
+          "range": {
+            "start": {
+              "line": 156,
+              "character": 41
+            },
+            "end": {
+              "line": 156,
+              "character": 54
+            }
+          }
+        },
+        {
+          "id": 49,
+          "line": 156,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for declaration should not be used",
+          "range": {
+            "start": {
+              "line": 156,
+              "character": 12
+            },
+            "end": {
+              "line": 156,
+              "character": 15
+            }
+          }
+        },
+        {
+          "id": 50,
+          "line": 156,
+          "rule": "VariableTypeRequired",
+          "severity": "info",
+          "msg": "The type is not specified for variable \"npmConfig\"",
+          "range": {
+            "start": {
+              "line": 156,
+              "character": 16
+            },
+            "end": {
+              "line": 156,
+              "character": 25
+            }
+          }
+        },
+        {
+          "id": 51,
+          "line": 162,
+          "rule": "CatchException",
+          "severity": "warning",
+          "msg": "The type Exception should not be caught",
+          "range": {
+            "start": {
+              "line": 162,
+              "character": 13
+            },
+            "end": {
+              "line": 162,
+              "character": 22
+            }
+          }
+        },
+        {
+          "id": 52,
+          "line": 163,
+          "rule": "UnnecessaryGetter",
+          "severity": "info",
+          "msg": "getMessage() can probably be rewritten as message"
+        },
+        {
+          "id": 53,
+          "line": 175,
+          "rule": "MethodParameterTypeRequired",
+          "severity": "info",
+          "msg": "\"command\" parameter of \"runCommandReturnStatus\" method is dynamically typed",
+          "range": {
+            "start": {
+              "line": 175,
+              "character": 27
+            },
+            "end": {
+              "line": 175,
+              "character": 34
+            }
+          }
+        },
+        {
+          "id": 54,
+          "line": 175,
+          "rule": "MethodReturnTypeRequired",
+          "severity": "info",
+          "msg": "Method \"runCommandReturnStatus\" has a dynamic return type",
+          "range": {
+            "start": {
+              "line": 175,
+              "character": 4
+            },
+            "end": {
+              "line": 175,
+              "character": 26
+            }
+          }
+        },
+        {
+          "id": 55,
+          "line": 175,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for method return type should not be used",
+          "range": {
+            "start": {
+              "line": 175,
+              "character": 0
+            },
+            "end": {
+              "line": 175,
+              "character": 3
+            }
+          }
+        },
+        {
+          "id": 56,
+          "line": 175,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for method parameter type should not be used",
+          "range": {
+            "start": {
+              "line": 175,
+              "character": 0
+            },
+            "end": {
+              "line": 175,
+              "character": 3
+            }
+          }
+        },
+        {
+          "id": 57,
+          "line": 176,
+          "rule": "UnnecessaryGetter",
+          "severity": "info",
+          "msg": "isUnix() can probably be rewritten as unix"
+        },
+        {
+          "id": 58,
+          "line": 178,
+          "rule": "UnnecessaryElseStatement",
+          "severity": "info",
+          "msg": "When an if statement block ends with a return statement the else is unnecessary"
+        },
+        {
+          "id": 59,
+          "line": 196,
+          "rule": "UnnecessaryGetter",
+          "severity": "info",
+          "msg": "isEmpty() can probably be rewritten as empty"
+        },
+        {
+          "id": 60,
+          "line": 197,
+          "rule": "DuplicateStringLiteral",
+          "severity": "info",
+          "msg": "Duplicate String Literal: Testing directories don't exist."
+        },
+        {
+          "id": 61,
+          "line": 202,
+          "rule": "DuplicateStringLiteral",
+          "severity": "info",
+          "msg": "Duplicate String Literal: ,",
+          "range": {
+            "start": {
+              "line": 202,
+              "character": 47
+            },
+            "end": {
+              "line": 202,
+              "character": 48
+            }
+          }
+        },
+        {
+          "id": 62,
+          "line": 216,
+          "rule": "DuplicateNumberLiteral",
+          "severity": "info",
+          "msg": "Duplicate Number Literal: 0",
+          "range": {
+            "start": {
+              "line": 216,
+              "character": 28
+            },
+            "end": {
+              "line": 216,
+              "character": 29
+            }
+          }
+        },
+        {
+          "id": 63,
+          "line": 231,
+          "rule": "LineLength",
+          "severity": "warning",
+          "msg": "The line exceeds 120 characters. The line is 133 characters."
+        },
+        {
+          "id": 64,
+          "line": 233,
+          "rule": "LineLength",
+          "severity": "warning",
+          "msg": "The line exceeds 120 characters. The line is 139 characters."
+        },
+        {
+          "id": 65,
+          "line": 249,
+          "rule": "LineLength",
+          "severity": "warning",
+          "msg": "The line exceeds 120 characters. The line is 124 characters."
+        },
+        {
+          "id": 66,
+          "line": 257,
+          "rule": "LineLength",
+          "severity": "warning",
+          "msg": "The line exceeds 120 characters. The line is 178 characters."
+        },
+        {
+          "id": 67,
+          "line": 261,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for declaration should not be used",
+          "range": {
+            "start": {
+              "line": 261,
+              "character": 8
+            },
+            "end": {
+              "line": 261,
+              "character": 11
+            }
+          }
+        },
+        {
+          "id": 68,
+          "line": 261,
+          "rule": "VariableTypeRequired",
+          "severity": "info",
+          "msg": "The type is not specified for variable \"process\"",
+          "range": {
+            "start": {
+              "line": 261,
+              "character": 12
+            },
+            "end": {
+              "line": 261,
+              "character": 19
+            }
+          }
+        },
+        {
+          "id": 69,
+          "line": 265,
+          "rule": "DuplicateNumberLiteral",
+          "severity": "info",
+          "msg": "Duplicate Number Literal: 0",
+          "range": {
+            "start": {
+              "line": 265,
+              "character": 35
+            },
+            "end": {
+              "line": 265,
+              "character": 36
+            }
+          }
+        },
+        {
+          "id": 70,
+          "line": 272,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for declaration should not be used",
+          "range": {
+            "start": {
+              "line": 272,
+              "character": 8
+            },
+            "end": {
+              "line": 272,
+              "character": 11
+            }
+          }
+        },
+        {
+          "id": 71,
+          "line": 272,
+          "rule": "VariableTypeRequired",
+          "severity": "info",
+          "msg": "The type is not specified for variable \"buildStatus\"",
+          "range": {
+            "start": {
+              "line": 272,
+              "character": 12
+            },
+            "end": {
+              "line": 272,
+              "character": 23
+            }
+          }
+        },
+        {
+          "id": 72,
+          "line": 275,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for declaration should not be used",
+          "range": {
+            "start": {
+              "line": 275,
+              "character": 8
+            },
+            "end": {
+              "line": 275,
+              "character": 11
+            }
+          }
+        },
+        {
+          "id": 73,
+          "line": 275,
+          "rule": "VariableTypeRequired",
+          "severity": "info",
+          "msg": "The type is not specified for variable \"prettyJson\"",
+          "range": {
+            "start": {
+              "line": 275,
+              "character": 12
+            },
+            "end": {
+              "line": 275,
+              "character": 22
+            }
+          }
+        },
+        {
+          "id": 74,
+          "line": 279,
+          "rule": "DuplicateNumberLiteral",
+          "severity": "info",
+          "msg": "Duplicate Number Literal: 0",
+          "range": {
+            "start": {
+              "line": 279,
+              "character": 41
+            },
+            "end": {
+              "line": 279,
+              "character": 42
+            }
+          }
+        },
+        {
+          "id": 75,
+          "line": 301,
+          "rule": "DuplicateStringLiteral",
+          "severity": "info",
+          "msg": "Duplicate String Literal: ----------------------------------------------------------------------------------------------------------------------------------------------------------------",
+          "range": {
+            "start": {
+              "line": 301,
+              "character": 21
+            },
+            "end": {
+              "line": 301,
+              "character": 181
+            }
+          }
+        },
+        {
+          "id": 76,
+          "line": 301,
+          "rule": "LineLength",
+          "severity": "warning",
+          "msg": "The line exceeds 120 characters. The line is 182 characters."
+        },
+        {
+          "id": 77,
+          "line": 305,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for declaration should not be used",
+          "range": {
+            "start": {
+              "line": 305,
+              "character": 12
+            },
+            "end": {
+              "line": 305,
+              "character": 15
+            }
+          }
+        },
+        {
+          "id": 78,
+          "line": 305,
+          "rule": "VariableTypeRequired",
+          "severity": "info",
+          "msg": "The type is not specified for variable \"newProcess\"",
+          "range": {
+            "start": {
+              "line": 305,
+              "character": 16
+            },
+            "end": {
+              "line": 305,
+              "character": 26
+            }
+          }
+        },
+        {
+          "id": 79,
+          "line": 309,
+          "rule": "DuplicateNumberLiteral",
+          "severity": "info",
+          "msg": "Duplicate Number Literal: 0",
+          "range": {
+            "start": {
+              "line": 309,
+              "character": 42
+            },
+            "end": {
+              "line": 309,
+              "character": 43
+            }
+          }
+        },
+        {
+          "id": 80,
+          "line": 316,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for declaration should not be used",
+          "range": {
+            "start": {
+              "line": 316,
+              "character": 12
+            },
+            "end": {
+              "line": 316,
+              "character": 15
+            }
+          }
+        },
+        {
+          "id": 81,
+          "line": 316,
+          "rule": "VariableTypeRequired",
+          "severity": "info",
+          "msg": "The type is not specified for variable \"qualityGateResult\"",
+          "range": {
+            "start": {
+              "line": 316,
+              "character": 16
+            },
+            "end": {
+              "line": 316,
+              "character": 33
+            }
+          }
+        },
+        {
+          "id": 82,
+          "line": 323,
+          "rule": "DuplicateNumberLiteral",
+          "severity": "info",
+          "msg": "Duplicate Number Literal: 0",
+          "range": {
+            "start": {
+              "line": 323,
+              "character": 71
+            },
+            "end": {
+              "line": 323,
+              "character": 72
+            }
+          }
+        },
+        {
+          "id": 83,
+          "line": 324,
+          "rule": "DuplicateNumberLiteral",
+          "severity": "info",
+          "msg": "Duplicate Number Literal: 0",
+          "range": {
+            "start": {
+              "line": 324,
+              "character": 80
+            },
+            "end": {
+              "line": 324,
+              "character": 81
+            }
+          }
+        },
+        {
+          "id": 84,
+          "line": 324,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for declaration should not be used",
+          "range": {
+            "start": {
+              "line": 324,
+              "character": 16
+            },
+            "end": {
+              "line": 324,
+              "character": 19
+            }
+          }
+        },
+        {
+          "id": 85,
+          "line": 324,
+          "rule": "VariableTypeRequired",
+          "severity": "info",
+          "msg": "The type is not specified for variable \"firstCondition\"",
+          "range": {
+            "start": {
+              "line": 324,
+              "character": 20
+            },
+            "end": {
+              "line": 324,
+              "character": 34
+            }
+          }
+        },
+        {
+          "id": 86,
+          "line": 336,
+          "rule": "ReturnsNullInsteadOfEmptyCollection",
+          "severity": "warning",
+          "msg": "Returning null from a method that might return a Collection or Map"
+        },
+        {
+          "id": 87,
+          "line": 341,
+          "rule": "LineLength",
+          "severity": "warning",
+          "msg": "The line exceeds 120 characters. The line is 154 characters."
+        },
+        {
+          "id": 88,
+          "line": 342,
+          "rule": "LineLength",
+          "severity": "warning",
+          "msg": "The line exceeds 120 characters. The line is 131 characters."
+        },
+        {
+          "id": 89,
+          "line": 345,
+          "rule": "LineLength",
+          "severity": "warning",
+          "msg": "The line exceeds 120 characters. The line is 137 characters."
+        },
+        {
+          "id": 90,
+          "line": 360,
+          "rule": "LineLength",
+          "severity": "warning",
+          "msg": "The line exceeds 120 characters. The line is 121 characters."
+        },
+        {
+          "id": 91,
+          "line": 361,
+          "rule": "LineLength",
+          "severity": "warning",
+          "msg": "The line exceeds 120 characters. The line is 131 characters."
+        },
+        {
+          "id": 92,
+          "line": 375,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for declaration should not be used",
+          "range": {
+            "start": {
+              "line": 375,
+              "character": 8
+            },
+            "end": {
+              "line": 375,
+              "character": 11
+            }
+          }
+        },
+        {
+          "id": 93,
+          "line": 375,
+          "rule": "VariableTypeRequired",
+          "severity": "info",
+          "msg": "The type is not specified for variable \"parts\"",
+          "range": {
+            "start": {
+              "line": 375,
+              "character": 12
+            },
+            "end": {
+              "line": 375,
+              "character": 17
+            }
+          }
+        },
+        {
+          "id": 94,
+          "line": 378,
+          "rule": "ImplicitClosureParameter",
+          "severity": "info",
+          "msg": "By convention closure parameters should be specified explicitly."
+        },
+        {
+          "id": 95,
+          "line": 380,
+          "rule": "ImplicitClosureParameter",
+          "severity": "info",
+          "msg": "By convention closure parameters should be specified explicitly."
+        },
+        {
+          "id": 96,
+          "line": 381,
+          "rule": "UnnecessaryElseStatement",
+          "severity": "info",
+          "msg": "When an if statement block ends with a return statement the else is unnecessary"
+        },
+        {
+          "id": 97,
+          "line": 394,
+          "rule": "DuplicateNumberLiteral",
+          "severity": "info",
+          "msg": "Duplicate Number Literal: 0",
+          "range": {
+            "start": {
+              "line": 394,
+              "character": 17
+            },
+            "end": {
+              "line": 394,
+              "character": 18
+            }
+          }
+        },
+        {
+          "id": 98,
+          "line": 396,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for declaration should not be used",
+          "range": {
+            "start": {
+              "line": 396,
+              "character": 8
+            },
+            "end": {
+              "line": 396,
+              "character": 11
+            }
+          }
+        },
+        {
+          "id": 99,
+          "line": 396,
+          "rule": "VariableTypeRequired",
+          "severity": "info",
+          "msg": "The type is not specified for variable \"v1\"",
+          "range": {
+            "start": {
+              "line": 396,
+              "character": 12
+            },
+            "end": {
+              "line": 396,
+              "character": 14
+            }
+          }
+        },
+        {
+          "id": 100,
+          "line": 397,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for declaration should not be used",
+          "range": {
+            "start": {
+              "line": 397,
+              "character": 8
+            },
+            "end": {
+              "line": 397,
+              "character": 11
+            }
+          }
+        },
+        {
+          "id": 101,
+          "line": 397,
+          "rule": "VariableTypeRequired",
+          "severity": "info",
+          "msg": "The type is not specified for variable \"v2\"",
+          "range": {
+            "start": {
+              "line": 397,
+              "character": 12
+            },
+            "end": {
+              "line": 397,
+              "character": 14
+            }
+          }
+        },
+        {
+          "id": 102,
+          "line": 408,
+          "rule": "CompileStatic",
+          "severity": "info",
+          "msg": "Class should be marked with one of @GrailsCompileStatic, @CompileStatic or @CompileDynamic"
+        }
+      ]
+    },
+    "/var/lib/jenkins/workspace/PipelineForJenkins/PR-Pipeline/DevOps-Linux-Jenkins/groovy/unityHelper.groovy": {
+      "errors": [
+        {
+          "id": 233,
+          "line": 9,
+          "rule": "MethodParameterTypeRequired",
+          "severity": "info",
+          "msg": "\"workspace\" parameter of \"sendTestReport\" method is dynamically typed",
+          "range": {
+            "start": {
+              "line": 9,
+              "character": 19
+            },
+            "end": {
+              "line": 9,
+              "character": 28
+            }
+          }
+        },
+        {
+          "id": 234,
+          "line": 9,
+          "rule": "MethodParameterTypeRequired",
+          "severity": "info",
+          "msg": "\"reportDir\" parameter of \"sendTestReport\" method is dynamically typed",
+          "range": {
+            "start": {
+              "line": 9,
+              "character": 30
+            },
+            "end": {
+              "line": 9,
+              "character": 39
+            }
+          }
+        },
+        {
+          "id": 235,
+          "line": 9,
+          "rule": "MethodParameterTypeRequired",
+          "severity": "info",
+          "msg": "\"commitHash\" parameter of \"sendTestReport\" method is dynamically typed",
+          "range": {
+            "start": {
+              "line": 9,
+              "character": 41
+            },
+            "end": {
+              "line": 9,
+              "character": 51
+            }
+          }
+        },
+        {
+          "id": 236,
+          "line": 9,
+          "rule": "MethodReturnTypeRequired",
+          "severity": "info",
+          "msg": "Method \"sendTestReport\" has a dynamic return type",
+          "range": {
+            "start": {
+              "line": 9,
+              "character": 4
+            },
+            "end": {
+              "line": 9,
+              "character": 18
+            }
+          }
+        },
+        {
+          "id": 237,
+          "line": 9,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for method return type should not be used",
+          "range": {
+            "start": {
+              "line": 9,
+              "character": 0
+            },
+            "end": {
+              "line": 9,
+              "character": 3
+            }
+          }
+        },
+        {
+          "id": 238,
+          "line": 9,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for method parameter type should not be used",
+          "range": {
+            "start": {
+              "line": 9,
+              "character": 0
+            },
+            "end": {
+              "line": 9,
+              "character": 3
+            }
+          }
+        },
+        {
+          "id": 239,
+          "line": 9,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for method parameter type should not be used",
+          "range": {
+            "start": {
+              "line": 9,
+              "character": 0
+            },
+            "end": {
+              "line": 9,
+              "character": 3
+            }
+          }
+        },
+        {
+          "id": 240,
+          "line": 9,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for method parameter type should not be used",
+          "range": {
+            "start": {
+              "line": 9,
+              "character": 0
+            },
+            "end": {
+              "line": 9,
+              "character": 3
+            }
+          }
+        },
+        {
+          "id": 241,
+          "line": 21,
+          "rule": "MethodParameterTypeRequired",
+          "severity": "info",
+          "msg": "\"logPath\" parameter of \"parseLogsForError\" method is dynamically typed",
+          "range": {
+            "start": {
+              "line": 21,
+              "character": 22
+            },
+            "end": {
+              "line": 21,
+              "character": 29
+            }
+          }
+        },
+        {
+          "id": 242,
+          "line": 21,
+          "rule": "MethodReturnTypeRequired",
+          "severity": "info",
+          "msg": "Method \"parseLogsForError\" has a dynamic return type",
+          "range": {
+            "start": {
+              "line": 21,
+              "character": 4
+            },
+            "end": {
+              "line": 21,
+              "character": 21
+            }
+          }
+        },
+        {
+          "id": 243,
+          "line": 21,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for method return type should not be used",
+          "range": {
+            "start": {
+              "line": 21,
+              "character": 0
+            },
+            "end": {
+              "line": 21,
+              "character": 3
+            }
+          }
+        },
+        {
+          "id": 244,
+          "line": 21,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for method parameter type should not be used",
+          "range": {
+            "start": {
+              "line": 21,
+              "character": 0
+            },
+            "end": {
+              "line": 21,
+              "character": 3
+            }
+          }
+        },
+        {
+          "id": 245,
+          "line": 35,
+          "rule": "MethodParameterTypeRequired",
+          "severity": "info",
+          "msg": "\"workspace\" parameter of \"getUnityExecutable\" method is dynamically typed",
+          "range": {
+            "start": {
+              "line": 35,
+              "character": 23
+            },
+            "end": {
+              "line": 35,
+              "character": 32
+            }
+          }
+        },
+        {
+          "id": 246,
+          "line": 35,
+          "rule": "MethodParameterTypeRequired",
+          "severity": "info",
+          "msg": "\"projectDir\" parameter of \"getUnityExecutable\" method is dynamically typed",
+          "range": {
+            "start": {
+              "line": 35,
+              "character": 34
+            },
+            "end": {
+              "line": 35,
+              "character": 44
+            }
+          }
+        },
+        {
+          "id": 247,
+          "line": 35,
+          "rule": "MethodReturnTypeRequired",
+          "severity": "info",
+          "msg": "Method \"getUnityExecutable\" has a dynamic return type",
+          "range": {
+            "start": {
+              "line": 35,
+              "character": 4
+            },
+            "end": {
+              "line": 35,
+              "character": 22
+            }
+          }
+        },
+        {
+          "id": 248,
+          "line": 35,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for method return type should not be used",
+          "range": {
+            "start": {
+              "line": 35,
+              "character": 0
+            },
+            "end": {
+              "line": 35,
+              "character": 3
+            }
+          }
+        },
+        {
+          "id": 249,
+          "line": 35,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for method parameter type should not be used",
+          "range": {
+            "start": {
+              "line": 35,
+              "character": 0
+            },
+            "end": {
+              "line": 35,
+              "character": 3
+            }
+          }
+        },
+        {
+          "id": 250,
+          "line": 35,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for method parameter type should not be used",
+          "range": {
+            "start": {
+              "line": 35,
+              "character": 0
+            },
+            "end": {
+              "line": 35,
+              "character": 3
+            }
+          }
+        },
+        {
+          "id": 251,
+          "line": 37,
+          "rule": "LineLength",
+          "severity": "warning",
+          "msg": "The line exceeds 120 characters. The line is 152 characters."
+        },
+        {
+          "id": 252,
+          "line": 37,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for declaration should not be used",
+          "range": {
+            "start": {
+              "line": 37,
+              "character": 8
+            },
+            "end": {
+              "line": 37,
+              "character": 11
+            }
+          }
+        },
+        {
+          "id": 253,
+          "line": 37,
+          "rule": "VariableTypeRequired",
+          "severity": "info",
+          "msg": "The type is not specified for variable \"unityExecutable\"",
+          "range": {
+            "start": {
+              "line": 37,
+              "character": 12
+            },
+            "end": {
+              "line": 37,
+              "character": 27
+            }
+          }
+        },
+        {
+          "id": 254,
+          "line": 39,
+          "rule": "LineLength",
+          "severity": "warning",
+          "msg": "The line exceeds 120 characters. The line is 140 characters."
+        },
+        {
+          "id": 255,
+          "line": 39,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for declaration should not be used",
+          "range": {
+            "start": {
+              "line": 39,
+              "character": 12
+            },
+            "end": {
+              "line": 39,
+              "character": 15
+            }
+          }
+        },
+        {
+          "id": 256,
+          "line": 39,
+          "rule": "VariableTypeRequired",
+          "severity": "info",
+          "msg": "The type is not specified for variable \"version\"",
+          "range": {
+            "start": {
+              "line": 39,
+              "character": 16
+            },
+            "end": {
+              "line": 39,
+              "character": 23
+            }
+          }
+        },
+        {
+          "id": 257,
+          "line": 40,
+          "rule": "LineLength",
+          "severity": "warning",
+          "msg": "The line exceeds 120 characters. The line is 142 characters."
+        },
+        {
+          "id": 258,
+          "line": 40,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for declaration should not be used",
+          "range": {
+            "start": {
+              "line": 40,
+              "character": 12
+            },
+            "end": {
+              "line": 40,
+              "character": 15
+            }
+          }
+        },
+        {
+          "id": 259,
+          "line": 40,
+          "rule": "VariableTypeRequired",
+          "severity": "info",
+          "msg": "The type is not specified for variable \"revision\"",
+          "range": {
+            "start": {
+              "line": 40,
+              "character": 16
+            },
+            "end": {
+              "line": 40,
+              "character": 24
+            }
+          }
+        },
+        {
+          "id": 260,
+          "line": 43,
+          "rule": "LineLength",
+          "severity": "warning",
+          "msg": "The line exceeds 120 characters. The line is 149 characters."
+        },
+        {
+          "id": 261,
+          "line": 43,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for declaration should not be used",
+          "range": {
+            "start": {
+              "line": 43,
+              "character": 12
+            },
+            "end": {
+              "line": 43,
+              "character": 15
+            }
+          }
+        },
+        {
+          "id": 262,
+          "line": 43,
+          "rule": "VariableTypeRequired",
+          "severity": "info",
+          "msg": "The type is not specified for variable \"installCommand\"",
+          "range": {
+            "start": {
+              "line": 43,
+              "character": 16
+            },
+            "end": {
+              "line": 43,
+              "character": 30
+            }
+          }
+        },
+        {
+          "id": 263,
+          "line": 44,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for declaration should not be used",
+          "range": {
+            "start": {
+              "line": 44,
+              "character": 12
+            },
+            "end": {
+              "line": 44,
+              "character": 15
+            }
+          }
+        },
+        {
+          "id": 264,
+          "line": 44,
+          "rule": "VariableTypeRequired",
+          "severity": "info",
+          "msg": "The type is not specified for variable \"exitCode\"",
+          "range": {
+            "start": {
+              "line": 44,
+              "character": 16
+            },
+            "end": {
+              "line": 44,
+              "character": 24
+            }
+          }
+        },
+        {
+          "id": 265,
+          "line": 50,
+          "rule": "LineLength",
+          "severity": "warning",
+          "msg": "The line exceeds 120 characters. The line is 147 characters."
+        },
+        {
+          "id": 266,
+          "line": 50,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for declaration should not be used",
+          "range": {
+            "start": {
+              "line": 50,
+              "character": 12
+            },
+            "end": {
+              "line": 50,
+              "character": 15
+            }
+          }
+        },
+        {
+          "id": 267,
+          "line": 50,
+          "rule": "VariableTypeRequired",
+          "severity": "info",
+          "msg": "The type is not specified for variable \"webglInstallCommand\"",
+          "range": {
+            "start": {
+              "line": 50,
+              "character": 16
+            },
+            "end": {
+              "line": 50,
+              "character": 35
+            }
+          }
+        },
+        {
+          "id": 268,
+          "line": 52,
+          "rule": "DuplicateNumberLiteral",
+          "severity": "info",
+          "msg": "Duplicate Number Literal: 0",
+          "range": {
+            "start": {
+              "line": 52,
+              "character": 28
+            },
+            "end": {
+              "line": 52,
+              "character": 29
+            }
+          }
+        },
+        {
+          "id": 269,
+          "line": 57,
+          "rule": "CatchException",
+          "severity": "warning",
+          "msg": "The type Exception should not be caught",
+          "range": {
+            "start": {
+              "line": 57,
+              "character": 13
+            },
+            "end": {
+              "line": 57,
+              "character": 22
+            }
+          }
+        },
+        {
+          "id": 270,
+          "line": 58,
+          "rule": "UnnecessaryGetter",
+          "severity": "info",
+          "msg": "getMessage() can probably be rewritten as message"
+        },
+        {
+          "id": 271,
+          "line": 75,
+          "rule": "MethodParameterTypeRequired",
+          "severity": "info",
+          "msg": "\"unityExecutable\" parameter of \"runUnityTests\" method is dynamically typed",
+          "range": {
+            "start": {
+              "line": 75,
+              "character": 18
+            },
+            "end": {
+              "line": 75,
+              "character": 33
+            }
+          }
+        },
+        {
+          "id": 272,
+          "line": 75,
+          "rule": "MethodParameterTypeRequired",
+          "severity": "info",
+          "msg": "\"reportDir\" parameter of \"runUnityTests\" method is dynamically typed",
+          "range": {
+            "start": {
+              "line": 75,
+              "character": 35
+            },
+            "end": {
+              "line": 75,
+              "character": 44
+            }
+          }
+        },
+        {
+          "id": 273,
+          "line": 75,
+          "rule": "MethodParameterTypeRequired",
+          "severity": "info",
+          "msg": "\"projectDir\" parameter of \"runUnityTests\" method is dynamically typed",
+          "range": {
+            "start": {
+              "line": 75,
+              "character": 46
+            },
+            "end": {
+              "line": 75,
+              "character": 56
+            }
+          }
+        },
+        {
+          "id": 274,
+          "line": 75,
+          "rule": "MethodParameterTypeRequired",
+          "severity": "info",
+          "msg": "\"testType\" parameter of \"runUnityTests\" method is dynamically typed",
+          "range": {
+            "start": {
+              "line": 75,
+              "character": 58
+            },
+            "end": {
+              "line": 75,
+              "character": 66
+            }
+          }
+        },
+        {
+          "id": 275,
+          "line": 75,
+          "rule": "MethodParameterTypeRequired",
+          "severity": "info",
+          "msg": "\"enableReporting\" parameter of \"runUnityTests\" method is dynamically typed",
+          "range": {
+            "start": {
+              "line": 75,
+              "character": 68
+            },
+            "end": {
+              "line": 75,
+              "character": 83
+            }
+          }
+        },
+        {
+          "id": 276,
+          "line": 75,
+          "rule": "MethodParameterTypeRequired",
+          "severity": "info",
+          "msg": "\"deploymentBuild\" parameter of \"runUnityTests\" method is dynamically typed",
+          "range": {
+            "start": {
+              "line": 75,
+              "character": 85
+            },
+            "end": {
+              "line": 75,
+              "character": 100
+            }
+          }
+        },
+        {
+          "id": 277,
+          "line": 75,
+          "rule": "MethodReturnTypeRequired",
+          "severity": "info",
+          "msg": "Method \"runUnityTests\" has a dynamic return type",
+          "range": {
+            "start": {
+              "line": 75,
+              "character": 4
+            },
+            "end": {
+              "line": 75,
+              "character": 17
+            }
+          }
+        },
+        {
+          "id": 278,
+          "line": 75,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for method return type should not be used",
+          "range": {
+            "start": {
+              "line": 75,
+              "character": 0
+            },
+            "end": {
+              "line": 75,
+              "character": 3
+            }
+          }
+        },
+        {
+          "id": 279,
+          "line": 75,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for method parameter type should not be used",
+          "range": {
+            "start": {
+              "line": 75,
+              "character": 0
+            },
+            "end": {
+              "line": 75,
+              "character": 3
+            }
+          }
+        },
+        {
+          "id": 280,
+          "line": 75,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for method parameter type should not be used",
+          "range": {
+            "start": {
+              "line": 75,
+              "character": 0
+            },
+            "end": {
+              "line": 75,
+              "character": 3
+            }
+          }
+        },
+        {
+          "id": 281,
+          "line": 75,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for method parameter type should not be used",
+          "range": {
+            "start": {
+              "line": 75,
+              "character": 0
+            },
+            "end": {
+              "line": 75,
+              "character": 3
+            }
+          }
+        },
+        {
+          "id": 282,
+          "line": 75,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for method parameter type should not be used",
+          "range": {
+            "start": {
+              "line": 75,
+              "character": 0
+            },
+            "end": {
+              "line": 75,
+              "character": 3
+            }
+          }
+        },
+        {
+          "id": 283,
+          "line": 75,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for method parameter type should not be used",
+          "range": {
+            "start": {
+              "line": 75,
+              "character": 0
+            },
+            "end": {
+              "line": 75,
+              "character": 3
+            }
+          }
+        },
+        {
+          "id": 284,
+          "line": 75,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for method parameter type should not be used",
+          "range": {
+            "start": {
+              "line": 75,
+              "character": 0
+            },
+            "end": {
+              "line": 75,
+              "character": 3
+            }
+          }
+        },
+        {
+          "id": 285,
+          "line": 75,
+          "rule": "ParameterCount",
+          "severity": "warning",
+          "msg": "Number of parameters in method None.runUnityTests exceeds maximum allowed (5)."
+        },
+        {
+          "id": 286,
+          "line": 77,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for declaration should not be used",
+          "range": {
+            "start": {
+              "line": 77,
+              "character": 4
+            },
+            "end": {
+              "line": 77,
+              "character": 7
+            }
+          }
+        },
+        {
+          "id": 287,
+          "line": 77,
+          "rule": "VariableTypeRequired",
+          "severity": "info",
+          "msg": "The type is not specified for variable \"logFile\"",
+          "range": {
+            "start": {
+              "line": 77,
+              "character": 8
+            },
+            "end": {
+              "line": 77,
+              "character": 15
+            }
+          }
+        },
+        {
+          "id": 288,
+          "line": 80,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for declaration should not be used",
+          "range": {
+            "start": {
+              "line": 80,
+              "character": 4
+            },
+            "end": {
+              "line": 80,
+              "character": 7
+            }
+          }
+        },
+        {
+          "id": 289,
+          "line": 80,
+          "rule": "VariableTypeRequired",
+          "severity": "info",
+          "msg": "The type is not specified for variable \"getReportSettings\"",
+          "range": {
+            "start": {
+              "line": 80,
+              "character": 8
+            },
+            "end": {
+              "line": 80,
+              "character": 25
+            }
+          }
+        },
+        {
+          "id": 290,
+          "line": 81,
+          "rule": "IfStatementCouldBeTernary",
+          "severity": "info",
+          "msg": "The if statement in class None can be rewritten using the ternary operator: return eReporting ? \"             -testResults $rDir/test_results/$tType-results.xml             -debugCodeOptimization             -enableCodeCoverage             -coverageResultsPath $rDir/coverage_results             -coverageOptions useProjectSettings\" : \"             -testResults $rDir/test_results/$tType-results.xml             -debugCodeOptimization\""
+        },
+        {
+          "id": 291,
+          "line": 89,
+          "rule": "UnnecessaryElseStatement",
+          "severity": "info",
+          "msg": "When an if statement block ends with a return statement the else is unnecessary"
+        },
+        {
+          "id": 292,
+          "line": 98,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for declaration should not be used",
+          "range": {
+            "start": {
+              "line": 98,
+              "character": 4
+            },
+            "end": {
+              "line": 98,
+              "character": 7
+            }
+          }
+        },
+        {
+          "id": 293,
+          "line": 98,
+          "rule": "VariableTypeRequired",
+          "severity": "info",
+          "msg": "The type is not specified for variable \"getFlags\"",
+          "range": {
+            "start": {
+              "line": 98,
+              "character": 8
+            },
+            "end": {
+              "line": 98,
+              "character": 16
+            }
+          }
+        },
+        {
+          "id": 294,
+          "line": 99,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for declaration should not be used",
+          "range": {
+            "start": {
+              "line": 99,
+              "character": 8
+            },
+            "end": {
+              "line": 99,
+              "character": 11
+            }
+          }
+        },
+        {
+          "id": 295,
+          "line": 99,
+          "rule": "VariableTypeRequired",
+          "severity": "info",
+          "msg": "The type is not specified for variable \"flags\"",
+          "range": {
+            "start": {
+              "line": 99,
+              "character": 12
+            },
+            "end": {
+              "line": 99,
+              "character": 17
+            }
+          }
+        },
+        {
+          "id": 296,
+          "line": 113,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for declaration should not be used",
+          "range": {
+            "start": {
+              "line": 113,
+              "character": 4
+            },
+            "end": {
+              "line": 113,
+              "character": 7
+            }
+          }
+        },
+        {
+          "id": 297,
+          "line": 113,
+          "rule": "VariableTypeRequired",
+          "severity": "info",
+          "msg": "The type is not specified for variable \"handleExitCode\"",
+          "range": {
+            "start": {
+              "line": 113,
+              "character": 8
+            },
+            "end": {
+              "line": 113,
+              "character": 22
+            }
+          }
+        },
+        {
+          "id": 298,
+          "line": 114,
+          "rule": "DuplicateNumberLiteral",
+          "severity": "info",
+          "msg": "Duplicate Number Literal: 0",
+          "range": {
+            "start": {
+              "line": 114,
+              "character": 21
+            },
+            "end": {
+              "line": 114,
+              "character": 22
+            }
+          }
+        },
+        {
+          "id": 299,
+          "line": 121,
+          "rule": "DuplicateStringLiteral",
+          "severity": "info",
+          "msg": "Duplicate String Literal: FAILURE",
+          "range": {
+            "start": {
+              "line": 121,
+              "character": 37
+            },
+            "end": {
+              "line": 121,
+              "character": 44
+            }
+          }
+        },
+        {
+          "id": 300,
+          "line": 128,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for declaration should not be used",
+          "range": {
+            "start": {
+              "line": 128,
+              "character": 4
+            },
+            "end": {
+              "line": 128,
+              "character": 7
+            }
+          }
+        },
+        {
+          "id": 301,
+          "line": 128,
+          "rule": "VariableTypeRequired",
+          "severity": "info",
+          "msg": "The type is not specified for variable \"reportSettings\"",
+          "range": {
+            "start": {
+              "line": 128,
+              "character": 8
+            },
+            "end": {
+              "line": 128,
+              "character": 22
+            }
+          }
+        },
+        {
+          "id": 302,
+          "line": 130,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for declaration should not be used",
+          "range": {
+            "start": {
+              "line": 130,
+              "character": 4
+            },
+            "end": {
+              "line": 130,
+              "character": 7
+            }
+          }
+        },
+        {
+          "id": 303,
+          "line": 130,
+          "rule": "VariableTypeRequired",
+          "severity": "info",
+          "msg": "The type is not specified for variable \"flags\"",
+          "range": {
+            "start": {
+              "line": 130,
+              "character": 8
+            },
+            "end": {
+              "line": 130,
+              "character": 13
+            }
+          }
+        },
+        {
+          "id": 304,
+          "line": 132,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for declaration should not be used",
+          "range": {
+            "start": {
+              "line": 132,
+              "character": 4
+            },
+            "end": {
+              "line": 132,
+              "character": 7
+            }
+          }
+        },
+        {
+          "id": 305,
+          "line": 132,
+          "rule": "VariableTypeRequired",
+          "severity": "info",
+          "msg": "The type is not specified for variable \"exitCode\"",
+          "range": {
+            "start": {
+              "line": 132,
+              "character": 8
+            },
+            "end": {
+              "line": 132,
+              "character": 16
+            }
+          }
+        },
+        {
+          "id": 306,
+          "line": 134,
+          "rule": "DuplicateStringLiteral",
+          "severity": "info",
+          "msg": "Duplicate String Literal: EditMode",
+          "range": {
+            "start": {
+              "line": 134,
+              "character": 21
+            },
+            "end": {
+              "line": 134,
+              "character": 29
+            }
+          }
+        },
+        {
+          "id": 307,
+          "line": 139,
+          "rule": "ParameterReassignment",
+          "severity": "info",
+          "msg": "The method parameter [unityExecutable] in class None was reassigned. Use a temporary variable instead."
+        },
+        {
+          "id": 308,
+          "line": 156,
+          "rule": "FactoryMethodName",
+          "severity": "warning",
+          "msg": "Violation in class None. The method 'buildProject' matches the regular expression /(build.*|create.*)/ and does not appear in a class matching /*.Builder/"
+        },
+        {
+          "id": 309,
+          "line": 156,
+          "rule": "MethodParameterTypeRequired",
+          "severity": "info",
+          "msg": "\"reportDir\" parameter of \"buildProject\" method is dynamically typed",
+          "range": {
+            "start": {
+              "line": 156,
+              "character": 17
+            },
+            "end": {
+              "line": 156,
+              "character": 26
+            }
+          }
+        },
+        {
+          "id": 310,
+          "line": 156,
+          "rule": "MethodParameterTypeRequired",
+          "severity": "info",
+          "msg": "\"projectDir\" parameter of \"buildProject\" method is dynamically typed",
+          "range": {
+            "start": {
+              "line": 156,
+              "character": 28
+            },
+            "end": {
+              "line": 156,
+              "character": 38
+            }
+          }
+        },
+        {
+          "id": 311,
+          "line": 156,
+          "rule": "MethodParameterTypeRequired",
+          "severity": "info",
+          "msg": "\"unityExecutable\" parameter of \"buildProject\" method is dynamically typed",
+          "range": {
+            "start": {
+              "line": 156,
+              "character": 40
+            },
+            "end": {
+              "line": 156,
+              "character": 55
+            }
+          }
+        },
+        {
+          "id": 312,
+          "line": 156,
+          "rule": "MethodReturnTypeRequired",
+          "severity": "info",
+          "msg": "Method \"buildProject\" has a dynamic return type",
+          "range": {
+            "start": {
+              "line": 156,
+              "character": 4
+            },
+            "end": {
+              "line": 156,
+              "character": 16
+            }
+          }
+        },
+        {
+          "id": 313,
+          "line": 156,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for method return type should not be used",
+          "range": {
+            "start": {
+              "line": 156,
+              "character": 0
+            },
+            "end": {
+              "line": 156,
+              "character": 3
+            }
+          }
+        },
+        {
+          "id": 314,
+          "line": 156,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for method parameter type should not be used",
+          "range": {
+            "start": {
+              "line": 156,
+              "character": 0
+            },
+            "end": {
+              "line": 156,
+              "character": 3
+            }
+          }
+        },
+        {
+          "id": 315,
+          "line": 156,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for method parameter type should not be used",
+          "range": {
+            "start": {
+              "line": 156,
+              "character": 0
+            },
+            "end": {
+              "line": 156,
+              "character": 3
+            }
+          }
+        },
+        {
+          "id": 316,
+          "line": 156,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for method parameter type should not be used",
+          "range": {
+            "start": {
+              "line": 156,
+              "character": 0
+            },
+            "end": {
+              "line": 156,
+              "character": 3
+            }
+          }
+        },
+        {
+          "id": 317,
+          "line": 157,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for declaration should not be used",
+          "range": {
+            "start": {
+              "line": 157,
+              "character": 4
+            },
+            "end": {
+              "line": 157,
+              "character": 7
+            }
+          }
+        },
+        {
+          "id": 318,
+          "line": 157,
+          "rule": "VariableTypeRequired",
+          "severity": "info",
+          "msg": "The type is not specified for variable \"logFile\"",
+          "range": {
+            "start": {
+              "line": 157,
+              "character": 8
+            },
+            "end": {
+              "line": 157,
+              "character": 15
+            }
+          }
+        },
+        {
+          "id": 319,
+          "line": 159,
+          "rule": "NoDef",
+          "severity": "info",
+          "msg": "def for declaration should not be used",
+          "range": {
+            "start": {
+              "line": 159,
+              "character": 4
+            },
+            "end": {
+              "line": 159,
+              "character": 7
+            }
+          }
+        },
+        {
+          "id": 320,
+          "line": 159,
+          "rule": "VariableTypeRequired",
+          "severity": "info",
+          "msg": "The type is not specified for variable \"exitCode\"",
+          "range": {
+            "start": {
+              "line": 159,
+              "character": 8
+            },
+            "end": {
+              "line": 159,
+              "character": 16
+            }
+          }
+        },
+        {
+          "id": 321,
+          "line": 168,
+          "rule": "DuplicateNumberLiteral",
+          "severity": "info",
+          "msg": "Duplicate Number Literal: 0",
+          "range": {
+            "start": {
+              "line": 168,
+              "character": 20
+            },
+            "end": {
+              "line": 168,
+              "character": 21
+            }
+          }
+        },
+        {
+          "id": 322,
+          "line": 173,
+          "rule": "CompileStatic",
+          "severity": "info",
+          "msg": "Class should be marked with one of @GrailsCompileStatic, @CompileStatic or @CompileDynamic"
+        }
+      ]
+    }
+  }
+}

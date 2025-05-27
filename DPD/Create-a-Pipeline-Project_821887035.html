@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DevOps / Pipeline &amp; Deployment : Create a Pipeline Project</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">DevOps / Pipeline &amp; Deployment</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1179353439.html">DevOps / Pipeline &amp; Deployment Home</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Windows-Jenkins-Documents_1542389772.html">Windows Jenkins Documents</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Set-Up-on-Windows_1541570589.html">Set Up on Windows</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Set-Up-Jenkins-Build-System_819265566.html">Set Up Jenkins Build System</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            DevOps / Pipeline &amp; Deployment : Create a Pipeline Project
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                            
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Jonathan Bezeau</span>, last modified by <span class='editor'> Joshua Moore</span> on May 27, 2024
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <h1 id="CreateaPipelineProject-Li’lTestProject">Li’l Test Project</h1><div class="panel" style="background-color: #FFEBE6;border-width: 1px;"><div class="panelContent" style="background-color: #FFEBE6;">
+<p>TO-DO convert this to a Pipeline Project</p>
+</div></div><ul><li><p>Create a “Pipeline” project reflecting the project repository and click Configure </p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" width="739" loading="lazy" src="attachments/821887035/822771733.png?width=739" data-image-src="attachments/821887035/822771733.png" data-height="104" data-width="922" data-unresolved-comment-count="0" data-linked-resource-id="822771733" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20231006-205440.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="821887035" data-linked-resource-container-version="6" data-media-id="f4448ece-e16e-43ef-8692-6a95b9d6e020" data-media-type="file"></span></li><li><p>Navigate to your new pipeline and click “Configure”</p></li><li><p>Under “Build Triggers,” select “Generic Webhook Trigger” (This requires the Generic Webhook Trigger plugin to be installed if it isn’t already).</p><ul><li><p>Create a token for your project:</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" width="719" loading="lazy" src="attachments/821887035/821821551.png?width=719" data-image-src="attachments/821887035/821821551.png" data-height="213" data-width="979" data-unresolved-comment-count="0" data-linked-resource-id="821821551" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20231006-211239.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="821887035" data-linked-resource-container-version="6" data-media-id="fe38cd06-a31b-4fab-aff2-a924a3b91515" data-media-type="file"></span></li></ul></li><li><p>Navigate to your repository on Bitbucket, then select “Respository settings.”</p><ul><li><p>On the left hand side, click “Webhooks” and then “Add webhook”</p></li><li><p>Create a title for your webhook. The URL you supply should be in the format: <strong>http://JENKINS_URL_HERE/generic-webhook-trigger/invoke?token=YOUR_TOKEN_HERE</strong>. </p></li><li><p>Specify the triggers you want for your pipeline and save.</p></li></ul></li><li><p>Returning to the Jenkins Pipeline configuration page, scroll down to <strong>Pipeline </strong>and set the drop-down to “Pipeline script from SCM”.</p><ul><li><p>Set the SCM to Git</p></li><li><p>Set the repository URL (which you can find on your Bitbucket repo)</p></li><li><p>Set the credentials as the set-up profile (varlab-machine-user)</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" width="719" loading="lazy" src="attachments/821887035/822444104.png?width=719" data-image-src="attachments/821887035/822444104.png" data-height="553" data-width="1042" data-unresolved-comment-count="0" data-linked-resource-id="822444104" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20231006-212040.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="821887035" data-linked-resource-container-version="6" data-media-id="74cc29e4-ef36-48fc-a7d5-9c0ce1631ff5" data-media-type="file"></span></li></ul></li></ul><ul><li><p><em><strong><u>NOTE: UPDATED THESE LATER WHEN PIPELINE IS WORKING</u></strong></em> Build Steps</p><ul><li><p>Create an <em>Execute Windows batch command</em> build step</p></li><li><p>Fill in a Unity command-line build</p></li></ul></li></ul><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" width="746" loading="lazy" src="attachments/821887035/822280248.png?width=746" data-image-src="attachments/821887035/822280248.png" data-height="451" data-width="746" data-unresolved-comment-count="0" data-linked-resource-id="822280248" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20231005-191507.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="821887035" data-linked-resource-container-version="6" data-media-id="e69ab4b9-f2cf-4f9d-b9bd-0710fa9b504d" data-media-type="file"></span><ul><li><p>Verify by navigating to your project and clicking “Build Now”</p><ul><li><p>Remote to Jenkins server VM and look at logs to determine the cause of any issues</p></li></ul></li></ul><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" width="760" loading="lazy" src="attachments/821887035/822280254.png?width=760" data-image-src="attachments/821887035/822280254.png" data-height="661" data-width="1020" data-unresolved-comment-count="0" data-linked-resource-id="822280254" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20231005-191742.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="821887035" data-linked-resource-container-version="6" data-media-id="548f79a9-6116-44cf-8ea4-c671db933bc7" data-media-type="file"></span><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" width="760" loading="lazy" src="attachments/821887035/822280260.png?width=760" data-image-src="attachments/821887035/822280260.png" data-height="429" data-width="1021" data-unresolved-comment-count="0" data-linked-resource-id="822280260" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20231005-192008.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="821887035" data-linked-resource-container-version="6" data-media-id="091f3fd2-6638-441e-b3c1-4c4fedfa880b" data-media-type="file"></span><p /><div class="panel" style="background-color: #EAE6FF;border-color: #998DD9;border-width: 1px;"><div class="panelContent" style="background-color: #EAE6FF;">
+<p>NOTE: If you are setting up a different set of credentials, or you are setting up Jenkins from scratch, you must:</p><ul><li><p>Make sure the machine running Jenkins has up-to-date Bitbucket host keys</p></li><li><p>Check that Jenkins is running on a Windows user other than the SYSTEM user. </p><ul><li><p>Open Services, locate the Jenkins service, then right click and select Properties.</p></li><li><p>Select the “Log On” tab and check that Jenkins is not running under “Local System account.”</p></li><li><p>If it is, change it to the Windows user you are using for automation.</p></li><li><span class="confluence-embedded-file-wrapper image-center-wrapper"><img class="confluence-embedded-image image-center" loading="lazy" src="attachments/821887035/822280266.png" data-image-src="attachments/821887035/822280266.png" data-height="465" data-width="402" data-unresolved-comment-count="0" data-linked-resource-id="822280266" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20231004-184144.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="821887035" data-linked-resource-container-version="6" data-media-id="a6379482-b6a4-4316-a1c5-48c7d2a42100" data-media-type="file"></span></li></ul></li><li><p>Add new credentials to Jenkins using the SSH private key that you use to connect to Bitbucket, as well as your username (or the username and key you will be using for automation).</p></li></ul>
+</div></div><h1 id="CreateaPipelineProject-ProductionProjects">Production Projects</h1><p>With one successful project you can set up others quickly by clicking “+ New Item” on the Dashboard and then entering the name of the thing to copy in the “Copy from” box.</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" width="712" loading="lazy" src="attachments/821887035/822181909.png?width=712" data-image-src="attachments/821887035/822181909.png" data-height="347" data-width="968" data-unresolved-comment-count="0" data-linked-resource-id="822181909" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20231005-200124.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="821887035" data-linked-resource-container-version="6" data-media-id="b0167a70-690a-46c5-b473-1351f95f3c1f" data-media-type="file"></span><p />
+                    </div>
+
+                                        <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/821887035/822280241.png">image-20231003-204338.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/821887035/822280248.png">image-20231005-191507.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/821887035/822280254.png">image-20231005-191742.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/821887035/822280260.png">image-20231005-192008.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/821887035/822280266.png">image-20231004-184144.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/821887035/822181909.png">image-20231005-200124.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/821887035/822771733.png">image-20231006-205440.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/821887035/821821551.png">image-20231006-211239.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/821887035/822444104.png">image-20231006-212040.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on May 27, 2025 13:34</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

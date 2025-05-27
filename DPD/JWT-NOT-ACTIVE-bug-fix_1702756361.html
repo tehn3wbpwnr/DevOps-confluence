@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DevOps / Pipeline &amp; Deployment : JWT NOT ACTIVE bug fix</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">DevOps / Pipeline &amp; Deployment</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1179353439.html">DevOps / Pipeline &amp; Deployment Home</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="DLX-Server-Documents_1541832718.html">DLX Server Documents</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Bug-Reports_1702920212.html">Bug Reports</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            DevOps / Pipeline &amp; Deployment : JWT NOT ACTIVE bug fix
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                            
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Chris Park</span>, last modified by <span class='editor'> Jonathan Bezeau</span> on Apr 04, 2025
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <hr/><span class="confluence-embedded-file-wrapper image-left-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-left" alt="http_response.png" width="352" loading="lazy" src="attachments/1702756361/1703018516.png?width=352" data-image-src="attachments/1702756361/1703018516.png" data-height="97" data-width="291" data-unresolved-comment-count="0" data-linked-resource-id="1703018516" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="http_response.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1702756361" data-linked-resource-container-version="7" data-media-id="1cd0855a-4d31-4c6a-8742-0f64791abcc9" data-media-type="file"></span><p>: This bug was detected and fixed on March 19, 2025. </p><ul><li><p><strong>The main cause</strong> of this issue was that the <strong>nbf (Not Before)</strong> <u>value was set to a future time compared to the dlx-econestoga machine time</u>. </p></li><li><p><strong>To handle this issue</strong>, we <strong>set a 30-second clock tolerance</strong> when the LTIjs service verifies a JWT from eConestoga <strong>during the '/login' process</strong>.</p></li></ul><hr/><h1 id="JWTNOTACTIVEbugfix-[Contents]"><strong>[Contents]</strong></h1><style type='text/css'>/*<![CDATA[*/
+div.rbtoc1748352975552 {padding: 0px;}
+div.rbtoc1748352975552 ul {list-style: none;margin-left: 0px;}
+div.rbtoc1748352975552 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style><div class='toc-macro rbtoc1748352975552'>
+<ul class='toc-indentation'>
+<li><a href='#JWTNOTACTIVEbugfix-[Contents]'>[Contents]</a></li>
+<li><a href='#JWTNOTACTIVEbugfix-1.ProblemDiagnosis'>1. Problem Diagnosis</a></li>
+<li><a href='#JWTNOTACTIVEbugfix-2.Troubleshooting'>2. Troubleshooting</a>
+<ul class='toc-indentation'>
+<li><a href='#JWTNOTACTIVEbugfix-2.1ComparecurrentmachinetimeandnbfofJWT'>2.1 Compare current machine time and nbf of JWT</a></li>
+<li><a href='#JWTNOTACTIVEbugfix-2.2Updateid_tokenverificationlogicinAuth.js'>2.2 Update id_token verification logic in Auth.js</a></li>
+<li><a href='#JWTNOTACTIVEbugfix-2.3Confirmthesystemclockondlx-econestogaserver'>2.3 Confirm the system clock on dlx-econestoga server</a></li>
+</ul>
+</li>
+<li><a href='#JWTNOTACTIVEbugfix-3.Monitoring'>3. Monitoring</a></li>
+</ul>
+</div><hr/><h1 id="JWTNOTACTIVEbugfix-1.ProblemDiagnosis"><strong>1. Problem Diagnosis</strong></h1><p>: Check the <strong>PM2 log</strong> <strong>or try to reproduce the issue</strong>. If you see the <u>authentication error message</u> below, it means the <strong><span style="background-color: rgb(198,237,251);">JWT passed from eConestoga is not valid yet</span></strong>.</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="ltijs_log-20250319-174150.png" width="760" loading="lazy" src="attachments/1702756361/1702494253.png?width=760" data-image-src="attachments/1702756361/1702494253.png" data-height="288" data-width="1124" data-unresolved-comment-count="0" data-linked-resource-id="1702494253" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="ltijs_log-20250319-174150.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1702756361" data-linked-resource-container-version="7" data-media-id="6f379027-25f7-47a1-82c5-2726902b23a1" data-media-type="file"></span><p> This issue occurred because the JWT received from eConestoga had the <code>nbf</code> (Not Before) claim set to a few dozen seconds in the future relative to the current time of the DLX machine.</p><p /><hr/><h1 id="JWTNOTACTIVEbugfix-2.Troubleshooting"><strong>2. Troubleshooting</strong></h1><h2 id="JWTNOTACTIVEbugfix-2.1ComparecurrentmachinetimeandnbfofJWT"><strong>2.1 Compare current machine time and nbf of JWT</strong></h2><ul><li><p>Connect to the <strong>dlx-econestoga</strong> server using SSH.<br/></p></li><li><p>Prepare to execute the following command to obtain the current Unix timestamp:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">date +%s </pre>
+</div></div><p /></li><li><p>Open another SSH session to <strong>dlx-econestoga</strong>.<br/></p></li><li><p>Navigate to the directory:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">cd ~/DLX-eConestoga-Server/devopsdlxserver</pre>
+</div></div><p /></li><li><p>Stop the <strong>ltijs</strong> service managed by pm2:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">pm2 stop DLX-Server-DevOps </pre>
+</div></div><p /></li><li><p>Run <strong>ltijs</strong> manually to view detailed logs:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">npm run start</pre>
+</div></div><p /></li><li><p>Prepare to click the <strong>LTI Advantage Link (LTI WebGL build link)</strong> on <strong>eConestoga</strong>.<br/></p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20250402-201717.png" width="736" loading="lazy" src="attachments/1702756361/1730183203.png?width=736" data-image-src="attachments/1702756361/1730183203.png" data-height="525" data-width="888" data-unresolved-comment-count="0" data-linked-resource-id="1730183203" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20250402-201717.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1702756361" data-linked-resource-container-version="7" data-media-id="741b5802-54c9-4237-afe4-6363b23a45cd" data-media-type="file"></span><p><br/></p></li><li><p>Click the <strong>LTI Advantage Link</strong> and execute the timestamp command (<code>date +%s</code>) simultaneously (or as closely as possible).</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="스크린샷 2025-03-31 230733-20250401-030734.png" width="671" loading="lazy" src="attachments/1702756361/1725956107.png?width=671" data-image-src="attachments/1702756361/1725956107.png" data-height="94" data-width="671" data-unresolved-comment-count="0" data-linked-resource-id="1725956107" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="스크린샷 2025-03-31 230733-20250401-030734.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1702756361" data-linked-resource-container-version="7" data-media-id="5852116c-f6ee-4301-b1b9-d55c40b29def" data-media-type="file"></span></li><li><p>In the <strong>ltijs</strong> service logs, locate the log image below:</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="스크린샷 2025-03-31 230744-20250401-030745.png" width="736" loading="lazy" src="attachments/1702756361/1725923339.png?width=736" data-image-src="attachments/1702756361/1725923339.png" data-height="897" data-width="1798" data-unresolved-comment-count="0" data-linked-resource-id="1725923339" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="스크린샷 2025-03-31 230744-20250401-030745.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1702756361" data-linked-resource-container-version="7" data-media-id="f35ce261-b5c6-4725-813a-cbcf793149f7" data-media-type="file"></span><p /></li><li><p><strong>Copy </strong>the entire token to this <a class="external-link" href="https://jwt.io/" rel="nofollow">website</a> to decode the JWT:</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20250401-031150.png" width="736" loading="lazy" src="attachments/1702756361/1725857799.png?width=736" data-image-src="attachments/1702756361/1725857799.png" data-height="589" data-width="1338" data-unresolved-comment-count="0" data-linked-resource-id="1725857799" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20250401-031150.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1702756361" data-linked-resource-container-version="7" data-media-id="083d2964-f78e-452a-890b-fb9b0756760a" data-media-type="file"></span><p /></li><li><p>Compare the current Unix timestamp with the logged <code>nbf</code>:</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="스크린샷 2025-03-31 230726.png" width="233" loading="lazy" src="attachments/1702756361/1725890568.png?width=233" data-image-src="attachments/1702756361/1725890568.png" data-height="49" data-width="233" data-unresolved-comment-count="0" data-linked-resource-id="1725890568" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="스크린샷 2025-03-31 230726.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1702756361" data-linked-resource-container-version="7" data-media-id="5a9bf632-8e73-4bfe-9143-6b92054a6548" data-media-type="file"></span><ul><li><p>If the <code>nbf</code> value is in the future (greater than the current timestamp), the <code>id_token</code> is not active yet.<br/> <em>(The token becomes active between the </em><code>nbf</code><em> and </em><code>exp</code><em> timestamps.)</em><br/></p></li></ul></li><li><p>If the described issue matches this scenario,  <code>id_token</code> validation logic in <strong>Auth.js </strong>needs to be updated</p></li></ul><p /><h2 id="JWTNOTACTIVEbugfix-2.2Updateid_tokenverificationlogicinAuth.js"><strong>2.2 Update id_token verification logic in Auth.js</strong></h2><ul><li><p>Navigate to: </p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">cd ~/DLX-eConestoga-Server/devopsdlxserver/node_modules/ltijs/dist/Utils</pre>
+</div></div><p /></li><li><p>Open the<strong> Auth.js</strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">vi Auth.js 
+or
+nano Auth.js</pre>
+</div></div></li><li><p><strong>Search </strong>the keyword ‘<code>jwt.verify</code>’ and <strong>update </strong>the value of '<code>clockTolerance</code>’ time by the difference between <code>nbf</code> and system current time.</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20250401-031217.png" width="562" loading="lazy" src="attachments/1702756361/1725890574.png?width=562" data-image-src="attachments/1702756361/1725890574.png" data-height="143" data-width="562" data-unresolved-comment-count="0" data-linked-resource-id="1725890574" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20250401-031217.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1702756361" data-linked-resource-container-version="7" data-media-id="b0db5c38-06ab-4faa-8500-b72c7558a1ee" data-media-type="file"></span><p /></li><li><p><strong>Save</strong> and <strong>Close </strong>the file and restart the <code>ltijs</code> service</p></li></ul><div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>Changes will not be applied to the service that is already running</p></div></div><h2 id="JWTNOTACTIVEbugfix-2.3Confirmthesystemclockondlx-econestogaserver">2.3 Confirm the system clock on dlx-econestoga server</h2><ul><li><p>connect with ssh: </p></li><li><p>install ntpsec</p></li><li><p>run <em>ntpq -p </em>to query peers for time differences</p></li></ul><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20250404-183731.png" width="712" loading="lazy" src="attachments/1702756361/1734574172.png?width=712" data-image-src="attachments/1702756361/1734574172.png" data-height="606" data-width="1251" data-unresolved-comment-count="0" data-linked-resource-id="1734574172" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20250404-183731.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1702756361" data-linked-resource-container-version="7" data-media-id="28a46bad-1077-4a45-b563-eed1bd4d29ac" data-media-type="file"></span><ul><li><p>try to run <em>sudo ntp ntptimeset </em>and some other time synchronization functions. Since I installed <em>ntpsec </em>package, none of these commands are found.</p></li><li><p>run <em>ntpq -p </em>again and notice that the time values are all within 10ms regardless of failure to do anything meaningful above</p></li></ul><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20250404-183537.png" width="712" loading="lazy" src="attachments/1702756361/1734082620.png?width=712" data-image-src="attachments/1702756361/1734082620.png" data-height="369" data-width="1253" data-unresolved-comment-count="0" data-linked-resource-id="1734082620" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20250404-183537.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1702756361" data-linked-resource-container-version="7" data-media-id="411fe790-821d-4f92-94ef-ae4bdc6ce911" data-media-type="file"></span><h1 id="JWTNOTACTIVEbugfix-3.Monitoring">3. Monitoring</h1><p>The <em>clockTolerance </em>value on the server was removed and functionality re-tested successfully. We will continue to pay attention to LTI authentications with suspicion that time synchronization issues could re-surface.</p>
+                    </div>
+
+                                        <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1702756361/1703018516.png">http_response.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1702756361/1702494253.png">ltijs_log-20250319-174150.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1702756361/1725890568.png">스크린샷 2025-03-31 230726.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1702756361/1725923339.png">스크린샷 2025-03-31 230744-20250401-030745.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1702756361/1725857799.png">image-20250401-031150.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1702756361/1725890574.png">image-20250401-031217.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1702756361/1725956107.png">스크린샷 2025-03-31 230733-20250401-030734.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1702756361/1730183203.png">image-20250402-201717.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1702756361/1734082620.png">image-20250404-183537.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1702756361/1734574172.png">image-20250404-183731.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on May 27, 2025 13:36</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DevOps / Pipeline &amp; Deployment : SonarQube Installation, Configuration on a Linux VM</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">DevOps / Pipeline &amp; Deployment</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1179353439.html">DevOps / Pipeline &amp; Deployment Home</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Linux-Jenkins-Documents_1542455384.html">Linux Jenkins Documents</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Set-Up-on-SonarQube_1584365603.html">Set Up on SonarQube</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            DevOps / Pipeline &amp; Deployment : SonarQube Installation, Configuration on a Linux VM
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                            
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Jindo Kim</span>, last modified by <span class='editor'> Chris Park</span> on Feb 04, 2025
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <h1 id="SonarQubeInstallation,ConfigurationonaLinuxVM-Objective">Objective</h1><ul><li><p>This document provides a complete guide to setting up and configuring SonarQube in a Linux VM environment. While the linked guide (<a data-card-appearance="inline" href="https://varlab-dev.atlassian.net/wiki/x/CICbVw" rel="nofollow">https://varlab-dev.atlassian.net/wiki/x/CICbVw</a> ) outlines the installation process on an Azure Windows VM using Docker, this document focuses on a Linux platform with a non-Docker installation approach.<br/></p></li></ul><style type='text/css'>/*<![CDATA[*/
+div.rbtoc1748352806428 {padding: 0px;}
+div.rbtoc1748352806428 ul {list-style: none;margin-left: 0px;}
+div.rbtoc1748352806428 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style><div class='toc-macro rbtoc1748352806428'>
+<ul class='toc-indentation'>
+<li><a href='#SonarQubeInstallation,ConfigurationonaLinuxVM-1.Installation'>1. Installation</a></li>
+<li><a href='#SonarQubeInstallation,ConfigurationonaLinuxVM-2.PostgreSQL'>2. PostgreSQL</a>
+<ul class='toc-indentation'>
+<li><a href='#SonarQubeInstallation,ConfigurationonaLinuxVM-2.1PostgreSQLManagementConfiguration'>2.1 PostgreSQL Management Configuration</a></li>
+</ul>
+</li>
+<li><a href='#SonarQubeInstallation,ConfigurationonaLinuxVM-3.SonarQube'>3. SonarQube</a>
+<ul class='toc-indentation'>
+<li><a href='#SonarQubeInstallation,ConfigurationonaLinuxVM-3.1SonarQubeManagementConfiguration'>3.1 SonarQube Management Configuration</a></li>
+<li><a href='#SonarQubeInstallation,ConfigurationonaLinuxVM-3.2NginxConfigurationforHostingSonarQube'>3.2 Nginx Configuration for Hosting SonarQube</a></li>
+<li><a href='#SonarQubeInstallation,ConfigurationonaLinuxVM-3.3IntegrationofSonarQubeinJenkins'>3.3 Integration of SonarQube in Jenkins</a></li>
+<li><a href='#SonarQubeInstallation,ConfigurationonaLinuxVM-3.4ChallengestocompletefullyintegrationoftheSonarQubeintothePipeline'>3.4 Challenges to complete fully integration of the SonarQube into the Pipeline</a>
+<ul class='toc-indentation'>
+<li><a href='#SonarQubeInstallation,ConfigurationonaLinuxVM-3.4.1Failedbootstrapindexresponse'>3.4.1 Failed bootstrap index response</a></li>
+<li><a href='#SonarQubeInstallation,ConfigurationonaLinuxVM-3.4.2NoClassDefFoundError'>3.4.2 NoClassDefFoundError</a></li>
+<li><a href='#SonarQubeInstallation,ConfigurationonaLinuxVM-3.4.3JSONException'>3.4.3 JSONException</a></li>
+<li><a href='#SonarQubeInstallation,ConfigurationonaLinuxVM-3.4.4IllegalStateException'>3.4.4 IllegalStateException</a></li>
+<li><a href='#SonarQubeInstallation,ConfigurationonaLinuxVM-3.4.5The“waitForQualityGate”prints“INPROGRESS”andwaitsforever'>3.4.5 The “waitForQualityGate” prints “IN PROGRESS” and waits forever</a></li>
+</ul>
+</li>
+<li><a href='#SonarQubeInstallation,ConfigurationonaLinuxVM-3.5ProjectSettingsfortheCodeCoverage/Lintingreport'>3.5 Project Settings for the Code Coverage / Linting report</a></li>
+</ul>
+</li>
+</ul>
+</div><h2 id="SonarQubeInstallation,ConfigurationonaLinuxVM-1.Installation">1. Installation</h2><ul><li><p>Most installation steps, including the PostgreSQL installation, have been completed as described at the following link: <a class="external-link" data-card-appearance="inline" href="https://hostnextra.com/learn/tutorials/how-to-install-sonarqube-on-ubuntu" rel="nofollow">https://hostnextra.com/learn/tutorials/how-to-install-sonarqube-on-ubuntu</a>. Steps 1 to 6 from the guide are sufficient for this setup.</p></li></ul><div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>The <code>NoClassDefFoundError</code> is a known issue in versions of SonarQube below 10.6. Since the instruction link specifies version 10.5.1, <strong>it would be advisable to refer to the official documentation and install the latest version.</strong></p><ul><li><p>Details about the issue can be found in the Jira ticket (
+
+    
+
+            
+
+
+
+
+    <span class="confluence-jim-macro jira-issue" data-jira-key="CORE-1440"  data-client-id="SINGLE_a5997e8d-c92b-3e2c-a3c8-296b7f0f7c11_1584529451_712020:8a6d4980-1b7a-4890-950c-f5d8b8602cce" >
+                <a href="https://varlab-dev.atlassian.net/browse/CORE-1440" class="jira-issue-key"><span class="aui-icon aui-icon-wait issue-placeholder"></span>CORE-1440</a>
+                    -
+            <span class="summary">Getting issue details...</span>
+                                    <span class="aui-lozenge aui-lozenge-subtle aui-lozenge-default issue-placeholder">STATUS</span>
+            </span>
+ )</p></li></ul></div></div><h2 id="SonarQubeInstallation,ConfigurationonaLinuxVM-2.PostgreSQL">2. PostgreSQL</h2><h4 id="SonarQubeInstallation,ConfigurationonaLinuxVM-2.1PostgreSQLManagementConfiguration">2.1 PostgreSQL Management Configuration</h4><ul><li><p>It is hosted under the <code>system's postgres user account</code> on Linux, with SonarQube connecting to the <code>sonar</code> database using the <code>sonar</code> user account for storing and retrieving data.</p><ul><li><p>The sonar user account and password are used in the SonarQube properties file to configure database connectivity.</p></li></ul></li></ul><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20250129-203911.png" width="760" loading="lazy" src="attachments/1584529451/1587675314.png?width=760" data-image-src="attachments/1584529451/1587675314.png" data-height="238" data-width="852" data-unresolved-comment-count="0" data-linked-resource-id="1587675314" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20250129-203911.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1584529451" data-linked-resource-container-version="9" data-media-id="82d86dd5-ee2a-481b-8e68-1ccc919c7624" data-media-type="file"></span><h2 id="SonarQubeInstallation,ConfigurationonaLinuxVM-3.SonarQube">3. SonarQube</h2><h3 id="SonarQubeInstallation,ConfigurationonaLinuxVM-3.1SonarQubeManagementConfiguration">3.1 SonarQube Management Configuration</h3><ul><li><p>SonarQube is hosted under the <code>system's sonarqube user/group account</code>, ensuring proper isolation and security (as defined in its service configuration).</p></li></ul><h3 id="SonarQubeInstallation,ConfigurationonaLinuxVM-3.2NginxConfigurationforHostingSonarQube">3.2 Nginx Configuration for Hosting SonarQube</h3><ul><li><p>For more details, please refer to the link: <a data-card-appearance="inline" href="https://varlab-dev.atlassian.net/wiki/spaces/DC/pages/1584005153/System-level+security+configuration+on+Linux+Jenkins+VM#2.2.1-Nginx-Configuration" rel="nofollow">https://varlab-dev.atlassian.net/wiki/spaces/DC/pages/1584005153/System-level+security+configuration+on+Linux+Jenkins+VM#2.2.1-Nginx-Configuration</a></p></li></ul><h3 id="SonarQubeInstallation,ConfigurationonaLinuxVM-3.3IntegrationofSonarQubeinJenkins">3.3 Integration of SonarQube in Jenkins</h3><ul><li><p>For more details, please refer to the link: <a data-card-appearance="inline" href="https://varlab-dev.atlassian.net/wiki/spaces/DPD/pages/1469808648/Static+Code+Analysis+using+SonarQube#2.3-Install-Sonar-Scanner-Plugin-in-Jenkins" rel="nofollow">https://varlab-dev.atlassian.net/wiki/spaces/DPD/pages/1469808648/Static+Code+Analysis+using+SonarQube#2.3-Install-Sonar-Scanner-Plugin-in-Jenkins</a> </p></li></ul><div class="panel" style="background-color: #EAE6FF;border-color: #998DD9;border-width: 1px;"><div class="panelContent" style="background-color: #EAE6FF;">
+<p><strong>SonarQube Auth Tokens Update: Project Token Deprecated, User Token Adopted</strong></p><ul><li><p><strong>Project Token</strong>: No longer required for the Jenkins pipeline, as authentication now relies on the User Authentication Token.</p></li><li><p><strong>User Token</strong>: Now used for authentication in Jenkins, stored as a Credential to retrieve SonarQube Static Test results.</p></li></ul>
+</div></div><h3 id="SonarQubeInstallation,ConfigurationonaLinuxVM-3.4ChallengestocompletefullyintegrationoftheSonarQubeintothePipeline">3.4 Challenges to complete fully integration of the SonarQube into the Pipeline</h3><h4 id="SonarQubeInstallation,ConfigurationonaLinuxVM-3.4.1Failedbootstrapindexresponse">3.4.1 Failed bootstrap index response</h4><div id="expander-723983454" class="expand-container"><div id="expander-control-723983454" class="expand-control"><span class="expand-control-icon"><img style="vertical-align:middle;" class="expand-control-image" src="images/icons/grey_arrow_down.png"></span><span class="expand-control-text">Jenkins Log</span></div><div id="expander-content-723983454" class="expand-content"><ul><li><p>For more details, please refer to this Jenkins Log link: <a class="external-link" href="https://jenkins.vconestoga.com/job/Asset-Store/job/Asset-Store-Pull-Request/57/console" rel="nofollow">https://jenkins.vconestoga.com/job/Asset-Store/job/Asset-Store-Pull-Request/57/console</a> </p></li></ul><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">17:03:18.635 ERROR Failed bootstrap index response: </pre>
+</div></div></div></div><ul><li><p>Applied Solution</p><ul><li><p>This error occurred due to an invalid API request to the wrong URL. <br/>&gt;&gt; Please configure the path parameter '/sonarqube' in the <code>sonar.properties</code> file and in the Sonar Server URL settings under Jenkins System Configuration.</p></li></ul></li></ul><p /><h4 id="SonarQubeInstallation,ConfigurationonaLinuxVM-3.4.2NoClassDefFoundError">3.4.2 NoClassDefFoundError</h4><div id="expander-2046691078" class="expand-container"><div id="expander-control-2046691078" class="expand-control"><span class="expand-control-icon"><img style="vertical-align:middle;" class="expand-control-image" src="images/icons/grey_arrow_down.png"></span><span class="expand-control-text">Jenkins Log</span></div><div id="expander-content-2046691078" class="expand-content"><ul><li><p>For more details, please refer to this Jenkins Log link: <a class="external-link" href="https://jenkins.vconestoga.com/job/Asset-Store/job/Asset-Store-Pull-Request/65/console" rel="nofollow">https://jenkins.vconestoga.com/job/Asset-Store/job/Asset-Store-Pull-Request/65/console</a></p></li></ul><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">Exception in thread &quot;Thread-0&quot; java.lang.NoClassDefFoundError: ch/qos/logback/classic/spi/ThrowableProxy
+	at ch.qos.logback.classic.spi.LoggingEvent.&lt;init&gt;(LoggingEvent.java:145)
+	at ch.qos.logback.classic.Logger.buildLoggingEventAndAppend(Logger.java:424)
+	at ch.qos.logback.classic.Logger.filterAndLog_0_Or3Plus(Logger.java:386)
+	at ch.qos.logback.classic.Logger.error(Logger.java:543)
+	at org.eclipse.jgit.internal.util.ShutdownHook.cleanup(ShutdownHook.java:87)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: java.lang.ClassNotFoundException: ch.qos.logback.classic.spi.ThrowableProxy
+	at java.base/java.net.URLClassLoader.findClass(URLClassLoader.java:445)
+	at org.sonarsource.scanner.lib.internal.IsolatedClassloader.loadClass(IsolatedClassloader.java:82)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:525)
+	... 6 more</pre>
+</div></div></div></div><ul><li><p>Applied Solution</p><ul><li><p>Described at <a data-card-appearance="inline" href="https://varlab-dev.atlassian.net/wiki/spaces/DPD/pages/1584529451/SonarQube+Installation+Configuration+on+a+Linux+VM#1.-Installation" rel="nofollow">https://varlab-dev.atlassian.net/wiki/spaces/DPD/pages/1584529451/SonarQube+Installation+Configuration+on+a+Linux+VM#1.-Installation</a> </p></li></ul></li></ul><p /><h4 id="SonarQubeInstallation,ConfigurationonaLinuxVM-3.4.3JSONException">3.4.3 JSONException</h4><div id="expander-1703119989" class="expand-container"><div id="expander-control-1703119989" class="expand-control"><span class="expand-control-icon"><img style="vertical-align:middle;" class="expand-control-image" src="images/icons/grey_arrow_down.png"></span><span class="expand-control-text">Jenkins Log</span></div><div id="expander-content-1703119989" class="expand-content"><ul><li><p>For more details, please refer to this Jenkins Log link: <a class="external-link" href="https://jenkins.vconestoga.com/job/Asset-Store/job/Asset-Store-Pull-Request/65/console" rel="nofollow">https://jenkins.vconestoga.com/job/Asset-Store/job/Asset-Store-Pull-Request/65/console</a></p></li></ul><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">Checking status of SonarQube task &#39;d8467223-4602-438e-a599-998efc6b7b95&#39; on server &#39;SonarServer&#39;
+[Pipeline] }
+net.sf.json.JSONException: Invalid JSON String
+	at net.sf.json.JSONSerializer.toJSON(JSONSerializer.java:143)
+	at net.sf.json.JSONSerializer.toJSON(JSONSerializer.java:103)
+	at net.sf.json.JSONSerializer.toJSON(JSONSerializer.java:84)
+	at PluginClassLoader for sonar//hudson.plugins.sonar.client.WsClient.getCETask(WsClient.java:51)
+	at PluginClassLoader for sonar//org.sonarsource.scanner.jenkins.pipeline.WaitForQualityGateStep$Execution.checkTaskCompleted(WaitForQualityGateStep.java:246)
+	at PluginClassLoader for </pre>
+</div></div></div></div><ul><li><p>Applied Solution</p><ul><li><p>A cascading failure occurred due to an API request made to an incorrect URL<br/>&gt;&gt; Please configure the path parameter '/sonarqube' in the <code>sonar.properties</code> file and in the Sonar Server URL settings under Jenkins System Configuration.</p></li></ul></li></ul><p /><h4 id="SonarQubeInstallation,ConfigurationonaLinuxVM-3.4.4IllegalStateException">3.4.4 IllegalStateException</h4><div id="expander-2010093057" class="expand-container"><div id="expander-control-2010093057" class="expand-control"><span class="expand-control-icon"><img style="vertical-align:middle;" class="expand-control-image" src="images/icons/grey_arrow_down.png"></span><span class="expand-control-text">Jenkins Log</span></div><div id="expander-content-2010093057" class="expand-content"><ul><li><p>For more details, please refer to this Jenkins Log link: <a class="external-link" href="https://jenkins.vconestoga.com/job/Asset-Store/job/Asset-Store-Pull-Request/65/console" rel="nofollow">https://jenkins.vconestoga.com/job/Asset-Store/job/Asset-Store-Pull-Request/65/console</a></p></li></ul><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">Caused: java.lang.IllegalStateException: Unable to parse response from http://localhost:9000/sonarqube/api/ce/task?id=d8467223-4602-438e-a599-998efc6b7b95:</pre>
+</div></div></div></div><ul><li><p>Applied Solution</p><ul><li><p>A cascading failure occurred due to an API request made to an incorrect URL<br/>&gt;&gt; Please configure the path parameter '/sonarqube' in the <code>sonar.properties</code> file and in the Sonar Server URL settings under Jenkins System Configuration.</p></li></ul></li></ul><p /><h4 id="SonarQubeInstallation,ConfigurationonaLinuxVM-3.4.5The“waitForQualityGate”prints“INPROGRESS”andwaitsforever">3.4.5 The “waitForQualityGate” prints “IN PROGRESS” and waits forever</h4><ul><li><p>To execute SonarQube analysis and retrieve the quality gate status, the process follows these steps:</p><ol start="1"><li><p><strong>withSonarQubeEnv</strong>: Runs the SonarQube analysis.</p></li><li><p><strong>waitForQualityGate</strong>: Waits for the analysis to complete and retrieves the quality gate status.</p></li><li><p>For more details, please refer to this link: <a class="external-link" data-card-appearance="inline" href="https://www.jenkins.io/doc/pipeline/steps/sonar/#sonarqube-scanner-for-jenkins" rel="nofollow">https://www.jenkins.io/doc/pipeline/steps/sonar/#sonarqube-scanner-for-jenkins</a> </p></li></ol></li><li><p>For an unknown reason, the <code>waitForQualityGate</code><strong> function retrieves the status before it updates from ‘IN_PROGRESS’ to either ‘SUCCESS’ or ‘FAILURE’</strong>.</p></li><li><p>This is a well-known issue among the SonarQube Community. For details, please refer to this link: <a class="external-link" data-card-appearance="inline" href="https://community.sonarsource.com/t/need-a-sleep-between-withsonarqubeenv-and-waitforqualitygate-or-it-spins-in-in-progress/2265" rel="nofollow">https://community.sonarsource.com/t/need-a-sleep-between-withsonarqubeenv-and-waitforqualitygate-or-it-spins-in-in-progress/2265</a> </p></li></ul><div id="expander-189261691" class="expand-container"><div id="expander-control-189261691" class="expand-control"><span class="expand-control-icon"><img style="vertical-align:middle;" class="expand-control-image" src="images/icons/grey_arrow_down.png"></span><span class="expand-control-text">Jenkins Log / Screenshot</span></div><div id="expander-content-189261691" class="expand-content"><ul><li><p>For more details, please refer to this Jenkins Log link: <a class="external-link" href="https://jenkins.vconestoga.com/job/Asset-Store/job/Asset-Store-Pull-Request/100/console" rel="nofollow">https://jenkins.vconestoga.com/job/Asset-Store/job/Asset-Store-Pull-Request/100/console</a></p></li></ul><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">Checking status of SonarQube task &#39;93250e12-4bd0-410a-991a-7a4b8d3ce97c&#39; on server &#39;SonarServer&#39;
+SonarQube task &#39;93250e12-4bd0-410a-991a-7a4b8d3ce97c&#39; status is &#39;IN_PROGRESS&#39;
+Aborted by admin</pre>
+</div></div><p /><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20250130-165027.png" width="746" loading="lazy" src="attachments/1584529451/1591509008.png?width=746" data-image-src="attachments/1584529451/1591509008.png" data-height="870" data-width="1739" data-unresolved-comment-count="0" data-linked-resource-id="1591509008" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20250130-165027.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1584529451" data-linked-resource-container-version="9" data-media-id="5ae31372-9472-489c-a6a0-5223580f2a01" data-media-type="file"></span><ul><li><p>The deprecated the <code>waitForQuailtyGate</code> Function</p></li></ul><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: groovy; gutter: false; theme: Confluence" data-theme="Confluence">// Set a timeout for waiting on the Quality Gate result
+  int timeoutDuration = 10
+  String timeoutUnit = &#39;MINUTES&#39;
+
+  timeout(time: timeoutDuration, unit: timeoutUnit) {
+    catchError(buildResult: &#39;SUCCESS&#39;, stageResult: &#39;FAILURE&#39;) {
+    // Wait for SonarQube Quality Gate results
+    def qualityGate = waitForQualityGate()
+    echo &quot;Quality Gate Status: ${qualityGate.status}&quot;
+
+    if (qualityGate.status != &#39;OK&#39;) {
+    error &quot;SonarQube Quality Gate failed&quot;
+    }
+  }
+}</pre>
+</div></div><p /><p /></div></div><ul><li><p>Applied Solution</p><ul><li><p>No longer to use the <code>waitForQuailtyGate</code> built-in function</p></li><li><p>Create our own SonaQube API call function <code>checkQualityGateStatus()</code> and replace <code>waitForQuailtyGate()</code> function. </p></li></ul></li></ul><p /><h3 id="SonarQubeInstallation,ConfigurationonaLinuxVM-3.5ProjectSettingsfortheCodeCoverage/Lintingreport">3.5 Project Settings for the Code Coverage / Linting report</h3><ul><li><p>For more details, please refer to the link: <a data-card-appearance="inline" href="https://varlab-dev.atlassian.net/wiki/spaces/DPD/pages/1469808648/Static+Code+Analysis+using+SonarQube#3.-Project-Settings-on-the-SonarQube-Instance" rel="nofollow">https://varlab-dev.atlassian.net/wiki/spaces/DPD/pages/1469808648/Static+Code+Analysis+using+SonarQube#3.-Project-Settings-on-the-SonarQube-Instance</a> </p></li></ul><p />
+                    </div>
+
+                                        <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1584529451/1587675314.png">image-20250129-203911.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1584529451/1591509008.png">image-20250130-165027.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on May 27, 2025 13:33</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

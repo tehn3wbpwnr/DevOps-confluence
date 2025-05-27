@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DevOps / Pipeline &amp; Deployment : Running WebGL Builds on Headless Linux</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">DevOps / Pipeline &amp; Deployment</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1179353439.html">DevOps / Pipeline &amp; Deployment Home</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Linux-Jenkins-Documents_1542455384.html">Linux Jenkins Documents</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Set-Up-on-Linux_1542881281.html">Set Up on Linux</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Linux-with-Unity-Headless-Environment-and-Tool-Integration_1499693083.html">Linux with Unity Headless Environment and Tool Integration</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            DevOps / Pipeline &amp; Deployment : Running WebGL Builds on Headless Linux
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                            
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Jindo Kim</span>, last modified on Mar 03, 2025
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <h1 id="RunningWebGLBuildsonHeadlessLinux-Objective">Objective</h1><ul><li><p>Document the process of setting up a Linux Virtual Machine (VM) environment capable of executing Unity in headless mode, building WebGL of DLX as a continuation of the steps outlined in <a data-card-appearance="inline" href="https://varlab-dev.atlassian.net/wiki/spaces/DPD/pages/1499398191/Environment+Preparation+Guide+Setting+up+a+Linux+VM+for+Headless+Unity+Editor+Batchmode+Operations?atlOrigin=eyJpIjoiMDEyMDUxNDkyNmNiNDA3YWFlZWM4YTZiNTVjZWYzNTUiLCJwIjoiYyJ9" rel="nofollow">https://varlab-dev.atlassian.net/wiki/spaces/DPD/pages/1499398191/Environment+Preparation+Guide+Setting+up+a+Linux+VM+for+Headless+Unity+Editor+Batchmode+Operations?atlOrigin=eyJpIjoiMDEyMDUxNDkyNmNiNDA3YWFlZWM4YTZiNTVjZWYzNTUiLCJwIjoiYyJ9</a> </p></li></ul><p /><style type='text/css'>/*<![CDATA[*/
+div.rbtoc1748352774587 {padding: 0px;}
+div.rbtoc1748352774587 ul {list-style: none;margin-left: 0px;}
+div.rbtoc1748352774587 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style><div class='toc-macro rbtoc1748352774587'>
+<ul class='toc-indentation'>
+<li><a href='#RunningWebGLBuildsonHeadlessLinux-Summary'>Summary</a></li>
+<li><a href='#RunningWebGLBuildsonHeadlessLinux-1.EnvironmentPreparation'>1. Environment Preparation</a>
+<ul class='toc-indentation'>
+<li><a href='#RunningWebGLBuildsonHeadlessLinux-1.1InstallGitLargeFileStorage'>1.1 Install Git Large File Storage</a>
+<ul class='toc-indentation'>
+<li><a href='#RunningWebGLBuildsonHeadlessLinux-1.1.1WebGLBuildResultwithout1.1Step(InstallGitLargeFileStorage)'>1.1.1 WebGL Build Result without 1.1 Step (Install Git Large File Storage)</a></li>
+</ul>
+</li>
+<li><a href='#RunningWebGLBuildsonHeadlessLinux-1.2InstallFFmpeg(FastForwardMovingPictureExpertsGroup)'>1.2 Install FFmpeg (Fast Forward Moving Picture Experts Group)</a>
+<ul class='toc-indentation'>
+<li><a href='#RunningWebGLBuildsonHeadlessLinux-1.2.1WebGLBuild(Initial)LogwithoutFFmpeginstallation'>1.2.1 WebGL Build (Initial) Log without FFmpeg installation</a></li>
+<li><a href='#RunningWebGLBuildsonHeadlessLinux-1.2.2WebGLBuild/(SecondAttempt)Log:PerformedwithoutFFmpeginstalled,afterdeletingthepreviousWebGLbuildfilesfrom1.2.1.'>1.2.2 WebGL Build/ (Second Attempt) Log: Performed without FFmpeg installed, after deleting the previous WebGL build files from 1.2.1.</a></li>
+<li><a href='#RunningWebGLBuildsonHeadlessLinux-1.2.3WebGLBuild(Initial)LogwithFFmpeginstallation'>1.2.3 WebGL Build (Initial) Log with FFmpeg installation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href='#RunningWebGLBuildsonHeadlessLinux-2.WebGLBuilds'>2. WebGL Builds</a>
+<ul class='toc-indentation'>
+<li><a href='#RunningWebGLBuildsonHeadlessLinux-2.1Command:'>2.1 Command:</a></li>
+<li><a href='#RunningWebGLBuildsonHeadlessLinux-2.2WebGLBuildsResultafter1.2Step(InstallGitLargeFileStorage+gitlfspull)'>2.2 WebGL Builds Result after 1.2 Step (Install Git Large File Storage + git lfs pull)</a></li>
+<li><a href='#RunningWebGLBuildsonHeadlessLinux-2.3PossibleFutureChallenges'>2.3 Possible Future Challenges</a>
+<ul class='toc-indentation'>
+<li><a href='#RunningWebGLBuildsonHeadlessLinux-2.3.1GTK(GNUImageManipulationProgramToolkit)'>2.3.1 GTK (GNU Image Manipulation Program Toolkit)</a></li>
+<li><a href='#RunningWebGLBuildsonHeadlessLinux-2.3.2ALSA(AdvancedLinuxSoundArchitecture)'>2.3.2 ALSA (Advanced Linux Sound Architecture)</a></li>
+<li><a href='#RunningWebGLBuildsonHeadlessLinux-2.3.3FMOD(FrequencyModulationSynthesisandOutputDriver)'>2.3.3 FMOD (Frequency Modulation Synthesis and Output Driver)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div><p /><h2 id="RunningWebGLBuildsonHeadlessLinux-Summary">Summary</h2><ul><li><p>This document provides a guide on enabling WebGL builds after installing Unity Hub and the Unity Editor on Ubuntu via a graphical user interface (GUI) accessed through RDP. It also includes step-by-step instructions for installing and utilizing <strong>Git Large File Storage (LFS) </strong>and <strong>FFmpeg (Fast Forward Moving Picture Experts Group)</strong>.</p></li></ul><h2 id="RunningWebGLBuildsonHeadlessLinux-1.EnvironmentPreparation">1. Environment Preparation</h2><h3 id="RunningWebGLBuildsonHeadlessLinux-1.1InstallGitLargeFileStorage">1.1 Install Git Large File Storage</h3><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence"># Update the package list to get the latest version of the packages.
+sudo apt update
+
+# Install Git Large File Storage (LFS). Git LFS is an extension for managing large files.
+sudo apt install git-lfs
+
+# Install Git LFS for the current user environment. This command sets up Git LFS to be used.
+git lfs install
+
+# Pull large files from the remote repository using Git LFS. This command downloads files managed by LFS.
+git lfs pull</pre>
+</div></div><ul><li><p>Installing and initializing Git Large File Storage on a headless Ubuntu VM requires additional configuration compared to a Windows environment. Using the <code>git lfs pull</code> command within the project folder, an environment that temporarily supports proper WebGL builds has been established, even though this is not an ideal approach for leveraging Git LFS functionality. Further research and adjustments seem necessary to optimize the use of Git Large File Storage.</p></li></ul><div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p><strong>Important:</strong></p><p><strong>To avoid potential disruptions in the WebGL build process, enable Git Large File Storage (LFS) in the project configuration.</strong></p></div></div><p /><h4 id="RunningWebGLBuildsonHeadlessLinux-1.1.1WebGLBuildResultwithout1.1Step(InstallGitLargeFileStorage)">1.1.1 WebGL Build Result without 1.1 Step (Install Git Large File Storage)</h4><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20241212-013424.png" width="760" loading="lazy" src="attachments/1657274384/1656717318.png?width=760" data-image-src="attachments/1657274384/1656717318.png" data-height="1335" data-width="1497" data-unresolved-comment-count="0" data-linked-resource-id="1656717318" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20241212-013424.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1657274384" data-linked-resource-container-version="2" data-media-id="f035d93b-053b-46d7-93cd-6ef76c4c8690" data-media-type="file"></span><p /><hr/><h3 id="RunningWebGLBuildsonHeadlessLinux-1.2InstallFFmpeg(FastForwardMovingPictureExpertsGroup)">1.2 Install FFmpeg (Fast Forward Moving Picture Experts Group)</h3><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence"># Install ffmpeg
+sudo apt-get install ffmpeg</pre>
+</div></div><div id="expander-524852982" class="expand-container"><div id="expander-control-524852982" class="expand-control"><span class="expand-control-icon"><img style="vertical-align:middle;" class="expand-control-image" src="images/icons/grey_arrow_down.png"></span><span class="expand-control-text">About FFmpeg</span></div><div id="expander-content-524852982" class="expand-content"><p><strong>FFmpeg</strong> is a free and open-source software project consisting of libraries and programs for handling video, audio, and other multimedia files and streams.</p><p><a class="external-link" data-card-appearance="inline" href="https://ffmpeg.org/" rel="nofollow">https://ffmpeg.org/</a> </p></div></div><ul><li><p>In a headless Ubuntu/Linux environment, when performing Unity WebGL builds in batch mode, the absence of FFmpeg results in the WebGL build being generated without audio. This behavior is documented in the Unity 6 Documentation , which can be found <a class="external-link" href="https://docs.unity3d.com/Manual/webgl-audio.html#:~:text=Note%3A%20For%20audio%20clip%20support%20on%20Linux%2C%20make%20sure%20you%E2%80%99ve%20installed%20the%20ffmpeg%20package." rel="nofollow">here</a>. However, <u>please note that this information may change in future updates or with newer Unity versions as the platform evolves.</u></p></li></ul><div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>There is an issue where <strong>the build process does not fail</strong> as expected when FFmpeg is missing and audio conversion fails. Instead, <strong>the build is reported as successful</strong>, even though the resulting build lacks audio. To reproduce the audio conversion process or verify logs, it is necessary to completely delete the project and restart the process from a fresh <code>git clone</code>. Unity will only attempt audio conversion again during the WebGL build, regardless of whether FFmpeg is present.</p></div></div><p /><h4 id="RunningWebGLBuildsonHeadlessLinux-1.2.1WebGLBuild(Initial)LogwithoutFFmpeginstallation">1.2.1 WebGL Build (Initial) Log without FFmpeg installation</h4><ul><li><p>Error Message for the absence of FFmpeg</p></li></ul><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20250303-165445.png" width="760" loading="lazy" src="attachments/1657274384/1657176070.png?width=760" data-image-src="attachments/1657274384/1657176070.png" data-height="524" data-width="1586" data-unresolved-comment-count="0" data-linked-resource-id="1657176070" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20250303-165445.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1657274384" data-linked-resource-container-version="2" data-media-id="bd6c959e-2346-4a05-ad32-a71e53eea1e7" data-media-type="file"></span><ul><li><p>Log Message for Build Result</p></li></ul><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20250303-171727.png" width="760" loading="lazy" src="attachments/1657274384/1657077773.png?width=760" data-image-src="attachments/1657274384/1657077773.png" data-height="249" data-width="869" data-unresolved-comment-count="0" data-linked-resource-id="1657077773" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20250303-171727.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1657274384" data-linked-resource-container-version="2" data-media-id="9353c84e-4305-4040-9758-7d9b3f3b79cd" data-media-type="file"></span><div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>Although the FFmpeg installation is missing, causing the audio conversion process to fail, the build result still shows as <strong>&quot;Success.&quot; </strong>Please be aware that this issue can only be detected by manually reviewing the logs, as it does not produce any visible errors during the build process.</p></div></div><ul><li><p>To view the full log, please refer to the log below.</p></li></ul><p><span class="confluence-embedded-file-wrapper"><a class="confluence-embedded-file" href="attachments/1657274384/1657372686.log" data-nice-type="null" data-file-src="/wiki/download/attachments/1657274384/WebGL-Initial-Build-Without-ffmpeg.log?version=1&amp;modificationDate=1741020957338&amp;cacheVersion=1&amp;api=v2" data-linked-resource-id="1657372686" data-linked-resource-type="attachment" data-linked-resource-container-id="1657274384" data-linked-resource-default-alias="WebGL-Initial-Build-Without-ffmpeg.log" data-mime-type="binary/octet-stream" data-has-thumbnail="true" data-linked-resource-version="1" data-media-id="3481785f-9153-4e38-8b4d-0035f5fda4f9" data-media-type="file"><img src="attachments/thumbnails/1657274384/1657372686" height="250"/></a></span> </p><p /><h4 id="RunningWebGLBuildsonHeadlessLinux-1.2.2WebGLBuild/(SecondAttempt)Log:PerformedwithoutFFmpeginstalled,afterdeletingthepreviousWebGLbuildfilesfrom1.2.1.">1.2.2 WebGL Build/ (Second Attempt) Log: Performed without FFmpeg installed, after deleting the previous WebGL build files from 1.2.1.</h4><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20250303-165700.png" width="760" loading="lazy" src="attachments/1657274384/1657700369.png?width=760" data-image-src="attachments/1657274384/1657700369.png" data-height="554" data-width="1673" data-unresolved-comment-count="0" data-linked-resource-id="1657700369" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20250303-165700.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1657274384" data-linked-resource-container-version="2" data-media-id="921223a9-6179-458f-99a2-9992824a030e" data-media-type="file"></span><div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>Please note that while the WebGL build completes successfully, the resulting build fails to play audio when tested. Additionally, <strong>no error messages are displayed during the building process</strong>. This is a critical issue that must be carefully considered when designing CI/CD pipelines, as <strong>silent failures</strong> can lead to undetected problems and hinder debugging efforts.</p></div></div><ul><li><p>To view the full log, please refer to the log below.</p></li></ul><p><span class="confluence-embedded-file-wrapper"><a class="confluence-embedded-file" href="attachments/1657274384/1657405452.log" data-nice-type="null" data-file-src="/wiki/download/attachments/1657274384/WebGL-second-Build-Without-ffmpeg.log?version=1&amp;modificationDate=1741021066103&amp;cacheVersion=1&amp;api=v2" data-linked-resource-id="1657405452" data-linked-resource-type="attachment" data-linked-resource-container-id="1657274384" data-linked-resource-default-alias="WebGL-second-Build-Without-ffmpeg.log" data-mime-type="binary/octet-stream" data-has-thumbnail="true" data-linked-resource-version="1" data-media-id="a1bd6dab-5a2b-4059-81e1-f3a1f52434d1" data-media-type="file"><img src="attachments/thumbnails/1657274384/1657405452" height="250"/></a></span> </p><p /><h4 id="RunningWebGLBuildsonHeadlessLinux-1.2.3WebGLBuild(Initial)LogwithFFmpeginstallation">1.2.3 WebGL Build (Initial) Log with FFmpeg installation</h4><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20250303-172340.png" width="760" loading="lazy" src="attachments/1657274384/1657176081.png?width=760" data-image-src="attachments/1657274384/1657176081.png" data-height="807" data-width="1607" data-unresolved-comment-count="0" data-linked-resource-id="1657176081" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20250303-172340.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1657274384" data-linked-resource-container-version="2" data-media-id="ba659c7e-8878-465b-b666-f47e463e8904" data-media-type="file"></span><ul><li><p>To view the full log, please refer to the log below.</p></li></ul><p><span class="confluence-embedded-file-wrapper"><a class="confluence-embedded-file" href="attachments/1657274384/1656848398.log" data-nice-type="null" data-file-src="/wiki/download/attachments/1657274384/WebGL-Initial-Build-With-ffmpeg.log?version=1&amp;modificationDate=1741022691454&amp;cacheVersion=1&amp;api=v2" data-linked-resource-id="1656848398" data-linked-resource-type="attachment" data-linked-resource-container-id="1657274384" data-linked-resource-default-alias="WebGL-Initial-Build-With-ffmpeg.log" data-mime-type="binary/octet-stream" data-has-thumbnail="true" data-linked-resource-version="1" data-media-id="4fc39988-f20d-4e2a-9707-d8bf706f97a2" data-media-type="file"><img src="attachments/thumbnails/1657274384/1656848398" height="250"/></a></span> </p><p /><hr/><hr/><h2 id="RunningWebGLBuildsonHeadlessLinux-2.WebGLBuilds">2. WebGL Builds</h2><h3 id="RunningWebGLBuildsonHeadlessLinux-2.1Command:">2.1 Command:</h3><ul><li><p><code>xvfb-run -a </code></p></li><li><p><code>&lt;Editor Path&gt; </code></p></li><li><p><code>-batchmode </code></p></li><li><p><code>-projectPath &quot;&lt;Project Path&gt;&quot; </code></p></li><li><p><code>-buildTarget WebGL </code></p></li><li><p><code>-logFile &quot;&lt;Log File Path&gt;&quot; </code></p></li><li><p><code>-executeMethod &lt;Build Method&gt; </code></p></li><li><p><code>-quit</code></p></li><li><p>For example, when applied to the respiratory therapy DLX project:</p></li></ul><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">xvfb-run -a \
+/home/gui/Unity/Hub/Editor/6000.0.12f1/Editor/Unity \
+-batchmode \
+-projectPath &quot;/home/gui/Desktop/respiratory-therapy&quot; \
+-buildTarget WebGL \
+-logFile &quot;/home/gui/Desktop/respiratory-therapy/reports/webgl.log&quot; \
+-executeMethod Builder.BuildWebGL \
+-quit</pre>
+</div></div><p /><h3 id="RunningWebGLBuildsonHeadlessLinux-2.2WebGLBuildsResultafter1.2Step(InstallGitLargeFileStorage+gitlfspull)">2.2 WebGL Builds Result after 1.2 Step (Install Git Large File Storage + <code>git lfs pull</code>)</h3><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20241212-015306.png" width="760" loading="lazy" src="attachments/1657274384/1656717325.png?width=760" data-image-src="attachments/1657274384/1656717325.png" data-height="1342" data-width="1495" data-unresolved-comment-count="0" data-linked-resource-id="1656717325" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20241212-015306.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1657274384" data-linked-resource-container-version="2" data-media-id="fd92d13f-b23a-4cc4-9f03-66554ee30475" data-media-type="file"></span><p /><h3 id="RunningWebGLBuildsonHeadlessLinux-2.3PossibleFutureChallenges">2.3 Possible Future Challenges</h3><h4 id="RunningWebGLBuildsonHeadlessLinux-2.3.1GTK(GNUImageManipulationProgramToolkit)">2.3.1 GTK (<a class="external-link" href="https://www.gimp.org/" rel="nofollow">GNU Image Manipulation Program</a> Toolkit)</h4><div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p><strong>Warning:</strong> The WebGL Build appears to have been completed successfully; however, the log file still includes the warning <code>'gtk_label_set_markup: assertion 'GTK_IS_LABEL (label)' failed,'</code> which differs from the logs generated in the Windows environment. While this doesn’t seem to impact the current WebGL build process significantly, there is a possibility that Gtk-related issues might arise in the future, particularly if graphical problems occur.</p></div></div><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20241212-185735.png" width="760" loading="lazy" src="attachments/1657274384/1656717331.png?width=760" data-image-src="attachments/1657274384/1656717331.png" data-height="175" data-width="898" data-unresolved-comment-count="0" data-linked-resource-id="1656717331" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20241212-185735.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1657274384" data-linked-resource-container-version="2" data-media-id="e3da32d9-ff08-4b9a-a28e-a8262ea9490f" data-media-type="file"></span><p /><h4 id="RunningWebGLBuildsonHeadlessLinux-2.3.2ALSA(AdvancedLinuxSoundArchitecture)">2.3.2 ALSA (Advanced Linux Sound Architecture)</h4><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20250303-183452.png" width="760" loading="lazy" src="attachments/1657274384/1657372696.png?width=760" data-image-src="attachments/1657274384/1657372696.png" data-height="383" data-width="1654" data-unresolved-comment-count="0" data-linked-resource-id="1657372696" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20250303-183452.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1657274384" data-linked-resource-container-version="2" data-media-id="9266057e-5532-4ccb-8444-43d51c4df335" data-media-type="file"></span><p /><h4 id="RunningWebGLBuildsonHeadlessLinux-2.3.3FMOD(FrequencyModulationSynthesisandOutputDriver)">2.3.3 FMOD (Frequency Modulation Synthesis and Output Driver)</h4><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20250303-183509.png" width="760" loading="lazy" src="attachments/1657274384/1656881168.png?width=760" data-image-src="attachments/1657274384/1656881168.png" data-height="73" data-width="841" data-unresolved-comment-count="0" data-linked-resource-id="1656881168" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20250303-183509.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1657274384" data-linked-resource-container-version="2" data-media-id="2b913bd7-49a2-4505-9595-dfb2b4761114" data-media-type="file"></span>
+                    </div>
+
+                                        <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1657274384/1656717318.png">image-20241212-013424.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1657274384/1656717325.png">image-20241212-015306.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1657274384/1656717331.png">image-20241212-185735.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1657274384/1657176070.png">image-20250303-165445.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1657274384/1657372686.log">WebGL-Initial-Build-Without-ffmpeg.log</a> (binary/octet-stream)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1657274384/1657700369.png">image-20250303-165700.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1657274384/1657405452.log">WebGL-second-Build-Without-ffmpeg.log</a> (binary/octet-stream)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1657274384/1657077773.png">image-20250303-171727.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1657274384/1657176081.png">image-20250303-172340.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1657274384/1656848398.log">WebGL-Initial-Build-With-ffmpeg.log</a> (binary/octet-stream)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1657274384/1657372696.png">image-20250303-183452.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1657274384/1656881168.png">image-20250303-183509.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on May 27, 2025 13:32</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

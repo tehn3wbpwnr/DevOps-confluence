@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DevOps / Pipeline &amp; Deployment : ALSA Bug Fixing</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">DevOps / Pipeline &amp; Deployment</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1179353439.html">DevOps / Pipeline &amp; Deployment Home</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Linux-Jenkins-Documents_1542455384.html">Linux Jenkins Documents</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Bug-Fix-and-Trouble-Shooting_1678409764.html">Bug Fix and Trouble Shooting</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            DevOps / Pipeline &amp; Deployment : ALSA Bug Fixing
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                            
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Chris Park</span>, last modified on Mar 10, 2025
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <p /><hr/><p><strong>[Contents]</strong></p><style type='text/css'>/*<![CDATA[*/
+div.rbtoc1748352813618 {padding: 0px;}
+div.rbtoc1748352813618 ul {list-style: none;margin-left: 0px;}
+div.rbtoc1748352813618 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style><div class='toc-macro rbtoc1748352813618'>
+<ul class='toc-indentation'>
+<li><a href='#ALSABugFixing-1.BugDescription'>1. Bug Description</a>
+<ul class='toc-indentation'>
+<li><a href='#ALSABugFixing-1.1JiraTicket'>1.1 Jira Ticket</a></li>
+<li><a href='#ALSABugFixing-1.2WhatisALSA?'>1.2 What is ALSA?</a></li>
+<li><a href='#ALSABugFixing-1.3ErrorLogs'>1.3 Error Logs</a></li>
+</ul>
+</li>
+<li><a href='#ALSABugFixing-2.BugFix'>2. Bug Fix</a>
+<ul class='toc-indentation'>
+<li><a href='#ALSABugFixing-2.1Installlisaound2'>2.1 Install lisaound2</a></li>
+<li><a href='#ALSABugFixing-2.2InstallPulseAuido'>2.2 Install PulseAuido</a></li>
+<li><a href='#ALSABugFixing-2.3MakesureALSAiscorrectlyconfiguredtorouteaudiothroughPulseAudio'>2.3 Make sure ALSA is correctly configured to route audio through PulseAudio</a></li>
+</ul>
+</li>
+<li><a href='#ALSABugFixing-3.Analyzing'>3. Analyzing</a></li>
+</ul>
+</div><hr/><h1 id="ALSABugFixing-1.BugDescription"><strong>1. Bug Description</strong> </h1><h2 id="ALSABugFixing-1.1JiraTicket"><strong>1.1 Jira Ticket</strong></h2><p>The WebGL build seems to be failing to import the audio into the simulation<br/>: 
+
+    
+
+            
+
+
+
+
+    <span class="confluence-jim-macro jira-issue" data-jira-key="CORE-1522"  data-client-id="SINGLE_a5997e8d-c92b-3e2c-a3c8-296b7f0f7c11_1678475313_712020:8a6d4980-1b7a-4890-950c-f5d8b8602cce" >
+                <a href="https://varlab-dev.atlassian.net/browse/CORE-1522" class="jira-issue-key"><span class="aui-icon aui-icon-wait issue-placeholder"></span>CORE-1522</a>
+                    -
+            <span class="summary">Getting issue details...</span>
+                                    <span class="aui-lozenge aui-lozenge-subtle aui-lozenge-default issue-placeholder">STATUS</span>
+            </span>
+ </p><h2 id="ALSABugFixing-1.2WhatisALSA?"><strong>1.2 What is ALSA?</strong></h2><p>: ALSA (Advanced Linux Sound Architecture) is the <strong>default audio framework and driver</strong> for Linux systems. It provides <strong>low-level</strong> control over audio hardware, enabling applications to interact with sound devices efficiently.</p><h2 id="ALSABugFixing-1.3ErrorLogs"><strong>1.3 Error Logs</strong></h2><div class="table-wrap"><table data-table-width="760" data-layout="default" data-local-id="c1680092-d70a-4e1e-8780-595b41649b8e" class="confluenceTable"><tbody><tr><td class="confluenceTd"><ol start="1"><li><p>ALSA lib confmisc.c:855:(parse_card) cannot find card '0'</p></li><li><p>ALSA lib conf.c:5178:(_snd_config_evaluate) function snd_func_card_inum returned <strong>error:</strong> No such file or directory</p></li><li><p>ALSA lib confmisc.c:422:(snd_func_concat) error evaluating strings</p></li><li><p>ALSA lib conf.c:5178:(_snd_config_evaluate) function snd_func_concat returned <strong>error:</strong> No such file or directory</p></li><li><p>ALSA lib confmisc.c:1334:(snd_func_refer) error evaluating name</p></li><li><p>ALSA lib conf.c:5178:(_snd_config_evaluate) function snd_func_refer returned <strong>error:</strong> No such file or directory</p></li><li><p>ALSA lib conf.c:5701:(snd_config_expand) Evaluate <strong>error:</strong> No such file or directory</p></li><li><p>ALSA lib pcm.c:2664:(snd_pcm_open_noupdate) Unknown PCM default</p></li></ol></td></tr></tbody></table></div><hr/><h1 id="ALSABugFixing-2.BugFix"><strong>2. Bug Fix</strong></h1><p><strong>Steps to Fix the Bug</strong><br/><strong>: </strong>This document will be useful for reviewing this bug fix process…</p><h2 id="ALSABugFixing-2.1Installlisaound2"><strong>2.1 Install </strong><a class="external-link" href="https://pkgs.org/download/libasound2" rel="nofollow"><strong>lisaound2</strong></a></h2><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">sudo apt update
+sudo apt install libasound2
+ldconfig -p | grep libasound.so.2 # (Check the installation)</pre>
+</div></div><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20250310-192806.png" width="702" loading="lazy" src="attachments/1678475313/1678213207.png?width=702" data-image-src="attachments/1678475313/1678213207.png" data-height="89" data-width="414" data-unresolved-comment-count="0" data-linked-resource-id="1678213207" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20250310-192806.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1678475313" data-linked-resource-container-version="9" data-media-id="c102c2c7-3865-4ae9-a7b7-95b58acc44ba" data-media-type="file"></span><p> </p><h2 id="ALSABugFixing-2.2InstallPulseAuido"><strong>2.2 Install </strong><a class="external-link" href="https://www.freedesktop.org/wiki/Software/PulseAudio/" rel="nofollow"><strong>PulseAuido</strong></a></h2><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">sudo apt update 
+sudo apt install pulseaudio
+ps aux | grep pulseaudio #(Check the installation and Process running)</pre>
+</div></div><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20250310-192843.png" width="702" loading="lazy" src="attachments/1678475313/1677918239.png?width=702" data-image-src="attachments/1678475313/1677918239.png" data-height="87" data-width="414" data-unresolved-comment-count="0" data-linked-resource-id="1677918239" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20250310-192843.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1678475313" data-linked-resource-container-version="9" data-media-id="2de1b456-c5ae-42cb-9868-d39f8b9dfc25" data-media-type="file"></span><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">pactl list sinks #(A list of output devices (sinks) currently recognized by PulseAudio)</pre>
+</div></div><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20250310-193004.png" width="530" loading="lazy" src="attachments/1678475313/1677852745.png?width=530" data-image-src="attachments/1678475313/1677852745.png" data-height="197" data-width="338" data-unresolved-comment-count="0" data-linked-resource-id="1677852745" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20250310-193004.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1678475313" data-linked-resource-container-version="9" data-media-id="a5c855c8-4fc2-45ca-bf69-712adf84199e" data-media-type="file"></span><p style="margin-left: 30.0px;">It's not a problem that it's <code>SUSPENDED</code> now.</p><p style="margin-left: 30.0px;">When FMOD starts initializing and playing, it will change to <code>RUNNING</code> normally.</p><p /><h2 id="ALSABugFixing-2.3MakesureALSAiscorrectlyconfiguredtorouteaudiothroughPulseAudio"><strong>2.3 Make sure ALSA is correctly configured to route audio through PulseAudio</strong></h2><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">aplay -L</pre>
+</div></div><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20250310-193035.png" width="501" loading="lazy" src="attachments/1678475313/1678671936.png?width=501" data-image-src="attachments/1678475313/1678671936.png" data-height="197" data-width="305" data-unresolved-comment-count="0" data-linked-resource-id="1678671936" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20250310-193035.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1678475313" data-linked-resource-container-version="9" data-media-id="52896c01-4894-4945-9552-86ca37a8c7ec" data-media-type="file"></span><hr/><h1 id="ALSABugFixing-3.Analyzing"><strong>3. Analyzing</strong></h1><p><strong>Why we WebGL needs ‘ALSA’?</strong></p><p>: Unity's built-in audio system is powered by <strong>FMOD Core API</strong>, which handles low-level audio management.<br/> This is <strong>separate and independent from</strong> the <strong>FMOD Studio</strong> system, which is a full-featured <strong>audio middleware</strong> that integrates with Unity via an external plugin (FMOD Studio Unity Integration).</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20250310-193051.png" width="734" loading="lazy" src="attachments/1678475313/1678704681.png?width=734" data-image-src="attachments/1678475313/1678704681.png" data-height="276" data-width="468" data-unresolved-comment-count="0" data-linked-resource-id="1678704681" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20250310-193051.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1678475313" data-linked-resource-container-version="9" data-media-id="f30d386a-62b7-414d-8251-0f224d978778" data-media-type="file"></span><p> Unity initializes <strong>FMOD Core API</strong>, the low-level audio engine that powers Unity’s built-in audio system. As part of this initialization, FMOD Core API directly interfaces with the underlying audio architecture of the host operating system — <strong>WASAPI</strong> on Windows, <strong>ALSA</strong> on Linux, and <strong>CoreAudio</strong> on macOS.</p><div class="table-wrap"><table data-table-width="760" data-layout="default" data-local-id="3769233a-133d-4ed0-8b45-049cf50b0008" class="confluenceTable"><colgroup><col style="width: 171.0px;"/><col style="width: 588.0px;"/></colgroup><tbody><tr><td data-highlight-colour="#f4f5f7" colspan="2" class="confluenceTd"><p><strong>Target Platform Whether to use FMOD</strong></p></td></tr><tr><td data-highlight-colour="#f4f5f7" class="confluenceTd"><p><strong>WebGL</strong></p></td><td data-highlight-colour="#f4f5f7" class="confluenceTd"><p>Doesn’t use FMOD Core API (replaces Web Audio API)</p></td></tr><tr><td data-highlight-colour="#f4f5f7" class="confluenceTd"><p><strong>Windows</strong></p></td><td data-highlight-colour="#f4f5f7" class="confluenceTd"><p>Use FMOD Core API</p></td></tr><tr><td data-highlight-colour="#f4f5f7" class="confluenceTd"><p><strong>macOS</strong></p></td><td data-highlight-colour="#f4f5f7" class="confluenceTd"><p>Use FMOD Core API</p></td></tr><tr><td data-highlight-colour="#f4f5f7" class="confluenceTd"><p><strong>Linux</strong></p></td><td data-highlight-colour="#f4f5f7" class="confluenceTd"><p>Use FMOD Core API</p></td></tr><tr><td data-highlight-colour="#f4f5f7" class="confluenceTd"><p><strong>Android</strong></p></td><td data-highlight-colour="#f4f5f7" class="confluenceTd"><p>Use FMOD Core API</p></td></tr><tr><td data-highlight-colour="#f4f5f7" class="confluenceTd"><p><strong>iOS</strong></p></td><td data-highlight-colour="#f4f5f7" class="confluenceTd"><p>Use FMOD Core API</p></td></tr></tbody></table></div><p> For more details about FMOD features on different operating systems, please refer to <a class="external-link" href="https://www.fmod.com/docs/2.00/api/platforms.html" rel="nofollow">this FMOD documentation</a> and <a class="external-link" href="https://www.youtube.com/watch?v=rcBHIOjZDpk" rel="nofollow">This YouTube video</a> can give a better understanding of the relationship between ‘FMODE’ and ‘Unity’.</p><p> In conclusion, ASLA and FMOD related issue may occur if we change our target player WebGL to other, but <strong><u>it is not a big deal right now.</u></strong></p><hr/><p><strong>More References</strong></p><p><strong>[Discussions of Unity Base Audio Engine]</strong><br/>&gt;&gt; <a class="external-link" data-card-appearance="inline" href="https://qa.fmod.com/t/is-unitys-audio-system-actually-fmod-core/17463" rel="nofollow">https://qa.fmod.com/t/is-unitys-audio-system-actually-fmod-core/17463</a> </p><p>&gt;&gt; <a class="external-link" data-card-appearance="inline" href="https://discussions.unity.com/t/unitys-base-audio-engine/829921" rel="nofollow">https://discussions.unity.com/t/unitys-base-audio-engine/829921</a> </p><p /><p><strong>[Article for running and trouble shutting about Unity on Linux headless environment]</strong><br/>&gt;&gt; <a class="external-link" href="https://medium.com/@h0lycattle/running-unity3d-in-a-virtualized-headless-ubuntu-environment-1adf95c05994" rel="nofollow">Running Unity3D in a Virtualized Headless Ubuntu Environment | by Jon Ibasco | Medium</a></p><p /><p class="media-group"><span class="confluence-embedded-file-wrapper"><a class="confluence-embedded-file" href="attachments/1678475313/1677951060.pdf" data-nice-type="PDF Document" data-file-src="/wiki/download/attachments/1678475313/Bug-Report-Unity-Audio-Issue(ALSA)%20.pdf?version=3&amp;modificationDate=1741634289428&amp;cacheVersion=1&amp;api=v2" data-linked-resource-id="1677951060" data-linked-resource-type="attachment" data-linked-resource-container-id="1678475313" data-linked-resource-default-alias="Bug-Report-Unity-Audio-Issue(ALSA) .pdf" data-mime-type="application/pdf" data-has-thumbnail="true" data-linked-resource-version="3" data-media-id="4a119f1a-a169-47b1-9320-5616f927f359" data-media-type="file"><img src="attachments/thumbnails/1678475313/1677951060" height="250"/></a></span></p><p />
+                    </div>
+
+                                        <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1678475313/1678508111.pdf">Bug-Report-Unity-Audio-Issue(ALSA) .pdf</a> (application/pdf)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1678475313/1678311467.docx">Bug-Report-Unity-Audio-Issue(ALSA) .docx</a> (application/vnd.openxmlformats-officedocument.wordprocessingml.document)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1678475313/1678180413.pdf">Bug-Report-Unity-Audio-Issue(ALSA) .pdf</a> (application/pdf)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1678475313/1677951060.pdf">Bug-Report-Unity-Audio-Issue(ALSA) .pdf</a> (application/pdf)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1678475313/1678213207.png">image-20250310-192806.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1678475313/1677918239.png">image-20250310-192843.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1678475313/1677852745.png">image-20250310-193004.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1678475313/1678671936.png">image-20250310-193035.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1678475313/1678704681.png">image-20250310-193051.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on May 27, 2025 13:33</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

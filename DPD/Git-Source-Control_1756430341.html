@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DevOps / Pipeline &amp; Deployment : Git Source Control</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">DevOps / Pipeline &amp; Deployment</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1179353439.html">DevOps / Pipeline &amp; Deployment Home</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1575288834.html">CI/CD Pipeline</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            DevOps / Pipeline &amp; Deployment : Git Source Control
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                            
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Chris Park</span>, last modified on Apr 18, 2025
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <p>: This documentation describes how Jenkins manages Git source control at the beginning and end of a pipeline build.</p><p> Although the 'Prepare Workspace' logic varies by project type (DLX or JS), the Git operations are consistent for each pipeline type.</p><hr/><h1 id="GitSourceControl-[Contents]"><strong>[Contents]</strong></h1><style type='text/css'>/*<![CDATA[*/
+div.rbtoc1748352831402 {padding: 0px;}
+div.rbtoc1748352831402 ul {list-style: none;margin-left: 0px;}
+div.rbtoc1748352831402 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style><div class='toc-macro rbtoc1748352831402'>
+<ul class='toc-indentation'>
+<li><a href='#GitSourceControl-[Contents]'>[Contents]</a></li>
+<li><a href='#GitSourceControl-1.WORKING_DIRandPROJECT_DIR'>1. WORKING_DIR and PROJECT_DIR</a></li>
+<li><a href='#GitSourceControl-2.GitControlStrategyin&#39;PrepareWorkspace&#39;Stage'>2. Git Control Strategy in &#39;Prepare Workspace&#39; Stage</a></li>
+<li><a href='#GitSourceControl-2.1Cleanuptheworkspace'>2.1 Clean up the workspace</a></li>
+<li><a href='#GitSourceControl-2.2Pullgitremoterepository'>2.2 Pull git remote repository</a></li>
+<li><a href='#GitSourceControl-2.3Checkmergeconflict'>2.3 Check merge conflict</a></li>
+</ul>
+</div><hr/><h1 id="GitSourceControl-1.WORKING_DIRandPROJECT_DIR">1. WORKING_DIR and PROJECT_DIR</h1><p>: Jenkins has <strong>TWO </strong>git environment in each build working directory.</p><ul><li><p><strong>WORKING_DIR</strong><br/><strong>:</strong> This directory has the <code>.git</code> file connected to <strong>Jenkins Bitbucket repository</strong>(DevOps-Linux-Jenkins). <br/> Currently, this <code>.git</code> is <span style="background-color: rgb(254,222,200);">managed by Jenkins</span> itself all the time by the pipeline git SCM configuration.</p></li></ul><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p><strong>env.WORKING_DIR </strong><br/>= <code>/var/lib/jenkins/{workspace}/{pipeline-folder-name}/{pipeline-name}/</code></p></div></div><p /><ul><li><p><strong>PROJECT_DIR</strong><br/><strong>:</strong> This directory has the <code>.git</code> file connected to <strong>PR created Bitbucket repository</strong>. So, This is the <span style="background-color: rgb(254,222,200);">main git file we need to control </span>during the building time.</p></li></ul><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p><strong>env.PROJECT_DIR </strong><br/>= <code>{WORKING_DIR}/{Unity_Project}</code>or <code>{WORKING_DIR}/{JS_Project}</code></p></div></div><p /><p>Here is the overview of the file structure of the file system.</p><div id="expander-413266172" class="expand-container"><div id="expander-control-413266172" class="expand-control"><span class="expand-control-icon"><img style="vertical-align:middle;" class="expand-control-image" src="images/icons/grey_arrow_down.png"></span><span class="expand-control-text">Example File Structure in the WORKING_DIR</span></div><div id="expander-content-413266172" class="expand-content"><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">{WORKING_DIR}/.git
+             /Bash
+             /DLXJenkins
+             /groovy
+             /JSJenkins
+             /PipelineForJenkins
+             /PRJob
+             /python
+             /sharedLibraries
+             /tests            
+             /Unity_Project</pre>
+</div></div></div></div><div id="expander-1043306118" class="expand-container"><div id="expander-control-1043306118" class="expand-control"><span class="expand-control-icon"><img style="vertical-align:middle;" class="expand-control-image" src="images/icons/grey_arrow_down.png"></span><span class="expand-control-text">Example File Structure in the PROJECT_DIR </span></div><div id="expander-content-1043306118" class="expand-content"><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">  {PROJECT_DIR}  
+= {WORKING_DIR}/Unity_Project
+                             /.git
+                             /Assets
+                             /Builds
+                             /Logs
+                             /Packages
+                             /ProjectSettings
+                             ...</pre>
+</div></div></div></div><p style="text-align: center;"><strong><span style="background-color: rgb(198,237,251);">Therefore</span></strong><span style="background-color: rgb(198,237,251);">, using </span><code>dir(env.PROJECT_DIR)</code><span style="background-color: rgb(198,237,251);"> is <u>highly recommended</u> not only before running Git commands, but also for </span><strong><span style="background-color: rgb(198,237,251);">any resource control</span></strong><span style="background-color: rgb(198,237,251);"> or </span><strong><span style="background-color: rgb(198,237,251);">project-related processing</span></strong><span style="background-color: rgb(198,237,251);">.</span></p><p style="text-align: center;"></p><hr/><h1 id="GitSourceControl-2.GitControlStrategyin&#39;PrepareWorkspace&#39;Stage">2. Git Control Strategy in 'Prepare Workspace' Stage</h1><p>: All pipelines include 'Prepare Workspace' stage and this stage has four main purpose.</p><ul><li><p>Clean up the workspace</p></li><li><p>Pull git remote repository</p></li><li><p>Check merge conflict</p></li><li><p>Prepare dependencies</p></li></ul><p>However, about “Prepare dependencies” won’t be handled in this documentation.</p><h1 id="GitSourceControl-2.1Cleanuptheworkspace">2.1 Clean up the workspace</h1><p>: During the pipeline job, several files (e.g. assembly files, log files) are generated or modified in the <code>PROJECT_DIR</code>, resulting in Git control issues such as <code>modified</code> or <code>untracked</code> files.</p><p> Especially, these <code>modified </code>or <code>untracked</code> files can cause <strong>Git conflicts</strong> when running commands like <code>git checkout</code>, <code>git pull</code>, or <code>git merge</code>.</p><p>Therefore, we clean up the workspace before Jenkins starts its job using the following commands:</p><ul><li><p><code>git reset --hard</code><br/>: Clean up added and modified files from the local branch </p></li><li><p><code>git clean -fd</code><br/>: Clean up all untracked files before checkout</p></li><li><p><code>git checkout ${targetBranch}</code><br/>: Checkout to the target branch</p></li><li><p><code>git reset --hard origin/${targetBranch}</code><br/>: Resets the local branch to match the remote target branch</p></li></ul><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>This logic can be found at <code>generalHelper.checkoutBranch()</code> and being called in two places.</p><ol start="1"><li><p>“<strong>Prepare Workspace</strong>” stage (being called by <code>cloneOrUpdateRepo()</code>)</p></li><li><p>“<strong>always</strong>” block in the “<strong>post</strong>” stage</p></li></ol></div></div><p /><h1 id="GitSourceControl-2.2Pullgitremoterepository">2.2 Pull git remote repository</h1><p>Jenkins pulls the repository after cleaning up the workspace.</p><ul><li><p><code>git fetch origin</code><br/>: Fetches all branches from the remote repository.</p></li><li><p><code>generalHelper.checkoutBranch()</code><br/>: Checks out the target branch and ensures a clean working state.</p></li><li><p><code>git pull</code><br/>: Merges the latest changes from the remote target branch into the local branch.</p></li></ul><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>This logic can be found at <code>generalHelper.cloneOrUpdateRepo()</code></p></div></div><p /><h1 id="GitSourceControl-2.3Checkmergeconflict">2.3 Check merge conflict</h1><p>: Lastly, Jenkins ensures the current branch is up to date with the default (destination) branch by merging it when necessary.</p><ul><li><p><code>git fetch origin</code><br/>: Fetches the latest changes from the remote repository.</p></li><li><p><code>git show-ref --verify --quiet refs/remotes/origin/${destinationBranch}</code><br/>: Verifies whether the destination branch exists in the remote repository.</p></li><li><p><code>isBranchUpToDateWithMain(destinationBranch)</code><br/>: Checks if the current branch is already up to date with the destination branch.</p></li><li><p><code>tryMerge(destinationBranch)</code><br/>: Attempts to merge the destination branch into the current branch.</p></li><li><p><code>git merge --abort</code><br/>: Aborts the merge if conflicts occur and the merge cannot proceed cleanly.</p></li></ul><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>This logic can be found at <code>generalHelper.mergeBranchIfNeeded()</code></p></div></div><p /><hr/><p />
+                    </div>
+
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on May 27, 2025 13:33</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

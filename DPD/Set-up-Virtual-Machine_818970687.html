@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DevOps / Pipeline &amp; Deployment : Set up Virtual Machine</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">DevOps / Pipeline &amp; Deployment</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1179353439.html">DevOps / Pipeline &amp; Deployment Home</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Windows-Jenkins-Documents_1542389772.html">Windows Jenkins Documents</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Set-Up-on-Windows_1541570589.html">Set Up on Windows</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Set-Up-Jenkins-Build-System_819265566.html">Set Up Jenkins Build System</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            DevOps / Pipeline &amp; Deployment : Set up Virtual Machine
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                            
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Jonathan Bezeau</span>, last modified on Apr 11, 2024
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <h1 id="SetupVirtualMachine-Process">Process</h1><ul><li><p>log in to Azure portal</p></li><li><p>create new Virtual Machine in VARLab subscription / BuildSystem resource group</p><ul><li><p>8+ CPU server shape</p></li><li><p>Windows OS</p></li><li><p>Public IP</p></li><li><p>no extra disks</p></li><li><p>accept defaults for networking</p></li><li><p>allow inbound traffic on port 80</p></li></ul></li><li><p>click on created resource (VM)</p><ul><li><p>navigate to Networking</p></li><li><p>Validate that there is a rule for inbound HTTP requests on port 80</p></li><li><p>Create the inbound rule if there isn’t one</p><span class="confluence-embedded-file-wrapper image-center-wrapper"><img class="confluence-embedded-image image-center" loading="lazy" src="attachments/818970687/819068975.png" data-image-src="attachments/818970687/819068975.png" data-height="692" data-width="544" data-unresolved-comment-count="0" data-linked-resource-id="819068975" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20231003-202533.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="818970687" data-linked-resource-container-version="2" data-media-id="395089f8-8eb7-4971-abbe-bfe5efd342af" data-media-type="file"></span></li></ul></li><li><p>At VM Overview click “Connect” and follow steps to download .rdp file and attach using Windows Remote Desktop Protocol</p><span class="confluence-embedded-file-wrapper image-center-wrapper"><img class="confluence-embedded-image image-center" loading="lazy" src="attachments/818970687/818708505.png" data-image-src="attachments/818970687/818708505.png" data-height="129" data-width="361" data-unresolved-comment-count="0" data-linked-resource-id="818708505" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20231003-202836.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="818970687" data-linked-resource-container-version="2" data-media-id="3d1125ed-c49d-4450-bc28-8f1c74f84b77" data-media-type="file"></span><ul><li><p>on the Remote Desktop search in the task bar for Windows Firewall and open the application</p></li><li><p>Click “advanced settings”</p></li><li><p>Click “inbound rules” and “new rule…”</p></li><li><p>allow inbound traffic on port 80</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" width="632" loading="lazy" src="attachments/818970687/819200032.png?width=632" data-image-src="attachments/818970687/819200032.png" data-height="1200" data-width="1920" data-unresolved-comment-count="0" data-linked-resource-id="819200032" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20231003-203336.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="818970687" data-linked-resource-container-version="2" data-media-id="704ad62a-beb8-43e6-a89a-64bc07267b39" data-media-type="file"></span><p /><p /></li></ul></li></ul>
+                    </div>
+
+                                        <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/818970687/819068975.png">image-20231003-202533.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/818970687/818708505.png">image-20231003-202836.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/818970687/819200032.png">image-20231003-203336.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on May 27, 2025 13:34</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

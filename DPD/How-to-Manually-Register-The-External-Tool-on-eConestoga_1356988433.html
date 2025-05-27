@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DevOps / Pipeline &amp; Deployment : How to Manually Register The External Tool on eConestoga</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">DevOps / Pipeline &amp; Deployment</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1179353439.html">DevOps / Pipeline &amp; Deployment Home</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="DLX-Server-Documents_1541832718.html">DLX Server Documents</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Deploy-DLX-Project-on-eConestoga_1356234766.html">Deploy DLX Project on eConestoga</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            DevOps / Pipeline &amp; Deployment : How to Manually Register The External Tool on eConestoga
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                            
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Chris Park</span>, last modified by <span class='editor'> Jonathan Bezeau</span> on Apr 16, 2025
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <p> : To host DLX WebGL on eConestoga, we must first register our external tool on the platform. There are two methods for registering an external tool on LMS (eConestoga or Moodle): 'Dynamic Registration' and 'Manual Registration.' <strong>This document will focus solely on 'Manual Registration.'</strong></p><hr/><style type='text/css'>/*<![CDATA[*/
+div.rbtoc1748352964288 {padding: 0px;}
+div.rbtoc1748352964288 ul {list-style: none;margin-left: 0px;}
+div.rbtoc1748352964288 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style><div class='toc-macro rbtoc1748352964288'>
+<ul class='toc-indentation'>
+<li><a href='#HowtoManuallyRegisterTheExternalTooloneConestoga-1.PrepareToolURLs'>1. Prepare Tool URLs</a></li>
+<li><a href='#HowtoManuallyRegisterTheExternalTooloneConestoga-2.RegisterExternalTooloneConestoga'>2. Register External Tool on eConestoga</a></li>
+<li><a href='#HowtoManuallyRegisterTheExternalTooloneConestoga-3.GetRegistrationDetails'>3. Get Registration Details</a></li>
+<li><a href='#HowtoManuallyRegisterTheExternalTooloneConestoga-4.InsertThePlatform&#39;RegistrationDetails&#39;toMongoDB'>4. Insert The Platform &#39;Registration Details&#39; to MongoDB</a></li>
+<li><a href='#HowtoManuallyRegisterTheExternalTooloneConestoga-VideoDemonstrations'>Video Demonstrations</a></li>
+</ul>
+</div><hr/><h1 id="HowtoManuallyRegisterTheExternalTooloneConestoga-1.PrepareToolURLs">1. Prepare Tool URLs</h1><p>: To manually register an external tool on LMS, we need to enter all Tool URLs ourselves. All Tool URLs are made up of a combination of a &quot;Default URL&quot; and an associated endpoint.<br/>  &gt;&gt; e.g “<a class="external-link" href="https://webdlx.vconestoga.com" rel="nofollow">https://webdlx.vconestoga.com</a>” + “/endpoint“ = “<a class="external-link" href="https://webdlx.vconestoga.com" rel="nofollow">https://webdlx.vconestoga.com</a>/endpoint”</p><p /><p>The essential Tool URLs are as described below:</p><ul><li><p><strong>Tool URL</strong>: Default URL which links to LTIjs service<br/>&gt;&gt; e.g. <a class="external-link" href="https://webdlx.vconestoga.com" rel="nofollow">https://webdlx.vconestoga.com</a><br/>&gt;&gt; e.g. <a class="external-link" href="https://brightspacedlx.vconestoga.com" rel="nofollow">https://brightspacedlx.vconestoga.com</a></p></li><li><p><strong>Public keyset</strong>: Public key endpoints' URL that external tool supports<br/>&gt;&gt; e.g. <a class="external-link" href="https://webdlx.vconestoga.com/keys" rel="nofollow">https://webdlx.vconestoga.com/keys</a><br/>&gt;&gt; e.g. <a class="external-link" href="https://brightspacedlx.vconestoga.com" rel="nofollow">https://brightspacedlx.vconestoga.com</a><a class="external-link" href="https://webdlx.vconestoga.com/keys" rel="nofollow">/keys</a> or /jwks</p></li><li><p><strong>Login URL</strong>: Login endpoint URL that external tool supports. It will be used after the registration.<br/>&gt;&gt; e.g. <a class="external-link" href="https://webdlx.vconestoga.com/login" rel="nofollow">https://webdlx.vconestoga.com/login</a><br/>&gt;&gt; e.g.<a class="external-link" href="https://brightspacedlx.vconestoga.com" rel="nofollow">https://brightspacedlx.vconestoga.com</a><a class="external-link" href="https://webdlx.vconestoga.com/login" rel="nofollow">/login</a></p></li><li><p><strong>Redirection URI(s)</strong>: Redirection URI list that allows access to LMS from the external side.</p></li></ul><div id="expander-758287248" class="expand-container"><div id="expander-control-758287248" class="expand-control"><span class="expand-control-icon"><img style="vertical-align:middle;" class="expand-control-image" src="images/icons/grey_arrow_down.png"></span><span class="expand-control-text">dlx-webhost Example Redirection URI(s)</span></div><div id="expander-content-758287248" class="expand-content"><p><a class="external-link" href="https://webdlx.vconestoga.com/dlx/rab" rel="nofollow">https://webdlx.vconestoga.com/dlx/rab</a><br/><a class="external-link" href="https://webdlx.vconestoga.com/dlx/mpcl1" rel="nofollow">https://webdlx.vconestoga.com/dlx/mpcl1</a><br/><a class="external-link" href="https://webdlx.vconestoga.com/dlx/mpcl2" rel="nofollow">https://webdlx.vconestoga.com/dlx/mpcl2</a><br/><a class="external-link" href="https://webdlx.vconestoga.com/dlx/launchtesting" rel="nofollow">https://webdlx.vconestoga.com/dlx/launchtesting</a><br/><a class="external-link" href="https://webdlx.vconestoga.com/dlx/reactmultiplayerapp" rel="nofollow">https://webdlx.vconestoga.com/dlx/reactmultiplayerapp</a><br/><a class="external-link" href="https://webdlx.vconestoga.com/dlx/Powerline" rel="nofollow">https://webdlx.vconestoga.com/dlx/Powerline</a><br/><a class="external-link" href="https://webdlx.vconestoga.com/dlx/CORE-Sandbox-V2" rel="nofollow">https://webdlx.vconestoga.com/dlx/CORE-Sandbox-V2</a><br/><a class="external-link" href="https://webdlx.vconestoga.com/dlx/Public-Health-Inspection" rel="nofollow">https://webdlx.vconestoga.com/dlx/Public-Health-Inspection</a><br/><a class="external-link" href="https://webdlx.vconestoga.com/dlx/Trades-Electrical" rel="nofollow">https://webdlx.vconestoga.com/dlx/Trades-Electrical</a><br/><a class="external-link" href="https://webdlx.vconestoga.com/dlx/Paramedic-Ambulance" rel="nofollow">https://webdlx.vconestoga.com/dlx/Paramedic-Ambulance</a><br/><a class="external-link" href="https://webdlx.vconestoga.com/dlx/Respiratory-Therapy" rel="nofollow">https://webdlx.vconestoga.com/dlx/Respiratory-Therapy</a><br/><a class="external-link" href="https://webdlx.vconestoga.com/dlx/Tattoo-and-Piercing-Studio-Inspection" rel="nofollow">https://webdlx.vconestoga.com/dlx/Tattoo-and-Piercing-Studio-Inspection</a><br/><a class="external-link" href="https://webdlx.vconestoga.com/dlx/LTI-Package-Test" rel="nofollow">https://webdlx.vconestoga.com/dlx/LTI-Package-Test</a><br/><a class="external-link" href="https://webdlx.vconestoga.com/dlx/EcoQuorum" rel="nofollow">https://webdlx.vconestoga.com/dlx/EcoQuorum</a><br/><a class="external-link" href="https://webdlx.vconestoga.com/dlx/Photogrammetry" rel="nofollow">https://webdlx.vconestoga.com/dlx/Photogrammetry</a><br/><a class="external-link" href="https://webdlx.vconestoga.com/dlx/Photogrammetry" rel="nofollow">https://webdlx.vconestoga.com</a></p></div></div><div id="expander-5295971" class="expand-container"><div id="expander-control-5295971" class="expand-control"><span class="expand-control-icon"><img style="vertical-align:middle;" class="expand-control-image" src="images/icons/grey_arrow_down.png"></span><span class="expand-control-text">dlx-econestoga Example Redirection URI(s)</span></div><div id="expander-content-5295971" class="expand-content"><p><a class="external-link" href="https://brightspacedlx.vconestoga.com/dlx/rab" rel="nofollow">https://brightspacedlx.vconestoga.com/dlx/rab</a><br/><a class="external-link" href="https://brightspacedlx.vconestoga.com/dlx/mpcl1" rel="nofollow">https://brightspacedlx.vconestoga.com/dlx/mpcl1</a><br/><a class="external-link" href="https://brightspacedlx.vconestoga.com/dlx/mpcl2" rel="nofollow">https://brightspacedlx.vconestoga.com/dlx/mpcl2</a><br/><a class="external-link" href="https://brightspacedlx.vconestoga.com/dlx/launchtesting" rel="nofollow">https://brightspacedlx.vconestoga.com/dlx/launchtesting</a><br/><a class="external-link" href="https://brightspacedlx.vconestoga.com/dlx/reactmultiplayerapp" rel="nofollow">https://brightspacedlx.vconestoga.com/dlx/reactmultiplayerapp</a><br/><a class="external-link" href="https://brightspacedlx.vconestoga.com/dlx/Powerline" rel="nofollow">https://brightspacedlx.vconestoga.com/dlx/Powerline</a><br/><a class="external-link" href="https://brightspacedlx.vconestoga.com/dlx/CORE-Sandbox-V2" rel="nofollow">https://brightspacedlx.vconestoga.com/dlx/CORE-Sandbox-V2</a><br/><a class="external-link" href="https://brightspacedlx.vconestoga.com/dlx/Public-Health-Inspection" rel="nofollow">https://brightspacedlx.vconestoga.com/dlx/Public-Health-Inspection</a><br/><a class="external-link" href="https://brightspacedlx.vconestoga.com/dlx/Trades-Electrical" rel="nofollow">https://brightspacedlx.vconestoga.com/dlx/Trades-Electrical</a><br/><a class="external-link" href="https://brightspacedlx.vconestoga.com/dlx/Paramedic-Ambulance" rel="nofollow">https://brightspacedlx.vconestoga.com/dlx/Paramedic-Ambulance</a><br/><a class="external-link" href="https://brightspacedlx.vconestoga.com/dlx/Respiratory-Therapy" rel="nofollow">https://brightspacedlx.vconestoga.com/dlx/Respiratory-Therapy</a><br/><a class="external-link" href="https://brightspacedlx.vconestoga.com/dlx/Tattoo-and-Piercing-Studio-Inspection" rel="nofollow">https://brightspacedlx.vconestoga.com/dlx/Tattoo-and-Piercing-Studio-Inspection</a><br/><a class="external-link" href="https://brightspacedlx.vconestoga.com/dlx/LTI-Package-Test" rel="nofollow">https://brightspacedlx.vconestoga.com/dlx/LTI-Package-Test</a><br/><a class="external-link" href="https://brightspacedlx.vconestoga.com/dlx/EcoQuorum" rel="nofollow">https://brightspacedlx.vconestoga.com/dlx/EcoQuorum</a><br/><a class="external-link" href="https://brightspacedlx.vconestoga.com/dlx/Photogrammetry" rel="nofollow">https://brightspacedlx.vconestoga.com/dlx/Photogrammetry</a><br/><a class="external-link" href="https://brightspacedlx.vconestoga.com/dlx/Photogrammetry" rel="nofollow">https://brightspacedlx.vconestoga.com</a></p></div></div><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20240924-194243.png" width="601" loading="lazy" src="attachments/1356988433/1357185059.png?width=601" data-image-src="attachments/1356988433/1357185059.png" data-height="569" data-width="601" data-unresolved-comment-count="0" data-linked-resource-id="1357185059" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20240924-194243.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1356988433" data-linked-resource-container-version="11" data-media-id="6481cf78-c4da-4eb9-9392-5c2b5a08108a" data-media-type="file"></span><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>This information can be found on Moodle<br/> [ <a class="external-link" href="https://vconestoga.duckdns.org/admin/search.php" rel="nofollow">Site administration</a> &gt;&gt; <a class="external-link" href="https://vconestoga.duckdns.org/admin/category.php?category=modules" rel="nofollow">Plugins</a> &gt;&gt; <a class="external-link" href="https://vconestoga.duckdns.org/admin/category.php?category=modsettings" rel="nofollow">Activity modules</a> &gt;&gt; <a class="external-link" href="https://vconestoga.duckdns.org/admin/modules.php" rel="nofollow">Manage activities</a> &gt;&gt; <a class="external-link" href="https://vconestoga.duckdns.org/admin/settings.php?section=modsettinglti" rel="nofollow">Edit preconfigured tool</a> ]</p></div></div><hr/><p /><h1 id="HowtoManuallyRegisterTheExternalTooloneConestoga-2.RegisterExternalTooloneConestoga">2. Register External Tool on eConestoga</h1><p>: In order to actually register an external tool, you need an eConestoga administrator account.</p><p>D2L Tool Registration Document: <a class="external-link" data-card-appearance="inline" href="https://community.d2l.com/brightspace/kb/articles/23662-tool-registration-deployment-and-links" rel="nofollow">https://community.d2l.com/brightspace/kb/articles/23662-tool-registration-deployment-and-links</a> </p><ul><li><p>If you get admin account, go to <strong>[ “menu” &gt;&gt; “Manage Extensibility“ ]</strong> like the image below</p></li></ul><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="Screenshot 2024-09-24 162721-20240924-202825.png" width="354" loading="lazy" src="attachments/1356988433/1356988450.png?width=354" data-image-src="attachments/1356988433/1356988450.png" data-height="530" data-width="354" data-unresolved-comment-count="0" data-linked-resource-id="1356988450" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="Screenshot 2024-09-24 162721-20240924-202825.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1356988433" data-linked-resource-container-version="11" data-media-id="ee6fbb8f-08a8-44e8-af16-353cf00e5b40" data-media-type="file"></span><p /><ul><li><p>Then selects<strong> [ “LTI Advantage“ &gt;&gt; “Register Tool” ]</strong></p></li></ul><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="Screenshot 2024-09-24 163000-20240924-203101.png" width="609" loading="lazy" src="attachments/1356988433/1355841559.png?width=609" data-image-src="attachments/1356988433/1355841559.png" data-height="305" data-width="609" data-unresolved-comment-count="0" data-linked-resource-id="1355841559" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="Screenshot 2024-09-24 163000-20240924-203101.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1356988433" data-linked-resource-container-version="11" data-media-id="67f67077-562c-49f4-8fbb-7f47e6599b5b" data-media-type="file"></span><ul><li><p>Enter all Tool URLs into Standard Registration Configuration Setting</p></li></ul><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20240924-200524.png" width="604" loading="lazy" src="attachments/1356988433/1355972637.png?width=604" data-image-src="attachments/1356988433/1355972637.png" data-height="554" data-width="604" data-unresolved-comment-count="0" data-linked-resource-id="1355972637" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20240924-200524.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1356988433" data-linked-resource-container-version="11" data-media-id="00d95d84-1f88-48d8-b11b-7e9f0ea2a762" data-media-type="file"></span><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20240924-200750.png" width="617" loading="lazy" src="attachments/1356988433/1356267548.png?width=617" data-image-src="attachments/1356988433/1356267548.png" data-height="472" data-width="617" data-unresolved-comment-count="0" data-linked-resource-id="1356267548" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20240924-200750.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1356988433" data-linked-resource-container-version="11" data-media-id="936d58e2-986d-4273-b817-62ecc3ebbcf4" data-media-type="file"></span><hr/><h1 id="HowtoManuallyRegisterTheExternalTooloneConestoga-3.GetRegistrationDetails">3. Get Registration Details</h1><p>: If the external tool is successfully registered on eConestoga, we can retrieve all the 'Registration Details' needed to insert into the local MongoDB. A sample of the 'Registration Details' is shown in the image below.</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20240925-153528.png" width="301" loading="lazy" src="attachments/1356988433/1360199687.png?width=301" data-image-src="attachments/1356988433/1360199687.png" data-height="211" data-width="301" data-unresolved-comment-count="0" data-linked-resource-id="1360199687" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20240925-153528.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1356988433" data-linked-resource-container-version="11" data-media-id="7cc830db-e88e-4ab6-a31b-8d305a08081b" data-media-type="file"></span><hr/><h1 id="HowtoManuallyRegisterTheExternalTooloneConestoga-4.InsertThePlatform&#39;RegistrationDetails&#39;toMongoDB">4. Insert The Platform 'Registration Details' to MongoDB</h1><p> : If we use ‘Dynamic Registration,’ the ‘Registration Details’ will be automatically inserted into the database. However, with the 'Manual Registration' process, the database needs to be updated manually.</p><p>LTI.js already provides methods (e.g., <code>registerPlatform</code>) to insert data into MongoDB. You can find the relevant code in <code>index.js</code> located in the ‘devopsdlxserver’ directory. A sample code is provided below.</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20250416-151231.png" width="760" loading="lazy" src="attachments/1356988433/1753153597.png?width=760" data-image-src="attachments/1356988433/1753153597.png" data-height="428" data-width="800" data-unresolved-comment-count="0" data-linked-resource-id="1753153597" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20250416-151231.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1356988433" data-linked-resource-container-version="11" data-media-id="cabf11da-92de-40ac-a158-c8cc44d6bcba" data-media-type="file"></span><div id="expander-812199637" class="expand-container"><div id="expander-control-812199637" class="expand-control"><span class="expand-control-icon"><img style="vertical-align:middle;" class="expand-control-image" src="images/icons/grey_arrow_down.png"></span><span class="expand-control-text">Click here to expand...</span></div><div id="expander-content-812199637" class="expand-content"><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">// Setup function
+const setup = async () =&gt; {
+  await lti.deploy({ port: process.env.PORT });
+
+  /**
+   * Register platform
+   */
+
+  await lti.registerPlatform({
+    url: &quot;&quot;,
+    name: &quot;eConestoga&quot;,
+    clientId: &quot;&quot;,
+    authenticationEndpoint:
+      &quot;&quot;,
+    accesstokenEndpoint: &quot;&quot;,
+    authConfig: {
+      method: &quot;JWK_SET&quot;,
+      key: &quot;&quot;,
+    },
+  });
+
+};</pre>
+</div></div></div></div><p><br/> Once all the values are filled out, restart the service to update the new ‘Registration Details’ in MongoDB.<br/>&gt;&gt; mongosh command: <code>db.platforms.find().pretty()</code></p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20250416-151246.png" width="550" loading="lazy" src="attachments/1356988433/1754333227.png?width=550" data-image-src="attachments/1356988433/1754333227.png" data-height="341" data-width="550" data-unresolved-comment-count="0" data-linked-resource-id="1754333227" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20250416-151246.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1356988433" data-linked-resource-container-version="11" data-media-id="3f2bc26b-d8ec-48a8-affb-afebcabe5b2d" data-media-type="file"></span><p><br/></p><p>These information will be used in ‘login' process to check the client’s authentication.</p><h1 id="HowtoManuallyRegisterTheExternalTooloneConestoga-VideoDemonstrations">Video Demonstrations</h1><p><a class="external-link" href="https://stuconestogacon.sharepoint.com/:v:/s/VARLab/EbPiTvGw_0VHgcI2mrAUGGYBsRxuNSb2Uz3Ll9QLpP67ig?e=EKw0ky" rel="nofollow">Add eConestoga registration for webdlx server</a></p><p><a class="external-link" href="https://stuconestogacon.sharepoint.com/:v:/s/VARLab/EX3UFAWIGfNIkKwSMSt57KkBhBFeiuJmyGiTubN3ccxuvw?e=uMTqp2" rel="nofollow">Configure webdlx Development Build in eConestoga</a></p>
+                    </div>
+
+                                        <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1356988433/1357185059.png">image-20240924-194243.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1356988433/1355972637.png">image-20240924-200524.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1356988433/1356267548.png">image-20240924-200750.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1356988433/1355939869.png">Screenshot 2024-09-24 161713-20240924-202000.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1356988433/1356988450.png">Screenshot 2024-09-24 162721-20240924-202825.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1356988433/1355841559.png">Screenshot 2024-09-24 163000-20240924-203101.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1356988433/1360199687.png">image-20240925-153528.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1356988433/1360101389.png">image-20240925-182945.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1356988433/1359609870.png">image-20240925-183141.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1356988433/1423114241.jpg">cis1804-20241027-223244.jpg</a> (image/jpeg)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1356988433/1753153597.png">image-20250416-151231.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1356988433/1754333227.png">image-20250416-151246.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on May 27, 2025 13:36</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

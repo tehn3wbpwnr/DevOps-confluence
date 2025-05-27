@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DevOps / Pipeline &amp; Deployment : Static Code Analysis using SonarQube</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">DevOps / Pipeline &amp; Deployment</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1179353439.html">DevOps / Pipeline &amp; Deployment Home</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Windows-Jenkins-Documents_1542389772.html">Windows Jenkins Documents</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1567129601.html">CI/CD Pipeline Architecture Design</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1313800220.html">Node.js Applications: Process Flow-Based Documentation for CI,CD, and Continuous Deployment Pipelines</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Build-Stage_1363116075.html">Build Stage</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Static-Analysis_1363968015.html">Static Analysis</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            DevOps / Pipeline &amp; Deployment : Static Code Analysis using SonarQube
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                            
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Dahyun Ko</span>, last modified by <span class='editor'> Chris Park</span> on Dec 09, 2024
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <style type='text/css'>/*<![CDATA[*/
+div.rbtoc1748352894796 {padding: 0px;}
+div.rbtoc1748352894796 ul {list-style: none;margin-left: 0px;}
+div.rbtoc1748352894796 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style><div class='toc-macro rbtoc1748352894796'>
+<ul class='toc-indentation'>
+<li><a href='#StaticCodeAnalysisusingSonarQube-1.OverviewofSonarQube'>1. Overview of SonarQube</a></li>
+<li><a href='#StaticCodeAnalysisusingSonarQube-2.Installation'>2. Installation</a>
+<ul class='toc-indentation'>
+<li><a href='#StaticCodeAnalysisusingSonarQube-2.1InstallSonarQubedatabase(PostgreSQL)'>2.1 Install SonarQube database (PostgreSQL)</a>
+<ul class='toc-indentation'>
+<li><a href='#StaticCodeAnalysisusingSonarQube-References:'>References:</a></li>
+</ul>
+</li>
+<li><a href='#StaticCodeAnalysisusingSonarQube-2.2InstallSonarQubeserver(Dockerimage)'>2.2 Install SonarQube server (Docker image)</a>
+<ul class='toc-indentation'>
+<li><a href='#StaticCodeAnalysisusingSonarQube-References:.1'>References:</a></li>
+</ul>
+</li>
+<li><a href='#StaticCodeAnalysisusingSonarQube-2.3InstallSonarScannerPlugininJenkins'>2.3 Install Sonar Scanner Plugin in Jenkins</a></li>
+</ul>
+</li>
+<li><a href='#StaticCodeAnalysisusingSonarQube-3.ProjectSettingsontheSonarQubeInstance'>3. Project Settings on the SonarQube Instance</a></li>
+<li><a href='#StaticCodeAnalysisusingSonarQube-4.ProxyConfigurationforHTTPS'>4. Proxy Configuration for HTTPS</a>
+<ul class='toc-indentation'>
+<li><a href='#StaticCodeAnalysisusingSonarQube-4.1NginxConfiguration'>4.1 Nginx Configuration</a></li>
+<li><a href='#StaticCodeAnalysisusingSonarQube-4.2SonarQubeConfiguration'>4.2 SonarQube Configuration</a></li>
+</ul>
+</li>
+</ul>
+</div><h1 id="StaticCodeAnalysisusingSonarQube-1.OverviewofSonarQube">1. Overview of SonarQube</h1><p>SonarQube prodivdes reports on bugs, security recommendations, code standards, duplicated code, and code coverage for unit tests based on static analysis.</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20241115-190602.png" width="760" loading="lazy" src="attachments/1469808648/1470169096.png?width=760" data-image-src="attachments/1469808648/1470169096.png" data-height="886" data-width="1882" data-unresolved-comment-count="0" data-linked-resource-id="1470169096" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20241115-190602.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1469808648" data-linked-resource-container-version="17" data-media-id="ea5e9801-fcf6-4203-8096-52efc4303dd8" data-media-type="file"></span><h1 id="StaticCodeAnalysisusingSonarQube-2.Installation">2. Installation</h1><p>To run the SonarQube server on our <code>jenkins-win-docker</code>, both the <u>SonarQube database</u> and <u>SonarQube server</u> must be installed. <a class="external-link" data-card-appearance="inline" href="https://docs.sonarsource.com/sonarqube/10.4/setup-and-upgrade/install-the-server/introduction/" rel="nofollow">https://docs.sonarsource.com/sonarqube/10.4/setup-and-upgrade/install-the-server/introduction/</a> </p><p>To perform static anylsis, we need to use Sonar Scanner. Sonar Scanner is a <strong>client tool</strong> that works with SonarQube to execute the actual code analysis.</p><h2 id="StaticCodeAnalysisusingSonarQube-2.1InstallSonarQubedatabase(PostgreSQL)">2.1 Install SonarQube database (PostgreSQL)</h2><p>SonarQube supports three different external database engines – Microsoft SQL Server, Oracle, and PostgreSQL. <a class="external-link" data-card-appearance="inline" href="https://docs.sonarsource.com/sonarqube/10.4/setup-and-upgrade/install-the-server/installing-the-database/" rel="nofollow">https://docs.sonarsource.com/sonarqube/10.4/setup-and-upgrade/install-the-server/installing-the-database/</a> </p><blockquote><p>The DevOps team is currently using <strong>locally installed PostgreSQL</strong>, because it has simpler requirments and allows easy data access via its UI.  </p></blockquote><p><strong>1. Install PostgreSQL</strong></p><p>Follow these steps easily by visiting: <a class="external-link" data-card-appearance="inline" href="https://www.youtube.com/watch?v=-bPepNFduUg" rel="nofollow">https://www.youtube.com/watch?v=-bPepNFduUg</a> </p><p><strong>2. Create a user for SonarQube in PostgreSQL</strong></p><p>Click Login/Group Roles → Create → Login/Group Roles</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20241118-152836.png" width="760" loading="lazy" src="attachments/1469808648/1471512583.png?width=760" data-image-src="attachments/1469808648/1471512583.png" data-height="927" data-width="1468" data-unresolved-comment-count="0" data-linked-resource-id="1471512583" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20241118-152836.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1469808648" data-linked-resource-container-version="17" data-media-id="83555e50-d588-4b78-872a-b0e54bcb3ba9" data-media-type="file"></span><p>Add a user name and password.</p><blockquote><p>This credentials will be used in the <code>sonar.properties</code> file.</p></blockquote><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20241118-152915.png" width="760" loading="lazy" src="attachments/1469808648/1472036877.png?width=760" data-image-src="attachments/1469808648/1472036877.png" data-height="677" data-width="867" data-unresolved-comment-count="0" data-linked-resource-id="1472036877" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20241118-152915.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1469808648" data-linked-resource-container-version="17" data-media-id="eafe808f-1826-4748-83c0-d16ca29363fa" data-media-type="file"></span><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20241118-152938.png" width="760" loading="lazy" src="attachments/1469808648/1471873038.png?width=760" data-image-src="attachments/1469808648/1471873038.png" data-height="677" data-width="868" data-unresolved-comment-count="0" data-linked-resource-id="1471873038" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20241118-152938.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1469808648" data-linked-resource-container-version="17" data-media-id="a7748f81-707c-4698-b611-007bbea17470" data-media-type="file"></span><p>Assign superuser privileges to the user to ensure that SonarQube can access any database server. </p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20241118-153126.png" width="760" loading="lazy" src="attachments/1469808648/1471840260.png?width=760" data-image-src="attachments/1469808648/1471840260.png" data-height="672" data-width="866" data-unresolved-comment-count="0" data-linked-resource-id="1471840260" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20241118-153126.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1469808648" data-linked-resource-container-version="17" data-media-id="a28ef8bb-e461-4442-8d9a-8f02f0f8d886" data-media-type="file"></span><h3 id="StaticCodeAnalysisusingSonarQube-References:">References:</h3><p>Initial setup in PostgreSQL for SonarQube: <a class="external-link" data-card-appearance="inline" href="https://www.youtube.com/watch?v=47v5zk1EugI&amp;t=1080s" rel="nofollow">https://www.youtube.com/watch?v=47v5zk1EugI&amp;t=1080s</a> </p><h2 id="StaticCodeAnalysisusingSonarQube-2.2InstallSonarQubeserver(Dockerimage)">2.2 Install SonarQube server (Docker image)</h2><p>SonarQube server is <strong>installed using a Docker image</strong> to isoltae dependencies. </p><blockquote><p>Instread of specifying the JDK version (JDK 17 or 21), we use a Docker image to simplicity.    </p></blockquote><p><strong>1. Prepare </strong><code>sonar.properties</code><strong> File</strong></p><p>The <code>sonar.properties</code> file is the configuration file for SonarQube. Set up the database connection PostgreSQL by adding:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">sonar.jdbc.username=&lt;postgreSQL user&gt;
+sonar.jdbc.password=&lt;postgreSQL password&gt;
+sonar.jdbc.url=jdbc:postgresql://host.docker.internal:5432/sonarqube</pre>
+</div></div><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20241118-150030.png" width="760" loading="lazy" src="attachments/1469808648/1471184903.png?width=760" data-image-src="attachments/1469808648/1471184903.png" data-height="752" data-width="1178" data-unresolved-comment-count="0" data-linked-resource-id="1471184903" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20241118-150030.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1469808648" data-linked-resource-container-version="17" data-media-id="0ebda430-5564-4b83-b364-4fa54bcbfade" data-media-type="file"></span><blockquote><p>Use the PostgreSQL credentials created during step “<u>2.1 Install SonarQube database (PostgreSQL)</u>”.</p><p>The <code>sonar.properties</code> file will be mounted to the SonarQube Docker container. This approach ensures that  the SonarQube configuration is secure and easy to modify</p></blockquote><p><strong>2. Prepare </strong><code>.yml</code><strong> File for Docker-Compose</strong></p><p>Using a <code>.yml</code> file, we can easily set up the SonarQube server and ensure database connection. </p><p>Current location of the <code>.yml</code> file used in <code>jenkins-win-docker</code>:<br/>C:\Users\ci-catherine\Desktop\SonarQube\docker-local-DB-compose.yml</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">version: &quot;3&quot;
+
+services:
+  sonarqube:
+    image: sonarqube
+    ports:
+      - &quot;9000:9000&quot;
+    restart: always   # Ensures the server restarts automatically
+    volumes:
+      - &quot;C:/Users/ci-catherine/Desktop/SonarQube/sonar.properties:/opt/sonarqube/conf/sonar.properties&quot;
+      # Replace with local file
+      
+      - sonarqube_data:/opt/sonarqube/data
+      - sonarqube_extensions:/opt/sonarqube/extensions
+      - sonarqube_logs:/opt/sonarqube/logs
+      
+
+volumes:
+  sonarqube_conf:
+  sonarqube_data:
+  sonarqube_extensions:
+  sonarqube_logs:
+  # Mount volumes to retain information across container restarts</pre>
+</div></div><p><strong>3. Run SonarQube Server Container </strong></p><p style="margin-left: 30.0px;">a. Open Command Prompt.</p><p style="margin-left: 30.0px;">b. Navigate to the <code>.yml</code> file directory C:\Users\ci-catherine\Desktop\SonarQube</p><p style="margin-left: 30.0px;">c. Run the following command: <code>docker-compose -f &lt;docker-compose-name&gt; up -d</code></p><div id="expander-1014089436" class="expand-container"><div id="expander-control-1014089436" class="expand-control"><span class="expand-control-icon"><img style="vertical-align:middle;" class="expand-control-image" src="images/icons/grey_arrow_down.png"></span><span class="expand-control-text">About Running Docker Container Instance</span></div><div id="expander-content-1014089436" class="expand-content"><p> Basically, we can create a Docker container instance using <code>docker run &lt;name_of_docker_image&gt;</code> with <strong>default configurations</strong>.<br/> However, <code>docker-compose -f &lt;docker-compose-name&gt; up -d</code> allows us to create and manage Docker <strong>container instances with user-defined configurations</strong> specified in the <code>.yml</code> file.</p></div></div><p><strong>4. Access SonarQube</strong></p><p>SonarQube runs on port 9000.</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20241118-152058.png" width="760" loading="lazy" src="attachments/1469808648/1471250451.png?width=760" data-image-src="attachments/1469808648/1471250451.png" data-height="897" data-width="1576" data-unresolved-comment-count="0" data-linked-resource-id="1471250451" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20241118-152058.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1469808648" data-linked-resource-container-version="17" data-media-id="52025fea-6e62-4066-8397-7c1dda301e4d" data-media-type="file"></span><p>Login credentials are stored in: <br/>C:\Users\ci-catherine\Desktop\SonarQube\IDnPW.txt</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20241118-154118.png" width="436" loading="lazy" src="attachments/1469808648/1471479829.png?width=436" data-image-src="attachments/1469808648/1471479829.png" data-height="362" data-width="436" data-unresolved-comment-count="0" data-linked-resource-id="1471479829" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20241118-154118.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1469808648" data-linked-resource-container-version="17" data-media-id="490644de-235d-4c4e-8399-b1356578b60e" data-media-type="file"></span><h3 id="StaticCodeAnalysisusingSonarQube-References:.1">References:</h3><p><a class="external-link" data-card-appearance="inline" href="https://docs.sonarsource.com/sonarqube/latest/setup-and-upgrade/install-the-server/installing-sonarqube-from-docker/" rel="nofollow">https://docs.sonarsource.com/sonarqube/latest/setup-and-upgrade/install-the-server/installing-sonarqube-from-docker/</a> </p><h2 id="StaticCodeAnalysisusingSonarQube-2.3InstallSonarScannerPlugininJenkins">2.3 Install Sonar Scanner Plugin in Jenkins</h2><p><strong>1. Generate SonarQube Tokens</strong></p><p>Navigate to SonarQube instacne in the virtual machine and generate essential tokens to authenticate Jenkins with SonarQube.</p><p><u>a. Generate a User Token</u><br/>Navigate to My Account → Security → Generate Tokens<br/>Fill out the following:</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20241119-160625.png" width="760" loading="lazy" src="attachments/1469808648/1475837957.png?width=760" data-image-src="attachments/1469808648/1475837957.png" data-height="584" data-width="1875" data-unresolved-comment-count="0" data-linked-resource-id="1475837957" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20241119-160625.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1469808648" data-linked-resource-container-version="17" data-media-id="3f460632-1f22-42b8-a7f8-1d6d1c1a5e9c" data-media-type="file"></span><ul><li><p>Name: <code>&lt;User token name&gt;</code> (Choose any descriptive value)</p></li><li><p>Type: User Token</p></li><li><p>Expires in: Set as needed</p></li></ul><p><u>b. Create a Project and Generate a Project Token</u><br/>Navigate to Projects → Create Project → Local project<br/>Fill out the following:</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20241119-161418.png" width="760" loading="lazy" src="attachments/1469808648/1475051550.png?width=760" data-image-src="attachments/1469808648/1475051550.png" data-height="655" data-width="1321" data-unresolved-comment-count="0" data-linked-resource-id="1475051550" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20241119-161418.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1469808648" data-linked-resource-container-version="17" data-media-id="9532688b-5b54-427b-8b39-a7a7de0bc816" data-media-type="file"></span><ul><li><p>Project display name: <code>&lt;Project display name&gt;</code> (Choose any descriptive value)</p></li><li><p>Project key: Automatically generated as <code>&lt;Project display name&gt;</code> is set.</p></li></ul><p>Select “Use the global setting“ option and click “Create project“</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20241119-161510.png" width="760" loading="lazy" src="attachments/1469808648/1475084309.png?width=760" data-image-src="attachments/1469808648/1475084309.png" data-height="846" data-width="1865" data-unresolved-comment-count="0" data-linked-resource-id="1475084309" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20241119-161510.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1469808648" data-linked-resource-container-version="17" data-media-id="64bc16d4-3e74-4adb-ac08-63f47a7ec9f2" data-media-type="file"></span><p>Select “Locally” for Analysis Method</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20241119-161900.png" width="758" loading="lazy" src="attachments/1469808648/1475018781.png?width=758" data-image-src="attachments/1469808648/1475018781.png" data-height="687" data-width="1878" data-unresolved-comment-count="0" data-linked-resource-id="1475018781" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20241119-161900.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1469808648" data-linked-resource-container-version="17" data-media-id="a03041cd-d3fc-4628-84c7-ecd3368fcd60" data-media-type="file"></span><p>Fill out the following:</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20241119-162000.png" width="760" loading="lazy" src="attachments/1469808648/1475575815.png?width=760" data-image-src="attachments/1469808648/1475575815.png" data-height="625" data-width="1007" data-unresolved-comment-count="0" data-linked-resource-id="1475575815" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20241119-162000.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1469808648" data-linked-resource-container-version="17" data-media-id="61078024-5ee7-4318-bc38-e3ecf3592727" data-media-type="file"></span><ul><li><p>Token name: <code>&lt;Project token name&gt;</code> (Choose any descriptive value)</p></li><li><p>Expires in: Set as needed</p></li></ul><blockquote><p><img class="emoticon emoticon-blue-star" data-emoji-id="2757" data-emoji-shortname=":exclamation:" data-emoji-fallback="❗" src="images/icons/emoticons/72/2757.png" width="16" height="16" data-emoticon-name="blue-star" alt="(blue star)"/>Ensure to store token value secuerly, as they cannot be viewd again after generation.  </p></blockquote><p><strong>2. Install SonarQube Scanner Plugin</strong></p><p>Navigate to Jenkins → Manage Jenkins → Plugins → Available plugins</p><p>Search for “sonar scanner“ and install the plugin.</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20241119-143649.png" width="760" loading="lazy" src="attachments/1469808648/1475182595.png?width=760" data-image-src="attachments/1469808648/1475182595.png" data-height="292" data-width="1458" data-unresolved-comment-count="0" data-linked-resource-id="1475182595" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20241119-143649.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1469808648" data-linked-resource-container-version="17" data-media-id="61566d10-a685-40aa-bb76-42ed6bed0bea" data-media-type="file"></span><p><strong>3. Register SonarQube User Token to Jenkins Credentials</strong></p><p>Navigate to Jenkins → Manage Jenkins → Credentials → Global Credentials </p><p>Click “Add Credentials“ and fill out the following:</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20241119-144618.png" width="760" loading="lazy" src="attachments/1469808648/1475477506.png?width=760" data-image-src="attachments/1469808648/1475477506.png" data-height="825" data-width="1782" data-unresolved-comment-count="0" data-linked-resource-id="1475477506" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20241119-144618.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1469808648" data-linked-resource-container-version="17" data-media-id="af95f14a-6a06-4270-ba2a-5530c29bdb51" data-media-type="file"></span><ul><li><p>Kind: Secret text</p></li><li><p>Secret: <code>&lt;SonarQube user token value&gt;</code></p></li><li><p>ID: <code>&lt;Credential ID&gt;</code> (Choose any descriptive value)</p></li></ul><p><strong>4. Configure SonarQube Server in Jenkins</strong></p><p><strong> </strong>Navigate to Jenkins → Manage Jenkins → Systems → SonarQube servers</p><p>Configure the following fields:</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20241119-145205.png" width="760" loading="lazy" src="attachments/1469808648/1475641348.png?width=760" data-image-src="attachments/1469808648/1475641348.png" data-height="733" data-width="1592" data-unresolved-comment-count="0" data-linked-resource-id="1475641348" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20241119-145205.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1469808648" data-linked-resource-container-version="17" data-media-id="1ec0e9e5-1497-44b4-a558-54b618d28c13" data-media-type="file"></span><ul><li><p>Environment variables: Check</p></li><li><p>Name: <code>&lt;SonarQube server name&gt;</code> (Choose any descriptive value)</p></li><li><p>Server URL: <code>http://localhost:9000/sonarqube</code></p></li></ul><blockquote><p>Note: This is set as <code>&lt;localhost&gt;/sonarqube</code> because HTTPS access will be configured in <strong>Step: </strong><a href="https://varlab-dev.atlassian.net/wiki/spaces/DPD/pages/1469808648/Static+Code+Analysis+using+SonarQube#4.-Proxy-Configuration-for-HTTPS" rel="nofollow"><strong>4.-Proxy-Configuration-for-HTTPS</strong></a> </p></blockquote><ul><li><p>Server authentication token: <code>&lt;SonarQube credential&gt;</code> (from Step 3 above)</p></li></ul><p><strong>5. Install Sonar Scanner in Jenkins</strong></p><p>Navigate to Jenkins → Manage Jenkins → Tools → SonarQube Scanner installations</p><p>Click “Add SonarQube Scanner“ and configure the following:</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20241119-150011.png" width="760" loading="lazy" src="attachments/1469808648/1475510278.png?width=760" data-image-src="attachments/1469808648/1475510278.png" data-height="669" data-width="1599" data-unresolved-comment-count="0" data-linked-resource-id="1475510278" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20241119-150011.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1469808648" data-linked-resource-container-version="17" data-media-id="8c2fcfee-c1fa-4ac1-b403-aaa62c94664c" data-media-type="file"></span><ul><li><p>Name: <code>&lt;SonarQube scanner name&gt;</code> (Choose any descriptive value)</p></li></ul><p><strong>7. Apply SonarQube in Jenkins Scripts</strong></p><p>Add Static Analysis stage in Jenkinsfile as shown below. This will execute static analysis using SonarQube.</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20241119-162131.png" width="760" loading="lazy" src="attachments/1469808648/1475510320.png?width=760" data-image-src="attachments/1469808648/1475510320.png" data-height="660" data-width="1276" data-unresolved-comment-count="0" data-linked-resource-id="1475510320" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20241119-162131.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1469808648" data-linked-resource-container-version="17" data-media-id="2a89dfbd-778b-4dcb-95b7-92cbcdbeeb79" data-media-type="file"></span><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20241119-151929.png" width="760" loading="lazy" src="attachments/1469808648/1475084298.png?width=760" data-image-src="attachments/1469808648/1475084298.png" data-height="739" data-width="1269" data-unresolved-comment-count="0" data-linked-resource-id="1475084298" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20241119-151929.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1469808648" data-linked-resource-container-version="17" data-media-id="25afb92a-7145-4e14-b770-7b9065692e6b" data-media-type="file"></span><h1 id="StaticCodeAnalysisusingSonarQube-3.ProjectSettingsontheSonarQubeInstance">3. Project Settings on the SonarQube Instance</h1><p><strong>1. Set Up File Exclusions</strong></p><p>Navigate to Proejct → Project Settings → General Settings → Analysis Scope</p><p>Add excluded paths for scopes as needed to exclude specific files or directories from analysis.</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20241119-155255.png" width="760" loading="lazy" src="attachments/1469808648/1475510311.png?width=760" data-image-src="attachments/1469808648/1475510311.png" data-height="465" data-width="1020" data-unresolved-comment-count="0" data-linked-resource-id="1475510311" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20241119-155255.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1469808648" data-linked-resource-container-version="17" data-media-id="6525b769-3fe0-48a2-90f2-4a0f38d603f3" data-media-type="file"></span><p><strong>2. Configure Paths for Code Coverage Files</strong></p><p>Navigate to Proejct → Project Settings → General Settings → Languages</p><p>Select “JavaScript / TypeScript“.</p><p>Scroll down to “Tests and Coverage”, and add the paths for the <code>lcov.info</code> file.</p><div id="expander-197956809" class="expand-container"><div id="expander-control-197956809" class="expand-control"><span class="expand-control-icon"><img style="vertical-align:middle;" class="expand-control-image" src="images/icons/grey_arrow_down.png"></span><span class="expand-control-text">What is the &#39;lcov.info&#39; file?</span></div><div id="expander-content-197956809" class="expand-content"><p> <a class="external-link" href="http://lcov.info" rel="nofollow">lcov.info</a> is a file that stores code coverage information. This file is written in LCOV format and is mainly used to <strong>record code coverage data</strong> after test execution in JavaScript, TypeScript, and other language projects.</p><p /><p><code>lcov.info</code>  contains the <strong>execution status</strong> for each line of the specified test files (<strong>DA</strong>), <strong>Test Name</strong> (<strong>NT</strong>), and <strong>Source File path</strong> (<strong>SF</strong>). So, <strong>SonarQube can visualize the test results as CodeCoverage</strong> based on this information.</p><p /><p>For example, Jenkins runs tests using Jest, which generates an <code>lcov.info</code> file as a test result. Jest saves the <code>lcov.info</code> file in the specified directory. Finally, SonarQube reads this <code>lcov.info</code> file and visualizes the code coverage data.</p></div></div><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20241119-155501.png" width="760" loading="lazy" src="attachments/1469808648/1475674117.png?width=760" data-image-src="attachments/1469808648/1475674117.png" data-height="395" data-width="1028" data-unresolved-comment-count="0" data-linked-resource-id="1475674117" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20241119-155501.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1469808648" data-linked-resource-container-version="17" data-media-id="7a48509e-d672-4f46-9951-2c228b008654" data-media-type="file"></span><p><strong>3. Create Quality Gates</strong></p><ul><li><p><u>What are Quality Gates?</u><br/>Quality Gates are predefined quality standards that must be met before a project can proceed to the next phase.</p></li></ul><div id="expander-1102032934" class="expand-container"><div id="expander-control-1102032934" class="expand-control"><span class="expand-control-icon"><img style="vertical-align:middle;" class="expand-control-image" src="images/icons/grey_arrow_down.png"></span><span class="expand-control-text">Example Criteria of Quality Gates</span></div><div id="expander-content-1102032934" class="expand-content"><ul><li><p><strong>Bug</strong>: New code should be bug-free</p></li><li><p><strong>Vulnerabilities</strong>: There should be no security vulnerabilities</p></li><li><p><strong>Code Smells</strong>: There should be no code that is difficult to maintain</p></li><li><p><strong>Coverage</strong>: Test coverage should be above a certain percentage<br/>&gt;&gt; e.g. Coverage should be above 80%.</p></li><li><p><strong>Duplicated Lines</strong>: Code duplication should not exceed an acceptable threshold<br/>&gt;&gt; e.g.  Duplication rate should be below 3%.</p></li></ul></div></div><p>Here is the documentation like for the SonarQube Quality Gate:</p><p><a class="external-link" data-card-appearance="inline" href="https://docs.sonarsource.com/sonarqube-server/latest/instance-administration/analysis-functions/quality-gates/" rel="nofollow">https://docs.sonarsource.com/sonarqube-server/latest/instance-administration/analysis-functions/quality-gates/</a> <br/></p><p>Navigate to Quality Gates from the top navigation bar.</p><p>Create a customized quality gate to adjust quality standards according to the project’s requirements. </p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20241119-155810.png" width="760" loading="lazy" src="attachments/1469808648/1475903496.png?width=760" data-image-src="attachments/1469808648/1475903496.png" data-height="763" data-width="1876" data-unresolved-comment-count="0" data-linked-resource-id="1475903496" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20241119-155810.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1469808648" data-linked-resource-container-version="17" data-media-id="54a8f8f2-0cca-4385-a721-a161d03a97a3" data-media-type="file"></span><h1 id="StaticCodeAnalysisusingSonarQube-4.ProxyConfigurationforHTTPS">4. Proxy Configuration for HTTPS</h1><p>To enable HTTPS access for SonarQube and restrict access to specific sources, configure the proxy settings for both Nginx and SonarQube.</p><blockquote><p>Since the Jenkins UI is already hosted on the root URL, a separate URL must be configured to host SonarQube for public access.</p></blockquote><h2 id="StaticCodeAnalysisusingSonarQube-4.1NginxConfiguration">4.1 Nginx Configuration </h2><p>Modify the Nginx configuration file:<br/>C:\Program Files\Nginx\conf\nginx.conf</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">server {
+        listen       443 ssl;
+        server_name  jenkins.vconestoga.com;
+        
+        //...
+        
+          location /sonarqube/ {
+              if ($http_referer = &quot;&quot;){
+                  return 403;
+              }
+              if ($http_referer !~* &quot;(https://bitbucket.org|https://jenkins.vconestoga.com)&quot;){
+                  return 403;
+              }
+              # The above code restricts access to requests from outside Bitbucket or not from internal sources
+              
+              proxy_pass http://localhost:9000/sonarqube/;
+              proxy_set_header Host $host;
+              proxy_set_header X-Real-IP $remote_addr;
+              proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+              proxy_set_header X-Forwarded-Proto $scheme;
+          }
+        
+        }</pre>
+</div></div><h2 id="StaticCodeAnalysisusingSonarQube-4.2SonarQubeConfiguration">4.2 SonarQube Configuration</h2><p>Modify the <code>sonar.properties</code> file:<br/>C:\Users\ci-catherine\Desktop\SonarQube\sonar.properties</p><p>Set the <code>sonar.web.context</code> to <code>/sonarqube</code> (this can be different) to match the proxy configuration.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">sonar.web.context=/sonarqube</pre>
+</div></div><p>Restart the container if it's already running:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">docker restart &lt;container_id&gt;</pre>
+</div></div><p>After these changes, SonarQube will be accessible at <code>http://localhost:9000/sonarqube</code>, instead of <code>http://localhost:9000</code> inside <code>jenkins-win-docker</code>.</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20241115-205433.png" width="760" loading="lazy" src="attachments/1469808648/1469677597.png?width=760" data-image-src="attachments/1469808648/1469677597.png" data-height="893" data-width="1902" data-unresolved-comment-count="0" data-linked-resource-id="1469677597" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20241115-205433.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1469808648" data-linked-resource-container-version="17" data-media-id="f272f69a-e8bf-4ea1-b527-4c51f8121058" data-media-type="file"></span><p>In the public, SonarQube will be accessibile at <a class="external-link" href="https://jenkins.vconestoga.com/sonarqube" rel="nofollow">https://jenkins.vconestoga.com/sonarqube</a>, available exclusively through the Bitbucket link.</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20241115-211111.png" width="760" loading="lazy" src="attachments/1469808648/1469972499.png?width=760" data-image-src="attachments/1469808648/1469972499.png" data-height="831" data-width="1866" data-unresolved-comment-count="0" data-linked-resource-id="1469972499" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20241115-211111.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1469808648" data-linked-resource-container-version="17" data-media-id="50c94f63-1aa8-4e55-9b08-4dd9c0c8b16b" data-media-type="file"></span><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20241115-211128.png" width="760" loading="lazy" src="attachments/1469808648/1469448242.png?width=760" data-image-src="attachments/1469808648/1469448242.png" data-height="808" data-width="1897" data-unresolved-comment-count="0" data-linked-resource-id="1469448242" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20241115-211128.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1469808648" data-linked-resource-container-version="17" data-media-id="b8ebc6c4-9686-44ca-bcb9-1af78e9390e6" data-media-type="file"></span><p />
+                    </div>
+
+                                        <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1469808648/1470169096.png">image-20241115-190602.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1469808648/1470005271.png">image-20241115-194728.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1469808648/1469939730.png">image-20241115-195448.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1469808648/1469677597.png">image-20241115-205433.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1469808648/1469972499.png">image-20241115-211111.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1469808648/1469448242.png">image-20241115-211128.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1469808648/1471184903.png">image-20241118-150030.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1469808648/1471250451.png">image-20241118-152058.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1469808648/1470922759.png">image-20241118-152148.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1469808648/1471512583.png">image-20241118-152836.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1469808648/1472036877.png">image-20241118-152915.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1469808648/1471873038.png">image-20241118-152938.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1469808648/1471840260.png">image-20241118-153126.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1469808648/1471479829.png">image-20241118-154118.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1469808648/1475182595.png">image-20241119-143649.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1469808648/1475477506.png">image-20241119-144618.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1469808648/1475313669.png">image-20241119-145026.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1469808648/1475411984.png">image-20241119-145107.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1469808648/1475641348.png">image-20241119-145205.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1469808648/1475510278.png">image-20241119-150011.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1469808648/1475051536.png">image-20241119-151712.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1469808648/1475084298.png">image-20241119-151929.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1469808648/1475510311.png">image-20241119-155255.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1469808648/1475411998.png">image-20241119-155416.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1469808648/1475674117.png">image-20241119-155501.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1469808648/1475903496.png">image-20241119-155810.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1469808648/1474822164.png">image-20241119-160434.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1469808648/1475772428.png">image-20241119-160443.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1469808648/1475837957.png">image-20241119-160625.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1469808648/1474920473.png">image-20241119-161147.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1469808648/1475936263.png">image-20241119-161152.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1469808648/1475051550.png">image-20241119-161418.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1469808648/1475084309.png">image-20241119-161510.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1469808648/1475018781.png">image-20241119-161900.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1469808648/1475575815.png">image-20241119-162000.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1469808648/1475510320.png">image-20241119-162131.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on May 27, 2025 13:34</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

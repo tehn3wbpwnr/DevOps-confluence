@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DevOps / Pipeline &amp; Deployment : Set Up Jenkins Server</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">DevOps / Pipeline &amp; Deployment</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1179353439.html">DevOps / Pipeline &amp; Deployment Home</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Windows-Jenkins-Documents_1542389772.html">Windows Jenkins Documents</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Set-Up-on-Windows_1541570589.html">Set Up on Windows</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Set-Up-Jenkins-Build-System_819265566.html">Set Up Jenkins Build System</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            DevOps / Pipeline &amp; Deployment : Set Up Jenkins Server
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                            
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Jonathan Bezeau</span>, last modified on Oct 05, 2023
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <ul><li><p>Connect to build VM using Remote Desktop Protocol</p></li><li><p>Download and install Java</p><ul><li><p>prefer JDK17, Jenkins will complain about JDK21</p></li></ul></li><li><p>Download and install Jenkins</p><ul><li><p>Choose JDK (can update in config files later if version changes)</p></li><li><p>Configure to communicate on port 80</p></li><li><p>didn’t config an admin account so Jenkins will generate a password for user “admin” in install directory</p><ul><li><p>stash credentials in Bitwarden</p></li></ul></li></ul></li><li><p>Use start bar to bring up Services</p><ul><li><p>Start Jenkins service</p></li></ul></li><li><p>Browse http://&lt;IP address&gt; to bring up Jenkins dashboard</p><ul><li><p>login as admin</p></li></ul></li><li><p>Install plugins</p><ul><li><p>All Bitbucket plugins</p><ul><li><p>except for any Bitbucket Server</p></li></ul></li><li><p>Dashboard View</p></li><li><p>Generic Webhook Trigger Plugin</p></li><li><p>NUnit plugin</p></li><li><p>Perforce (reserved for future use)</p></li><li><p>Pipeline</p></li></ul></li></ul><p>Follow up with steps to create a project</p>
+                    </div>
+
+                                        <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/819101726/819101739.png">image-20231003-204338.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/819101726/820838422.png">image-20231004-184144.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/819101726/822214676.png">image-20231005-191507.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/819101726/822116363.png">image-20231005-191742.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/819101726/822411293.png">image-20231005-192008.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on May 27, 2025 13:34</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

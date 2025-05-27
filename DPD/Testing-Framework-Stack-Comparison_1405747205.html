@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DevOps / Pipeline &amp; Deployment : Testing Framework Stack Comparison</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">DevOps / Pipeline &amp; Deployment</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1179353439.html">DevOps / Pipeline &amp; Deployment Home</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Windows-Jenkins-Documents_1542389772.html">Windows Jenkins Documents</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1567129601.html">CI/CD Pipeline Architecture Design</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1313800220.html">Node.js Applications: Process Flow-Based Documentation for CI,CD, and Continuous Deployment Pipelines</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            DevOps / Pipeline &amp; Deployment : Testing Framework Stack Comparison
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                            
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Joshua Moore</span>, last modified on Oct 19, 2024
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <style type='text/css'>/*<![CDATA[*/
+div.rbtoc1748352903703 {padding: 0px;}
+div.rbtoc1748352903703 ul {list-style: none;margin-left: 0px;}
+div.rbtoc1748352903703 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style><div class='toc-macro rbtoc1748352903703'>
+<ul class='toc-indentation'>
+<li><a href='#TestingFrameworkStackComparison-Summary'>Summary</a>
+<ul class='toc-indentation'>
+<li><a href='#TestingFrameworkStackComparison-Jest+ReactTestingLibrary(forfrontend)andJest+Supertest(forbackend)'>Jest + React Testing Library (for frontend) and Jest + Supertest (for backend)</a></li>
+<li><a href='#TestingFrameworkStackComparison-Mocha+Chai+Enzyme(forfrontend)andSupertest+Mocha/Chai(forbackend)'>Mocha + Chai + Enzyme (for frontend) and Supertest + Mocha/Chai (for backend)</a></li>
+<li><a href='#TestingFrameworkStackComparison-Conclusion'>Conclusion</a></li>
+</ul>
+</li>
+<li><a href='#TestingFrameworkStackComparison-EaseofSetup'>Ease of Setup</a></li>
+<li><a href='#TestingFrameworkStackComparison-TestingApproach'>Testing Approach</a></li>
+<li><a href='#TestingFrameworkStackComparison-Features'>Features</a></li>
+<li><a href='#TestingFrameworkStackComparison-Popularity'>Popularity</a></li>
+<li><a href='#TestingFrameworkStackComparison-Performance'>Performance</a></li>
+<li><a href='#TestingFrameworkStackComparison-Sources/AdditionalReading'>Sources/Additional Reading</a></li>
+</ul>
+</div><h2 id="TestingFrameworkStackComparison-Summary">Summary</h2><p>This document provides a comparison between the following testing framework stacks, along with a brief summary. Based on my research, I personally recommend <strong>Jest + React Testing Library + Supertest</strong> based upon the Asset Store’s current stack of (React + Node + Express). However, details are provided below for discussion.</p><h3 id="TestingFrameworkStackComparison-Jest+ReactTestingLibrary(forfrontend)andJest+Supertest(forbackend)"><strong>Jest + React Testing Library</strong> (for frontend) and <strong>Jest + Supertest</strong> (for backend)</h3><p><strong>Pros:</strong></p><ul><li><p>Most popular framework; officially supported by React developers and backed by Meta (Facebook), leading to a growing market share and a larger, more recent community with abundant tutorials/resources.</p></li><li><p>More regular updates ensure the framework stays current.</p></li><li><p>Easier setup and configuration allow teams to get up and running quickly.</p></li><li><p>Bundled features include snapshot testing and code coverage, along with built-in UI testing capabilities.</p></li><li><p>Primarily React-based but compatible with Angular, Node, Vue, and other Babel-based projects.</p></li><li><p>Both Have a strong support for CI/CD use, with Jest slightly ahead due to its ability to generate code coverage reports automatically.</p></li></ul><p><strong>Cons:</strong></p><ul><li><p>Auto-mocking can potentially slow down runtime, as it automatically mocks all libraries. However, this can often be outweighed by Jest's parallel test execution.</p></li><li><p>Non-React projects may require additional configurations, which can complicate setup.</p></li><li><p>Snapshot testing can create maintenance overhead if not regularly reviewed and updated</p></li></ul><p><strong>Ideal Use Cases:</strong></p><ul><li><p>Best suited for modern web applications using React where quick iteration and built-in testing features can significantly streamline the development process.</p></li></ul><hr/><h3 id="TestingFrameworkStackComparison-Mocha+Chai+Enzyme(forfrontend)andSupertest+Mocha/Chai(forbackend)"><strong>Mocha + Chai + Enzyme (for frontend) and Supertest + Mocha/Chai (for backend)</strong></h3><p><strong>Pros:</strong></p><ul><li><p>For smaller projects that don’t require sophisticated assertions or testing logic, Mocha is a simple and lightweight solution.</p></li><li><p>Flexible configuration allows teams to choose their preferred assertion library (like Chai) and testing style (TDD vs. BDD), providing tailored testing environments.</p></li></ul><p><strong>Cons:</strong></p><ul><li><p>Difficult to auto-mock dependencies, leading to more setup and configuration work.</p></li><li><p>Shrinking market share as alternatives like Jest gain popularity; however, it still maintains a large and dedicated community due to its longevity.</p></li><li><p>Less out-of-the-box support and features compared to Jest.</p></li><li><p>Less frequent updates in recent years may affect long-term support.</p></li></ul><p><strong>Ideal Use Cases:</strong></p><ul><li><p>Well-suited for projects requiring flexible configurations and where teams have specific preferences for testing styles or libraries. (Potentially for future vCon projects with a different stack?)</p></li></ul><h3 id="TestingFrameworkStackComparison-Conclusion">Conclusion</h3><p>In summary, while both testing frameworks have their strengths and weaknesses, <strong>Jest + React Testing Library + Supertest</strong> is highly recommended for our current stack due to its modern features, ease of use, and strong community support. It makes a good candidate to try out implementing testing into our CI/CD pipeline with the Asset Store project.</p><p /><p /><p>Below are some of the individual points broken up with Notes.</p><h2 id="TestingFrameworkStackComparison-EaseofSetup">Ease of Setup</h2><p><strong>Jest + React Testing Library</strong> (for frontend) and <strong>Jest + Supertest</strong> (for backend)</p><ul><li><p>Jest is easy to set up with a single command and works out of the box with minimal configuration.</p></li><li><p>React Testing Library is designed to work seamlessly with Jest, making the setup straightforward for React projects.</p></li><li><p>Supertest integrates easily with Jest, allowing for quick testing of Express routes.</p></li></ul><p /><p><strong>Mocha + Chai + Enzyme</strong> (for frontend) and <strong>Supertest + Mocha/Chai</strong> (for backend)</p><ul><li><p>Requires more initial configuration (e.g., setting up Enzyme and the appropriate adapter for React).</p></li><li><p>Mocha and Chai provide flexibility but can result in a more complex initial setup.</p></li><li><p>Requires additional setup to run tests in a browser-like environment (e.g., configuring jsdom).</p></li></ul><h2 id="TestingFrameworkStackComparison-TestingApproach">Testing Approach</h2><p><strong>Jest + React Testing Library</strong> (for frontend) and <strong>Jest + Supertest</strong> (for backend)</p><ul><li><p>Unit Testing: Focuses on testing individual components and modules in isolation.</p></li><li><p>User-Centric Testing: React Testing Library promotes testing components from the user's perspective, emphasizing real-world usage.</p></li><li><p>API Testing: Supertest allows for easy testing of HTTP endpoints with clean syntax.</p></li><li><p>Snapshot Testing: Jest supports snapshot testing, enabling you to track changes in your components over time.</p></li></ul><p><strong>Mocha + Chai + Enzyme</strong> (for frontend) and <strong>Supertest + Mocha/Chai</strong> (for backend)</p><ul><li><p>Unit Testing: Offers more flexibility and allows for deep testing of components using Enzyme's shallow and mount rendering capabilities.</p></li><li><p>Behavior-Driven Development (BDD): Mocha and Chai encourage a BDD approach, which can be more descriptive and user-friendly for writing tests.</p></li><li><p>API Testing: Supertest can be combined with Mocha/Chai for testing Express routes, although it may require more setup compared to Jest.</p></li></ul><h2 id="TestingFrameworkStackComparison-Features">Features</h2><p><strong>Jest + React Testing Library</strong> (for frontend) and <strong>Jest + Supertest</strong> (for backend)</p><ul><li><p>Mocking: Built-in mocking capabilities in Jest simplify the process of isolating components and modules.</p></li><li><p>Coverage Reports: Jest includes coverage reporting out of the box, making it easy to track code coverage.</p></li><li><p>Parallel Testing: Jest runs tests in parallel by default, improving performance for large test suites.</p></li><li><p>Easy Integration with CI/CD: Works seamlessly with CI/CD pipelines, especially in environments like Jenkins.</p></li></ul><p><strong>Mocha + Chai + Enzyme</strong> (for frontend) and <strong>Supertest + Mocha/Chai</strong> (for backend)</p><ul><li><p>Flexibility: Mocha allows for different styles of testing (e.g., TDD or BDD), making it adaptable to various testing needs.</p></li><li><p>Assertion Libraries: Chai provides multiple styles of assertions (should, expect, assert), allowing for more expressive tests.</p></li><li><p>Custom Configuration: Offers more customization options for advanced users who need fine-grained control over the testing environment.</p></li></ul><h2 id="TestingFrameworkStackComparison-Popularity">Popularity</h2><p><strong>Jest + React Testing Library</strong> (for frontend) and <strong>Jest + Supertest</strong> (for backend)</p><ul><li><p>More popular, widely adopted within the React community. Lots of Docs + community support.</p></li><li><p>Stronger ecosystem with more plugins + extensions.</p></li></ul><p><strong>Mocha + Chai + Enzyme</strong> (for frontend) and <strong>Supertest + Mocha/Chai</strong> (for backend)</p><ul><li><p>Has also been around a long time with large user base</p></li><li><p>development has fallen down in recent years in comparison to React Testing Library</p></li></ul><h2 id="TestingFrameworkStackComparison-Performance">Performance</h2><p><strong>Jest + React Testing Library</strong> (for frontend) and <strong>Jest + Supertest</strong> (for backend)</p><ul><li><p>Generally faster due to parallel test execution.</p></li><li><p>Certain tests such as snapshot tests can sometimes impact performance based on complexity.</p></li></ul><p><strong>Mocha + Chai + Enzyme</strong> (for frontend) and <strong>Supertest + Mocha/Chai</strong> (for backend)</p><ul><li><p>Potentially slower due to need to setup the test environment</p></li><li><p>Sequential test execution unless configured for parallel runs w/ plugin.</p></li></ul><p>I have found conflicting information about performance, some places say one is faster, than the next page says the other one is faster. So take this section with less importance.</p><p /><h2 id="TestingFrameworkStackComparison-Sources/AdditionalReading">Sources/Additional Reading</h2><ul><li><p><a class="external-link" data-card-appearance="inline" href="https://www.syncfusion.com/blogs/post/javascript-unit-test-frameworks" rel="nofollow">https://www.syncfusion.com/blogs/post/javascript-unit-test-frameworks</a>  </p></li><li><p><a class="external-link" data-card-appearance="inline" href="https://raygun.com/blog/javascript-unit-testing-frameworks/" rel="nofollow">https://raygun.com/blog/javascript-unit-testing-frameworks/</a> </p></li><li><p><a class="external-link" data-card-appearance="inline" href="https://www.browserstack.com/guide/top-javascript-testing-frameworks" rel="nofollow">https://www.browserstack.com/guide/top-javascript-testing-frameworks</a> </p></li><li><p><a class="external-link" data-card-appearance="inline" href="https://www.lambdatest.com/blog/top-javascript-testing-frameworks/" rel="nofollow">https://www.lambdatest.com/blog/top-javascript-testing-frameworks/</a> </p></li><li><p>Chat GPT for some clarification and editing</p></li></ul>
+                    </div>
+
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on May 27, 2025 13:35</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

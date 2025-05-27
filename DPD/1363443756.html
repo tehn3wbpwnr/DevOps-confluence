@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DevOps / Pipeline &amp; Deployment : Unit Tests (used to generate a part of code coverage)</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">DevOps / Pipeline &amp; Deployment</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1179353439.html">DevOps / Pipeline &amp; Deployment Home</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Windows-Jenkins-Documents_1542389772.html">Windows Jenkins Documents</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1567129601.html">CI/CD Pipeline Architecture Design</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1313800220.html">Node.js Applications: Process Flow-Based Documentation for CI,CD, and Continuous Deployment Pipelines</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Build-Stage_1363116075.html">Build Stage</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            DevOps / Pipeline &amp; Deployment : Unit Tests (used to generate a part of code coverage)
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                            
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Jindo Kim</span>, last modified on Sept 26, 2024
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <style type='text/css'>/*<![CDATA[*/
+div.rbtoc1748352902903 {padding: 0px;}
+div.rbtoc1748352902903 ul {list-style: none;margin-left: 0px;}
+div.rbtoc1748352902903 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style><div class='toc-macro rbtoc1748352902903'>
+<ul class='toc-indentation'>
+<li><a href='#UnitTests(usedtogenerateapartofcodecoverage)-Goal'>Goal</a></li>
+<li><a href='#UnitTests(usedtogenerateapartofcodecoverage)-Purpose'>Purpose</a></li>
+<li><a href='#UnitTests(usedtogenerateapartofcodecoverage)-Operation'>Operation</a></li>
+<li><a href='#UnitTests(usedtogenerateapartofcodecoverage)-References/Tools'>References / Tools</a></li>
+</ul>
+</div><h1 id="UnitTests(usedtogenerateapartofcodecoverage)-Goal">Goal</h1><ul><li><p>To verify that small functions or components of the code work independently as expected.</p></li></ul><h1 id="UnitTests(usedtogenerateapartofcodecoverage)-Purpose">Purpose </h1><ul><li><p>To test individual modules or components, ensuring that specific code changes maintain the expected behavior of these elements and to detect and resolve bugs or errors early.</p></li></ul><h1 id="UnitTests(usedtogenerateapartofcodecoverage)-Operation">Operation</h1><ul><li><p>Verify that each function or method performs as expected in an isolated environment.</p></li><li><p>Validate that each function or method produces the correct output for given inputs.</p></li><li><p>Test how the functions or methods handle unexpected inputs or error conditions (edge cases)</p></li></ul><h1 id="UnitTests(usedtogenerateapartofcodecoverage)-References/Tools">References / Tools</h1><ul><li><p><a class="external-link" data-card-appearance="inline" href="https://www.youtube.com/watch?v=diC9TvwXSUM" rel="nofollow">https://www.youtube.com/watch?v=diC9TvwXSUM</a>(06:49)</p><ul><li><p><em><u>Highly recommend for beginner and who does not know about Jest Unit Test and Code Coverage</u></em></p></li></ul></li><li><p><a class="external-link" data-card-appearance="inline" href="https://www.npmjs.com/package/jest?activeTab=readme" rel="nofollow">https://www.npmjs.com/package/jest?activeTab=readme</a> - <a class="external-link" href="https://snyk.io/advisor/npm-package/jest" rel="nofollow">Package Health Score</a> <em><u>was originally created by Facebook (now Meta)</u></em></p><ul><li><p><a class="external-link" data-card-appearance="inline" href="https://jestjs.io/docs/getting-started" rel="nofollow">https://jestjs.io/docs/getting-started</a></p></li><li><p><a class="external-link" data-card-appearance="inline" href="https://jestjs.io/docs/cli" rel="nofollow">https://jestjs.io/docs/cli</a></p></li><li><p><a class="external-link" data-card-appearance="inline" href="https://www.npmjs.com/package/jest-junit" rel="nofollow">https://www.npmjs.com/package/jest-junit</a> - <a class="external-link" href="https://snyk.io/advisor/npm-package/jest-junit" rel="nofollow">Package Health Score</a></p></li><li><p><a class="external-link" data-card-appearance="inline" href="https://medium.com/@ma11hewthomas/jest-json-test-results-report-07cb304a14d6" rel="nofollow">https://medium.com/@ma11hewthomas/jest-json-test-results-report-07cb304a14d6</a> </p></li></ul></li><li><p><a class="external-link" data-card-appearance="inline" href="https://aws.amazon.com/compare/the-difference-between-json-xml/" rel="nofollow">https://aws.amazon.com/compare/the-difference-between-json-xml/</a> </p><ul><li><p><a class="external-link" href="https://www.jenkins.io/doc/pipeline/tour/tests-and-artifacts/#:~:text=Jenkins%20typically%20comes%20bundled%20with%20the%20junit%20step%2C%20but%20if%20your%20test%20runner%20cannot%20output%20JUnit%2Dstyle%20XML%20reports%2C%20there%20are%20additional%20plugins%20which%20process%20practically%20any%20widely%2Dused%20test%20report%20format." rel="nofollow">Jenkins use XML report style by default - jenkins.io</a></p></li><li><p><a class="external-link" href="https://jestjs.io/docs/configuration#:~:text=or%20v8.-,coverageReporters%20%5Barray%3Cstring%20%7C%20%5Bstring%2C%20options%5D%3E%5D,uses%20when%20writing%20coverage%20reports.%20Any%20istanbul%20reporter%20can%20be%20used.,-TIP" rel="nofollow">Jest use not XML report style by default</a></p></li></ul></li><li><p><a class="external-link" data-card-appearance="inline" href="https://patrickdesjardins.com/blog/unit-tests-and-coverage-report-in-jenkins-using-jest-from-create-react-app" rel="nofollow">https://patrickdesjardins.com/blog/unit-tests-and-coverage-report-in-jenkins-using-jest-from-create-react-app</a></p></li></ul>
+                    </div>
+
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on May 27, 2025 13:35</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DevOps / Pipeline &amp; Deployment : How To Set Trigger Token and Bitbucket Webhook</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">DevOps / Pipeline &amp; Deployment</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1179353439.html">DevOps / Pipeline &amp; Deployment Home</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Windows-Jenkins-Documents_1542389772.html">Windows Jenkins Documents</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Set-Up-on-Windows_1541570589.html">Set Up on Windows</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Set-Up-Jenkins-Build-System_819265566.html">Set Up Jenkins Build System</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Set-Up-Multi-Branch-Pipeline_1171357758.html">Set Up Multi-Branch-Pipeline</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            DevOps / Pipeline &amp; Deployment : How To Set Trigger Token and Bitbucket Webhook
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                            
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Chris Park</span>, last modified on Aug 14, 2024
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <style type='text/css'>/*<![CDATA[*/
+div.rbtoc1748352885805 {padding: 0px;}
+div.rbtoc1748352885805 ul {list-style: none;margin-left: 0px;}
+div.rbtoc1748352885805 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style><div class='toc-macro rbtoc1748352885805'>
+<ul class='toc-indentation'>
+<li><a href='#HowToSetTriggerTokenandBitbucketWebhook-HowToSetBitbucketWebhookandJenkinsTriggerToken'>How To Set Bitbucket Webhook and Jenkins Trigger Token</a>
+<ul class='toc-indentation'>
+<li><a href='#HowToSetTriggerTokenandBitbucketWebhook-1.Webhook(Bitbucket)'>1. Webhook (Bitbucket)</a></li>
+<li><a href='#HowToSetTriggerTokenandBitbucketWebhook-2.TriggerToken(Jenkins)'>2. Trigger Token (Jenkins)</a></li>
+</ul>
+</li>
+</ul>
+</div><h1 id="HowToSetTriggerTokenandBitbucketWebhook-HowToSetBitbucketWebhookandJenkinsTriggerToken">How To Set Bitbucket Webhook and Jenkins Trigger Token</h1><hr/><h2 id="HowToSetTriggerTokenandBitbucketWebhook-1.Webhook(Bitbucket)">1. Webhook (Bitbucket)</h2><p style="margin-left: 30.0px;">: <strong>Bitbucket Webhook</strong> allows us to <span style="background-color: rgb(198,237,251);">send the build trigger signal to Jenkins</span> in certain trigger conditions such as create, update, or merge pull request.<br/>So, we can start the Jenkins build in the situation we want to start the test, build, or deploy the project in the Bitbucket repository. <br/>This step will explain how to create and manage Webhooks in Bitucket.</p><p style="text-align: center;">** <u>To manage Webhook, the Bitbucket account should have proper permission on the target repository</u> **</p><p style="text-align: center;"></p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20240813-172523.png" width="760" loading="lazy" src="attachments/1278967851/1280835593.png?width=760" data-image-src="attachments/1278967851/1280835593.png" data-height="516" data-width="1338" data-unresolved-comment-count="0" data-linked-resource-id="1280835593" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20240813-172523.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1278967851" data-linked-resource-container-version="10" data-media-id="be89364b-b1bf-4682-b77a-127aad424b9c" data-media-type="file"></span><ul><li><p>Click [Add webhook] if you want to create a new webhook</p></li><li><p>Click [Edit] if you want to manage existing webhook </p></li></ul><p /><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" width="599" loading="lazy" src="attachments/1278967851/1280671750.png?width=599" data-image-src="attachments/1278967851/1280671750.png" data-height="154" data-width="529" data-unresolved-comment-count="0" data-linked-resource-id="1280671750" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="att_8_for_1171357758.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1278967851" data-linked-resource-container-version="10" data-media-id="1ac50ed2-5c2b-45cb-a31a-bff41b17faf8" data-media-type="file"></span><p style="margin-left: 30.0px;">&gt;&gt; You can use anything you want for the trigger token, but just being aware of <strong><span style="background-color: rgb(198,237,251);">this token</span></strong><span style="background-color: rgb(198,237,251);"> </span><strong><span style="background-color: rgb(198,237,251);">SHOULD BE MATHCED</span></strong><span style="background-color: rgb(198,237,251);"> with the </span><strong><span style="background-color: rgb(198,237,251);">secret of </span></strong><span style="background-color: rgb(198,237,251);">'</span><strong><span style="background-color: rgb(198,237,251);">trigger-token</span></strong><span style="background-color: rgb(198,237,251);">' in Jenkins</span>.</p><p /><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" width="477" loading="lazy" src="attachments/1278967851/1280671756.png?width=477" data-image-src="attachments/1278967851/1280671756.png" data-height="310" data-width="398" data-unresolved-comment-count="0" data-linked-resource-id="1280671756" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="att_9_for_1171357758.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1278967851" data-linked-resource-container-version="10" data-media-id="89818b47-4426-4de7-80a2-216b448b3ba1" data-media-type="file"></span><p /><hr/><h2 id="HowToSetTriggerTokenandBitbucketWebhook-2.TriggerToken(Jenkins)">2. Trigger Token (Jenkins)</h2><p style="margin-left: 30.0px;">: Trigger Token is used to trigger the Jenkins build by webhook from the specific Bitbucket repository. <br/>So, the <strong>‘secret text’</strong> of this ‘trigger-token’ <span style="background-color: rgb(198,237,251);"><u>should be matched to the Bitbucket webhook setting</u></span> so that Jenkins can recognize webhooks and trigger builds correctly.</p><p /><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" width="738" loading="lazy" src="attachments/1278967851/1280409641.png?width=738" data-image-src="attachments/1278967851/1280409641.png" data-height="109" data-width="467" data-unresolved-comment-count="0" data-linked-resource-id="1280409641" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="att_17_for_1171357758.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1278967851" data-linked-resource-container-version="10" data-media-id="e0f98d2c-7fb8-43ee-9727-d3a4583f680d" data-media-type="file"></span><p /><p>&gt;&gt; Add the Credential likewise  explained in <a href="How-To-Set-Bitbucket-App-Password_1279655940.html" data-linked-resource-id="1279655940" data-linked-resource-version="9" data-linked-resource-type="page">How To Set Bitbucket App Password</a>, 2. Create Credential in Jenkins.</p><p>&gt;&gt; Make sure <strong><span style="background-color: rgb(198,237,251);">the name</span></strong><span style="background-color: rgb(198,237,251);"> of the credential </span><strong><span style="background-color: rgb(198,237,251);">should be ‘trigger-token’</span></strong></p><p>&gt;&gt; Make sure <strong><span style="background-color: rgb(198,237,251);">the secret text</span></strong><span style="background-color: rgb(198,237,251);"> </span><strong><span style="background-color: rgb(198,237,251);">should be</span></strong><span style="background-color: rgb(198,237,251);"> matched with the </span><strong><span style="background-color: rgb(198,237,251);">Webhooks’ trigger token</span></strong></p><p />
+                    </div>
+
+                                        <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1278967851/1280835593.png">image-20240813-172523.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1278967851/1280671750.png">att_8_for_1171357758.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1278967851/1280671756.png">att_9_for_1171357758.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1278967851/1280409641.png">att_17_for_1171357758.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on May 27, 2025 13:34</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

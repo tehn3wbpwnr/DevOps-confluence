@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DevOps / Pipeline &amp; Deployment : Deploy to Azure Container Stage</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">DevOps / Pipeline &amp; Deployment</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1179353439.html">DevOps / Pipeline &amp; Deployment Home</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1575288834.html">CI/CD Pipeline</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Web-Development_1728217091.html">Web Development</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            DevOps / Pipeline &amp; Deployment : Deploy to Azure Container Stage
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                            
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Chris Park</span>, last modified on Nov 25, 2024
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <p> This documentation explains the general idea of how to build and deploy the Docker image to the Azure Container Registry and Azure Container App. </p><hr/><style type='text/css'>/*<![CDATA[*/
+div.rbtoc1748352822686 {padding: 0px;}
+div.rbtoc1748352822686 ul {list-style: none;margin-left: 0px;}
+div.rbtoc1748352822686 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style><div class='toc-macro rbtoc1748352822686'>
+<ul class='toc-indentation'>
+<li><a href='#DeploytoAzureContainerStage-Overview'>Overview</a></li>
+<li><a href='#DeploytoAzureContainerStage-1.DockerEngineChecking'>1. Docker Engine Checking</a></li>
+<li><a href='#DeploytoAzureContainerStage-2.LogintoAzureContainerRegistry'>2. Login to Azure Container Registry</a></li>
+<li><a href='#DeploytoAzureContainerStage-3.BuildtheServer&amp;Clientcontainerimage'>3. Build the Server &amp; Client container image</a></li>
+<li><a href='#DeploytoAzureContainerStage-4.PushthenewcontainerimagesToAzureContainerRegistry'>4. Push the new container images To Azure Container Registry</a></li>
+<li><a href='#DeploytoAzureContainerStage-5.UpdatetheServer&amp;ClientAzureContainerApp'>5. Update the Server &amp; Client Azure Container App</a></li>
+<li><a href='#DeploytoAzureContainerStage-6.Deleteimages'>6. Delete images</a></li>
+</ul>
+</div><hr/><h1 id="DeploytoAzureContainerStage-Overview">Overview</h1><p>Currently, JS Jenkins pipeline has <strong>6 major logic</strong> to deploy the latest version of the container to Azure.</p><ol start="1"><li><p>Check whether the Docker engine is running or not</p></li><li><p>Login to Azure Container Registry</p></li><li><p>Build the Server &amp; Client container image</p></li><li><p>Push the new container images To Azure Container Registry</p></li><li><p>Update the Server &amp; Client Azure Container App</p></li><li><p>Delete images</p></li></ol><hr/><h1 id="DeploytoAzureContainerStage-1.DockerEngineChecking">1. Docker Engine Checking</h1><p>: Most of the commands used in the deployment process require the docker CLI. Therefore, before starting the stage, check whether the Docker Engine is activated and if it is not running, terminate the build.</p><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>For deployment, Jenkins machine needs <strong>Docker and Azure CLI</strong></p></div></div><div id="expander-160585294" class="expand-container"><div id="expander-control-160585294" class="expand-control"><span class="expand-control-icon"><img style="vertical-align:middle;" class="expand-control-image" src="images/icons/grey_arrow_down.png"></span><span class="expand-control-text">Codes</span></div><div id="expander-content-160585294" class="expand-content"><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">
+def isDockerRunning = sh(script: &quot;docker info &gt; /dev/null 2&gt;&amp;1&quot;, returnStatus: true)
+if (isDockerRunning != 0) {
+ echo &quot;Docker is not running or not available.&quot;
+ error(&quot;Docker is not available. Please start Docker and try again.&quot;)
+}</pre>
+</div></div></div></div><p /><hr/><h1 id="DeploytoAzureContainerStage-2.LogintoAzureContainerRegistry">2. Login to Azure Container Registry</h1><p> Normally, we log in to Azure using the <code>az login</code> command, but since you cannot use the GUI during Jenkins logic, we use Managed Identity to login.</p><div id="expander-653176961" class="expand-container"><div id="expander-control-653176961" class="expand-control"><span class="expand-control-icon"><img style="vertical-align:middle;" class="expand-control-image" src="images/icons/grey_arrow_down.png"></span><span class="expand-control-text">Azure CLI Login</span></div><div id="expander-content-653176961" class="expand-content"><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">// Login to Azure using system managed identity
+powershell &quot;az login --identity --username sample-client-id&quot;
+                    
+// Login to Azure Container Registry
+powershell &quot;az acr login --name webbuilds&quot;</pre>
+</div></div></div></div><p /><p>To log in with a Managed Identity, the system (Jenkins Machine) should be assigned proper permission to access the appropriate resource or resource group like the image below. Once the basic setup is complete, you can use the client id (principle) to login.</p><p /><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>Make sure “<strong>status</strong>“ of “<strong>System Assigned</strong>” Identity should be enable</p></div></div><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20241124-222445.png" width="760" loading="lazy" src="attachments/1426587654/1486159909.png?width=760" data-image-src="attachments/1426587654/1486159909.png" data-height="256" data-width="1166" data-unresolved-comment-count="0" data-linked-resource-id="1486159909" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20241124-222445.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1426587654" data-linked-resource-container-version="9" data-media-id="ab42c58c-a1d9-4a0e-a4ec-f19cc239369a" data-media-type="file"></span><p /><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20241124-222643.png" width="704" loading="lazy" src="attachments/1426587654/1486159915.png?width=704" data-image-src="attachments/1426587654/1486159915.png" data-height="359" data-width="704" data-unresolved-comment-count="0" data-linked-resource-id="1486159915" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20241124-222643.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1426587654" data-linked-resource-container-version="9" data-media-id="4d0f20d2-5319-4fdb-8412-668b50cbb862" data-media-type="file"></span><hr/><h1 id="DeploytoAzureContainerStage-3.BuildtheServer&amp;Clientcontainerimage">3. Build the Server &amp; Client container image</h1><p>: To create a Docker image, we need a Docker File that contains the logic required to run the container. Server and Client each Docker file is located in the <strong>server </strong>and <strong>client-portual</strong> folders of the Asset Store Bitbucket Repository. When building a Docker image, the URL of the Azure Container Registry must be included.</p><p> In the future, when the vConestoga team decides how to control the version of the container image, we need to consider the version number in the <code>package.json</code> folder and tag it when building the Docker image.</p><div id="expander-10413828" class="expand-container"><div id="expander-control-10413828" class="expand-control"><span class="expand-control-icon"><img style="vertical-align:middle;" class="expand-control-image" src="images/icons/grey_arrow_down.png"></span><span class="expand-control-text">Codes</span></div><div id="expander-content-10413828" class="expand-content"><p><code> // Build server &amp; client container image</code><br/><code> echo &quot;Build The Server Container Image&quot;</code><br/><code> sh &quot;docker build -t http://webbuilds.azurecr.io/assetstore-server:latest  ${serverPath}/server/.&quot;</code><br/><code> echo &quot;Build The Client Container Image&quot;</code><br/><code> sh &quot;docker build -t http://webbuilds.azurecr.io/assetstore-client:latest  ${serverPath}/client-portual/.&quot; </code></p></div></div><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20241124-231316.png" width="340" loading="lazy" src="attachments/1426587654/1485504647.png?width=340" data-image-src="attachments/1426587654/1485504647.png" data-height="18" data-width="176" data-unresolved-comment-count="0" data-linked-resource-id="1485504647" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20241124-231316.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1426587654" data-linked-resource-container-version="9" data-media-id="d593d65b-11ec-451d-819f-f2626689312e" data-media-type="file"></span><p /><hr/><h1 id="DeploytoAzureContainerStage-4.PushthenewcontainerimagesToAzureContainerRegistry">4. Push the new container images To Azure Container Registry</h1><p>: The completed container need to be uploaded to the Azure Container Registry. </p><p>Currently, only the logic for pushing is applied in our JS Deployment pipeline, but once the agreement on version control is complete, logic for deleting old containers should be added later to control the number of images stored in the registry.</p><div id="expander-2134413951" class="expand-container"><div id="expander-control-2134413951" class="expand-control"><span class="expand-control-icon"><img style="vertical-align:middle;" class="expand-control-image" src="images/icons/grey_arrow_down.png"></span><span class="expand-control-text">Codes</span></div><div id="expander-content-2134413951" class="expand-content"><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">---// Push each container to the Azure Container Registry
+echo &quot;Push The Server Container Image to Azure Container Registry&quot;
+sh &quot;docker push webbuilds.azurecr.io/assetstore-server:latest&quot;
+
+echo &quot;Push The Client Container Image to Azure Container Registry&quot;
+sh &quot;docker push webbuilds.azurecr.io/assetstore-client:latest&quot;  </pre>
+</div></div></div></div><p /><p>When image is successful uploaded, a new version of the image is added to the Container Registry, as shown in the screenshot below.</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20241124-235640.png" width="760" loading="lazy" src="attachments/1426587654/1485504665.png?width=760" data-image-src="attachments/1426587654/1485504665.png" data-height="399" data-width="1351" data-unresolved-comment-count="0" data-linked-resource-id="1485504665" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20241124-235640.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1426587654" data-linked-resource-container-version="9" data-media-id="ee8cde90-8f15-4487-a7c5-952820f49276" data-media-type="file"></span><p /><hr/><h1 id="DeploytoAzureContainerStage-5.UpdatetheServer&amp;ClientAzureContainerApp">5. Update the Server &amp; Client Azure Container App</h1><p> The final step in the deployment process is to update the Container App with the latest container image from the Container Registry, ensuring that the server and client are running the most up-to-date version.</p><div id="expander-336941155" class="expand-container"><div id="expander-control-336941155" class="expand-control"><span class="expand-control-icon"><img style="vertical-align:middle;" class="expand-control-image" src="images/icons/grey_arrow_down.png"></span><span class="expand-control-text">Click here to expand...</span></div><div id="expander-content-336941155" class="expand-content"><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">// Update each instance from Azure Container App 
+echo &quot;Upupdate The Server Container App to the Latest Version&quot;
+powershell &quot;az containerapp update --name assetstore-server --resource-group AssetStore --image webbuilds.azurecr.io/assetstore-server:latest&quot;      
+
+//echo &quot;Upupdate The Client Container App to the Latest Version&quot;
+powershell &quot;az containerapp update --name assetstore-client --resource-group AssetStore --image webbuilds.azurecr.io/assetstore-client:latest&quot;  </pre>
+</div></div><p>  </p></div></div><p> </p><p> As with the registry, if an Azure Container App is successfully updated, you can check it in &quot;Container App &gt;&gt; Application &gt;&gt; Containers&quot; as shown in the picture below.</p><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>Server and Client Container Apps belong to the <strong>AssetStore Resource Group</strong></p></div></div><p /><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20241124-235927.png" width="760" loading="lazy" src="attachments/1426587654/1486159946.png?width=760" data-image-src="attachments/1426587654/1486159946.png" data-height="466" data-width="833" data-unresolved-comment-count="0" data-linked-resource-id="1486159946" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20241124-235927.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1426587654" data-linked-resource-container-version="9" data-media-id="8827cafe-df83-41f1-bc90-83daefce3421" data-media-type="file"></span><hr/><h1 id="DeploytoAzureContainerStage-6.Deleteimages">6. Delete images</h1><p>: Currently, we have decided to delete the images immediately after building the Container Image. This is because we were concerned about the capacity of Jenkins since the server and client images combined are approximately 400 MB.</p><div id="expander-1635356762" class="expand-container"><div id="expander-control-1635356762" class="expand-control"><span class="expand-control-icon"><img style="vertical-align:middle;" class="expand-control-image" src="images/icons/grey_arrow_down.png"></span><span class="expand-control-text">Codes</span></div><div id="expander-content-1635356762" class="expand-content"><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">// Clean up local images
+echo &quot;Delete The Server &amp; Client Container Image from dlx-webhost Server&quot;
+sh &quot;docker rmi webbuilds.azurecr.io/assetstore-server:latest&quot;
+sh &quot;docker rmi webbuilds.azurecr.io/assetstore-client:latest&quot;</pre>
+</div></div></div></div><p /><p> However, if the previous container image could reduce next container’s building time, we need to consider keeping the previous image.</p>
+                    </div>
+
+                                        <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1426587654/1486159909.png">image-20241124-222445.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1426587654/1486159915.png">image-20241124-222643.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1426587654/1485504647.png">image-20241124-231316.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1426587654/1485504665.png">image-20241124-235640.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1426587654/1486159946.png">image-20241124-235927.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on May 27, 2025 13:33</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

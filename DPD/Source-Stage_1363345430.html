@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DevOps / Pipeline &amp; Deployment : Source Stage</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">DevOps / Pipeline &amp; Deployment</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1179353439.html">DevOps / Pipeline &amp; Deployment Home</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Windows-Jenkins-Documents_1542389772.html">Windows Jenkins Documents</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1567129601.html">CI/CD Pipeline Architecture Design</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1313800220.html">Node.js Applications: Process Flow-Based Documentation for CI,CD, and Continuous Deployment Pipelines</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            DevOps / Pipeline &amp; Deployment : Source Stage
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                            
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Jindo Kim</span>, last modified on Oct 23, 2024
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <style type="text/css">/*<![CDATA[*/
+div.rbtoc1748352891266 {padding: 0px;}
+div.rbtoc1748352891266 ul {list-style: none;margin-left: 0px;}
+div.rbtoc1748352891266 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style><div class="toc-macro rbtoc1748352891266"><style>[data-colorid=s65beyaink]{color:#ff5630} html[data-color-mode=dark] [data-colorid=s65beyaink]{color:#cf2600}[data-colorid=q6woposp2c]{color:#ff5630} html[data-color-mode=dark] [data-colorid=q6woposp2c]{color:#cf2600}[data-colorid=wvwz4vin92]{color:#ff5630} html[data-color-mode=dark] [data-colorid=wvwz4vin92]{color:#cf2600}</style>
+<ul class="toc-indentation">
+<li><a href="#SourceStage-Linting">Linting</a>
+<ul class="toc-indentation">
+<li><a href="#SourceStage-ReasonsandBenefits">Reasons and Benefits</a></li>
+<li><a href="#SourceStage-PossibleFocusArea">Possible Focus Area</a>
+<ul class="toc-indentation">
+<li><a href="#SourceStage-CodeFormatting">Code Formatting</a></li>
+<li><a href="#SourceStage-SyntaxErrors:">Syntax Errors:</a></li>
+<li><a href="#SourceStage-CodeStandards:">Code Standards:</a></li>
+</ul>
+</li>
+<li><a href="#SourceStage-Operation(This'Operation'contentwasgeneratedusingAIasareference,neededtobeverified)">Operation (This 'Operation' content was generated using AI as a reference, needed to be verified)</a>
+<ul class="toc-indentation">
+<li><a href="#SourceStage-ESLintConfigurationLoading">ESLint Configuration Loading</a></li>
+<li><a href="#SourceStage-FileCollection">File Collection</a></li>
+<li><a href="#SourceStage-CodeAnalysisandRuleApplication:">Code Analysis and Rule Application:</a></li>
+<li><a href="#SourceStage-ResultOutput:">Result Output:</a></li>
+<li><a href="#SourceStage-CommitRestriction:">Commit Restriction:</a></li>
+</ul>
+</li>
+<li><a href="#SourceStage-Tool">Tool</a>
+<ul class="toc-indentation">
+<li><a href="#SourceStage-ESLinthttps://eslint.org/">ESLinthttps://eslint.org/</a>
+<ul class="toc-indentation">
+<li><a href="#SourceStage-References">References</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div><p><em><strong><span data-colorid="s65beyaink"><del><u>(This stage can be 'Pre-commit hooks Stage' - which is not part of Jenkins CI/CD pipeline)</u></del></span></strong></em></p><h2 id="SourceStage-Linting">Linting</h2><h3 id="SourceStage-ReasonsandBenefits">Reasons and Benefits</h3><ul><li><p>Aim to maintain consistency within the team by applying standardized coding styles and rules or complexity throughout the development process.</p></li><li><p><a class="external-link" data-card-appearance="inline" href="https://www.reddit.com/r/devops/comments/yo0y5i/precommit_vs_prepush_vs_cicd_for_linting_and/" rel="nofollow">https://www.reddit.com/r/devops/comments/yo0y5i/precommit_vs_prepush_vs_cicd_for_linting_and/</a> </p><ul><li><p>Can reduce usage and error issues within the CI workflow.</p></li><li><p>Encourages a culture/practice of improving the overall code quality across the team.</p></li></ul></li></ul><h3 id="SourceStage-PossibleFocusArea">Possible Focus Area</h3><h4 id="SourceStage-CodeFormatting">Code Formatting</h4><ul><li><p>Indentation:  can enforce indentation rules, detecting mixed tabs and spaces or inconsistent indentation levels.</p></li><li><p>Line length:  can set rules to limit the length of code lines.</p></li><li><p>Unused variables:  can detect unused variables.</p></li><li><p>Code style consistency:  offers various rules to maintain code style consistency, such as the placement of curly braces or the use of parentheses around function arguments.</p></li></ul><h4 id="SourceStage-SyntaxErrors:">Syntax Errors:</h4><ul><li><p>Missing or misplaced parentheses or brackets:  can detect incorrect use of parentheses or curly brackets.</p></li><li><p>Undefined variables:  can detect variables that have not been defined.</p></li><li><p>Misspelled or undefined functions:  can detect misspelled function names or functions that are not defined.</p></li><li><p>Invalid or unexpected characters:  can detect abnormal characters within JavaScript code.</p></li></ul><h4 id="SourceStage-CodeStandards:">Code Standards:</h4><ul><li><p>Variable naming conventions:  can enforce variable naming conventions (e.g., camelCase, snake_case).</p></li><li><p>Code documentation: ESLint does not natively enforce documentation standards, but plugins (e.g., eslint-plugin-jsdoc) can be used to enforce documentation rules like JSDoc.</p></li><li><p>Function complexity: ESLint can detect the complexity of functions and warn if complexity exceeds a certain threshold, but it only supports basic functionality. <em>Therefore, it's advisable to use other tools in Jenkins to perform a more in-depth analysis.</em></p><ul><li><p><a class="external-link" data-card-appearance="inline" href="https://eslint.org/docs/latest/rules/complexity" rel="nofollow">https://eslint.org/docs/latest/rules/complexity</a> </p></li><li><p><em>Linting and static analysis have different scopes for complexity.</em></p></li></ul></li><li><p>Code duplication: ESLint, even with extensions, offers very limited support for this feature. <em><span data-colorid="q6woposp2c">Therefore, we might consider using other tools to diagnose code duplication as part of the Jenkins pipeline.</span></em></p><ul><li><p>Maybe 'jscpd' and other npms can be utilized to cover this area.</p></li><li><p><a class="external-link" data-card-appearance="inline" href="https://www.npmjs.com/package/jscpd" rel="nofollow">https://www.npmjs.com/package/jscpd</a>  - <a class="external-link" href="https://snyk.io/advisor/search?source=npm&amp;q=jscpd" rel="nofollow">Package Health Score</a> </p></li><li><p><a class="external-link" data-card-appearance="inline" href="https://www.npmjs.com/package/postcss-discard-duplicates" rel="nofollow">https://www.npmjs.com/package/postcss-discard-duplicates</a>  - <a class="external-link" href="https://snyk.io/advisor/npm-package/postcss-discard-duplicates" rel="nofollow">Package Health Score</a></p></li><li><p><em>Linting and static analysis have different scopes for code duplication.</em></p></li></ul></li></ul><h3 id="SourceStage-Operation(This'Operation'contentwasgeneratedusingAIasareference,neededtobeverified)">Operation<em><span data-colorid="wvwz4vin92"><u> (This 'Operation' content was generated using AI as a reference, needed to be verified)</u></span></em></h3><h4 id="SourceStage-ESLintConfigurationLoading">ESLint Configuration Loading</h4><ul><li><p>Description: ESLint loads configurations from the .eslintrc file or the package.json file located in the project's root directory. These files define the rules, plugins, and extensions to be applied.</p></li><li><p>Example: You can use the extends option to apply the Airbnb ruleset or configure it to ignore certain file patterns.</p></li></ul><h4 id="SourceStage-FileCollection">File Collection</h4><ul><li><p>Description: Based on the configured file patterns (e.g., src/\<em>\</em>/\*.js), ESLint collects the files to perform linting. ESLint filters out files according to the ignorePatterns defined in the configuration file.</p></li><li><p>Example: Files or directories specified in the .eslintignore file are ignored, and only the necessary files are collected.</p></li></ul><h4 id="SourceStage-CodeAnalysisandRuleApplication:">Code Analysis and Rule Application:</h4><ul><li><p>Description: For each collected file, ESLint parses the code to generate an Abstract Syntax Tree (AST). It then applies the configured rules to this AST to identify code violations.</p><ul><li><p>Example: The no-unused-vars rule detects unused variables, or the indent rule identifies incorrect indentation.</p></li></ul></li><li><p>Issue Reporting and Fixing:</p><ul><li><p>Description: Based on the analysis results, ESLint outputs a report of identified issues. ESLint marks rule violations as warnings or errors, and some issues can be automatically fixed.</p></li><li><p>Example: Using the --fix option, ESLint can automatically fix certain issues, such as code formatting or removing unnecessary semicolons.</p></li></ul></li></ul><h4 id="SourceStage-ResultOutput:">Result Output:</h4><ul><li><p>Description: Finally, ESLint outputs the analysis results to the console or saves them to a file, depending on the configuration. The output includes the location and detailed description of each issue found in the files.</p><ul><li><p>Example: The stylish format is used to output issues in a readable manner to the console, or the results can be saved as JSON to be used by CI tools.</p></li></ul></li></ul><h4 id="SourceStage-CommitRestriction:">Commit Restriction:</h4><ul><li><p>Description: This process must be successfully completed before a commit can be made. This ensures that the code meets the defined standards locally before being committed.</p><ul><li><p>Note: As this is part of the pre-commit hook stage, the linting process is executed locally to catch issues early in the development workflow.</p></li></ul></li></ul><h3 id="SourceStage-Tool">Tool</h3><h4 id="SourceStage-ESLinthttps://eslint.org/">ESLint<a class="external-link" data-card-appearance="inline" href="https://eslint.org/" rel="nofollow">https://eslint.org/</a> </h4><ul><li><p>Reliability</p><ul><li><p>Weekly Downloads: 36,130,792 (as of 2024-08-20)</p></li><li><p>Package Health Score: [100/100](<a class="external-link" data-card-appearance="inline" href="https://snyk.io/advisor/npm-package/eslint" rel="nofollow">https://snyk.io/advisor/npm-package/eslint</a> ) (as of 2024-08-20) </p></li><li><p>References</p><ul><li><p><a class="external-link" data-card-appearance="inline" href="https://stackoverflow.com/questions/32043227/how-to-integrate-eslint-with-jenkins" rel="nofollow">https://stackoverflow.com/questions/32043227/how-to-integrate-eslint-with-jenkins</a> (Use if ESLint is in Jenkins pipeline.)</p></li><li><p><a class="external-link" data-card-appearance="inline" href="https://dev.to/beatrizrezener/integrate-eslint-with-jenkins-multibranch-pipeline-5ff4" rel="nofollow">https://dev.to/beatrizrezener/integrate-eslint-with-jenkins-multibranch-pipeline-5ff4</a> (Use if ESLint is in Jenkins pipeline.)</p></li><li><p><a class="external-link" data-card-appearance="inline" href="https://www.npmjs.com/package/eslint" rel="nofollow">https://www.npmjs.com/package/eslint</a></p></li><li><p><a class="external-link" data-card-appearance="inline" href="https://www.npmjs.com/package/eslint-plugin-jest?activeTab=readme" rel="nofollow">https://www.npmjs.com/package/eslint-plugin-jest?activeTab=readme</a> - <a class="external-link" href="https://snyk.io/advisor/npm-package/eslint-plugin-jest" rel="nofollow">Package Health Score</a> </p></li><li><p><a class="external-link" data-card-appearance="inline" href="https://eslint.org/docs/latest/use/command-line-interface" rel="nofollow">https://eslint.org/docs/latest/use/command-line-interface</a> </p></li><li><p><a class="external-link" data-card-appearance="inline" href="https://dev.to/yehezkielgunawan/how-to-publish-eslint-rules-as-npm-package-12ce" rel="nofollow">https://dev.to/yehezkielgunawan/how-to-publish-eslint-rules-as-npm-package-12ce</a> </p></li></ul></li><li><p>Other npm with ESLint</p><ul><li><p><a class="external-link" data-card-appearance="inline" href="https://www.npmjs.com/package/globals" rel="nofollow">https://www.npmjs.com/package/globals</a>   - <a class="external-link" href="https://snyk.io/advisor/npm-package/globals" rel="nofollow">Package Health Score</a></p></li><li><p><a class="external-link" data-card-appearance="inline" href="https://www.npmjs.com/package/@eslint/eslintrc" rel="nofollow">https://www.npmjs.com/package/@eslint/eslintrc</a>  - <a class="external-link" href="https://snyk.io/advisor/npm-package/@eslint/eslintrc" rel="nofollow">Package Health Score</a></p></li><li><p><a class="external-link" data-card-appearance="inline" href="https://npmtrends.com/eslint-formatter-checkstyle-vs-eslint-formatter-html-extended-vs-eslint-formatter-json-vs-eslint-formatter-pretty-vs-eslint-plugin-jsdoc" rel="nofollow">https://npmtrends.com/eslint-formatter-checkstyle-vs-eslint-formatter-html-extended-vs-eslint-formatter-json-vs-eslint-formatter-pretty-vs-eslint-plugin-jsdoc</a> </p><ul><li><p><a class="external-link" data-card-appearance="inline" href="https://www.npmjs.com/package/eslint-plugin-jsdoc" rel="nofollow">https://www.npmjs.com/package/eslint-plugin-jsdoc</a>  - <a class="external-link" href="https://snyk.io/advisor/npm-package/eslint-plugin-jsdoc" rel="nofollow">Package Health Score</a></p></li></ul></li></ul></li></ul></li></ul><h5 id="SourceStage-References">References</h5><ul><li><p><a class="external-link" data-card-appearance="inline" href="https://www.imperfectdev.com/static-analysis-vs-linting/" rel="nofollow">https://www.imperfectdev.com/static-analysis-vs-linting/</a> </p></li><li><p><a class="external-link" data-card-appearance="inline" href="https://stefaniemolin.com/articles/devx/pre-commit/setup-guide/" rel="nofollow">https://stefaniemolin.com/articles/devx/pre-commit/setup-guide/</a> </p><ul><li><p><a class="external-link" data-card-appearance="inline" href="https://pypi.org/project/pre-commit/" rel="nofollow">https://pypi.org/project/pre-commit/</a>  - <a class="external-link" href="https://snyk.io/advisor/python/pre-commit" rel="nofollow">Package health score</a></p></li></ul></li><li><p><a class="external-link" data-card-appearance="inline" href="https://medium.com/@jafarimurtaza/add-pre-commit-to-your-next-js-0f178e2d3451" rel="nofollow">https://medium.com/@jafarimurtaza/add-pre-commit-to-your-next-js-0f178e2d3451</a></p><ul><li><p><a class="external-link" data-card-appearance="inline" href="https://www.npmjs.com/package/husky" rel="nofollow">https://www.npmjs.com/package/husky</a>  - <a class="external-link" href="https://snyk.io/advisor/npm-package/husky" rel="nofollow">Package Health Score</a></p></li><li><p><a class="external-link" data-card-appearance="inline" href="https://www.npmjs.com/package/prettier" rel="nofollow">https://www.npmjs.com/package/prettier</a>  - <a class="external-link" href="https://snyk.io/advisor/npm-package/prettier" rel="nofollow">Package Health Score</a></p></li></ul></li></ul><hr />
+                    </div>
+
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on May 27, 2025 13:34</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

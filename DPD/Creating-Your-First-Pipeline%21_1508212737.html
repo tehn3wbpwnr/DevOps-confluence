@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DevOps / Pipeline &amp; Deployment : Creating Your First Pipeline!</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">DevOps / Pipeline &amp; Deployment</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1179353439.html">DevOps / Pipeline &amp; Deployment Home</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Onboarding-Documents_1541537838.html">Onboarding Documents</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Pipelines_1495236695.html">Pipelines</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            DevOps / Pipeline &amp; Deployment : Creating Your First Pipeline!
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                            
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Joshua Moore</span>, last modified by <span class='editor'> Jonathan Bezeau</span> on Apr 14, 2025
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <h2 id="CreatingYourFirstPipeline!-Introduction">Introduction</h2><p>Through this page, we will walk you through creating a pipeline on Jenkins. This will introduce you to some of the advanced settings within a Bitbucket repository, as well as how to navigate the Jenkins settings. For the project you can use one of your onboarding projects from the first 2 weeks, or any Unity repository will work. We will be using a relatively empty JenkinsFile so we don’t need to worry about building or testing. You will need a Jenkins Account, please contact a team member to ensure you have the correct access.</p><p /><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20241210-180458.png" width="760" loading="lazy" src="attachments/1508212737/1512374333.png?width=760" data-image-src="attachments/1508212737/1512374333.png" data-height="916" data-width="2548" data-unresolved-comment-count="0" data-linked-resource-id="1512374333" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20241210-180458.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1508212737" data-linked-resource-container-version="7" data-media-id="075b5750-762d-4970-9ba6-d2e955b02634" data-media-type="file"></span><p>Here we can see what the Jenkins server looks like when accessing it via: <a class="external-link" href="https://jenkins.vconestoga.com/" rel="nofollow">https://jenkins.vconestoga.com/</a> we can see a number of folders, one for each project/repository that we have made pipelines on.</p><h2 id="CreatingYourFirstPipeline!-Activities">Activities</h2><ul class='childpages-macro'><li><a href="Creating-The-Pipeline-On-Jenkins_1740898344.html" data-linked-resource-id="1740898344" data-linked-resource-version="1" data-linked-resource-type="page">Creating The Pipeline On Jenkins</a></li><li><a href="Setting-up-the-Repository-on-Bitbucket_1741488201.html" data-linked-resource-id="1741488201" data-linked-resource-version="1" data-linked-resource-type="page">Setting up the Repository on Bitbucket</a></li><li><a href="Set-Credentials-in-Jenkins_1740996700.html" data-linked-resource-id="1740996700" data-linked-resource-version="1" data-linked-resource-type="page">Set Credentials in Jenkins</a></li></ul>
+                    </div>
+
+                                        <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1508212737/1512374333.png">image-20241210-180458.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1508212737/1511981109.png">1.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1508212737/1511981116.png">image-20241210-182512.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1508212737/1512177724.png">2.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1508212737/1512701978.png">image-20241210-182848.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1508212737/1512701984.png">image-20241210-182856.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1508212737/1515192358.png">image-20241211-193851.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1508212737/1514569772.png">image-20241211-193934.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1508212737/1515159635.png">image-20241211-194007.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1508212737/1518370952.png">image-20241212-203615.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1508212737/1518108842.png">image-20241212-203654.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1508212737/1518141674.png">image-20241212-204908.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1508212737/1518534740.png">image-20241212-205829.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1508212737/1518305395.png">image-20241212-210821.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1508212737/1518076080.png">image-20241212-211305.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1508212737/1517879533.png">image-20241212-211508.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1508212737/1517977742.png">image-20241212-211627.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1508212737/1521319948.png">image-20241214-180543.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1508212737/1521287180.png">image-20241214-180547.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1508212737/1521287187.png">image-20241214-180904.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1508212737/1521385473.png">image-20241214-181607.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1508212737/1521221650.png">image-20241214-181815.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1508212737/1521287198.png">image-20241214-182038.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1508212737/1521221659.png">bitbucket_no_accesss_token.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1508212737/1521319958.png">bitbucket_access_token_scopes.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1508212737/1521287207.png">image-20241214-182556.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1508212737/1521254417.png">image-20241214-182713.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1508212737/1521319967.png">image-20241214-183007.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1508212737/1521319974.png">jenkins_new_credentials.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1508212737/1521287215.png">image-20240325-204756.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1508212737/1521221673.png">bitbucket_repo_permissions.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1508212737/1521254443.png">image-20241214-193732.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on May 27, 2025 13:35</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

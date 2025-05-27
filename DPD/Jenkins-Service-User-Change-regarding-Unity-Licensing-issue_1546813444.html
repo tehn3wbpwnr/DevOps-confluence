@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DevOps / Pipeline &amp; Deployment : Jenkins Service User Change regarding Unity Licensing issue</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">DevOps / Pipeline &amp; Deployment</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1179353439.html">DevOps / Pipeline &amp; Deployment Home</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Linux-Jenkins-Documents_1542455384.html">Linux Jenkins Documents</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Set-Up-on-Jenkins_1545011216.html">Set Up on Jenkins</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            DevOps / Pipeline &amp; Deployment : Jenkins Service User Change regarding Unity Licensing issue
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                            
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Jindo Kim</span>, last modified on Jan 08, 2025
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <h1 id="JenkinsServiceUserChangeregardingUnityLicensingissue-Issue">Issue</h1><ul><li><p>The error message from the Batchmode Build log appeared right after the initial installation and user configuration of Jenkins on headless Ubuntu. It seems Unity License Issue.</p></li></ul><div class="confluence-information-macro confluence-information-macro-warning"><span class="aui-icon aui-icon-small aui-iconfont-error confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>[Licensing::IpcConnector] Connection attempt to the License Client on channel: &quot;LicenseClient-jenkins&quot; failed because channel doesn't exist; code: &quot;0x80000002&quot;</p></div></div><div id="expander-1784416585" class="expand-container"><div id="expander-control-1784416585" class="expand-control"><span class="expand-control-icon"><img style="vertical-align:middle;" class="expand-control-image" src="images/icons/grey_arrow_down.png"></span><span class="expand-control-text">Interpretation of the Error Message</span></div><div id="expander-content-1784416585" class="expand-content"><ul><li><p><strong>Licensing::IpcConnector</strong></p><ul><li><p>Refers to Unity's inter-process communication mechanism for licensing. Unity attempts to communicate with the License Client.</p></li></ul></li><li><p><strong>LicenseClient-jenkins</strong></p><ul><li><p>Indicates that Unity is trying to connect to a licensing client named LicenseClient-jenkins. This naming is likely associated with the user (jenkins) under which Unity is running.</p></li></ul></li><li><p><strong>Channel doesn't exist</strong></p><ul><li><p>This suggests that Unity cannot locate the expected IPC channel. It implies that the licensing client for the <code>jenkins</code> user is either not running, not properly set up, or inaccessible in the current environment.</p></li></ul></li><li><p><strong>Code: &quot;0x80000002&quot;</strong></p><ul><li><p>This error code generally corresponds to &quot;file not found&quot; or &quot;resource unavailable,&quot; reinforcing the issue that the IPC channel Unity is trying to access does not exist.</p></li></ul></li></ul></div></div><style type='text/css'>/*<![CDATA[*/
+div.rbtoc1748352802150 {padding: 0px;}
+div.rbtoc1748352802150 ul {list-style: default;margin-left: 0px;}
+div.rbtoc1748352802150 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style><div class='toc-macro rbtoc1748352802150'>
+<ul class='toc-indentation'>
+<li><a href='#JenkinsServiceUserChangeregardingUnityLicensingissue-Summary'>Summary</a>
+<ul class='toc-indentation'>
+<li><a href='#JenkinsServiceUserChangeregardingUnityLicensingissue-ThecurrentstateintheWindowsenvironment'>The current state in the Windows environment</a></li>
+<li><a href='#JenkinsServiceUserChangeregardingUnityLicensingissue-Solution/Instruction'>Solution / Instruction</a>
+<ul class='toc-indentation'>
+<li><a href='#JenkinsServiceUserChangeregardingUnityLicensingissue-Clue/Hint'>Clue/Hint</a></li>
+<li><a href='#JenkinsServiceUserChangeregardingUnityLicensingissue-1.LocatetheJenkinsServiceFile'>1. Locate the Jenkins Service File</a></li>
+<li><a href='#JenkinsServiceUserChangeregardingUnityLicensingissue-2.ModifytheJenkinsServicetoUseaDifferentUser'>2. Modify the Jenkins Service to Use a Different User</a></li>
+<li><a href='#JenkinsServiceUserChangeregardingUnityLicensingissue-3.AdjustFileandDirectoryPermissions'>3. Adjust File and Directory Permissions</a></li>
+<li><a href='#JenkinsServiceUserChangeregardingUnityLicensingissue-4.ReloadtheSystemdDaemonandRestarttheJenkinsService'>4. Reload the Systemd Daemon and Restart the Jenkins Service</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div><h2 id="JenkinsServiceUserChangeregardingUnityLicensingissue-Summary">Summary</h2><ul><li><p>The Ubuntu User ID, where Unity Hub and Unity Editor are installed and licensed, differs from the default User ID set during the Jenkins initial installation, which Jenkins uses to automatically run scripts and interact with the operating system. Therefore, it needs to be changed to the User ID that holds the Unity License.</p></li></ul><p /><h3 id="JenkinsServiceUserChangeregardingUnityLicensingissue-ThecurrentstateintheWindowsenvironment"><strong>The current state in the Windows environment</strong></h3><ul><li><p><strong>The Batchmode Build log</strong></p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20250108-154248.png" width="712" loading="lazy" src="attachments/1546813444/1547206660.png?width=712" data-image-src="attachments/1546813444/1547206660.png" data-height="102" data-width="843" data-unresolved-comment-count="0" data-linked-resource-id="1547206660" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20250108-154248.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1546813444" data-linked-resource-container-version="4" data-media-id="b6509ab8-a5a3-496d-925c-b4fca4325ba6" data-media-type="file"></span><p /></li><li><p><strong>The User Setting of Jenkins</strong></p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20250108-154444.png" width="426" loading="lazy" src="attachments/1546813444/1547206668.png?width=426" data-image-src="attachments/1546813444/1547206668.png" data-height="193" data-width="426" data-unresolved-comment-count="0" data-linked-resource-id="1547206668" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20250108-154444.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1546813444" data-linked-resource-container-version="4" data-media-id="76afc712-9c3c-45c0-b834-915378ee6544" data-media-type="file"></span></li></ul><p /><h3 id="JenkinsServiceUserChangeregardingUnityLicensingissue-Solution/Instruction"><strong>Solution / Instruction</strong></h3><h4 id="JenkinsServiceUserChangeregardingUnityLicensingissue-Clue/Hint">Clue/Hint</h4><p>In the previous step<a href="Running-Edit-and-Play-Modes-on-Headless-Linux_1506443342.html" data-linked-resource-id="1506443342" data-linked-resource-version="5" data-linked-resource-type="page">Running Edit and Play Modes, and WebGL Builds on Headless Linux</a> , when we tested the availability of Edit/Play Mode Tests, the Ubuntu User ID used to perform the tests was confirmed to have no issues with the Unity license. <strong>The User ID associated with Unity License Client is ‘jenkins-ubuntu-dev-test’.</strong></p><span class="confluence-embedded-file-wrapper image-left-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-left" alt="image-20250108-160355.png" width="569" loading="lazy" src="attachments/1546813444/1546911752.png?width=569" data-image-src="attachments/1546813444/1546911752.png" data-height="345" data-width="569" data-unresolved-comment-count="0" data-linked-resource-id="1546911752" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20250108-160355.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1546813444" data-linked-resource-container-version="4" data-media-id="e84e0460-ca10-4586-8003-285d56f23ab3" data-media-type="file"></span><p /><h4 id="JenkinsServiceUserChangeregardingUnityLicensingissue-1.LocatetheJenkinsServiceFile">1. Locate the Jenkins Service File</h4><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">cat /lib/systemd/system/jenkins.service</pre>
+</div></div><h4 id="JenkinsServiceUserChangeregardingUnityLicensingissue-2.ModifytheJenkinsServicetoUseaDifferentUser">2. Modify the Jenkins Service to Use a Different User</h4><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">sudo nano /lib/systemd/system/jenkins.service</pre>
+</div></div><span class="confluence-embedded-file-wrapper image-left-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-left" alt="image-20250108-160543.png" width="553" loading="lazy" src="attachments/1546813444/1546649603.png?width=553" data-image-src="attachments/1546813444/1546649603.png" data-height="118" data-width="553" data-unresolved-comment-count="0" data-linked-resource-id="1546649603" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20250108-160543.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1546813444" data-linked-resource-container-version="4" data-media-id="eaeb0bdf-cc39-4e9e-96f7-b5c9dc7c6b3b" data-media-type="file"></span><h4 id="JenkinsServiceUserChangeregardingUnityLicensingissue-3.AdjustFileandDirectoryPermissions">3. Adjust File and Directory Permissions</h4><ul><li><p>Ensure that the specified user has the necessary permissions to access Jenkins-related files, directories, and ports.</p></li></ul><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">sudo chown -R jenkins-ubuntu-dev-test:jenkins-ubuntu-dev-test /var/lib/jenkins
+sudo chown -R jenkins-ubuntu-dev-test:jenkins-ubuntu-dev-test /var/log/jenkins
+sudo chown -R jenkins-ubuntu-dev-test:jenkins-ubuntu-dev-test /var/cache/jenkins</pre>
+</div></div><h4 id="JenkinsServiceUserChangeregardingUnityLicensingissue-4.ReloadtheSystemdDaemonandRestarttheJenkinsService">4. Reload the Systemd Daemon and Restart the Jenkins Service</h4><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">sudo systemctl daemon-reload
+sudo systemctl restart jenkins</pre>
+</div></div><p /><p />
+                    </div>
+
+                                        <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1546813444/1547206660.png">image-20250108-154248.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1546813444/1547206668.png">image-20250108-154444.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1546813444/1546715145.png">image-20250108-160333.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1546813444/1546911752.png">image-20250108-160355.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1546813444/1546649603.png">image-20250108-160543.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on May 27, 2025 13:33</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

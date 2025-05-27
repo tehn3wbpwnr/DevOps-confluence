@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DevOps / Pipeline &amp; Deployment : Node.js Applications: Process Flow-Based Documentation for CI,CD, and Continuous Deployment Pipelines</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">DevOps / Pipeline &amp; Deployment</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1179353439.html">DevOps / Pipeline &amp; Deployment Home</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Windows-Jenkins-Documents_1542389772.html">Windows Jenkins Documents</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1567129601.html">CI/CD Pipeline Architecture Design</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            DevOps / Pipeline &amp; Deployment : Node.js Applications: Process Flow-Based Documentation for CI,CD, and Continuous Deployment Pipelines
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                            
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Jindo Kim</span>, last modified on Sept 26, 2024
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <style type="text/css">/*<![CDATA[*/
+div.rbtoc1748352890217 {padding: 0px;}
+div.rbtoc1748352890217 ul {list-style: disc;margin-left: 0px;}
+div.rbtoc1748352890217 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style><div class="toc-macro rbtoc1748352890217"><style>[data-colorid=mhdz6tfi6o]{color:#ff5630} html[data-color-mode=dark] [data-colorid=mhdz6tfi6o]{color:#cf2600}</style>
+<ul class="toc-indentation">
+<li><a href="#Node.jsApplications:ProcessFlow-BasedDocumentationforCI,CD,andContinuousDeploymentPipelines-DocumentFocus">Document Focus</a></li>
+<li><a href="#Node.jsApplications:ProcessFlow-BasedDocumentationforCI,CD,andContinuousDeploymentPipelines-PackageReliability">Package Reliability</a></li>
+<li><a href="#Node.jsApplications:ProcessFlow-BasedDocumentationforCI,CD,andContinuousDeploymentPipelines-CI/CDPipelineServicesBlueprint">CI/CD Pipeline Services Blueprint</a></li>
+<li><a href="#Node.jsApplications:ProcessFlow-BasedDocumentationforCI,CD,andContinuousDeploymentPipelines-PipelineDesign/ArchitectureforNode.jsApplication(Project)">Pipeline Design/Architecture for Node.js Application(Project)</a>
+<ul class="toc-indentation">
+<li><a href="#Node.jsApplications:ProcessFlow-BasedDocumentationforCI,CD,andContinuousDeploymentPipelines-Goal">Goal</a></li>
+<li><a href="#Node.jsApplications:ProcessFlow-BasedDocumentationforCI,CD,andContinuousDeploymentPipelines-TargetProjects">Target Projects</a></li>
+<li><a href="#Node.jsApplications:ProcessFlow-BasedDocumentationforCI,CD,andContinuousDeploymentPipelines-Expectedoutcomes">Expected outcomes</a></li>
+<li><a href="#Node.jsApplications:ProcessFlow-BasedDocumentationforCI,CD,andContinuousDeploymentPipelines-ReferencesforgeneralunderstandingofNode.jsCI/CDpipeline">References for general understanding of Node.js CI/CD pipeline</a></li>
+<li><a href="#Node.jsApplications:ProcessFlow-BasedDocumentationforCI,CD,andContinuousDeploymentPipelines-Node.jsCI/CDpipelineGlobalTools">Node.js CI/CD pipeline Global Tools</a></li>
+</ul>
+</li>
+<li><a href="#Node.jsApplications:ProcessFlow-BasedDocumentationforCI,CD,andContinuousDeploymentPipelines-CI/CDPipelineStructure">CI/CD Pipeline Structure</a>
+<ul class="toc-indentation">
+<li><a href="#Node.jsApplications:ProcessFlow-BasedDocumentationforCI,CD,andContinuousDeploymentPipelines-Goal.1">Goal</a></li>
+<li><a href="#Node.jsApplications:ProcessFlow-BasedDocumentationforCI,CD,andContinuousDeploymentPipelines-Purpose">Purpose</a></li>
+<li><a href="#Node.jsApplications:ProcessFlow-BasedDocumentationforCI,CD,andContinuousDeploymentPipelines-Responsibilities">Responsibilities</a></li>
+<li><a href="#Node.jsApplications:ProcessFlow-BasedDocumentationforCI,CD,andContinuousDeploymentPipelines-Stages">Stages</a>
+<ul class="toc-indentation">
+<li><a href="#Node.jsApplications:ProcessFlow-BasedDocumentationforCI,CD,andContinuousDeploymentPipelines-Source(Canbe'Pre-commithooksStage'-ThisisnotpartofJenkinsCI/CDpipeline)">Source (Can be 'Pre-commit hooks Stage' - This is not part of Jenkins CI/CD pipeline)</a></li>
+<li><a href="#Node.jsApplications:ProcessFlow-BasedDocumentationforCI,CD,andContinuousDeploymentPipelines-Build">Build</a></li>
+<li><a href="#Node.jsApplications:ProcessFlow-BasedDocumentationforCI,CD,andContinuousDeploymentPipelines-Deploytotest">Deploy to test</a></li>
+<li><a href="#Node.jsApplications:ProcessFlow-BasedDocumentationforCI,CD,andContinuousDeploymentPipelines-DeploytoProduction-ConditionsNeededtoImplement">Deploy to Production - Conditions Needed to Implement</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#Node.jsApplications:ProcessFlow-BasedDocumentationforCI,CD,andContinuousDeploymentPipelines-OtherConsiderationandReferences">Other Consideration and References</a></li>
+<li><a href="#Node.jsApplications:ProcessFlow-BasedDocumentationforCI,CD,andContinuousDeploymentPipelines-AdditionalDiscussionTopic">Additional Discussion Topic</a></li>
+</ul>
+</div><h1 id="Node.jsApplications:ProcessFlow-BasedDocumentationforCI,CD,andContinuousDeploymentPipelines-DocumentFocus">Document Focus</h1><ul><li><p>This document contains information about the CI/CD pipeline but is practically written with a focus on the actual steps from development to operation. It outlines which packages or software are used, what the targets are, and the resulting outcomes, all based on the process flow.</p></li></ul><h1 id="Node.jsApplications:ProcessFlow-BasedDocumentationforCI,CD,andContinuousDeploymentPipelines-PackageReliability">Package Reliability</h1><ul><li><p>In this document, all linked packages (e.g., npm) include information on their usage statistics and Health Scores. These links indicate that a package is widely used, suggesting it has an active community and sustainability. The Package Health Score reflects this by quantifying such aspects.</p></li></ul><h1 id="Node.jsApplications:ProcessFlow-BasedDocumentationforCI,CD,andContinuousDeploymentPipelines-CI/CDPipelineServicesBlueprint">CI/CD Pipeline Services Blueprint</h1><div class="ap-container" id="ap-com.realtimeboard.plugins.confluence-server-plugin__miro-macro-resizing2545996656266236226">
+
+  <div class="ap-content " id="embedded-com.realtimeboard.plugins.confluence-server-plugin__miro-macro-resizing2545996656266236226" />
+  <script nonce="88fd87822338648bb69122381bed6d99" class="ap-iframe-body-script">//<![CDATA[
+
+  (function(){
+    var data = {
+    "addon_key":"com.realtimeboard.plugins.confluence-server-plugin",
+    "uniqueKey":"com.realtimeboard.plugins.confluence-server-plugin__miro-macro-resizing2545996656266236226",
+    "key":"miro-macro-resizing",
+     "moduleType":"dynamicContentMacros",      "moduleLocation":"content",         "cp":"/wiki",
+            "general":"",
+    "w":"",
+    "h":"",
+    "url":"https://miro.com/embed/confluence-cloud-app/viewer?hash=&accessLink=https%3A%2F%2Fmiro.com%2Fapp%2Flive-embed%2FuXjVKjP3lDI%3D%2F%3FboardAccessToken%3DwLaG7uJIyKQJLGkcQKL5YE85ZnJ28CME%26autoplay%3Dtrue%26embedMode%3Dview_only_without_ui%26moveToWidget%3D3458764599052903665&pageId=1313800220&type=html_export&resize=true&xdm_e=https%3A%2F%2Fvarlab-dev.atlassian.net&xdm_c=channel-com.realtimeboard.plugins.confluence-server-plugin__miro-macro-resizing2545996656266236226&cp=%2Fwiki&xdm_deprecated_addon_key_do_not_use=com.realtimeboard.plugins.confluence-server-plugin&lic=none&cv=1000.0.0-c1c731773e6f&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI3MTIwMjA6OGE2ZDQ5ODAtMWI3YS00ODkwLTk1MGMtZjVkOGI4NjAyY2NlIiwicXNoIjoiNGY3ZTMxYmFlMzMyODA5ZmNiZTgwZTBhZGMyMDM3ZmYyNjk2M2ZkN2I1Y2E1NmVmMDQ5MmM2NWM0MmM5YjM0MyIsImlzcyI6IjBjNzRjMWFmLTY0YTYtMzY2Zi05NGIwLTMzMzZkOWNhOTU4OCIsImNvbnRleHQiOnt9LCJleHAiOjE3NDgzNTMwNzAsImlhdCI6MTc0ODM1Mjg5MH0.-iQDQitJF_MPR9xtMJKP0eN3yjV44CmJO8srkSEW2tw",
+     "contextJwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI3MTIwMjA6OGE2ZDQ5ODAtMWI3YS00ODkwLTk1MGMtZjVkOGI4NjAyY2NlIiwicXNoIjoiY29udGV4dC1xc2giLCJpc3MiOiIwYzc0YzFhZi02NGE2LTM2NmYtOTRiMC0zMzM2ZDljYTk1ODgiLCJjb250ZXh0Ijp7InVybCI6eyJkaXNwbGF5VXJsIjoiaHR0cHM6XC9cL3ZhcmxhYi1kZXYuYXRsYXNzaWFuLm5ldFwvd2lraSJ9LCJjb25mbHVlbmNlIjp7ImVkaXRvciI6eyJ2ZXJzaW9uIjoidjIifSwibWFjcm8iOnsib3V0cHV0VHlwZSI6Imh0bWxfZXhwb3J0IiwiaGFzaCI6IjQ5YzgyMGQxLWEyZWItNDI0MS04Yjc3LTYyNDI5MDRjMGU4NiIsImlkIjoiNDljODIwZDEtYTJlYi00MjQxLThiNzctNjI0MjkwNGMwZTg2In0sImNvbnRlbnQiOnsidHlwZSI6InBhZ2UiLCJ2ZXJzaW9uIjoiMjMiLCJpZCI6IjEzMTM4MDAyMjAifSwic3BhY2UiOnsia2V5IjoiRFBEIiwiaWQiOiIxMTc5MzUzMTI4In19fSwiZXhwIjoxNzQ4MzUzNzkwLCJpYXQiOjE3NDgzNTI4OTB9.ja4a5DS5aQQAfJ9wsFiZcVT0GBumXSynbONxxM6DHMY",    "structuredContext": "{\"confluence\":{\"editor\":{\"version\":\"v2\"},\"macro\":{\"outputType\":\"html_export\",\"hash\":\"49c820d1-a2eb-4241-8b77-6242904c0e86\",\"id\":\"49c820d1-a2eb-4241-8b77-6242904c0e86\"},\"content\":{\"type\":\"page\",\"version\":\"23\",\"id\":\"1313800220\"},\"space\":{\"key\":\"DPD\",\"id\":\"1179353128\"}},\"url\":{\"displayUrl\":\"https://varlab-dev.atlassian.net/wiki\"}}",
+    "contentClassifier":"content",
+    "productCtx":"{\"page.id\":\"1313800220\",\"macro.hash\":\"49c820d1-a2eb-4241-8b77-6242904c0e86\",\"space.key\":\"DPD\",\"page.type\":\"page\",\"content.version\":\"23\",\"page.title\":\"Node.js Applications: Process Flow-Based Documentation for CI,CD, and Continuous Deployment Pipelines\",\"macro.localId\":\"49367020-78c3-4326-954c-0a8fdd9eb242\",\"macro.body\":\"\",\": = | RAW | = :\":\"accessLink=https://miro.com/app/live-embed/uXjVKjP3lDI=/?boardAccessToken=wLaG7uJIyKQJLGkcQKL5YE85ZnJ28CME&autoplay=true&embedMode=view_only_without_ui&moveToWidget=3458764599052903665\",\"space.id\":\"1179353128\",\"macro.truncated\":\"false\",\"content.type\":\"page\",\"output.type\":\"html_export\",\"page.version\":\"23\",\"macro.fragmentLocalId\":\"\",\"accessLink\":\"https://miro.com/app/live-embed/uXjVKjP3lDI=/?boardAccessToken=wLaG7uJIyKQJLGkcQKL5YE85ZnJ28CME&autoplay=true&embedMode=view_only_without_ui&moveToWidget=3458764599052903665\",\"content.id\":\"1313800220\",\"macro.id\":\"49c820d1-a2eb-4241-8b77-6242904c0e86\",\"user.isExternalCollaborator\":\"false\",\"editor.version\":\"v2\"}",
+    "timeZone":"UTC",
+    "origin":"https://miro.com",
+    "hostOrigin":"https://varlab-dev.atlassian.net",
+    "sandbox":"allow-downloads allow-forms allow-modals allow-popups allow-popups-to-escape-sandbox allow-scripts allow-same-origin allow-top-navigation-by-user-activation allow-storage-access-by-user-activation",            "apiMigrations": {
+        "gdpr": true
+    }
+}
+;
+    if(window.AP && window.AP.subCreate) {
+      window._AP.appendConnectAddon(data);
+    } else {
+      require(['ac/create'], function(create){
+        create.appendConnectAddon(data);
+      });
+    }
+
+    // For Confluence App Analytics. This code works in conjunction with CFE's ConnectSupport.js.
+    // Here, we add a listener to the initial HTML page that stores events if the ConnectSupport component
+    // has not mounted yet. In CFE, we process the missed event data and disable this initial listener.
+    const __MAX_EVENT_ARRAY_SIZE__ = 20;
+    const connectAppAnalytics = "ecosystem.confluence.connect.analytics";
+    window.connectHost && window.connectHost.onIframeEstablished((eventData) => {
+      if (!window.__CONFLUENCE_CONNECT_SUPPORT_LOADED__) {
+        let events = JSON.parse(window.localStorage.getItem(connectAppAnalytics)) || [];
+        if (events.length >= __MAX_EVENT_ARRAY_SIZE__) {
+          events.shift();
+        }
+        events.push(eventData);
+        window.localStorage.setItem(connectAppAnalytics, JSON.stringify(events));
+      }
+    });
+
+  }());
+
+//]]>
+</script>
+
+</div>
+<h1 id="Node.jsApplications:ProcessFlow-BasedDocumentationforCI,CD,andContinuousDeploymentPipelines-PipelineDesign/ArchitectureforNode.jsApplication(Project)">Pipeline Design/Architecture for Node.js Application(Project)</h1><h2 id="Node.jsApplications:ProcessFlow-BasedDocumentationforCI,CD,andContinuousDeploymentPipelines-Goal">Goal</h2><ul><li><p>continuously integrating and releasing to production with zero downtime</p></li></ul><h2 id="Node.jsApplications:ProcessFlow-BasedDocumentationforCI,CD,andContinuousDeploymentPipelines-TargetProjects">Target Projects</h2><ul><li><p>Asset-Store [VARLab / <a class="external-link" data-card-appearance="inline" href="https://bitbucket.org/VARLab/varlab-asset-store/src/master/" rel="nofollow">https://bitbucket.org/VARLab/varlab-asset-store/src/master/</a>  &mdash; Bitbucket])</p></li><li><p>Asset-Search(metasearch) [VARLab / <a class="external-link" data-card-appearance="inline" href="https://bitbucket.org/VARLab/metasearch/src/main/" rel="nofollow">https://bitbucket.org/VARLab/metasearch/src/main/</a>  &mdash; Bitbucket]</p></li><li><p>DLX-webhosting [VARLab / <a class="external-link" data-card-appearance="inline" href="https://bitbucket.org/VARLab/devopsdlxserver/src/main/" rel="nofollow">https://bitbucket.org/VARLab/devopsdlxserver/src/main/</a>  &mdash; Bitbucket]</p><ul><li><p><a class="external-link" data-card-appearance="inline" href="https://bodyswaps.co/" rel="nofollow">https://bodyswaps.co/</a></p></li><li><p>Climate Change - Xpan</p></li></ul></li><li><p>vConestoga [VARLab / <a class="external-link" data-card-appearance="inline" href="https://bitbucket.org/VARLab/vconestoga/src/master/" rel="nofollow">https://bitbucket.org/VARLab/vconestoga/src/master/</a>  &mdash; Bitbucket]</p></li><li><p>React Multiplayer Game [VARLab / <a class="external-link" data-card-appearance="inline" href="https://bitbucket.org/VARLab/reactmultiplayergame/src/main/" rel="nofollow">https://bitbucket.org/VARLab/reactmultiplayergame/src/main/</a>  &mdash; Bitbucket]</p></li></ul><h2 id="Node.jsApplications:ProcessFlow-BasedDocumentationforCI,CD,andContinuousDeploymentPipelines-Expectedoutcomes">Expected outcomes</h2><ul><li><p>Minimizing Support Costs</p></li><li><p>Enhancing Customer Satisfaction</p></li><li><p>Improving Product Quality</p></li><li><p>Minimizing Development Time</p></li><li><p>Discovering New Opportunities</p></li><li><p>Enhancing Customer Loyalty</p></li><li><p>Customer Data Security</p></li><li><p>Increasing Employee Productivity</p></li><li><p>Enhancing Organizational Reputation</p></li><li><p>Higher ROI (Return on Investment)</p></li></ul><h2 id="Node.jsApplications:ProcessFlow-BasedDocumentationforCI,CD,andContinuousDeploymentPipelines-ReferencesforgeneralunderstandingofNode.jsCI/CDpipeline">References for general understanding of Node.js CI/CD pipeline</h2><ul><li><p>Good to be aware: <a class="external-link" data-card-appearance="inline" href="https://www.theregister.com/2017/02/24/cloudbleed_buffer_overflow_bug_spaffs_personal_data/" rel="nofollow">https://www.theregister.com/2017/02/24/cloudbleed_buffer_overflow_bug_spaffs_personal_data/</a> - many cases from one single code or condition statement.</p><ul><li><p>a single character &ndash; '&gt;' rather than '=' &ndash; in Cloudflare's software source code sparked the security blunder.</p></li></ul></li><li><p><a class="external-link" data-card-appearance="inline" href="https://www.scriptworks.io/blog/testing-pyramid/" rel="nofollow">https://www.scriptworks.io/blog/testing-pyramid/</a> </p></li><li><p><a class="external-link" data-card-appearance="inline" href="https://www.atlassian.com/devops" rel="nofollow">https://www.atlassian.com/devops</a> </p></li><li><p><a class="external-link" data-card-appearance="inline" href="https://www.scriptworks.io/blog/ci-cd-pipeline/" rel="nofollow">https://www.scriptworks.io/blog/ci-cd-pipeline/</a> </p></li><li><p><a class="external-link" data-card-appearance="inline" href="https://www.testim.io/blog/unit-test-vs-integration-test/" rel="nofollow">https://www.testim.io/blog/unit-test-vs-integration-test/</a> </p></li><li><p><a class="external-link" data-card-appearance="inline" href="https://www.jenkins.io/doc/tutorials/build-a-node-js-and-react-app-with-npm/#build-a-node-js-and-react-app-with-npm" rel="nofollow">https://www.jenkins.io/doc/tutorials/build-a-node-js-and-react-app-with-npm/#build-a-node-js-and-react-app-with-npm</a> </p></li><li><p><a class="external-link" data-card-appearance="inline" href="https://testrig.medium.com/building-a-jenkins-pipeline-for-your-node-js-application-a-step-by-step-guide-281c20bfe8d7" rel="nofollow">https://testrig.medium.com/building-a-jenkins-pipeline-for-your-node-js-application-a-step-by-step-guide-281c20bfe8d7</a> </p></li><li><p><a class="external-link" data-card-appearance="inline" href="https://medium.com/swissquote-engineering/benchmarking-profiling-and-optimizing-javascript-libraries-56b7ca48bbcd" rel="nofollow">https://medium.com/swissquote-engineering/benchmarking-profiling-and-optimizing-javascript-libraries-56b7ca48bbcd</a> </p><ul><li><p>Node.js has a built-in sampling profiler, which can be invoked with the --prof flag.</p></li></ul></li><li><p><a class="external-link" data-card-appearance="inline" href="https://www.youtube.com/watch?v=KnSBNd3b0qI" rel="nofollow">https://www.youtube.com/watch?v=KnSBNd3b0qI</a> (09:58)</p></li><li><p><a class="external-link" href="https://app.eraser.io/workspace/UHFVA30wF6pdEb2sgrWa" rel="nofollow">How to design a modern CI/CD pipeline - Diagram</a></p></li><li><p><a class="external-link" data-card-appearance="inline" href="https://www.youtube.com/watch?v=pJ9f7w4AxtU" rel="nofollow">https://www.youtube.com/watch?v=pJ9f7w4AxtU</a>(11:00)</p></li><li><p><a class="external-link" href="https://app.eraser.io/workspace/d0mh9JjnYl2TWetXPsXV" rel="nofollow">How to design a GitOps/Deployment Pipeline - Diagram</a></p></li><li><p><a class="external-link" data-card-appearance="inline" href="https://medium.com/@vishwasacharya/node-js-testing-best-practices-and-frameworks-for-reliable-apps-656f1cc51426" rel="nofollow">https://medium.com/@vishwasacharya/node-js-testing-best-practices-and-frameworks-for-reliable-apps-656f1cc51426</a> </p></li><li><p><a class="external-link" data-card-appearance="inline" href="https://npmtrends.com/ava-vs-jasmine-vs-jest-vs-mocha-vs-qunit" rel="nofollow">https://npmtrends.com/ava-vs-jasmine-vs-jest-vs-mocha-vs-qunit</a> </p></li><li><p><a class="external-link" data-card-appearance="inline" href="https://jestjs.io/docs/architecture" rel="nofollow">https://jestjs.io/docs/architecture</a> </p><ul><li><p>It contains two YouTube videos</p><ul><li><p><a class="external-link" data-card-appearance="inline" href="https://www.youtube.com/watch?v=3YDiloj8_d0" rel="nofollow">https://www.youtube.com/watch?v=3YDiloj8_d0</a>(51:01)</p></li><li><p><a class="external-link" data-card-appearance="inline" href="https://www.youtube.com/watch?v=B8FbUK0WpVU&amp;t=1s" rel="nofollow">https://www.youtube.com/watch?v=B8FbUK0WpVU&amp;t=1s</a>(1:21:15)</p></li></ul></li></ul></li></ul><h2 id="Node.jsApplications:ProcessFlow-BasedDocumentationforCI,CD,andContinuousDeploymentPipelines-Node.jsCI/CDpipelineGlobalTools">Node.js CI/CD pipeline Global Tools</h2><ul><li><p><a class="external-link" data-card-appearance="inline" href="https://plugins.jenkins.io/nodejs/" rel="nofollow">https://plugins.jenkins.io/nodejs/</a> </p></li></ul><hr /><hr /><h1 id="Node.jsApplications:ProcessFlow-BasedDocumentationforCI,CD,andContinuousDeploymentPipelines-CI/CDPipelineStructure">CI/CD Pipeline Structure</h1><h2 id="Node.jsApplications:ProcessFlow-BasedDocumentationforCI,CD,andContinuousDeploymentPipelines-Goal.1">Goal</h2><ul><li><p>Automatically deploy code changes to production, quickly delivering new features and improvements to users.</p></li></ul><h2 id="Node.jsApplications:ProcessFlow-BasedDocumentationforCI,CD,andContinuousDeploymentPipelines-Purpose">Purpose</h2><ul><li><p>Accelerate customer feedback loop and minimize release cycles, allowing developers to focus on coding and immediate delivery of work to users.</p></li></ul><h2 id="Node.jsApplications:ProcessFlow-BasedDocumentationforCI,CD,andContinuousDeploymentPipelines-Responsibilities">Responsibilities</h2><ul><li><p>Automatic deployment after code commit.</p></li><li><p>Execution of automated tests.</p></li><li><p>Fast feedback loop.</p></li></ul><hr /><hr /><h2 id="Node.jsApplications:ProcessFlow-BasedDocumentationforCI,CD,andContinuousDeploymentPipelines-Stages">Stages</h2><h3 id="Node.jsApplications:ProcessFlow-BasedDocumentationforCI,CD,andContinuousDeploymentPipelines-Source(Canbe'Pre-commithooksStage'-ThisisnotpartofJenkinsCI/CDpipeline)">Source (Can be 'Pre-commit hooks Stage' - This is not part of Jenkins CI/CD pipeline)</h3><ul><li><p>To see the details, please click this link: <a data-card-appearance="inline" href="https://varlab-dev.atlassian.net/wiki/x/FgBDUQ" rel="nofollow">https://varlab-dev.atlassian.net/wiki/x/FgBDUQ</a> </p></li></ul><hr /><hr /><h3 id="Node.jsApplications:ProcessFlow-BasedDocumentationforCI,CD,andContinuousDeploymentPipelines-Build">Build</h3><ul><li><p>To see the details, please click this link: <a data-card-appearance="inline" href="https://varlab-dev.atlassian.net/wiki/x/K4A-UQ" rel="nofollow">https://varlab-dev.atlassian.net/wiki/x/K4A-UQ</a> </p></li></ul><hr /><hr /><h3 id="Node.jsApplications:ProcessFlow-BasedDocumentationforCI,CD,andContinuousDeploymentPipelines-Deploytotest">Deploy to test</h3><ul><li><p>To see the details, please click this link: <a data-card-appearance="inline" href="https://varlab-dev.atlassian.net/wiki/x/IABDUQ" rel="nofollow">https://varlab-dev.atlassian.net/wiki/x/IABDUQ</a> </p></li></ul><hr /><hr /><h3 id="Node.jsApplications:ProcessFlow-BasedDocumentationforCI,CD,andContinuousDeploymentPipelines-DeploytoProduction-ConditionsNeededtoImplement">Deploy to Production - <em><span data-colorid="mhdz6tfi6o"><u>Conditions Needed to Implement</u></span></em></h3><ul><li><p>To see the details, please click this link: <a data-card-appearance="inline" href="https://varlab-dev.atlassian.net/wiki/x/NwA9UQ" rel="nofollow">https://varlab-dev.atlassian.net/wiki/x/NwA9UQ</a> </p></li></ul><h1 id="Node.jsApplications:ProcessFlow-BasedDocumentationforCI,CD,andContinuousDeploymentPipelines-OtherConsiderationandReferences">Other Consideration and References</h1><ul><li><p>Property-based Testing</p><ul><li><p>Definition</p><ul><li><p>Property-based Testing is different from Example-based Testing, which is typically used in Unit and Integration Testing. In Example-based Testing, you assume specific inputs and expected outcomes for each case. In contrast, Property-based Testing defines what types of inputs are allowed and the expected properties or invariants that the code should always satisfy. **The testing framework then automatically generates all possible inputs to verify those properties across a wide range of scenarios.</p></li></ul></li><li><p><a class="external-link" data-card-appearance="inline" href="https://www.mayhem.security/blog/what-is-property-based-testing" rel="nofollow">https://www.mayhem.security/blog/what-is-property-based-testing</a> </p></li><li><p><a class="external-link" data-card-appearance="inline" href="https://www.webdevlog.com/p/properety-based-testing-in-javascript/" rel="nofollow">https://www.webdevlog.com/p/properety-based-testing-in-javascript/</a> </p></li><li><p>Property-based Testing Package(npm)</p><ul><li><p><a class="external-link" data-card-appearance="inline" href="https://fast-check.dev/" rel="nofollow">https://fast-check.dev/</a></p></li><li><p><a class="external-link" data-card-appearance="inline" href="https://www.npmjs.com/package/fast-check" rel="nofollow">https://www.npmjs.com/package/fast-check</a>  - <a class="external-link" href="https://snyk.io/advisor/npm-package/fast-check" rel="nofollow">Package Health Score</a></p></li><li><p>The Trend from Aug 2023 to Aug 2024</p></li><li><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="Pasted image 20240826105029-20240826-145029.png" width="610" loading="lazy" src="attachments/1313800220/1315373118.png?width=610" data-image-src="attachments/1313800220/1315373118.png" data-height="306" data-width="610" data-unresolved-comment-count="0" data-linked-resource-id="1315373118" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="Pasted image 20240826105029-20240826-145029.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1313800220" data-linked-resource-container-version="23" data-media-id="3e694530-59ae-4937-ad4a-75c54d40ba12" data-media-type="file" /></span><p /></li><li><p>Other tools: <a class="external-link" href="https://hackage.haskell.org/package/QuickCheck" rel="nofollow">QuickCheck</a>, <a class="external-link" href="https://altsysrq.github.io/proptest-book/intro.html" rel="nofollow">Proptest</a></p></li></ul></li></ul></li><li><p>Jest Watch Plugin</p><ul><li><p><a class="external-link" data-card-appearance="inline" href="https://jestjs.io/docs/watch-plugins" rel="nofollow">https://jestjs.io/docs/watch-plugins</a> </p></li><li><p><a class="external-link" data-card-appearance="inline" href="https://www.youtube.com/watch?v=KSvHNSLf-6c" rel="nofollow">https://www.youtube.com/watch?v=KSvHNSLf-6c</a></p></li></ul></li><li><p><a class="external-link" data-card-appearance="inline" href="https://www.scriptworks.io/blog/different-types-of-testing-in-software/" rel="nofollow">https://www.scriptworks.io/blog/different-types-of-testing-in-software/</a> </p></li><li><p><a class="external-link" data-card-appearance="inline" href="https://testsigma.com/blog/the-different-software-testing-types-explained/" rel="nofollow">https://testsigma.com/blog/the-different-software-testing-types-explained/</a></p></li><li><p>Useful and Popular Tool</p><ul><li><p>SonarQube Tool <em><u>(This tool is also applicable, but NodeJsScan is more effective for Node.js application)</u></em></p><ul><li><p>Detect issues in code that cause bugs, hotspots, and basic security vulnerabilities</p></li><li><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="Pasted image 20240822161936-20240822-201936.png" width="688" loading="lazy" src="attachments/1313800220/1314947102.png?width=688" data-image-src="attachments/1313800220/1314947102.png" data-height="271" data-width="1152" data-unresolved-comment-count="0" data-linked-resource-id="1314947102" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="Pasted image 20240822161936-20240822-201936.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1313800220" data-linked-resource-container-version="23" data-media-id="120354cf-f045-4910-b22f-5f9f4c243e03" data-media-type="file" /></span><p /></li><li><p><a class="external-link" data-card-appearance="inline" href="https://www.sonarsource.com/plans-and-pricing/?s_campaign=SQ-NA-Canada-All-Brand&amp;s_content=SonarQube&amp;s_term=sonarqube%20pricing&amp;s_category=Paid&amp;s_source=Paid%20Search&amp;s_origin=Google&amp;cq_src=google_ads&amp;cq_cmp=21484744306&amp;cq_con=167801151271&amp;cq_term=sonarqube%20pricing&amp;cq_med=&amp;cq_plac=&amp;cq_net=g&amp;cq_pos=&amp;cq_plt=gp&amp;gad_source=1&amp;gclid=Cj0KCQjww5u2BhDeARIsALBuLnOkeNa3ilpZlfwLc73nz1vN9YJHVgX6Go8nzf1vsPA-fj2eRWu0kVUaAnlEEALw_wcB#:~:text=DEVELOPERS%20%26%20400%2C000%2B%20ORGANIZATIONS-,Community,-download" rel="nofollow">https://www.sonarsource.com/plans-and-pricing/?s_campaign=SQ-NA-Canada-All-Brand&amp;s_content=SonarQube&amp;s_term=sonarqube%20pricing&amp;s_category=Paid&amp;s_source=Paid%20Search&amp;s_origin=Google&amp;cq_src=google_ads&amp;cq_cmp=21484744306&amp;cq_con=167801151271&amp;cq_term=sonarqube%20pricing&amp;cq_med=&amp;cq_plac=&amp;cq_net=g&amp;cq_pos=&amp;cq_plt=gp&amp;gad_source=1&amp;gclid=Cj0KCQjww5u2BhDeARIsALBuLnOkeNa3ilpZlfwLc73nz1vN9YJHVgX6Go8nzf1vsPA-fj2eRWu0kVUaAnlEEALw_wcB#:~:text=DEVELOPERS%20%26%20400%2C000%2B%20ORGANIZATIONS-,Community,-download</a></p></li><li><p><a class="external-link" data-card-appearance="inline" href="https://www.youtube.com/watch?v=r2UVTDpIUj8" rel="nofollow">https://www.youtube.com/watch?v=r2UVTDpIUj8</a> (29:32)</p></li><li><p><a class="external-link" data-card-appearance="inline" href="https://www.youtube.com/watch?v=WXhQHG3zjjk" rel="nofollow">https://www.youtube.com/watch?v=WXhQHG3zjjk</a> (42:21)</p></li><li><p><a class="external-link" data-card-appearance="inline" href="https://docs.sonarsource.com/sonarqube/latest/analyzing-source-code/scanners/jenkins-extension-sonarqube/" rel="nofollow">https://docs.sonarsource.com/sonarqube/latest/analyzing-source-code/scanners/jenkins-extension-sonarqube/</a> </p></li></ul></li></ul></li><li><p>Automated Test</p><ul><li><p><a class="external-link" data-card-appearance="inline" href="https://www.atlassian.com/continuous-delivery/software-testing/automated-testing" rel="nofollow">https://www.atlassian.com/continuous-delivery/software-testing/automated-testing</a> </p></li><li><p><a class="external-link" data-card-appearance="inline" href="https://www.scriptworks.io/blog/automated-tests/" rel="nofollow">https://www.scriptworks.io/blog/automated-tests/</a></p></li></ul></li><li><p>Improve CI/CD pipeline performance</p><ul><li><p><a class="external-link" data-card-appearance="inline" href="https://javascript.plainenglish.io/splitting-a-jest-node-js-test-suite-into-multiple-parallel-jobs-on-jenkins-kubernetes-dabf48567f50" rel="nofollow">https://javascript.plainenglish.io/splitting-a-jest-node-js-test-suite-into-multiple-parallel-jobs-on-jenkins-kubernetes-dabf48567f50</a></p></li></ul></li><li><p>NPM</p><ul><li><p><a class="external-link" data-card-appearance="inline" href="https://docs.npmjs.com/cli/v10/commands" rel="nofollow">https://docs.npmjs.com/cli/v10/commands</a> </p></li><li><p><a class="external-link" data-card-appearance="inline" href="https://docs.gitlab.com/ee/user/packages/npm_registry/index.html" rel="nofollow">https://docs.gitlab.com/ee/user/packages/npm_registry/index.html</a></p></li></ul></li><li><p>Testing Management System</p><ul><li><p>It would be beneficial to create a system that consolidates the results of various tests and presents them through a user-friendly UI, making it easier to manage and review the outcomes.</p></li><li><p><a class="external-link" data-card-appearance="inline" href="https://deviniti.com/blog/application-lifecycle-management/jira-testing-tool/#:~:text=Yes%2C%20Jira%20can%20be%20used,for%20project%20management%20and%20development." rel="nofollow">https://deviniti.com/blog/application-lifecycle-management/jira-testing-tool/#:~:text=Yes%2C%20Jira%20can%20be%20used,for%20project%20management%20and%20development.</a></p></li><li><p><a class="external-link" href="https://testlink.org/" rel="nofollow">TestLink Open Source Test Management</a></p></li></ul></li></ul><h1 id="Node.jsApplications:ProcessFlow-BasedDocumentationforCI,CD,andContinuousDeploymentPipelines-AdditionalDiscussionTopic">Additional Discussion Topic</h1><ul><li><p>What pipeline steps might allow failing tests</p></li></ul><p />
+                    </div>
+
+                                        <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1313800220/1312915475.png">image-20240903-174846.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1313800220/1313833080.png">Pasted image 20240825115623-20240825-155623.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1313800220/1314455591.png">Pasted image 20240825115644-20240825-155644.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1313800220/1314947102.png">Pasted image 20240822161936-20240822-201936.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1313800220/1315373118.png">Pasted image 20240826105029-20240826-145029.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on May 27, 2025 13:34</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DevOps / Pipeline &amp; Deployment : Fixed-WebGL-Lighting-Issue</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">DevOps / Pipeline &amp; Deployment</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1179353439.html">DevOps / Pipeline &amp; Deployment Home</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Linux-Jenkins-Documents_1542455384.html">Linux Jenkins Documents</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Bug-Fix-and-Trouble-Shooting_1678409764.html">Bug Fix and Trouble Shooting</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            DevOps / Pipeline &amp; Deployment : Fixed-WebGL-Lighting-Issue
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                            
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Jindo Kim</span> on Apr 03, 2025
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <p>This Document is a copy of PR, <a class="external-link" data-card-appearance="inline" href="https://bitbucket.org/VARLab/devops-linux-jenkins/pull-requests/28" rel="nofollow">https://bitbucket.org/VARLab/devops-linux-jenkins/pull-requests/28</a> </p><h1 id="Fixed-WebGL-Lighting-Issue-Issue">Issue</h1><ul><li><p>The Issue is described at 
+
+    
+
+            
+
+
+
+
+    <span class="confluence-jim-macro jira-issue resolved" data-jira-key="CORE-1545" >
+                <a href="https://varlab-dev.atlassian.net/browse/CORE-1545" class="jira-issue-key"><img class="icon" src="https://varlab-dev.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10303?size=medium" />CORE-1545</a>
+                    -
+            <span class="summary">Identify the Root Cause of Lighting Issues in WebGL Builds from Unity Editor and Batch Mode</span>
+                                                            <span class="aui-lozenge aui-lozenge-subtle aui-lozenge-success jira-macro-single-issue-export-pdf">Done</span>
+            </span>
+ </p></li><li><p>This PR does not clearly describe how the issue was resolved using specific technologies. Instead, it outlines the process through which the problem was addressed. If you can provide insights into the root cause or technical issues involved, please leave a comment.</p></li><li><p>Additionally, the following process describes various attempts made across four different environments: Batch Mode, Unity Editor, Linux, and Windows.</p></li></ul><h1 id="Fixed-WebGL-Lighting-Issue-InvestigatingProcess">Investigating Process</h1><ul><li><p>First Attempt</p><ul><li><p><strong>Assumption</strong> : Could this be an issue specific to the Linux environment?</p></li><li><p><strong>Experiment</strong> : Performed a WebGL build in Batch Mode on both Windows and Linux environments without using the Unity Editor.</p></li><li><p><strong>Result</strong> : Abnormal builds (with dim lighting) were generated in both environments.</p></li><li><p><strong>Conclusion</strong> : The issue does not appear to be related to OS compatibility.</p></li></ul></li><li><p>Second Attempt</p><ul><li><p><strong>Assumption</strong> : Would performing a WebGL build directly in the Unity Editor on Ubuntu GUI produce a normal build?</p></li><li><p><strong>Result</strong> : An abnormal build was generated.</p></li><li><p><strong>Conclusion</strong> : The issue is not simply related to the OS or whether Batch Mode or Unity Editor was used.</p></li><li><p><strong>Note</strong> : Regardless of the environment (Windows or Linux), even builds created in the Unity Editor were abnormal.</p></li></ul></li><li><p>Intermediate Discovery</p><ul><li><p>With assistance from the TE development team, we discovered that if the following four files are missing, abnormal builds may be generated when performing a WebGL build in the Unity Editor:</p><ul><li><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20250403-204014.png" width="425" loading="lazy" src="attachments/1733230653/1733361698.png?width=425" data-image-src="attachments/1733230653/1733361698.png" data-height="290" data-width="425" data-unresolved-comment-count="0" data-linked-resource-id="1733361698" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20250403-204014.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1733230653" data-linked-resource-container-version="1" data-media-id="59452d00-ef1d-4a52-8f01-bcb7e6a1501e" data-media-type="file"></span><p /></li></ul></li><li><p>These files can be generated by clicking the &quot;Generate Lighting&quot; button under Window &gt;&gt; Rendering &gt;&gt; Lighting in the Unity Editor. They are created using the actual GPU device.</p><ul><li><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20250403-204046.png" width="475" loading="lazy" src="attachments/1733230653/1732771880.png?width=475" data-image-src="attachments/1733230653/1732771880.png" data-height="110" data-width="475" data-unresolved-comment-count="0" data-linked-resource-id="1732771880" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20250403-204046.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1733230653" data-linked-resource-container-version="1" data-media-id="05147b9d-e3f0-4762-9e82-bb1cbc287ef1" data-media-type="file"></span><p /></li><li><p>I attempted to generate lighting on Ubuntu GUI but encountered GPU-related errors. Although it appeared to progress, it took about an hour, so I stopped the process.</p></li></ul></li></ul></li><li><p>Third Attempt</p><ul><li><p><strong>Assumption</strong> : What if I simply copy and paste the required files?</p></li><li><p><strong>Result</strong> : A normal build was generated in Batch Mode on Windows, but an abnormal build was still produced on Linux.</p></li><li><p><strong>Conclusion</strong> : The issue now seems to be influenced by the Linux environment, preventing normal WebGL builds.</p></li></ul></li><li><p>Fourth Attempt</p><ul><li><p>Upon reviewing the Batch Mode logs in the Linux environment, I found a log suggesting to run without the <code>-nographic</code> option. I tried running without this argument, but with xvfb(X virtual Framebuffer).</p><ul><li><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20250403-204110.png" width="688" loading="lazy" src="attachments/1733230653/1733165126.png?width=688" data-image-src="attachments/1733230653/1733165126.png" data-height="61" data-width="1227" data-unresolved-comment-count="0" data-linked-resource-id="1733165126" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20250403-204110.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1733230653" data-linked-resource-container-version="1" data-media-id="c3eb470e-4f03-4c11-9162-b81279b32544" data-media-type="file"></span><p /></li><li><p>Successfully generated a normal WebGL build in Batch Mode on Linux.</p></li></ul></li></ul></li></ul><h1 id="Fixed-WebGL-Lighting-Issue-Reference">Reference</h1><ul><li><p><a class="external-link" data-card-appearance="inline" href="https://docs.unity3d.com/6000.0/Documentation/Manual/LightmapSnapshot.html" rel="nofollow">https://docs.unity3d.com/6000.0/Documentation/Manual/LightmapSnapshot.html</a></p></li></ul><h1 id="Fixed-WebGL-Lighting-Issue-AdditionalUpdate">Additional Update</h1><ul><li><p>Using <code>xvfb</code> (X virtual Framebuffer) in Jenkins appears to consume more resources compared to using the <code>-nographic</code> argument. Until this update, <code>xvfb</code> was only used in Playmode, where Exit Code 139 was frequently observed.</p></li><li><p>Considering there was no clear rationale for using <code>xvfb</code> in Playmode, I tested without it. As shown in the screenshots below, aligned code coverage results and WebGL builds were successfully generated.</p></li></ul><div class="table-wrap"><table data-table-width="923" data-layout="default" data-local-id="dacdf946-96a6-4c30-9d73-4933badc7179" class="confluenceTable"><tbody><tr><th data-highlight-colour="var(--ds-background-accent-gray-subtlest, var(--ds-background-accent-gray-subtlest, #F1F2F4))" class="confluenceTh"><p><strong>From Unity Editor (Windows)</strong></p></th><th data-highlight-colour="var(--ds-background-accent-gray-subtlest, var(--ds-background-accent-gray-subtlest, #F1F2F4))" class="confluenceTh"><p><strong>From BatchMode (Linux)</strong></p></th></tr><tr><td data-highlight-colour="var(--ds-surface, #FFFFFF)" class="confluenceTd"><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20250403-204208.png" width="313" loading="lazy" src="attachments/1733230653/1733427259.png?width=313" data-image-src="attachments/1733230653/1733427259.png" data-height="101" data-width="313" data-unresolved-comment-count="0" data-linked-resource-id="1733427259" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20250403-204208.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1733230653" data-linked-resource-container-version="1" data-media-id="45db6888-e9a6-4dc6-a4bb-c976ec056fd9" data-media-type="file"></span><p /></td><td data-highlight-colour="var(--ds-surface, #FFFFFF)" class="confluenceTd"><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20250403-204217.png" width="444" loading="lazy" src="attachments/1733230653/1733197858.png?width=444" data-image-src="attachments/1733230653/1733197858.png" data-height="162" data-width="543" data-unresolved-comment-count="0" data-linked-resource-id="1733197858" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20250403-204217.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1733230653" data-linked-resource-container-version="1" data-media-id="9dad8c02-e435-4d84-ac08-35a2fd61bae1" data-media-type="file"></span><p /></td></tr><tr><td data-highlight-colour="var(--ds-surface, #FFFFFF)" class="confluenceTd"><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20250403-204229.png" width="444" loading="lazy" src="attachments/1733230653/1733263412.png?width=444" data-image-src="attachments/1733230653/1733263412.png" data-height="985" data-width="1247" data-unresolved-comment-count="0" data-linked-resource-id="1733263412" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20250403-204229.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1733230653" data-linked-resource-container-version="1" data-media-id="73e342f2-1eeb-4e24-b156-8abc002345dc" data-media-type="file"></span><p /></td><td data-highlight-colour="var(--ds-surface, #FFFFFF)" class="confluenceTd"><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20250403-204237.png" width="444" loading="lazy" src="attachments/1733230653/1732902993.png?width=444" data-image-src="attachments/1733230653/1732902993.png" data-height="977" data-width="1250" data-unresolved-comment-count="0" data-linked-resource-id="1732902993" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20250403-204237.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1733230653" data-linked-resource-container-version="1" data-media-id="d907dd12-4cc8-497f-9df9-ba43ccf20f5c" data-media-type="file"></span><p /></td></tr></tbody></table></div><p> </p><hr/><hr/><h1 id="Fixed-WebGL-Lighting-Issue-ConclusionandFutureUpdates">Conclusion and Future Updates</h1><h4 id="Fixed-WebGL-Lighting-Issue-WebGLBuilds:"><strong>WebGL Builds</strong> :</h4><ul><li><p>Removed the <code>-nographic</code> option.</p></li><li><p>Reintroduced the use of <code>xvfb</code>.</p></li></ul><h3 id="Fixed-WebGL-Lighting-Issue-CurrentStatusforOtherDLXs"><strong>Current Status for Other DLXs</strong></h3><ul><li><p>Confirmed that the <strong>RT project</strong> contains the four lighting-related files.</p></li><li><p>In the <strong>Tattoo project</strong> , similar to TE, these files are missing, which could lead to potential issues in the future.</p></li></ul><h3 id="Fixed-WebGL-Lighting-Issue-Challenges"><strong>Challenges</strong></h3><ul><li><p>Unfortunately, there appears to be no way for DevOps to directly generate these lighting-related files.</p></li></ul><h3 id="Fixed-WebGL-Lighting-Issue-ProposedSolution"><strong>Proposed Solution</strong></h3><ul><li><p>Add logic to the Jenkins pipeline to check for the existence of these files.</p></li><li><p>If the files are missing, log a warning message in the stage output.</p></li><li><p>This will help DevOps engineers identify and address lighting-related issues in WebGL builds by referring to the warning message.</p></li><li><p>Jira Ticket has been created for this solution at 
+
+    
+
+            
+
+
+
+
+    <span class="confluence-jim-macro jira-issue resolved" data-jira-key="CORE-1549" >
+                <a href="https://varlab-dev.atlassian.net/browse/CORE-1549" class="jira-issue-key"><img class="icon" src="https://varlab-dev.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10318?size=medium" />CORE-1549</a>
+                    -
+            <span class="summary">Add Logic to Check for the Existence of WebGL Build Lighting-Related Files</span>
+                                                            <span class="aui-lozenge aui-lozenge-subtle aui-lozenge-success jira-macro-single-issue-export-pdf">Done</span>
+            </span>
+</p></li></ul>
+                    </div>
+
+                                        <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1733230653/1733361698.png">image-20250403-204014.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1733230653/1732771880.png">image-20250403-204046.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1733230653/1733165126.png">image-20250403-204110.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1733230653/1733427259.png">image-20250403-204208.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1733230653/1733197858.png">image-20250403-204217.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1733230653/1733263412.png">image-20250403-204229.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1733230653/1732902993.png">image-20250403-204237.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on May 27, 2025 13:33</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

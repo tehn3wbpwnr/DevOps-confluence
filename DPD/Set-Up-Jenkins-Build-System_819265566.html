@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DevOps / Pipeline &amp; Deployment : Set Up Jenkins Build System</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">DevOps / Pipeline &amp; Deployment</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1179353439.html">DevOps / Pipeline &amp; Deployment Home</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Windows-Jenkins-Documents_1542389772.html">Windows Jenkins Documents</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Set-Up-on-Windows_1541570589.html">Set Up on Windows</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            DevOps / Pipeline &amp; Deployment : Set Up Jenkins Build System
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                            
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Jonathan Bezeau</span> on Oct 03, 2023
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <h1 id="SetUpJenkinsBuildSystem-Overview">Overview</h1><p>VARLab is developing build infrastructure to organize and automate building DLX projects. </p><h2 id="SetUpJenkinsBuildSystem-Components">Components</h2><p>Our setup will involve our developers, Unity game development engine, Bitbucket repository service and a Jenkins build automation server running on a Windows VM either in the cloud or on campus. </p><h2 id="SetUpJenkinsBuildSystem-Process">Process</h2><p>The ultimate process will look like this:</p><ul><li><p>Developer starts a git branch for their ticket, and develops their solution locally</p></li><li><p>Developer commits changes and pushes to the Bitbucket repo</p></li><li><p>Developer submits Pull Request to Bitbucket</p><ul><li><p>Bitbucket sees the PR and triggers a web hook on the Jenkins build server</p></li><li><p>Jenkins clones the developer’s branch</p></li><li><p>Jenkins merges the latest changes from main</p></li><li><p>Jenkins runs NUnit tests on the developer’s merged branch</p></li><li><p>if all NUnit tests are successful</p><ul><li><p>Jenkins builds the developer’s merged branch</p></li><li><p>Jenkins packages[1] and deploys[2] the executable output</p></li></ul></li><li><p>Jenkins messages[3] the developer and updates the PR with the build status</p></li></ul></li><li><p>DnA team member approves PR based on code review and successful build output</p></li><li><p>Developer merges code to main (Jenkins could merge code to main on successful build)</p></li></ul><h1 id="SetUpJenkinsBuildSystem-Setup">Setup</h1><ul class='childpages-macro'><li><a href="Set-up-Virtual-Machine_818970687.html" data-linked-resource-id="818970687" data-linked-resource-version="2" data-linked-resource-type="page">Set up Virtual Machine</a></li><li><a href="Set-Up-Jenkins-Server_819101726.html" data-linked-resource-id="819101726" data-linked-resource-version="7" data-linked-resource-type="page">Set Up Jenkins Server</a></li><li><a href="Create-a-Pipeline-Project_821887035.html" data-linked-resource-id="821887035" data-linked-resource-version="6" data-linked-resource-type="page">Create a Pipeline Project</a></li><li><a href="Setting-up-Jenkins-DevOps-Pipeline-for-a-Unity-Project_850559019.html" data-linked-resource-id="850559019" data-linked-resource-version="16" data-linked-resource-type="page">Setting up Jenkins DevOps Pipeline for a Unity Project</a></li><li><a href="Troubleshooting-Jenkins-DevOps-Pipeline_865075287.html" data-linked-resource-id="865075287" data-linked-resource-version="12" data-linked-resource-type="page">Troubleshooting Jenkins DevOps Pipeline</a></li><li><a href="Set-Up-Multi-Branch-Pipeline_1171357758.html" data-linked-resource-id="1171357758" data-linked-resource-version="13" data-linked-resource-type="page">Set Up Multi-Branch-Pipeline</a></li></ul><p /><p>[1] SCORM</p><p>[2] Copy to Sharepoint</p><p>[3] email</p>
+                    </div>
+
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on May 27, 2025 13:34</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

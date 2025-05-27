@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DevOps / Pipeline &amp; Deployment : Troubleshooting Jenkins DevOps Pipeline</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">DevOps / Pipeline &amp; Deployment</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1179353439.html">DevOps / Pipeline &amp; Deployment Home</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Windows-Jenkins-Documents_1542389772.html">Windows Jenkins Documents</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Set-Up-on-Windows_1541570589.html">Set Up on Windows</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Set-Up-Jenkins-Build-System_819265566.html">Set Up Jenkins Build System</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            DevOps / Pipeline &amp; Deployment : Troubleshooting Jenkins DevOps Pipeline
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                            
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Leo Bunting (Unlicensed)</span>, last modified on Jan 22, 2024
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <p>The DevOps pipeline goes through several automated stages when building your project. This document discusses troubleshooting at each stage of the pipeline. It currently only contains issues that came up during development. Feel free to add to it.</p><p>All python scripts discussed here can be found in this repository. More documentation on the pipeline scripts can be found here.</p><style type='text/css'>/*<![CDATA[*/
+div.rbtoc1748352869185 {padding: 0px;}
+div.rbtoc1748352869185 ul {list-style: disc;margin-left: 0px;}
+div.rbtoc1748352869185 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style><div class='toc-macro rbtoc1748352869185'>
+<ul class='toc-indentation'>
+<li><a href='#TroubleshootingJenkinsDevOpsPipeline-1.PrepareWorkspace'>1. Prepare Workspace</a>
+<ul class='toc-indentation'>
+<li><a href='#TroubleshootingJenkinsDevOpsPipeline-JsonDecodererrorwhenrunningget_bitbucket_commit_hash.py'>Json Decoder error when running get_bitbucket_commit_hash.py</a></li>
+<li><a href='#TroubleshootingJenkinsDevOpsPipeline-HashKeyError'>Hash KeyError</a></li>
+</ul>
+</li>
+<li><a href='#TroubleshootingJenkinsDevOpsPipeline-2.EditModeTests'>2. EditMode Tests</a>
+<ul class='toc-indentation'>
+<li><a href='#TroubleshootingJenkinsDevOpsPipeline-Anerroroccurredwhileresolvingpackages:Projecthasinvaliddependencies'>An error occurred while resolving packages: Project has invalid dependencies</a></li>
+</ul>
+</li>
+<li><a href='#TroubleshootingJenkinsDevOpsPipeline-3.PlayModeTestsinEditor'>3. PlayMode Tests in Editor</a>
+<ul class='toc-indentation'>
+<li><a href='#TroubleshootingJenkinsDevOpsPipeline-NativeCrashReporting:GotaUNKNOWNwhileexecutingnativecode.Thisusuallyindicatesafatalerrorinthemonoruntimeoroneofthenativelibrariesusedbyyourapplication.'>Native Crash Reporting: Got a UNKNOWN while executing native code. This usually indicates a fatal error in the mono runtime or one of the native libraries used by your application.</a></li>
+</ul>
+</li>
+<li><a href='#TroubleshootingJenkinsDevOpsPipeline-4.GenerateCodeCoverageReport'>4. Generate Code Coverage Report</a>
+<ul class='toc-indentation'>
+<li><a href='#TroubleshootingJenkinsDevOpsPipeline-Nosuchfileordirectory:&#39;C:/ProgramData/Jenkins/.jenkins/workspace/PRJob/{PROJECT_NAME}/{BRANCH_NAME}/coverage_results/Report/Summary.xml&#39;'>No such file or directory: &#39;C:/ProgramData/Jenkins/.jenkins/workspace/PRJob/{PROJECT_NAME}/{BRANCH_NAME}/coverage_results/Report/Summary.xml&#39;</a></li>
+</ul>
+</li>
+<li><a href='#TroubleshootingJenkinsDevOpsPipeline-5.PlayModeTestsinWebGL'>5. PlayMode Tests in WebGL</a>
+<ul class='toc-indentation'>
+<li><a href='#TroubleshootingJenkinsDevOpsPipeline-ErrorbuildingPlayer:IncompatiblecolorspacewithgraphicsAPI'>Error building Player: Incompatible color space with graphics API</a></li>
+</ul>
+</li>
+</ul>
+</div><h2 id="TroubleshootingJenkinsDevOpsPipeline-1.PrepareWorkspace">1. Prepare Workspace</h2><p>If this stage fails, check for errors in:</p><ul><li><p><span class="inline-comment-marker" data-ref="f3acaeeb-e6da-4174-9615-544cdf335c95">The Jenkins stage logs, found on the overview page of your project’s pipeline on Jenkins.</span></p></li></ul><h3 id="TroubleshootingJenkinsDevOpsPipeline-JsonDecodererrorwhenrunningget_bitbucket_commit_hash.py">Json Decoder error when running get_bitbucket_commit_hash.py</h3><div id="expander-493303436" class="expand-container"><div id="expander-control-493303436" class="expand-control"><span class="expand-control-icon"><img style="vertical-align:middle;" class="expand-control-image" src="images/icons/grey_arrow_down.png"></span><span class="expand-control-text">Full Error</span></div><div id="expander-content-493303436" class="expand-content"><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">+ python &#39;C:/ProgramData/Jenkins/.jenkins/workspace/python scripts/get_bitbucket_commit_hash.py&#39; &lt;YOUR_COMMIT_HASH&gt;
+Traceback (most recent call last):
+  File &quot;C:\Users\ci-catherine\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\requests\models.py&quot;, line 971, in json
+    return complexjson.loads(self.text, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File &quot;C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.1776.0_x64__qbz5n2kfra8p0\Lib\json\__init__.py&quot;, line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File &quot;C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.1776.0_x64__qbz5n2kfra8p0\Lib\json\decoder.py&quot;, line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File &quot;C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.1776.0_x64__qbz5n2kfra8p0\Lib\json\decoder.py&quot;, line 355, in raw_decode
+    raise JSONDecodeError(&quot;Expecting value&quot;, s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File &quot;C:\ProgramData\Jenkins\.jenkins\workspace\python scripts\get_bitbucket_commit_hash.py&quot;, line 24, in &lt;module&gt;
+    response_json_content = json.dumps(response.json())
+                                       ^^^^^^^^^^^^^^^
+  File &quot;C:\Users\ci-catherine\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\requests\models.py&quot;, line 975, in json
+    raise RequestsJSONDecodeError(e.msg, e.doc, e.pos)
+requests.exceptions.JSONDecodeError: Expecting value: line 1 column 1 (char 0)</pre>
+</div></div></div></div><p>This exception is raised when the request object returned is not in JSON format. Most likely, this is because Bitbucket’s API is returning 404, or some other error.</p><p>Make sure you’ve done the <a href="https://varlab-dev.atlassian.net/wiki/spaces/~62740c25f42962006fe0b80b/pages/850559019/Setting+up+Jenkins+DevOps+Pipeline+for+a+Unity+Project#API-Access-Token" rel="nofollow">API Access Token step</a> of setting up the pipeline correctly. If you have, and it still isn’t working, try revoking the existing API token and creating a new one. Be sure to follow the same steps as before.</p><h3 id="TroubleshootingJenkinsDevOpsPipeline-HashKeyError">Hash KeyError</h3><div id="expander-1844548042" class="expand-container"><div id="expander-control-1844548042" class="expand-control"><span class="expand-control-icon"><img style="vertical-align:middle;" class="expand-control-image" src="images/icons/grey_arrow_down.png"></span><span class="expand-control-text">Full Error</span></div><div id="expander-content-1844548042" class="expand-content"><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">+ python &#39;C:/ProgramData/Jenkins/.jenkins/workspace/python scripts/get_bitbucket_commit_hash.py&#39; &lt;YOUR_COMMIT_HASH&gt;
+Traceback (most recent call last):
+  File &quot;C:\ProgramData\Jenkins\.jenkins\workspace\python scripts\get_bitbucket_commit_hash.py&quot;, line 33, in &lt;module&gt;
+    sys.stdout.write(response_values[&quot;hash&quot;])
+                     ~~~~~~~~~~~~~~~^^^^^^^^
+KeyError: &#39;hash&#39;</pre>
+</div></div></div></div><p>Most likely because Bitbucket’s API is returning an error. The json body of the error does not contain “hash.” Refer to <a href="https://varlab-dev.atlassian.net/wiki/spaces/DPD/pages/865075287/Troubleshooting+Jenkins+DevOps+Pipeline#Json-Decoder-error-when-running-get_bitbucket_commit_hash.py" rel="nofollow">Json Decoder error when running get_bitbucket_commit_hash.py</a>.</p><h2 id="TroubleshootingJenkinsDevOpsPipeline-2.EditModeTests">2. EditMode Tests</h2><p>If this stage fails, check for errors in:</p><ul><li><p>Your branch’s editmode-tests.log file on the virtual machine (<em>C:\ProgramData\Jenkins\.jenkins\workspace\PRJob\{PROJECT_NAME}\{PROJECT_BRANCH}\test_results\editmode-tests.log</em>)</p></li><li><p><span class="inline-comment-marker" data-ref="f3acaeeb-e6da-4174-9615-544cdf335c95">The Jenkins stage logs, found on the overview page of your project’s pipeline on Jenkins.</span></p></li></ul><h3 id="TroubleshootingJenkinsDevOpsPipeline-Anerroroccurredwhileresolvingpackages:Projecthasinvaliddependencies">An error occurred while resolving packages: Project has invalid dependencies</h3><p>This error line in the log should be followed by the invalid package dependencies, and “<em>Request [GET {PACKAGE_URL}] failed because it lacks valid authentication credentials</em>.”</p><p>Open your Unity project and navigate to the “Packages” folder, then open the <strong>manifest.json</strong> file. Find the packages that Unity listed as invalid. If they are referenced in the file using only the version number, we need to update that to use the package’s SSH URL. </p><p>In this example, we’ll be fixing the VARLab’s SCORM and CloudSave packages. </p><p>Before:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">...
+&quot;com.varlab.cloudsave&quot;: &quot;1.0.0&quot;,
+&quot;com.varlab.scorm&quot;: &quot;0.2.2&quot;,
+...</pre>
+</div></div><p>After:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">...
+&quot;com.varlab.cloudsave&quot;: &quot;ssh://git@bitbucket.org/VARLab/cloudsave.git#1.0.0&quot;,
+&quot;com.varlab.scorm&quot;: &quot;ssh://git@bitbucket.org/VARLab/scorm.git#0.2.3&quot;,
+...</pre>
+</div></div><h2 id="TroubleshootingJenkinsDevOpsPipeline-3.PlayModeTestsinEditor">3. PlayMode Tests in Editor</h2><p>If this stage fails, check for errors in:</p><ul><li><p>Your branch’s editor-playmode-tests.log file on the virtual machine (<em>C:\ProgramData\Jenkins\.jenkins\workspace\PRJob\{PROJECT_NAME}\{PROJECT_BRANCH}\test_results\editor-playmode-tests.log</em>)</p></li></ul><h3 id="TroubleshootingJenkinsDevOpsPipeline-NativeCrashReporting:GotaUNKNOWNwhileexecutingnativecode.Thisusuallyindicatesafatalerrorinthemonoruntimeoroneofthenativelibrariesusedbyyourapplication.">Native Crash Reporting: Got a UNKNOWN while executing native code. This usually indicates a fatal error in the mono runtime or one of the native libraries used by your application.</h3><p>Some versions of the Unity Editor are unstable and have a greater tendency to crash when running through the command line. This is unpredictable, but the pipeline tries to accommodate by retrying this stage up to 5 times in case of Unity crashes.</p><p>If it still crashes after 5 attempts, then you must manually restart the pipeline. Navigate to your project’s pipeline page on Jenkins, then find the build number that failed under the Build History tab in the lower right-hand side. </p><p>Hover over the build number and click the down arrow that appears, then click “Restart from Stage.”</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" width="335" loading="lazy" src="attachments/865075287/874479680.png?width=335" data-image-src="attachments/865075287/874479680.png" data-height="402" data-width="335" data-unresolved-comment-count="0" data-linked-resource-id="874479680" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20231204-203254.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="865075287" data-linked-resource-container-version="12" data-media-id="f88407ac-58c8-4c9a-81b9-a62c44b433d5" data-media-type="file"></span><p>You must start from the first stage, “Prepare Workspace.” Ensure this option is selected in the Stage Name dropdown, and then click <strong>Run</strong>.</p><h2 id="TroubleshootingJenkinsDevOpsPipeline-4.GenerateCodeCoverageReport">4. Generate Code Coverage Report</h2><p>If this stage fails, check for errors in:</p><ul><li><p><span class="inline-comment-marker" data-ref="f3acaeeb-e6da-4174-9615-544cdf335c95">The Jenkins stage logs, found on the overview page of your project’s pipeline on Jenkins.</span></p></li></ul><h3 id="TroubleshootingJenkinsDevOpsPipeline-Nosuchfileordirectory:&#39;C:/ProgramData/Jenkins/.jenkins/workspace/PRJob/{PROJECT_NAME}/{BRANCH_NAME}/coverage_results/Report/Summary.xml&#39;">No such file or directory: 'C:/ProgramData/Jenkins/.jenkins/workspace/PRJob/{PROJECT_NAME}/{BRANCH_NAME}/coverage_results/Report/Summary.xml'</h3><p>The test runs will not generate coverage reports if Unity’s Code Coverage package is not installed. Please install the Code Coverage package on your project. Instructions on installing and setting up this package can be found <a href="https://varlab-dev.atlassian.net/wiki/spaces/CV2/pages/776306788/Code+Coverage+Unity+Setup" data-linked-resource-id="776306788" data-linked-resource-version="5" data-linked-resource-type="page">here</a>.</p><h2 id="TroubleshootingJenkinsDevOpsPipeline-5.PlayModeTestsinWebGL">5. PlayMode Tests in WebGL</h2><div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>This stage is currently nonfunctional because of a <a class="external-link" href="https://issuetracker.unity3d.com/issues/test-execution-timed-out-no-activity-received-from-the-player-in-600-seconds-error-appears-when-running-webgl-tests" rel="nofollow">Unity bug</a>. Until a fix is found, the pipeline will not be running this stage.</p></div></div><p>If this stage fails, check for errors in:</p><ul><li><p>The Editor.log file on the virtual machine (<em>C:\Users\ci-catherine\AppData\Local\Unity\Editor\Editor.log</em>)</p></li></ul><h3 id="TroubleshootingJenkinsDevOpsPipeline-ErrorbuildingPlayer:IncompatiblecolorspacewithgraphicsAPI">Error building Player: Incompatible color space with graphics API</h3><p>Most of our projects build in WebGL using Linear color space for rendering. Linear color space is only supported by WebGL 2 API. To fix this, limit your build settings to only use WebGL 2.</p><p>Go to Edit &gt; Project Settings &gt; Player &gt; WebGL Settings &gt; Other Settings.</p><p>If “Auto Graphics API” is checked, uncheck it. Then, select WebGL 1 from the Graphics APIs list and click the minus sign to remove it. </p><p>Be sure to push these changes to the branch that is being built.</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" width="575" loading="lazy" src="attachments/865075287/864288902.png?width=575" data-image-src="attachments/865075287/864288902.png" data-height="470" data-width="575" data-unresolved-comment-count="0" data-linked-resource-id="864288902" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="unity_linear_color_wrong.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="865075287" data-linked-resource-container-version="12" data-media-id="c0951bfc-b082-41b2-83ee-e57befba61e7" data-media-type="file"></span><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" width="573" loading="lazy" src="attachments/865075287/864354407.png?width=573" data-image-src="attachments/865075287/864354407.png" data-height="477" data-width="573" data-unresolved-comment-count="0" data-linked-resource-id="864354407" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="unity_linear_color_correct.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="865075287" data-linked-resource-container-version="12" data-media-id="4c359350-3937-4a44-9d47-36a90ebb08ca" data-media-type="file"></span>
+                    </div>
+
+                                        <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/865075287/864288902.png">unity_linear_color_wrong.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/865075287/864354407.png">unity_linear_color_correct.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/865075287/874479680.png">image-20231204-203254.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on May 27, 2025 13:34</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

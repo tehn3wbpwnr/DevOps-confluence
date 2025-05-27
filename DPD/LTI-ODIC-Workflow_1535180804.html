@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DevOps / Pipeline &amp; Deployment : LTI ODIC Workflow</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">DevOps / Pipeline &amp; Deployment</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1179353439.html">DevOps / Pipeline &amp; Deployment Home</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="DLX-Server-Documents_1541832718.html">DLX Server Documents</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="All-about-LTI-Integration_1284603908.html">All about LTI Integration</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1520566280.html">How does the dlx server host the dlx WebGL Build?</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            DevOps / Pipeline &amp; Deployment : LTI ODIC Workflow
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                            
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Chris Park</span>, last modified by <span class='editor'> Jonathan Bezeau</span> on Jan 08, 2025
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <p> This document provides a detailed explanation of the <strong>OIDC</strong> authorization and authentication process as applied to LTI integration. Sample screenshots and HTTP formats are included for each step of the authentication process and its underlying logic.</p><p /><hr/><p><strong>Contents</strong></p><style type='text/css'>/*<![CDATA[*/
+div.rbtoc1748352941072 {padding: 0px;}
+div.rbtoc1748352941072 ul {list-style: default;margin-left: 0px;}
+div.rbtoc1748352941072 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style><div class='toc-macro rbtoc1748352941072'>
+<ul class='toc-indentation'>
+<li><a href='#LTIODICWorkflow-FlowDiagram'>Flow Diagram</a></li>
+<li><a href='#LTIODICWorkflow-1.LoginProcess'>1. Login Process</a>
+<ul class='toc-indentation'>
+<li><a href='#LTIODICWorkflow-1.1VerifyingComponents'>1.1 Verifying Components</a></li>
+<li><a href='#LTIODICWorkflow-1.2Validation&amp;VerficationLogic'>1.2 Validation &amp; Verfication Logic</a>
+<ul class='toc-indentation'>
+<li><a href='#LTIODICWorkflow-1.2.1ParametersVerification'>1.2.1 Parameters Verification</a></li>
+<li><a href='#LTIODICWorkflow-1.2.2ParametersValidation'>1.2.2 Parameters Validation</a></li>
+</ul>
+</li>
+<li><a href='#LTIODICWorkflow-1.3LTIAdvantageLoginWorkflow'>1.3 LTI Advantage Login Workflow</a>
+<ul class='toc-indentation'>
+<li><a href='#LTIODICWorkflow-1.3.1CreateLTIAdvantageLoginForm(OIDCForm)'>1.3.1 Create LTI Advantage Login Form (OIDC Form)</a></li>
+<li><a href='#LTIODICWorkflow-1.3.2Generate‘state&#39;andsetasa&#39;validationcookie’'>1.3.2 Generate ‘state&#39; and set as a &#39;validation cookie’</a></li>
+<li><a href='#LTIODICWorkflow-1.3.3SubmitLTIAdvantageLoginFormtoeConestoga(OIDCForm)'>1.3.3 Submit LTI Advantage Login Form to eConestoga (OIDC Form)</a></li>
+</ul>
+</li>
+<li><a href='#LTIODICWorkflow-1.4SampleLoginRequestForm'>1.4 Sample Login Request Form</a></li>
+</ul>
+</li>
+<li><a href='#LTIODICWorkflow-2.OIDCProcess'>2. OIDC Process</a>
+<ul class='toc-indentation'>
+<li><a href='#LTIODICWorkflow-2.1ValidationLogic'>2.1 Validation Logic</a>
+<ul class='toc-indentation'>
+<li><a href='#LTIODICWorkflow-2.1.1ChecktheencodingalgorithmoftheJWT'>2.1.1 Check the encoding algorithm of the JWT</a></li>
+<li><a href='#LTIODICWorkflow-2.1.2Verifytheid_tokenissuer(iss)'>2.1.2 Verify the id_token issuer (iss)</a></li>
+<li><a href='#LTIODICWorkflow-2.1.3Checktheregistrationstatusoftheiss'>2.1.3 Check the registration status of the iss</a></li>
+<li><a href='#LTIODICWorkflow-2.1.4Verifytheactivationstatusoftheiss'>2.1.4 Verify the activation status of the iss</a></li>
+<li><a href='#LTIODICWorkflow-2.1.5Startthe“verificationlogic”'>2.1.5 Start the “verification logic”</a></li>
+</ul>
+</li>
+<li><a href='#LTIODICWorkflow-2.2VerificationLogic'>2.2 Verification Logic</a>
+<ul class='toc-indentation'>
+<li><a href='#LTIODICWorkflow-2.2.1RetrieveauthenticationkeyvaluesfromJWK(JSONWebKey)authendpoint'>2.2.1 Retrieve authentication key values from JWK(JSON Web Key) auth endpoint</a></li>
+<li><a href='#LTIODICWorkflow-2.2.2id_tokenverification'>2.2.2 id_token verification</a></li>
+</ul>
+</li>
+<li><a href='#LTIODICWorkflow-2.3ErrorMessages'>2.3 Error Messages</a></li>
+<li><a href='#LTIODICWorkflow-2.4Sample‘id_token’form'>2.4 Sample ‘id_token’ form</a></li>
+</ul>
+</li>
+</ul>
+</div><hr/><h1 id="LTIODICWorkflow-FlowDiagram">Flow Diagram</h1><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="OIDC Workflow-20241230-233429.png" width="760" loading="lazy" src="attachments/1535180804/1536884743.png?width=760" data-image-src="attachments/1535180804/1536884743.png" data-height="2335" data-width="1583" data-unresolved-comment-count="0" data-linked-resource-id="1536884743" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="OIDC Workflow-20241230-233429.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1535180804" data-linked-resource-container-version="26" data-media-id="882a1f82-f70f-45f0-9e42-4dde9503b6f6" data-media-type="file"></span><p /><hr/><h1 id="LTIODICWorkflow-1.LoginProcess"><strong>1. Login Process</strong></h1><p>: This process involves verifying the user's identity before initiating the OIDC authorization and authentication workflow. It is triggered when users (students) <strong>click the “LTI Advantage Link,”</strong> which leads to the <u>DLX Unity simulation</u>.</p><h2 id="LTIODICWorkflow-1.1VerifyingComponents"><strong>1.1 Verifying Components</strong></h2><p>The blowing components are verified by the DLX server during the “login process“…</p><ul><li><p><strong>iis(Issuer)</strong><br/>: This component represents the issuer that sends login request, such as eConestoga or Moodle. In other words, the <strong>value of this component should be the name of the LMS</strong>, and<strong> it must be stored in the local server-side database</strong>.<br/></p></li><li><p><strong>client_id</strong><br/>: This component represents the<strong> client ID of the LMS</strong>, which is assigned during the tool registration process. It is used to verify the identification of the LMS in conjunction with the <code>iss</code> (issuer). This <code>client_id</code> is stored in the ‘platforms’ collection within the local database.<br/></p></li><li><p><strong>login_hint</strong><br/>: This component represents the<strong> student ID</strong>, which is the user’s unique identifier assigned by the LMS. While it is not directly used in this process, it remains an essential component of the workflow.<br/></p></li><li><p><strong>target_link_uri</strong><br/>: This component represents the <strong>final URL that a user ultimately wants to access</strong>. This <code>target_link_url</code> corresponds to the “LTI Advantage Link” the user clicked to access a DLX Unity WebGL simulation.<br/></p></li></ul><h2 id="LTIODICWorkflow-1.2Validation&amp;VerficationLogic"><strong>1.2 Validation &amp; Verfication Logic</strong></h2><p>: The <a class="external-link" href="https://site.imsglobal.org/certifications/coursekey/ltijs" rel="nofollow"><strong>LTIjs </strong></a>service running on the DLX server handles all validation and verification logic for LTI integration.</p><p>During the login process, this service processes login requests when<strong> it receives an HTTP request to the ‘</strong><code>/login</code><strong>’ endpoint</strong>. The ‘<code>/login</code>’ endpoint is a predefined route within the '<code>Provider</code>' class. This endpoint is configured and registered during the external tool registration process on the LMS.</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20241231-231734.png" width="515" loading="lazy" src="attachments/1535180804/1537540114.png?width=515" data-image-src="attachments/1535180804/1537540114.png" data-height="308" data-width="515" data-unresolved-comment-count="0" data-linked-resource-id="1537540114" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20241231-231734.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1535180804" data-linked-resource-container-version="26" data-media-id="c4b856e3-2b92-4cfb-ac67-89a4479899a9" data-media-type="file"></span><h3 id="LTIODICWorkflow-1.2.1ParametersVerification"><strong>1.2.1 Parameters Verification</strong></h3><p>: The LTIjs service <strong>checks three essential components</strong> (<code>iss</code>, <code>login_hint</code>, and <code>target_link_uri</code>) when it receives a login request. It returns an error code ‘<code>400: Bad Request</code>’ if any of these parameters are missing.</p><div id="expander-1341868580" class="expand-container"><div id="expander-control-1341868580" class="expand-control"><span class="expand-control-icon"><img style="vertical-align:middle;" class="expand-control-image" src="images/icons/grey_arrow_down.png"></span><span class="expand-control-text">Sample Parameter Validation Logic</span></div><div id="expander-content-1341868580" class="expand-content"><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">if (!params.iss || !params.login_hint || !params.target_link_uri) return res.status(400).send({
+          status: 400,
+          error: &#39;Bad Request&#39;,
+          details: {
+            message: &#39;MISSING_LOGIN_PARAMETERS&#39;
+          }
+        }</pre>
+</div></div></div></div><p /><h3 id="LTIODICWorkflow-1.2.2ParametersValidation"><strong>1.2.2 Parameters Validation</strong></h3><p>: The LTI.js service checks whether the requested platform information exists in the local MongoDB.</p><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p><code>iis</code> information should be searched in the local MongoDB 'platform' collection.</p></div></div><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20250105-025748.png" width="481" loading="lazy" src="attachments/1535180804/1540653092.png?width=481" data-image-src="attachments/1535180804/1540653092.png" data-height="154" data-width="481" data-unresolved-comment-count="0" data-linked-resource-id="1540653092" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20250105-025748.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1535180804" data-linked-resource-container-version="26" data-media-id="c7a6674b-ef81-4a0b-91aa-5771a4ba95ce" data-media-type="file"></span><p /><h2 id="LTIODICWorkflow-1.3LTIAdvantageLoginWorkflow"><strong>1.3 LTI Advantage Login Workflow</strong></h2><p>: This process involves <strong>creating an OIDC request</strong> form to initiate the LMS and OIDC workflow and submitting the form to the authentication endpoint of the LMS.</p><h3 id="LTIODICWorkflow-1.3.1CreateLTIAdvantageLoginForm(OIDCForm)"><strong>1.3.1 Create LTI Advantage Login Form (OIDC Form)</strong></h3><p>: The LTIjs service prepares an OIDC request form after successfully validating a login request. This form requests an <code>id_token</code> from eConestoga, following the OIDC protocol. This form follows OIDC <a class="external-link" href="https://www.imsglobal.org/spec/lti-dr/v1p0#openid-configuration-0" rel="nofollow">Configuration of the IMS Global</a>  standard.</p><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>The <code>client_id</code>, <code>target_link_uri</code>, and <code>login_hint</code> are passed back to the LMS for validation of the request. Related code block can be found at ‘<u>Utils/Request.js</u>' </p></div></div><p /><h3 id="LTIODICWorkflow-1.3.2Generate‘state&#39;andsetasa&#39;validationcookie’"><strong>1.3.2 Generate ‘state' and set as a 'validation cookie’</strong></h3><p>: Generate the random data of size 25 bytes (200 bits) and set as a <code>res.cookie</code> with the ‘<code>state</code>' + '<code>state_value</code>' for data integrity. This cookie must be returned with <code>id_token</code> in the next OIDC process. Moreover, this ‘state’ information is temporarily stored at the 'states’ collection in the local database.  </p><div id="expander-289325200" class="expand-container"><div id="expander-control-289325200" class="expand-control"><span class="expand-control-icon"><img style="vertical-align:middle;" class="expand-control-image" src="images/icons/grey_arrow_down.png"></span><span class="expand-control-text">Example &#39;validation cookie&#39; object</span></div><div id="expander-content-289325200" class="expand-content"><p>{<br/>statebd682a92b54f80e5c24e338df0191e6a5fc1b0b21e715a4199: '<a class="external-link" href="https://vconestoga.duckdns.org'" rel="nofollow">https://vconestoga.duckdns.org'</a><br/>}</p><p>&gt;&gt; “bd682a92b54f80e5c24e338df0191e6a5fc1b0b21e715a4199“ is the state</p></div></div><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>This 'validation cookie' expires within 1 minute</p></div></div><p /><h3 id="LTIODICWorkflow-1.3.3SubmitLTIAdvantageLoginFormtoeConestoga(OIDCForm)"><strong>1.3.3 Submit LTI Advantage Login Form to eConestoga (OIDC Form)</strong></h3><p>: After creating the form, the service <strong>submits the OIDC request form to the LMS <u>authentication endpoint</u></strong>. This authentication endpoint is provided during the registration process and stored in the 'platform' collection, so the service retrieve this <code>authEndpoint</code> path from the local MongoDB.</p><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>This marks the end of the “<strong>login process</strong>,” and the server will wait for the <code>id_token</code> response from the LMS.</p></div></div><p /><h2 id="LTIODICWorkflow-1.4SampleLoginRequestForm"><strong>1.4 Sample Login Request Form</strong></h2><p>: This is the sample login request form from Moodle and all components can be found in this example.</p><div id="expander-1696935746" class="expand-container"><div id="expander-control-1696935746" class="expand-control"><span class="expand-control-icon"><img style="vertical-align:middle;" class="expand-control-image" src="images/icons/grey_arrow_down.png"></span><span class="expand-control-text">Sample Login Request Form</span></div><div id="expander-content-1696935746" class="expand-content"><p>{<br/>  &quot;query&quot;: {},<br/>  &quot;body&quot;: {<br/>    &quot;iss&quot;: &quot;<a class="external-link" href="https://vconestoga.duckdns.org" rel="nofollow">https://vconestoga.duckdns.org</a> &quot;,<br/>    &quot;target_link_uri&quot;: &quot;<a class="external-link" href="https://b130-72-138-14-22.ngrok-free.app/dlx/rab" rel="nofollow">https://b130-72-138-14-22.ngrok-free.app/dlx/rab</a>&quot;,<br/>    &quot;login_hint&quot;: &quot;22&quot;,<br/>    &quot;lti_message_hint&quot;: &quot;384&quot;,<br/>    &quot;client_id&quot;: &quot;3fIm5dsKDzkU5Yr&quot;,<br/>    &quot;lti_deployment_id&quot;: &quot;373&quot;<br/>  },<br/>  &quot;params&quot;: {},<br/>  &quot;headers&quot;: {<br/>    &quot;host&quot;: &quot;b130-72-138-14-22.ngrok-free.app&quot;,<br/>    &quot;user-agent&quot;: &quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36&quot;,<br/>    &quot;content-length&quot;: &quot;198&quot;,<br/>    &quot;accept&quot;: &quot;text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,<em>/</em>;q=0.8,application/signed-exchange;v=b3;q=0.7&quot;,<br/>    &quot;accept-encoding&quot;: &quot;gzip, deflate, br, zstd&quot;,<br/>    &quot;accept-language&quot;: &quot;ko-KR,ko;q=0.9,en-CA;q=0.8,en;q=0.7,en-US;q=0.6&quot;,<br/>    &quot;cache-control&quot;: &quot;max-age=0&quot;,<br/>    &quot;content-type&quot;: &quot;application/x-www-form-urlencoded&quot;,<br/>    &quot;cookie&quot;: &quot;abuse_interstitial=b130-72-138-14-22.ngrok-free.app; ltiaHR0cHM6Ly92Y29uZXN0b2dhLmR1Y2tkbnMub3JnM2ZJbTVkc0tEemtVNVlyMzcz=s%3A22.1UbiMELJPM073Cp647%2BIPVOgurwIqmdZKnDPs1TX4zg&quot;,<br/>    &quot;origin&quot;: &quot;<a class="external-link" href="https://vconestoga.duckdns.org" rel="nofollow">https://vconestoga.duckdns.org</a> &quot;,<br/>    &quot;priority&quot;: &quot;u=0, i&quot;,<br/>    &quot;referer&quot;: &quot;<a class="external-link" href="https://vconestoga.duckdns.org/" rel="nofollow">https://vconestoga.duckdns.org/</a> &quot;,<br/>    &quot;sec-ch-ua&quot;: &quot;\&quot;Google Chrome\&quot;;v=\&quot;131\&quot;, \&quot;Chromium\&quot;;v=\&quot;131\&quot;, \&quot;Not_A Brand\&quot;;v=\&quot;24\&quot;&quot;,<br/>    &quot;sec-ch-ua-mobile&quot;: &quot;?0&quot;,<br/>    &quot;sec-ch-ua-platform&quot;: &quot;\&quot;Windows\&quot;&quot;,<br/>    &quot;sec-fetch-dest&quot;: &quot;iframe&quot;,<br/>    &quot;sec-fetch-mode&quot;: &quot;navigate&quot;,<br/>    &quot;sec-fetch-site&quot;: &quot;cross-site&quot;,<br/>    &quot;upgrade-insecure-requests&quot;: &quot;1&quot;,<br/>    &quot;x-forwarded-for&quot;: &quot;72.138.14.22&quot;,<br/>    &quot;x-forwarded-host&quot;: &quot;b130-72-138-14-22.ngrok-free.app&quot;,<br/>    &quot;x-forwarded-proto&quot;: &quot;https&quot;<br/>  },<br/>  &quot;method&quot;: &quot;POST&quot;,<br/>  &quot;url&quot;: &quot;/login&quot;,<br/>  &quot;ip&quot;: &quot;::1&quot;<br/>}</p></div></div><p /><hr/><h1 id="LTIODICWorkflow-2.OIDCProcess"><strong>2. OIDC Process</strong></h1><p>: The <strong>OIDC process</strong> <strong>starts when the </strong><code>id_token</code><strong> is received from the LMS</strong>. This token contains essential information about the platform, course, and student. A sample <code>id_token</code> will be provided at the end of this content.</p><h2 id="LTIODICWorkflow-2.1ValidationLogic"><strong>2.1 Validation Logic</strong></h2><p>: Once the server receives <code>id_token</code> from LMS, it validates components of the <code>id_token</code>. This logic can be found at the 'Auth.js' file.</p><h3 id="LTIODICWorkflow-2.1.1ChecktheencodingalgorithmoftheJWT"><strong>2.1.1 Check the encoding algorithm of the JWT</strong></h3><p>: The <code>id_token</code> must be encoded using the <strong>JWT </strong>algorithm, which is part of the OIDC protocol. </p><h3 id="LTIODICWorkflow-2.1.2Verifytheid_tokenissuer(iss)"><strong>2.1.2 Verify the </strong><code>id_token</code><strong> issuer (</strong><code>iss</code><strong>) </strong></h3><p>: The <code>id_token.iss</code> value must be compared with the <code>iss</code> value stored in the “validation cookie” to ensure <span class="inline-comment-marker" data-ref="3357dd61-c79b-4d47-ad12-915f566a1b9b">data integrity and confirm the issuer’s authenticity</span>.</p><div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>Currently, LTIjs does not fully utilize the <code>state</code> security component effectively. It lacks the logic to compare the <code>state</code> received from the client with the <code>state</code> stored locally on the server.</p><p>This comparison logic should be implemented to enhance data security and prevent potential attacks, such as CSRF.</p></div></div><h3 id="LTIODICWorkflow-2.1.3Checktheregistrationstatusoftheiss"><strong>2.1.3 Check the registration status of the </strong><code>iss</code><strong> </strong></h3><p>: The service search the ‘<strong>platform</strong>’ data matched with <code>id_token.iis</code> and <code>id_token.aud</code>(ClientId) from the local MongoDB.</p><h3 id="LTIODICWorkflow-2.1.4Verifytheactivationstatusoftheiss"><strong>2.1.4 Verify the activation status of the </strong><code>iss</code></h3><p>: Check whether the platform(LMS) is currently active or not. <code>platformStatus</code> can be retrieved by '<code>_kid</code>' of associated platform object.</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20250106-032415.png" width="760" loading="lazy" src="attachments/1535180804/1540948066.png?width=760" data-image-src="attachments/1535180804/1540948066.png" data-height="162" data-width="952" data-unresolved-comment-count="0" data-linked-resource-id="1540948066" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20250106-032415.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1535180804" data-linked-resource-container-version="26" data-media-id="15d64e37-8fb9-4f06-898f-07904cdee8b4" data-media-type="file"></span><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20250106-032239.png" width="760" loading="lazy" src="attachments/1535180804/1541275683.png?width=760" data-image-src="attachments/1535180804/1541275683.png" data-height="92" data-width="989" data-unresolved-comment-count="0" data-linked-resource-id="1541275683" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20250106-032239.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1535180804" data-linked-resource-container-version="26" data-media-id="83ccd7ef-446c-4e1d-b7ad-2653b862bbd8" data-media-type="file"></span><h3 id="LTIODICWorkflow-2.1.5Startthe“verificationlogic”"><strong>2.1.5 Start the “verification logic” </strong></h3><p>: The service initiates the “verification logic” based on the predefined authentication method of the platform (LMS). Each platform's authentication method is stored in the <code>authConfig</code> object within the platform collection</p><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>Currently, both Moodle and eConestoga use the <code>JWK_SET</code> method. However, <code>LTIjs</code> also supports both <code>RSA_KEY</code> and <code>JWK_SET</code>.</p></div></div><p /><h2 id="LTIODICWorkflow-2.2VerificationLogic"><strong>2.2 Verification Logic</strong></h2><p>: In this section, the logic for verifying the validity of the <code>id_token</code> parameters is explained. This logic is also implemented in the <code>Auth.js</code> file.</p><p /><h3 id="LTIODICWorkflow-2.2.1RetrieveauthenticationkeyvaluesfromJWK(JSONWebKey)authendpoint"><strong>2.2.1 Retrieve authentication key values from JWK(JSON Web Key) auth endpoint</strong></h3><p><strong> : </strong><code>authConfig</code> includes 'JWK auth endpoint' for example <code>https://LMS_URL.com/mod/lti/certs.php</code> and this authentication endpoint includes <strong>JSON Web Key</strong> information.</p><p>Here is the example of JWK(JSON Web Key): </p><div class="table-wrap"><table data-table-width="760" data-layout="default" data-local-id="800face8-57f9-4f05-8f3d-0a38dade0ff5" class="confluenceTable"><colgroup><col style="width: 103.0px;"/><col style="width: 130.0px;"/><col style="width: 525.0px;"/></colgroup><tbody><tr><th class="confluenceTh"><p><strong>Key</strong></p></th><th class="confluenceTh"><p><strong>Example Value</strong></p></th><th class="confluenceTh"><p><strong>Meaning</strong></p></th></tr><tr><td class="confluenceTd"><p><code>kty</code></p></td><td class="confluenceTd"><p><code>&quot;RSA&quot;</code></p></td><td class="confluenceTd"><p>algorithm key</p></td></tr><tr><td class="confluenceTd"><p><code>e</code></p></td><td class="confluenceTd"><p><code>&quot;AQAB&quot;</code></p></td><td class="confluenceTd"><p>public key exponent (usually 65537)</p></td></tr><tr><td class="confluenceTd"><p><code>n</code></p></td><td class="confluenceTd"><p><code>&quot;1234...&quot;</code>	</p></td><td class="confluenceTd"><p>public key modulus (large integer)</p></td></tr><tr><td class="confluenceTd"><p><code>alg</code></p></td><td class="confluenceTd"><p><code>&quot;RS256&quot;</code></p></td><td class="confluenceTd"><p>algorithm to use (e.g. RSA-SHA256 signature algorithm)</p></td></tr><tr><td class="confluenceTd"><p><code>use</code></p></td><td class="confluenceTd"><p><code>&quot;sig&quot;</code></p></td><td class="confluenceTd"><p>purpose (e.g. used for signing)</p></td></tr></tbody></table></div><h3 id="LTIODICWorkflow-2.2.2id_tokenverification"><strong>2.2.2 id_token verification</strong></h3><ul><li><p><strong>JWT Signature Verification</strong><br/>: Verify the signature at the end of the JWT with the public key obtained from the JWK.</p></li><li><p><strong>OIDC Validation</strong><br/>: This process is a process of validating the main parameters of <code>id_token</code>.</p><ul><li><p><strong>Aud(Audiance) Validation</strong><br/>: Comparing <code>aud</code> and <code>ClientId</code> stored in the database. These two components should be matched.</p></li><li><p><strong>Algorithm Validation</strong><br/>: Confirming whether the alg(algorithm) is '<code>RS256</code>' or not</p></li><li><p><strong>Max age validation</strong><br/>: Checking <code>iat</code>(Issue AT),  <code>exp</code>(Expiration Time), and maxAge(Instance Variables)<br/>&gt;&gt; Currently, this validation logic has some issue: 
+
+    
+
+            
+
+
+
+
+    <span class="confluence-jim-macro jira-issue" data-jira-key="CORE-1251"  data-client-id="SINGLE_a5997e8d-c92b-3e2c-a3c8-296b7f0f7c11_1535180804_712020:8a6d4980-1b7a-4890-950c-f5d8b8602cce" >
+                <a href="https://varlab-dev.atlassian.net/browse/CORE-1251" class="jira-issue-key"><span class="aui-icon aui-icon-wait issue-placeholder"></span>CORE-1251</a>
+                    -
+            <span class="summary">Getting issue details...</span>
+                                    <span class="aui-lozenge aui-lozenge-subtle aui-lozenge-default issue-placeholder">STATUS</span>
+            </span>
+ </p></li><li><p><strong>Nonce Validation</strong><br/>: Retrieving '<code>nonce</code>' value from the local database and comparing with the <code>id_token.nonce</code></p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20250106-134559.png" width="712" loading="lazy" src="attachments/1535180804/1541898243.png?width=712" data-image-src="attachments/1535180804/1541898243.png" data-height="510" data-width="785" data-unresolved-comment-count="0" data-linked-resource-id="1541898243" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20250106-134559.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1535180804" data-linked-resource-container-version="26" data-media-id="c34057a4-34df-4bfe-969e-81c9e49d0282" data-media-type="file"></span></li></ul></li><li><p><strong>Claim Validation</strong><br/>: Confirming whether the <code>id_token</code> following all IMS Global clam standard.<br/>&gt;&gt; <code>message_type</code>, <code>target_link_uri</code>, <code>resource_link</code>, <code>version</code>, <code>deployment_id</code>, and <code>roles</code> are validated in this process.</p></li></ul><h2 id="LTIODICWorkflow-2.3ErrorMessages"><strong>2.3 Error Messages</strong></h2><div class="table-wrap"><table data-table-width="760" data-layout="default" data-local-id="261d7455-7e86-49b9-b99f-b6e31c25e1f3" class="confluenceTable"><colgroup><col style="width: 356.0px;"/><col style="width: 402.0px;"/></colgroup><tbody><tr><th class="confluenceTh"><p><strong>Processes</strong></p></th><th class="confluenceTh"><p><strong>Error Messages</strong></p></th></tr><tr><td class="confluenceTd"><p>2.1.1 Check the encoding algorithm of the JWT</p></td><td class="confluenceTd"><p><code>INVALID_JWT_RECEIVED</code></p></td></tr><tr><td class="confluenceTd"><p>2.1.2 Verify the id_token issuer (iss)</p></td><td class="confluenceTd"><p><code>ISS_CLAIM_DOES_NOT_MATCHINVALID_JWT_RECEIVED</code></p></td></tr><tr><td class="confluenceTd"><p>2.1.3 Check the registration status of the iss</p></td><td class="confluenceTd"><p><code>UNREGISTERED_PLATFORM</code></p></td></tr><tr><td class="confluenceTd"><p>2.2.2 Aud(Audiance) Validation</p></td><td class="confluenceTd"><p><code>AZP_DOES_NOT_MATCH_CLIENTID</code></p></td></tr><tr><td class="confluenceTd"><p>2.2.2 Algorithm Validation</p></td><td class="confluenceTd"><p><code>ALG_NOT_RS256</code></p></td></tr><tr><td class="confluenceTd"><p>2.2.2 Max age validation</p></td><td class="confluenceTd"><p><code>TOKEN_TOO_OLD</code></p></td></tr><tr><td class="confluenceTd"><p>2.2.2 Nonce Validation</p></td><td class="confluenceTd"><p><code>NONCE_ALREADY_RECEIVED</code></p></td></tr></tbody></table></div><p /><h2 id="LTIODICWorkflow-2.4Sample‘id_token’form"><strong>2.4 Sample ‘id_token’ form</strong></h2><div id="expander-1558300482" class="expand-container"><div id="expander-control-1558300482" class="expand-control"><span class="expand-control-icon"><img style="vertical-align:middle;" class="expand-control-image" src="images/icons/grey_arrow_down.png"></span><span class="expand-control-text">Sample &#39;id_token&#39;</span></div><div id="expander-content-1558300482" class="expand-content"><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">{
+  &quot;nonce&quot;: &quot;ezujscjwzqaj96yfiq98j8ylg&quot;,
+  &quot;iat&quot;: 1736123691,
+  &quot;exp&quot;: 1736123751,
+  &quot;iss&quot;: &quot;https://vconestoga.duckdns.org &quot;,
+  &quot;aud&quot;: &quot;JK12GXBG6jUetEU&quot;,
+  &quot;https://purl.imsglobal.org/spec/lti/claim/deployment_id&quot;: &quot;375&quot;,
+  &quot;https://purl.imsglobal.org/spec/lti/claim/target_link_uri&quot;: &quot;https://e2e8-72-138-14-22.ngrok-free.app/dlx/rab&quot;,
+  &quot;sub&quot;: &quot;22&quot;,
+  &quot;https://purl.imsglobal.org/spec/lti/claim/lis&quot;: {
+    &quot;person_sourcedid&quot;: &quot;&quot;,
+    &quot;course_section_sourcedid&quot;: &quot;&quot;
+  },
+  &quot;https://purl.imsglobal.org/spec/lti/claim/roles&quot;: [
+    &quot;http://purl.imsglobal.org/vocab/lis/v2/institution/person#Administrator&quot;,
+    &quot;http://purl.imsglobal.org/vocab/lis/v2/membership#Instructor&quot;,
+    &quot;http://purl.imsglobal.org/vocab/lis/v2/system/person#Administrator&quot;
+  ],
+  &quot;https://purl.imsglobal.org/spec/lti/claim/context&quot;: {
+    &quot;id&quot;: &quot;12&quot;,
+    &quot;label&quot;: &quot;test_course&quot;,
+    &quot;title&quot;: &quot;test_course&quot;,
+    &quot;type&quot;: [
+      &quot;CourseSection&quot;
+    ]
+  },
+  &quot;https://purl.imsglobal.org/spec/lti/claim/resource_link&quot;: {
+    &quot;title&quot;: &quot;rab&quot;,
+    &quot;id&quot;: &quot;230&quot;
+  },
+  &quot;given_name&quot;: &quot;Chris&quot;,
+  &quot;family_name&quot;: &quot;Park&quot;,
+  &quot;name&quot;: &quot;Chris Park&quot;,
+  &quot;https://purl.imsglobal.org/spec/lti/claim/ext&quot;: {
+    &quot;user_username&quot;: &quot;chrisp&quot;,
+    &quot;lms&quot;: &quot;moodle-2&quot;
+  },
+  &quot;email&quot;: &quot;cpark@conestogac.on.ca&quot;,
+  &quot;https://purl.imsglobal.org/spec/lti/claim/launch_presentation&quot;: {
+    &quot;locale&quot;: &quot;en&quot;,
+    &quot;document_target&quot;: &quot;iframe&quot;,
+    &quot;return_url&quot;: &quot;https://vconestoga.duckdns.org/mod/lti/return.php?course=12&amp;launch_container=3&amp;instanceid=230&amp;sesskey=Nr8RqQ4CK4&quot;
+  },
+  &quot;https://purl.imsglobal.org/spec/lti/claim/tool_platform&quot;: {
+    &quot;product_family_code&quot;: &quot;moodle&quot;,
+    &quot;version&quot;: &quot;2020110900.06&quot;,
+    &quot;guid&quot;: &quot;03e704ce4a11bd391c8d1f2bc7c485ac&quot;,
+    &quot;name&quot;: &quot;TestSSO&quot;,
+    &quot;description&quot;: &quot;vConestoga LMS&quot;
+  },
+  &quot;https://purl.imsglobal.org/spec/lti/claim/version&quot;: &quot;1.3.0&quot;,
+  &quot;https://purl.imsglobal.org/spec/lti/claim/message_type&quot;: &quot;LtiResourceLinkRequest&quot;,
+  &quot;https://purl.imsglobal.org/spec/lti-ags/claim/endpoint&quot;: {
+    &quot;scope&quot;: [
+      &quot;https://purl.imsglobal.org/spec/lti-ags/scope/lineitem&quot;,
+      &quot;https://purl.imsglobal.org/spec/lti-ags/scope/lineitem.readonly&quot;,
+      &quot;https://purl.imsglobal.org/spec/lti-ags/scope/result.readonly&quot;,
+      &quot;https://purl.imsglobal.org/spec/lti-ags/scope/score&quot;
+    ],
+    &quot;lineitems&quot;: &quot;https://vconestoga.duckdns.org/mod/lti/services.php/12/lineitems?type_id=375&quot;
+  },
+  &quot;https://purl.imsglobal.org/spec/lti-nrps/claim/namesroleservice&quot;: {
+    &quot;context_memberships_url&quot;: &quot;https://vconestoga.duckdns.org/mod/lti/services.php/CourseSection/12/bindings/375/memberships&quot;,
+    &quot;service_versions&quot;: [
+      &quot;1.0&quot;,
+      &quot;2.0&quot;
+    ]
+  }
+
+}</pre>
+</div></div></div></div>
+                    </div>
+
+                                        <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1535180804/1535541264.png">Blank diagram-20241227-050106.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1535180804/1535705103.png">Blank diagram-20241227-050529.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1535180804/1535705109.png">Blank diagram-20241227-050802.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1535180804/1537081347.png">OIDC Workflow-20241230-233208.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1535180804/1536884743.png">OIDC Workflow-20241230-233429.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1535180804/1537540114.png">image-20241231-231734.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1535180804/1540718619.png">image-20250105-025113.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1535180804/1540718627.png">image-20250105-025221.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1535180804/1540653092.png">image-20250105-025748.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1535180804/1541275683.png">image-20250106-032239.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1535180804/1540948066.png">image-20250106-032415.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1535180804/1541603332.png">image-20250106-134428.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1535180804/1541898243.png">image-20250106-134559.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on May 27, 2025 13:35</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

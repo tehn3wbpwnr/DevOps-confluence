@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DevOps / Pipeline &amp; Deployment : Static Analysis</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">DevOps / Pipeline &amp; Deployment</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1179353439.html">DevOps / Pipeline &amp; Deployment Home</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Windows-Jenkins-Documents_1542389772.html">Windows Jenkins Documents</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1567129601.html">CI/CD Pipeline Architecture Design</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1313800220.html">Node.js Applications: Process Flow-Based Documentation for CI,CD, and Continuous Deployment Pipelines</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Build-Stage_1363116075.html">Build Stage</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            DevOps / Pipeline &amp; Deployment : Static Analysis
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                            
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Jindo Kim</span> on Sept 26, 2024
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <style type="text/css">/*<![CDATA[*/
+div.rbtoc1748352891678 {padding: 0px;}
+div.rbtoc1748352891678 ul {list-style: none;margin-left: 0px;}
+div.rbtoc1748352891678 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style><div class="toc-macro rbtoc1748352891678"><style>[data-colorid=nrutgq9dk5]{color:#ff5630} html[data-color-mode=dark] [data-colorid=nrutgq9dk5]{color:#cf2600}</style>
+<ul class="toc-indentation">
+<li><a href="#StaticAnalysis-Definition:">Definition:</a></li>
+<li><a href="#StaticAnalysis-Goal:">Goal:</a></li>
+<li><a href="#StaticAnalysis-ReasonandBenefit:">Reason and Benefit:</a></li>
+<li><a href="#StaticAnalysis-PossibleFocusArea:">Possible Focus Area:</a>
+<ul class="toc-indentation">
+<li><a href="#StaticAnalysis-SecurityVulnerabilities">Security Vulnerabilities</a></li>
+<li><a href="#StaticAnalysis-PerformanceIssues">Performance Issues</a></li>
+<li><a href="#StaticAnalysis-CodeSmells">Code Smells</a></li>
+</ul>
+</li>
+<li><a href="#StaticAnalysis-Operation">Operation</a></li>
+<li><a href="#StaticAnalysis-References">References</a>
+<ul class="toc-indentation">
+<li><a href="#StaticAnalysis-NodeJsScan">NodeJsScan</a></li>
+<li><a href="#StaticAnalysis-Semgrep">Semgrep</a></li>
+</ul>
+</li>
+</ul>
+</div><h1 id="StaticAnalysis-Definition:">Definition: </h1><ul><li><p>A type of code analysis that examines code without executing it</p></li></ul><h1 id="StaticAnalysis-Goal:">Goal: </h1><ul><li><p>To help developers identify potential issues before they occur, thereby making the code more reliable and secure.</p></li></ul><h1 id="StaticAnalysis-ReasonandBenefit:">Reason and Benefit: </h1><ul><li><p>Static analysis tools can perform deeper code analysis than linting tools, detecting bugs and potential issues in the code that might otherwise be missed, thus ensuring higher code reliability and security.</p></li></ul><h1 id="StaticAnalysis-PossibleFocusArea:">Possible Focus Area:</h1><h2 id="StaticAnalysis-SecurityVulnerabilities">Security Vulnerabilities</h2><ul><li><p>SQL injection: Detect SQL injection vulnerabilities by analyzing how the code utilizes user input in SQL queries.</p></li><li><p>Cross-site scripting (XSS): Detect cross-site scripting vulnerabilities by analyzing how web pages employ user input.</p></li><li><p>Authentication and authorization flaws: Detect authentication and authorization vulnerabilities by analyzing user authentication implementation and access control enforcement.</p></li></ul><h2 id="StaticAnalysis-PerformanceIssues">Performance Issues</h2><ul><li><p>Loop analysis: Detect loops with many iterations or nested loops that can cause performance issues </p><ul><li><p><em>e.g., a loop that iterates over a large array without early exit conditions may cause a potential performance bottleneck.</em></p></li></ul></li><li><p>Memory usage analysis:  Detect inefficient memory usage patterns</p><ul><li><p><em>e.g., a code segment that allocates a large amount of memory without deallocating it.</em></p></li></ul></li><li><p>Function call analysis: Detect function calls that are known to be computationally expensive, such as string concatenation or regular expression matching.</p><ul><li><p><em>e.g., a code segment that performs many regular expression matches on large strings may indicate a performance bottleneck.</em></p></li></ul></li><li><p>Code complexity analysis: Detect code segments with high cyclomatic complexity.</p><ul><li><p><em>e.g., a complex nested if-else statement involving many conditions and operations.</em></p></li></ul></li><li><p>Dead code analysis: Detect never-executed code segments that lead to unnecessary computation and potential performance issues.</p><ul><li><p><em>e.g., commented-out code segments or code within an unused if-statement.</em></p></li></ul></li></ul><h2 id="StaticAnalysis-CodeSmells">Code Smells</h2><ul><li><p>Duplicated code: Indicates that the code may not be well-designed or lacks code reuse.</p></li><li><p>Long methods: Detect long methods that contain too much logic or perform too many tasks, making them difficult to understand, test, and maintain.</p></li><li><p>Large classes: Detect large code classes containing too many functions or fields, making them difficult to maintain.</p></li><li><p>Cyclomatic complexity: Measures the number of possible execution paths through the code; high complexity indicates code that is difficult to comprehend and maintain.</p></li><li><p>Nested conditionals: Detect nested conditionals, indicating overly complex and difficult-to-understand code.</p></li><li><p>Dead code: Unused or outdated code, leading to increased complexity and maintenance overhead.</p></li><li><p>Primitive obsession: Indicates overly simplistic code or code not designed with object-oriented principles in mind due to excessive use of primitive data types.</p></li></ul><h1 id="StaticAnalysis-Operation">Operation</h1><ul><li><p><em><span data-colorid="nrutgq9dk5"><u>It's gonna be filled while we design Static Analysis in CI pipeline.</u></span></em></p></li></ul><h1 id="StaticAnalysis-References">References</h1><ul><li><p><a class="external-link" data-card-appearance="inline" href="https://www.harness.io/blog/static-vs-dynamic-code-analysis" rel="nofollow">https://www.harness.io/blog/static-vs-dynamic-code-analysis</a> </p></li></ul><h2 id="StaticAnalysis-NodeJsScan">NodeJsScan</h2><ul><li><p><a class="external-link" href="https://devsecops-pipelines.ayushpriya.com/static_analysis/" rel="nofollow">How to perform security analysis on a Node.js project (DVNA) using Static Application Security Testing (SAST) tools and integrate them with Jenkins</a></p><ul><li><p><a class="external-link" data-card-appearance="inline" href="https://github.com/appsecco/dvna#damn-vulnerable-nodejs-application-dvna" rel="nofollow">https://github.com/appsecco/dvna#damn-vulnerable-nodejs-application-dvna</a>  - This is not a tool</p><ul><li><p>A deliberately vulnerable web application designed for practicing and learning security testing in Node.js applications.</p></li><li><p><a class="external-link" href="https://raw.githubusercontent.com/ayushpriya10/dvna/master/Task_Report/SAST%20Reports/nodejsscan-report" rel="nofollow">NodeJsScan Report for DVNA Project</a></p></li><li><p><a class="external-link" href="https://devsecops-pipelines.ayushpriya.com/comparing_sast_tools/" rel="nofollow">Comparative Analysis of SAST Tools for Node.js Security and Performance</a></p><ul><li><p><em><u>According to this blog, experiments with various SAST tools on the DVNA project showed that NodeJsScan demonstrated the best performance.</u></em></p></li></ul></li></ul></li></ul></li><li><p><a class="external-link" data-card-appearance="inline" href="https://github.com/ajinabraham/nodejsscan" rel="nofollow">https://github.com/ajinabraham/nodejsscan</a> </p></li><li><p><a class="external-link" data-card-appearance="inline" href="https://www.youtube.com/watch?v=kTjICeZCvS0" rel="nofollow">https://www.youtube.com/watch?v=kTjICeZCvS0</a> (1:21:48)</p></li></ul><h2 id="StaticAnalysis-Semgrep">Semgrep</h2><ul><li><p><a class="external-link" href="https://semgrep.dev/docs/semgrep-ci/sample-ci-configs#jenkins" rel="nofollow">Sample CI configurations for Jenkins - Semgrep</a></p></li><li><p><a class="external-link" href="https://semgrep.dev/docs/getting-started/cli" rel="nofollow">Local scans with Semgrep</a></p></li><li><p><a class="external-link" href="https://semgrep.dev/docs/semgrep-appsec-platform/jira" rel="nofollow">Create Jira tickets</a></p><ul><li><p><em><u>The Semgrep Jira integration allows you to create Jira tickets based on your Semgrep Code, Supply Chain, and Secrets findings.</u></em></p></li></ul></li></ul><p />
+                    </div>
+
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on May 27, 2025 13:34</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

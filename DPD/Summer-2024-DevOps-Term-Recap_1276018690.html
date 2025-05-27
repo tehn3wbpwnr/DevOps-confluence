@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DevOps / Pipeline &amp; Deployment : Summer 2024 DevOps Term Recap</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">DevOps / Pipeline &amp; Deployment</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1179353439.html">DevOps / Pipeline &amp; Deployment Home</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="DevOps-Documents_1231618075.html">DevOps Documents</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            DevOps / Pipeline &amp; Deployment : Summer 2024 DevOps Term Recap
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                            
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Joshua Moore</span>, last modified on Aug 15, 2024
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <h1 id="Summer2024DevOpsTermRecap-AccomplishedThisTerm">Accomplished This Term</h1><p>This was the first real term of having a full dedicated DevOps team, filled with a lot of learning. This section will cover some of the things we learned about, explored, and implemented this term.</p><h2 id="Summer2024DevOpsTermRecap-Jenkins">Jenkins</h2><p>Initial half of summer term was focused on <strong>Jenkins</strong>, learning about the initial pipeline implementation and how it functioned, then improving and expanding upon it. This could be split into 3 categories <strong>General</strong> Jenkins improvements, the <strong>PR Created/updated </strong>pipeline, and the <strong>PR Merged</strong> pipeline.</p><h3 id="Summer2024DevOpsTermRecap-GeneralJenkinsadditionsthisterm">General Jenkins additions this term</h3><ul><li><p>switched from cloning repos for every new PR to a single shared repo managed similarly to how you manage git when working on your local machine, contextually switching branches to match your current needs.</p></li><li><p>added “BuildServer” tag to running of tests to allow exclusion of problematic tests when there is no Graphics interface.</p></li><li><p>so many bug fixes</p></li></ul><h3 id="Summer2024DevOpsTermRecap-PRCreation/mergepipelinesummary">PR Creation/merge pipeline summary</h3><ul><li><p>Handles git swapping of branches, ensuring local repo is reset then matches expected remote.</p></li><li><p>Runs Edit-mode and Play-mode tests for the Unity project</p></li><li><p>Based off tests will report back to Bitbucket via REST API with number of failed tests and percentage of code coverage as this pipeline is informative.</p></li><li><p>Changed build options to increase speed and efficiency since this pipeline is only concerned with compilation errors.</p></li></ul><h3 id="Summer2024DevOpsTermRecap-PRMergepipelinesummary">PR Merge pipeline summary</h3><ul><li><p>Handles git pulling/resetting of main</p></li><li><p>Runs Edit-mode and Play-mode tests for the Unity project</p></li><li><p>No sending of test reports as this pipelines purpose is for deployment</p></li><li><p>Builds the project then sends it to our dlx-webhost server and calls a shell script to deploy it to the active webserver.</p></li></ul><h2 id="Summer2024DevOpsTermRecap-LTIWebserver">LTI Webserver</h2><p>The second half of the term was spent learning about a research project that was built by the vConestoga team. They were investigating the use of LTI to host our WebGL builds on a remote server and hook them up to LMS(eConestoga/Moodle) as external tools. There was the foundations of a web server put together using the LTIjs library and we took those foundations and moved to it a proof of concept using Moodle and putting together a Unity package that can be used as part of our CORE framework to allow sims to interact with the LTI server.</p><h3 id="Summer2024DevOpsTermRecap-LTISummary">LTI Summary</h3><ul><li><p>Webserver hosted on linux VM, internally routed to via https tunnel on NGINX server</p></li><li><p>built using express for the back end using the LTIjs library</p></li><li><p>uses Oauth/OpenID for Authentication/Authorization</p></li><li><p>Hosts the sims WebGL builds in public folder, sets redirect routes to those folders following authentication</p></li><li><p>Created CORE LTI package hosted on our upm registry to allow sims to interface with the LTI server retrieving learner information</p></li><li><p>so many bug fixes</p></li><li><p>Added code to automatically update the server code when pr is merged to target main</p></li><li><p>CRON job setup to check pm2 status and restart server if there is an issue pinging its address</p></li></ul><h1 id="Summer2024DevOpsTermRecap-Thingsfornextterm">Things for next term</h1><p>The initial goals for the term are going to follow some general guidelines.</p><ol start="1"><li><p>Continual improvement of Jenkins pipeline</p><ol start="1"><li><p>Add styling enforcement/linting</p></li><li><p>Increase authority on bitbucket</p></li><li><p>Enforce reduction limit in code coverage</p></li></ol></li><li><p>Continual improvement of LTI server</p><ol start="1"><li><p>Investigate grades service for DLX done via our Unity package</p></li><li><p>Continually work towards deploying it on eConestoga-meeting with Conestoga/D2L</p></li></ol></li><li><p>Deployment of Varniverse pipeline + server with Varniverse running adequately on WebGL</p></li></ol>
+                    </div>
+
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on May 27, 2025 13:36</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

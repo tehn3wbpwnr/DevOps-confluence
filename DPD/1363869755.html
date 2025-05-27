@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DevOps / Pipeline &amp; Deployment : Test Case Validation (Human Review)</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">DevOps / Pipeline &amp; Deployment</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1179353439.html">DevOps / Pipeline &amp; Deployment Home</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Windows-Jenkins-Documents_1542389772.html">Windows Jenkins Documents</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1567129601.html">CI/CD Pipeline Architecture Design</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1313800220.html">Node.js Applications: Process Flow-Based Documentation for CI,CD, and Continuous Deployment Pipelines</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Build-Stage_1363116075.html">Build Stage</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            DevOps / Pipeline &amp; Deployment : Test Case Validation (Human Review)
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                            
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Jindo Kim</span> on Sept 26, 2024
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <style type='text/css'>/*<![CDATA[*/
+div.rbtoc1748352902880 {padding: 0px;}
+div.rbtoc1748352902880 ul {list-style: none;margin-left: 0px;}
+div.rbtoc1748352902880 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style><div class='toc-macro rbtoc1748352902880'>
+<ul class='toc-indentation'>
+<li><a href='#TestCaseValidation(HumanReview)-Goal:'>Goal:</a></li>
+<li><a href='#TestCaseValidation(HumanReview)-Purpose'>Purpose</a></li>
+<li><a href='#TestCaseValidation(HumanReview)-Operation'>Operation</a>
+<ul class='toc-indentation'>
+<li><a href='#TestCaseValidation(HumanReview)-TrackCodeChangeswithGitDiff'>Track Code Changes with Git Diff</a></li>
+<li><a href='#TestCaseValidation(HumanReview)-ExtractMethodandFileNames'>Extract Method and File Names</a></li>
+<li><a href='#TestCaseValidation(HumanReview)-LocateRelevantTestCases'>Locate Relevant Test Cases</a></li>
+<li><a href='#TestCaseValidation(HumanReview)-ExtractMethodandTestCaseCode'>Extract Method and Test Case Code</a></li>
+<li><a href='#TestCaseValidation(HumanReview)-CreateHTMLoraSimilarToolforDisplay'>Create HTML or a Similar Tool for Display</a></li>
+<li><a href='#TestCaseValidation(HumanReview)-FacilitateReviewandFeedback'>Facilitate Review and Feedback</a></li>
+<li><a href='#TestCaseValidation(HumanReview)-EnableTestExecution'>Enable Test Execution</a></li>
+<li><a href='#TestCaseValidation(HumanReview)-BitbucketIntegration'>Bitbucket Integration</a></li>
+</ul>
+</li>
+<li><a href='#TestCaseValidation(HumanReview)-ReferencesforDesigningTestCaseValidationStep'>References for Designing Test Case Validation Step</a></li>
+<li><a href='#TestCaseValidation(HumanReview)-ReferencesforWritingTestCases'>References for Writing Test Cases</a></li>
+</ul>
+</div><h1 id="TestCaseValidation(HumanReview)-Goal:">Goal: </h1><ul><li><p>To encourage the TDD principle by ensuring that unit test cases are developed alongside the code.</p><ul><li><p><a class="external-link" data-card-appearance="inline" href="https://medium.com/@vishwasacharya/node-js-testing-best-practices-and-frameworks-for-reliable-apps-656f1cc51426#:~:text=Test%2DDriven%20Development%20(TDD)%20with%20Node.js" rel="nofollow">https://medium.com/@vishwasacharya/node-js-testing-best-practices-and-frameworks-for-reliable-apps-656f1cc51426#:~:text=Test%2DDriven%20Development%20(TDD)%20with%20Node.js</a></p></li><li><p><a class="external-link" data-card-appearance="inline" href="https://www.spiceworks.com/tech/devops/articles/what-is-tdd/" rel="nofollow">https://www.spiceworks.com/tech/devops/articles/what-is-tdd/</a> </p></li></ul></li></ul><h1 id="TestCaseValidation(HumanReview)-Purpose">Purpose</h1><ul><li><p>To review whether appropriate unit test cases have been written for the modified or newly added code, allowing the team to prompt or decide on policies regarding the inclusion of unit tests.</p></li></ul><h1 id="TestCaseValidation(HumanReview)-Operation">Operation</h1><h2 id="TestCaseValidation(HumanReview)-TrackCodeChangeswithGitDiff">Track Code Changes with Git Diff</h2><ul><li><p>Use git diff to identify modifications in the codebase.</p></li></ul><h2 id="TestCaseValidation(HumanReview)-ExtractMethodandFileNames">Extract Method and File Names</h2><ul><li><p>Extract the names of modified methods and their associated files from the git diff output.</p></li></ul><h2 id="TestCaseValidation(HumanReview)-LocateRelevantTestCases">Locate Relevant Test Cases</h2><ul><li><p>Use the method and file names to identify test cases that adhere to the team's naming conventions.</p></li></ul><h2 id="TestCaseValidation(HumanReview)-ExtractMethodandTestCaseCode">Extract Method and Test Case Code</h2><ul><li><p>Extract the full code of the modified methods and their corresponding test cases.</p></li></ul><h2 id="TestCaseValidation(HumanReview)-CreateHTMLoraSimilarToolforDisplay">Create HTML or a Similar Tool for Display</h2><ul><li><p>Develop an HTML page or similar tool to display the method code on the left and the test case code on the right, side by side.</p></li></ul><h2 id="TestCaseValidation(HumanReview)-FacilitateReviewandFeedback">Facilitate Review and Feedback</h2><ul><li><p>Provide a platform for reviewers and developers to discuss and align on the method and test case code.</p></li></ul><h2 id="TestCaseValidation(HumanReview)-EnableTestExecution">Enable Test Execution</h2><ul><li><p>Optionally include functionality to run tests directly from the HTML interface, allowing for immediate feedback on test cases.</p></li></ul><h2 id="TestCaseValidation(HumanReview)-BitbucketIntegration">Bitbucket Integration</h2><ul><li><p>Upon the reviewers approval, a Bitbucket webhook triggers a request to the Jenkins server to advance the CI/CD pipeline to the next stage.</p></li></ul><h1 id="TestCaseValidation(HumanReview)-ReferencesforDesigningTestCaseValidationStep">References for Designing Test Case Validation Step</h1><ul><li><p><a class="external-link" href="https://developer.ibm.com/articles/5-steps-of-test-driven-development/" rel="nofollow">IBM - 5 steps of test-driven development</a></p></li><li><p><a class="external-link" data-card-appearance="inline" href="https://refine.dev/blog/git-diff-command/#introduction" rel="nofollow">https://refine.dev/blog/git-diff-command/#introduction</a> </p></li><li><p><a class="external-link" data-card-appearance="inline" href="https://www.reddit.com/r/javascript/comments/4d5e5j/parsing_javascript_code_and_extracting_variables/" rel="nofollow">https://www.reddit.com/r/javascript/comments/4d5e5j/parsing_javascript_code_and_extracting_variables/</a> </p></li><li><p><a class="external-link" data-card-appearance="inline" href="https://www.npmjs.com/package/acorn?activeTab=readme" rel="nofollow">https://www.npmjs.com/package/acorn?activeTab=readme</a> - <a class="external-link" href="https://snyk.io/advisor/npm-package/acorn" rel="nofollow">Package Health Score</a></p></li><li><p><a class="external-link" data-card-appearance="inline" href="https://www.npmjs.com/package/acorn-walk" rel="nofollow">https://www.npmjs.com/package/acorn-walk</a> - <a class="external-link" href="https://snyk.io/advisor/npm-package/acorn-walk" rel="nofollow">Package Health Score</a></p></li><li><p><a class="external-link" data-card-appearance="inline" href="https://www.npmjs.com/package/fs-extra" rel="nofollow">https://www.npmjs.com/package/fs-extra</a> - <a class="external-link" href="https://snyk.io/advisor/npm-package/fs-extra" rel="nofollow">Package Health Score</a></p></li><li><p>Alternately, <a class="external-link" data-card-appearance="inline" href="https://jestjs.io/docs/api#testonlyname-fn-timeout:~:text=specific%20failing%20test.-,test.only(name%2C%20fn%2C%20timeout),debugging%2C%20and%20remove%20it%20once%20you%20have%20fixed%20the%20broken%20tests.,-test.only.each" rel="nofollow">https://jestjs.io/docs/api#testonlyname-fn-timeout:~:text=specific%20failing%20test.-,test.only(name%2C%20fn%2C%20timeout),debugging%2C%20and%20remove%20it%20once%20you%20have%20fixed%20the%20broken%20tests.,-test.only.each</a>  - <a class="external-link" data-card-appearance="inline" href="https://dev.to/dvddpl/jest-testing-like-a-pro-tips-and-tricks-4o6f#:~:text=Be%20very%20careful%20when%20committing%20after%20you%20are%20done.%20You%20might%20screw%20the%20entire%20Build%20pipeline%20and%20even%20risk%20putting%20something%20broken%20in%20production%2C%20because%20the%20only%20tests%20you%20are%20actually%20running%2C%20are%20well%2C%20those%20that%20you%20marked%20as%20.only!" rel="nofollow">https://dev.to/dvddpl/jest-testing-like-a-pro-tips-and-tricks-4o6f#:~:text=Be%20very%20careful%20when%20committing%20after%20you%20are%20done.%20You%20might%20screw%20the%20entire%20Build%20pipeline%20and%20even%20risk%20putting%20something%20broken%20in%20production%2C%20because%20the%20only%20tests%20you%20are%20actually%20running%2C%20are%20well%2C%20those%20that%20you%20marked%20as%20.only!</a> </p></li></ul><h1 id="TestCaseValidation(HumanReview)-ReferencesforWritingTestCases">References for Writing Test Cases</h1><ul><li><p><a class="external-link" data-card-appearance="inline" href="https://dev.to/dsasse07/a-beginner-s-guide-to-unit-testing-with-jest-45cc" rel="nofollow">https://dev.to/dsasse07/a-beginner-s-guide-to-unit-testing-with-jest-45cc</a></p></li><li><p><a class="external-link" data-card-appearance="inline" href="https://salithachathuranga94.medium.com/unit-testing-with-node-js-and-jest-5dba6e6ab5e" rel="nofollow">https://salithachathuranga94.medium.com/unit-testing-with-node-js-and-jest-5dba6e6ab5e</a></p></li><li><p><a class="external-link" data-card-appearance="inline" href="https://web.dev/articles/ta-what-to-test#what_belongs_to_a_good_unit_test" rel="nofollow">https://web.dev/articles/ta-what-to-test#what_belongs_to_a_good_unit_test</a></p></li><li><p><a class="external-link" data-card-appearance="inline" href="https://dev.to/dvddpl/jest-testing-like-a-pro-tips-and-tricks-4o6f" rel="nofollow">https://dev.to/dvddpl/jest-testing-like-a-pro-tips-and-tricks-4o6f</a></p></li><li><p><a class="external-link" data-card-appearance="inline" href="https://dev.to/this-is-learning/how-to-mock-dependencies-with-jest-457l" rel="nofollow">https://dev.to/this-is-learning/how-to-mock-dependencies-with-jest-457l</a></p></li><li><p><a class="external-link" data-card-appearance="inline" href="https://github.com/mawrkus/js-unit-testing-guide" rel="nofollow">https://github.com/mawrkus/js-unit-testing-guide</a> </p></li><li><p><a class="external-link" data-card-appearance="inline" href="https://www.youtube.com/watch?v=iP0Vl-vU3XM" rel="nofollow">https://www.youtube.com/watch?v=iP0Vl-vU3XM</a> (46:09)</p></li><li><p><a class="external-link" data-card-appearance="inline" href="https://medium.com/@giladhoshmand/how-to-reach-100-unit-test-coverage-with-node-js-express-jest-d8909080f9dd" rel="nofollow">https://medium.com/@giladhoshmand/how-to-reach-100-unit-test-coverage-with-node-js-express-jest-d8909080f9dd</a></p></li><li><p><a class="external-link" href="https://egghead.io/lessons/jest-make-your-test-fail?pl=kent-s-blog-posts-as-screencasts-eefa540c&amp;af=5236ad" rel="nofollow">Good practice to write test - Video(4:16) by Kent C. Dodds</a> - <a class="external-link" href="https://egghead.io/q/resources-by-kent-c-dodds" rel="nofollow">Kent C. Dodds</a></p></li><li><p><a class="external-link" href="https://medium.com/@giladhoshmand/tdd-with-chatgpt-c375b3b78d6a" rel="nofollow">Can GTP-4 be useful for TDD? - Medium</a></p></li></ul><p /><hr/>
+                    </div>
+
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on May 27, 2025 13:35</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

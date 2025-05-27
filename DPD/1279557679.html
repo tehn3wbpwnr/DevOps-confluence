@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DevOps / Pipeline &amp; Deployment : About Build Behaviors(Strategy) Setting</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">DevOps / Pipeline &amp; Deployment</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1179353439.html">DevOps / Pipeline &amp; Deployment Home</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Windows-Jenkins-Documents_1542389772.html">Windows Jenkins Documents</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Set-Up-on-Windows_1541570589.html">Set Up on Windows</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Set-Up-Jenkins-Build-System_819265566.html">Set Up Jenkins Build System</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Set-Up-Multi-Branch-Pipeline_1171357758.html">Set Up Multi-Branch-Pipeline</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            DevOps / Pipeline &amp; Deployment : About Build Behaviors(Strategy) Setting
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                            
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Chris Park</span>, last modified on Aug 14, 2024
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <style type='text/css'>/*<![CDATA[*/
+div.rbtoc1748352887671 {padding: 0px;}
+div.rbtoc1748352887671 ul {list-style: none;margin-left: 0px;}
+div.rbtoc1748352887671 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style><div class='toc-macro rbtoc1748352887671'>
+<ul class='toc-indentation'>
+<li><a href='#AboutBuildBehaviors(Strategy)Setting-AboutBuildBehaviors(Strategy)Setting'>About Build Behaviors(Strategy) Setting</a>
+<ul class='toc-indentation'>
+<li><a href='#AboutBuildBehaviors(Strategy)Setting-1.Discoverbranches'>1. Discover branches</a></li>
+<li><a href='#AboutBuildBehaviors(Strategy)Setting-2.Discoverpullrequestsfromorigin'>2. Discover pull requests from origin</a></li>
+<li><a href='#AboutBuildBehaviors(Strategy)Setting-3.RecommandedConfigurationSetting'>3. Recommanded Configuration Setting</a></li>
+</ul>
+</li>
+</ul>
+</div><h1 id="AboutBuildBehaviors(Strategy)Setting-AboutBuildBehaviors(Strategy)Setting">About Build Behaviors(Strategy) Setting</h1><p>: There are a lot of behaviors we can use in Jenkins, but this document will be focus on only <strong>two things</strong>.<br/><strong>One </strong>is the strategy of <u>how to discover the branches in a repository</u>.<br/><strong>Another </strong>is the strategy of <u>how to build and test the project</u>.</p><hr/><h2 id="AboutBuildBehaviors(Strategy)Setting-1.Discoverbranches">1. <strong>Discover branches</strong></h2><p>: This strategy allows us to sort the branches in the selected repository.  So, we can build some certain branches that crossponding with this strategy.</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20240813-201332.png" width="760" loading="lazy" src="attachments/1279557679/1280507967.png?width=760" data-image-src="attachments/1279557679/1280507967.png" data-height="161" data-width="829" data-unresolved-comment-count="0" data-linked-resource-id="1280507967" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20240813-201332.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1279557679" data-linked-resource-container-version="11" data-media-id="04951b24-f750-448a-aec4-37f65f56c86b" data-media-type="file"></span><p>Currently, the most appropriate option will be ‘<strong>Only branches that are also filed as PRs</strong>'. If you select this option, the 'Multi-Branch Source Plugin’ will be discover the branches that are created a pull request in given Bitbucket repository like the image below.</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20240813-203009.png" width="760" loading="lazy" src="attachments/1279557679/1280442449.png?width=760" data-image-src="attachments/1279557679/1280442449.png" data-height="129" data-width="867" data-unresolved-comment-count="0" data-linked-resource-id="1280442449" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20240813-203009.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1279557679" data-linked-resource-container-version="11" data-media-id="b0ee138c-084c-43a8-8da1-aadf975fd598" data-media-type="file"></span><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20240813-202008.png" width="760" loading="lazy" src="attachments/1279557679/1281359928.png?width=760" data-image-src="attachments/1279557679/1281359928.png" data-height="571" data-width="991" data-unresolved-comment-count="0" data-linked-resource-id="1281359928" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20240813-202008.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1279557679" data-linked-resource-container-version="11" data-media-id="8eefc847-0b74-4a92-a480-81e06eb0649a" data-media-type="file"></span><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20240813-202106.png" width="760" loading="lazy" src="attachments/1279557679/1281359934.png?width=760" data-image-src="attachments/1279557679/1281359934.png" data-height="136" data-width="1089" data-unresolved-comment-count="0" data-linked-resource-id="1281359934" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20240813-202106.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1279557679" data-linked-resource-container-version="11" data-media-id="ddd7ecb9-439a-4f2d-9293-61c4df87be4c" data-media-type="file"></span><p>However, you can select '<strong>All branches</strong>' option if you want to manage all the branches regardless of PR creation then the Jenkins will discover and display all branches in a repository.</p><p>Not recommend selecting 'Exclude branches that are also filed as PRs' because it will ignore the PR request branch which is our target project. </p><hr/><h2 id="AboutBuildBehaviors(Strategy)Setting-2.Discoverpullrequestsfromorigin">2. <strong>Discover pull requests from origin</strong></h2><p>: This behavior determines how PRs (Pull Requests) are explored and processed in Jenkins' Multi-Branch Pipeline settings.</p><p> Therefore, considering the server's processing capacity and build strategy, it is reasonable to choose one of the three options below.<br/></p><ul><li><p><strong>Option 1</strong>. <strong>Merging the pull request with the current target branch revision</strong></p></li></ul><p style="margin-left: 30.0px;">: This option discovers the PR as if it has already been merged with the target branch.</p><p style="margin-left: 30.0px;">&gt;&gt; The build and test process occurs using the state after the PR is merged into the target branch, helping preemptively resolve any merge conflicts or integration issues.</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20240813-210021.png" width="602" loading="lazy" src="attachments/1279557679/1281687553.png?width=602" data-image-src="attachments/1279557679/1281687553.png" data-height="82" data-width="602" data-unresolved-comment-count="0" data-linked-resource-id="1281687553" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20240813-210021.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1279557679" data-linked-resource-container-version="11" data-media-id="e8e7d05c-384f-4731-a6ef-574b50b6455b" data-media-type="file"></span><p /><ul><li><p><strong>Option 2. The current pull request revision (Default)</strong></p></li></ul><p style="margin-left: 30.0px;">: This option discovers the PR and checks out the latest revision of the corresponding branch.</p><p> </p><ul><li><p><strong>Option 3. Both the current pull request revision and the pull request merged with the current target branch revision (Not Recommended)</strong></p></li></ul><p style="margin-left: 30.0px;">: This option discovers both branches which are merged with the target branch and the latest revision of the corresponding branch. Both projects will be built at the same time.<br/>&gt;&gt; It will trigger two builds in one event, so it will take too much resources in Jenkins server and could break our system.</p><p /><h2 id="AboutBuildBehaviors(Strategy)Setting-3.RecommandedConfigurationSetting">3. Recommanded Configuration Setting</h2><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20240813-205407.png" width="760" loading="lazy" src="attachments/1279557679/1280475190.png?width=760" data-image-src="attachments/1279557679/1280475190.png" data-height="308" data-width="889" data-unresolved-comment-count="0" data-linked-resource-id="1280475190" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20240813-205407.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1279557679" data-linked-resource-container-version="11" data-media-id="7ab4264f-d272-4c9d-92e5-3263cb50297c" data-media-type="file"></span><p style="text-align: center;">** Remove ‘Discover pull requests from forks’ Behavior<strong> **</strong></p><p />
+                    </div>
+
+                                        <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1279557679/1280507967.png">image-20240813-201332.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1279557679/1281359928.png">image-20240813-202008.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1279557679/1281359934.png">image-20240813-202106.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1279557679/1280442449.png">image-20240813-203009.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1279557679/1280475190.png">image-20240813-205407.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1279557679/1281687553.png">image-20240813-210021.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on May 27, 2025 13:34</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

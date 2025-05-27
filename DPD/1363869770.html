@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DevOps / Pipeline &amp; Deployment : Integration Testing ( may included UI and System Tests)</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">DevOps / Pipeline &amp; Deployment</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1179353439.html">DevOps / Pipeline &amp; Deployment Home</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Windows-Jenkins-Documents_1542389772.html">Windows Jenkins Documents</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1567129601.html">CI/CD Pipeline Architecture Design</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1313800220.html">Node.js Applications: Process Flow-Based Documentation for CI,CD, and Continuous Deployment Pipelines</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Deploy-to-Test-Stage_1363345440.html">Deploy to Test Stage</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            DevOps / Pipeline &amp; Deployment : Integration Testing ( may included UI and System Tests)
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                            
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Jindo Kim</span> on Sept 26, 2024
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <style type="text/css">/*<![CDATA[*/
+div.rbtoc1748352903610 {padding: 0px;}
+div.rbtoc1748352903610 ul {list-style: none;margin-left: 0px;}
+div.rbtoc1748352903610 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style><div class="toc-macro rbtoc1748352903610"><style>[data-colorid=f4kmt50n9c]{color:#ff5630} html[data-color-mode=dark] [data-colorid=f4kmt50n9c]{color:#cf2600}</style>
+<ul class="toc-indentation">
+<li><a href="#IntegrationTesting(mayincludedUIandSystemTests)-Goal">Goal</a></li>
+<li><a href="#IntegrationTesting(mayincludedUIandSystemTests)-FocusAreas">Focus Areas</a>
+<ul class="toc-indentation">
+<li><a href="#IntegrationTesting(mayincludedUIandSystemTests)-UIRenderingandInteractionTesting">UI Rendering and Interaction Testing</a></li>
+<li><a href="#IntegrationTesting(mayincludedUIandSystemTests)-StateManagement,DataFlow,andMocking">State Management, Data Flow, and Mocking</a></li>
+<li><a href="#IntegrationTesting(mayincludedUIandSystemTests)-ValidatingOutputsandSideEffects">Validating Outputs and Side Effects</a></li>
+<li><a href="#IntegrationTesting(mayincludedUIandSystemTests)-ApproachesandMethods(furtherresearchingneeded)">Approaches and Methods (further researching needed)</a></li>
+</ul>
+</li>
+<li><a href="#IntegrationTesting(mayincludedUIandSystemTests)-Operations">Operations</a>
+<ul class="toc-indentation">
+<li><a href="#IntegrationTesting(mayincludedUIandSystemTests)-Createanintegrationtestingplan.">Create an integration testing plan.</a></li>
+<li><a href="#IntegrationTesting(mayincludedUIandSystemTests)-Createtestdata,testcases,andusecases">Create test data, test cases, and use cases</a></li>
+<li><a href="#IntegrationTesting(mayincludedUIandSystemTests)-Preparethetestenvironment.(ifthisstepisnecessary)">Prepare the test environment. (if this step is necessary)</a></li>
+<li><a href="#IntegrationTesting(mayincludedUIandSystemTests)-Runtestcasesafterunitintegration.">Run test cases after unit integration.</a></li>
+<li><a href="#IntegrationTesting(mayincludedUIandSystemTests)-Detectintegrationerrors.">Detect integration errors.</a></li>
+<li><a href="#IntegrationTesting(mayincludedUIandSystemTests)-Applyrequiredfixestoerrors.">Apply required fixes to errors.</a></li>
+<li><a href="#IntegrationTesting(mayincludedUIandSystemTests)-Retestfunctionalityafterfixingbugs.">Retest functionality after fixing bugs.</a></li>
+<li><a href="#IntegrationTesting(mayincludedUIandSystemTests)-Repeatthetestingcycleuntilallerrorsarefixed.">Repeat the testing cycle until all errors are fixed.</a></li>
+</ul>
+</li>
+<li><a href="#IntegrationTesting(mayincludedUIandSystemTests)-References">References</a></li>
+</ul>
+</div><h1 id="IntegrationTesting(mayincludedUIandSystemTests)-Goal">Goal</h1><ul><li><p>To identify issues or bugs that arise when various components (modules/units) interact with each other.</p></li></ul><h1 id="IntegrationTesting(mayincludedUIandSystemTests)-FocusAreas">Focus Areas</h1><h2 id="IntegrationTesting(mayincludedUIandSystemTests)-UIRenderingandInteractionTesting">UI Rendering and Interaction Testing</h2><ul><li><p>Ensures that modules or components are rendered correctly and that they interact as expected.</p></li><li><p>Verifies that UI updates and states are generated correctly when specific events occur.</p></li><li><p>Examples:</p><ul><li><p>Render React components with shallow or full DOM rendering and test interactions between components with Enzyme npm.</p></li><li><p> Simulate specific events on components to test their behavior with Enzyme&rsquo;s simulate.</p></li></ul></li><li><p><a class="external-link" href="https://jestjs.io/docs/snapshot-testing#interactive-snapshot-mode" rel="nofollow">Jest Snapshot Testing</a>: A typical snapshot test case renders a UI component, takes a snapshot, then compares it to a reference snapshot file stored alongside the test.</p></li></ul><h2 id="IntegrationTesting(mayincludedUIandSystemTests)-StateManagement,DataFlow,andMocking">State Management, Data Flow, and Mocking</h2><ul><li><p>Mocks external dependencies to achieve consistent test results without relying on external systems, such as API calls, database connections.</p></li><li><p>Tests state management logic, data flow, and UI updates in response to state changes.</p></li><li><p>Examples</p><ul><li><p>For testing state management logic (reducers, actions, asynchronous actions) and React component state changes with Jest</p></li><li><p>Mocking and spying on functions to ensure correct operation with Sinon or MSW(Mock Service Worker)</p><ul><li><p><a class="external-link" data-card-appearance="inline" href="https://www.npmjs.com/package/sinon" rel="nofollow">https://www.npmjs.com/package/sinon</a>  - <a class="external-link" href="https://snyk.io/advisor/npm-package/sinon" rel="nofollow">Package Health Score</a></p></li><li><p><a class="external-link" data-card-appearance="inline" href="https://www.npmjs.com/package/msw" rel="nofollow">https://www.npmjs.com/package/msw</a>  - <a class="external-link" href="https://snyk.io/advisor/npm-package/msw" rel="nofollow">Package Health Score</a></p></li></ul></li></ul></li></ul><h2 id="IntegrationTesting(mayincludedUIandSystemTests)-ValidatingOutputsandSideEffects">Validating Outputs and Side Effects</h2><ul><li><p>Verify that the expected outputs are returned correctly and that any side effects (e.g., data storage, logging) are handled properly.</p></li><li><p>Examples:</p><ul><li><p>Check if specific values are returned as expected and verify if side effects occurred with Jest' Matchers</p></li><li><p>Spy on functions to ensure they were called the correct number of times and that side effects were processed correctly with Sinon npm</p></li></ul></li></ul><h2 id="IntegrationTesting(mayincludedUIandSystemTests)-ApproachesandMethods(furtherresearchingneeded)">Approaches and Methods (further researching needed)</h2><ul><li><p>Big Bang Testing</p></li><li><p>Incremental Integration Testing</p></li><li><p>The Bottom-Up Approach</p></li><li><p>Top-down approach</p></li><li><p>Sandwich testing/hybrid testing</p></li></ul><p /><h1 id="IntegrationTesting(mayincludedUIandSystemTests)-Operations">Operations</h1><h2 id="IntegrationTesting(mayincludedUIandSystemTests)-Createanintegrationtestingplan.">Create an integration testing plan.</h2><ol start="1"><li><p>Establish the testing strategy and decide which modules or components to integrate and test.</p></li><li><p>Design test cases and scenarios.</p></li><li><p>Tool or Package related: Jira, Confluence, Test Case Management</p></li></ol><h2 id="IntegrationTesting(mayincludedUIandSystemTests)-Createtestdata,testcases,andusecases">Create test data, test cases, and use cases</h2><ol start="1"><li><p>Generate diverse input data that might occur in a real operating environment.</p></li><li><p>Code each test case.</p><ol start="1"><li><p>Node.js - [Integration Testing with Node JS and Jest - Medium](<a class="external-link" data-card-appearance="inline" href="https://salithachathuranga94.medium.com/integration-testing-with-node-js-and-jest-8df71d65ca2a" rel="nofollow">https://salithachathuranga94.medium.com/integration-testing-with-node-js-and-jest-8df71d65ca2a</a> )</p><ol start="1"><li><p>API Layer &mdash; perform real API calls through code and assert</p></li><li><p>DAO Layer &mdash; manipulate some test data with DAO methods and assert</p></li><li><p>Service Layer &mdash; perform real service calls and assert</p></li></ol></li><li><p>React </p><ol start="1"><li><p>[Increase Code Maintainability With React Integration Testing](<a class="external-link" data-card-appearance="inline" href="https://www.toptal.com/react/react-testing-library-tutorial" rel="nofollow">https://www.toptal.com/react/react-testing-library-tutorial</a>)</p></li><li><p><a class="external-link" data-card-appearance="inline" href="https://www.npmjs.com/package/enzyme" rel="nofollow">https://www.npmjs.com/package/enzyme</a> - [<a class="external-link" href="https://snyk.io/advisor/npm-package/enzyme" rel="nofollow">Package Health Score]</a> created by AirBnB</p><ol start="1"><li><p><a class="external-link" href="https://github.com/enzymejs/enzyme/blob/HEAD/docs/guides/jest.md" rel="nofollow">Using Enzyme with Jest</a></p></li><li><p><a class="external-link" href="https://www.testim.io/blog/what-is-the-difference-between-jest-and-enzyme/" rel="nofollow">What Is the Difference Between Jest and Enzyme?</a></p></li></ol></li></ol></li></ol></li></ol><h2 id="IntegrationTesting(mayincludedUIandSystemTests)-Preparethetestenvironment.(ifthisstepisnecessary)">Prepare the test environment. (if this step is necessary)</h2><ol start="1"><li><p>Set up an environment where tests can be performed in local, staging, or CI/CD environments.</p></li><li><p>Mock or configure the state of external services like databases or servers.</p></li><li><p>Tools:</p><ol start="1"><li><p>Docker: Set up a consistent testing environment using container-based solutions</p></li></ol></li></ol><h2 id="IntegrationTesting(mayincludedUIandSystemTests)-Runtestcasesafterunitintegration.">Run test cases after unit integration.</h2><ol start="1"><li><p>Execute the written test cases.</p></li><li><p>Tools:</p><ol start="1"><li><p>Jest <em>(used the link provide previously)</em></p></li><li><p>Enzyme <em>(used the link provide previously)</em></p></li><li><p><a class="external-link" data-card-appearance="inline" href="https://www.npmjs.com/package/supertest" rel="nofollow">https://www.npmjs.com/package/supertest</a> - [<a class="external-link" href="https://snyk.io/advisor/npm-package/supertest" rel="nofollow">Package Health Score</a>] for testing HTTP</p></li></ol></li></ol><h2 id="IntegrationTesting(mayincludedUIandSystemTests)-Detectintegrationerrors.">Detect integration errors.</h2><ol start="1"><li><p>After executing the tests, analyze the logs to identify where errors occurred, and use debugging tools to trace the location of the problem.</p><ol start="1"><li><p><em><span data-colorid="f4kmt50n9c"><u>It is necessary to invest in debugging tools considering the language, project libraries, testing framework, and libraries used for testing</u></span></em></p></li></ol></li></ol><h2 id="IntegrationTesting(mayincludedUIandSystemTests)-Applyrequiredfixestoerrors.">Apply required fixes to errors.</h2><h2 id="IntegrationTesting(mayincludedUIandSystemTests)-Retestfunctionalityafterfixingbugs.">Retest functionality after fixing bugs.</h2><h2 id="IntegrationTesting(mayincludedUIandSystemTests)-Repeatthetestingcycleuntilallerrorsarefixed.">Repeat the testing cycle until all errors are fixed.</h2><p /><h1 id="IntegrationTesting(mayincludedUIandSystemTests)-References">References</h1><ul><li><p><a class="external-link" data-card-appearance="inline" href="https://www.youtube.com/watch?v=kRD6PA6uxiY&amp;t=72s" rel="nofollow">https://www.youtube.com/watch?v=kRD6PA6uxiY&amp;t=72s</a> (05:25)</p></li><li><p><a class="external-link" href="https://www.scriptworks.io/blog/integration-testing-explained/" rel="nofollow">Integration Testing Explained: Examples, Approaches and Challenges - Scriptworks</a></p></li><li><p><a class="external-link" data-card-appearance="inline" href="https://www.youtube.com/watch?v=547xhucRYkg" rel="nofollow">https://www.youtube.com/watch?v=547xhucRYkg</a> (02:52)</p></li><li><p><a class="external-link" data-card-appearance="inline" href="https://web.dev/articles/ta-what-to-test#what_belongs_to_a_good_integration_test" rel="nofollow">https://web.dev/articles/ta-what-to-test#what_belongs_to_a_good_integration_test</a> </p></li><li><p><a class="external-link" href="https://scanairobi.hashnode.dev/integration-testing-with-jest" rel="nofollow">step-by-step guide on how to set up and run integration tests with Jest - Integration Testing with Jest</a></p></li><li><p><a class="external-link" data-card-appearance="inline" href="https://coderpad.io/blog/development/how-to-write-integration-tests-with-jest-and-react-testing-library/" rel="nofollow">https://coderpad.io/blog/development/how-to-write-integration-tests-with-jest-and-react-testing-library/</a></p></li><li><p><a class="external-link" data-card-appearance="inline" href="https://www.browserstack.com/guide/integration-testing" rel="nofollow">https://www.browserstack.com/guide/integration-testing</a> </p></li></ul><p />
+                    </div>
+
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on May 27, 2025 13:35</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

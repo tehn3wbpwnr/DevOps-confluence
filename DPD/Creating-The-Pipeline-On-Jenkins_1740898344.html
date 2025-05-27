@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DevOps / Pipeline &amp; Deployment : Creating The Pipeline On Jenkins</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">DevOps / Pipeline &amp; Deployment</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1179353439.html">DevOps / Pipeline &amp; Deployment Home</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Onboarding-Documents_1541537838.html">Onboarding Documents</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Pipelines_1495236695.html">Pipelines</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Creating-Your-First-Pipeline%21_1508212737.html">Creating Your First Pipeline!</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            DevOps / Pipeline &amp; Deployment : Creating The Pipeline On Jenkins
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                            
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Jonathan Bezeau</span> on Apr 09, 2025
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <p>The first step will be setting up a new folder for your project. From the main Jenkins dashboard you can select “New Item”</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="1.png" width="506" loading="lazy" src="attachments/1740898344/1741324342.png?width=506" data-image-src="attachments/1740898344/1741324342.png" data-height="263" data-width="506" data-unresolved-comment-count="0" data-linked-resource-id="1741324342" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="1.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1740898344" data-linked-resource-container-version="1" data-media-id="2e2145bb-a6fd-4a93-9f0f-205511e86539" data-media-type="file"></span><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20241210-182512.png" width="760" loading="lazy" src="attachments/1740898344/1741324349.png?width=760" data-image-src="attachments/1740898344/1741324349.png" data-height="986" data-width="931" data-unresolved-comment-count="0" data-linked-resource-id="1741324349" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20241210-182512.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1740898344" data-linked-resource-container-version="1" data-media-id="edda680b-ea81-4a07-b6de-bff7aadb201f" data-media-type="file"></span><p>Here we make a new folder, as at the highest level (The main page) we use folders to contain our different projects.</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="2.png" width="668" loading="lazy" src="attachments/1740898344/1741324355.png?width=668" data-image-src="attachments/1740898344/1741324355.png" data-height="295" data-width="668" data-unresolved-comment-count="0" data-linked-resource-id="1741324355" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="2.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1740898344" data-linked-resource-container-version="1" data-media-id="99742d1c-731c-45b7-bc3b-725095e8d466" data-media-type="file"></span><p>On the empty folder click the “+ New Item” again or the “Create New Job” in the middle of the screen to get the following screen.</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20241210-182856.png" width="760" loading="lazy" src="attachments/1740898344/1741324361.png?width=760" data-image-src="attachments/1740898344/1741324361.png" data-height="1066" data-width="981" data-unresolved-comment-count="0" data-linked-resource-id="1741324361" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20241210-182856.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1740898344" data-linked-resource-container-version="1" data-media-id="02ced27d-cc23-498a-8d67-ab550d928b5b" data-media-type="file"></span><p>Once the pipeline has been created we want to then start configuring it.</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20241211-193851.png" width="706" loading="lazy" src="attachments/1740898344/1741324367.png?width=706" data-image-src="attachments/1740898344/1741324367.png" data-height="368" data-width="706" data-unresolved-comment-count="0" data-linked-resource-id="1741324367" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20241211-193851.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1740898344" data-linked-resource-container-version="1" data-media-id="b7510aec-d067-4695-a6f8-8a2286b3e138" data-media-type="file"></span><p>And we can start selecting certain settings, they will be shown below.</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20241211-193934.png" width="338" loading="lazy" src="attachments/1740898344/1741324373.png?width=338" data-image-src="attachments/1740898344/1741324373.png" data-height="96" data-width="338" data-unresolved-comment-count="0" data-linked-resource-id="1741324373" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20241211-193934.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1740898344" data-linked-resource-container-version="1" data-media-id="12350039-ef05-48f9-9d44-b13aa870ed32" data-media-type="file"></span><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20241211-194007.png" width="734" loading="lazy" src="attachments/1740898344/1741324379.png?width=734" data-image-src="attachments/1740898344/1741324379.png" data-height="210" data-width="734" data-unresolved-comment-count="0" data-linked-resource-id="1741324379" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20241211-194007.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1740898344" data-linked-resource-container-version="1" data-media-id="e718531f-96fe-411e-ba67-e6075fc1df21" data-media-type="file"></span><p>Next we need to create a trigger token, this is attached to the trigger(Webhook).</p><p /><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20241212-203615.png" width="760" loading="lazy" src="attachments/1740898344/1741324385.png?width=760" data-image-src="attachments/1740898344/1741324385.png" data-height="177" data-width="1687" data-unresolved-comment-count="0" data-linked-resource-id="1741324385" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20241212-203615.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1740898344" data-linked-resource-container-version="1" data-media-id="a8280444-24cd-4f33-b237-6e714e34acef" data-media-type="file"></span><p /><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20241212-203654.png" width="760" loading="lazy" src="attachments/1740898344/1741324391.png?width=760" data-image-src="attachments/1740898344/1741324391.png" data-height="643" data-width="1905" data-unresolved-comment-count="0" data-linked-resource-id="1741324391" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20241212-203654.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1740898344" data-linked-resource-container-version="1" data-media-id="5f1374e9-c5f1-4871-9b20-7473096b7001" data-media-type="file"></span><p /><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20241212-204908.png" width="760" loading="lazy" src="attachments/1740898344/1741324397.png?width=760" data-image-src="attachments/1740898344/1741324397.png" data-height="199" data-width="1669" data-unresolved-comment-count="0" data-linked-resource-id="1741324397" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20241212-204908.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1740898344" data-linked-resource-container-version="1" data-media-id="ecc24beb-1db4-4721-afef-b5e5bd31ee73" data-media-type="file"></span><p>This trigger token gets used when we hook up the Webhook, so remember it!</p><p>Now at the bottom we setup where we get the Jenkins File from </p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20241212-205829.png" width="760" loading="lazy" src="attachments/1740898344/1741324403.png?width=760" data-image-src="attachments/1740898344/1741324403.png" data-height="263" data-width="1751" data-unresolved-comment-count="0" data-linked-resource-id="1741324403" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20241212-205829.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1740898344" data-linked-resource-container-version="1" data-media-id="8eec7502-ef49-4154-ba87-1dffce761e9d" data-media-type="file"></span><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20241212-210821.png" width="760" loading="lazy" src="attachments/1740898344/1741324409.png?width=760" data-image-src="attachments/1740898344/1741324409.png" data-height="112" data-width="1658" data-unresolved-comment-count="0" data-linked-resource-id="1741324409" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20241212-210821.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1740898344" data-linked-resource-container-version="1" data-media-id="5a82e488-321e-49c5-933f-42b982b41e15" data-media-type="file"></span><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20241212-211305.png" width="760" loading="lazy" src="attachments/1740898344/1741324415.png?width=760" data-image-src="attachments/1740898344/1741324415.png" data-height="371" data-width="1597" data-unresolved-comment-count="0" data-linked-resource-id="1741324415" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20241212-211305.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1740898344" data-linked-resource-container-version="1" data-media-id="1f9eeca3-54ed-47f9-b367-9c37182e2847" data-media-type="file"></span><p>Additionally we provide the link to our repository in the “Repository URL” section you can get that here: <a class="external-link" data-card-appearance="inline" href="https://bitbucket.org/VARLab/devops-pipeline/src/main/" rel="nofollow">https://bitbucket.org/VARLab/devops-pipeline/src/main/</a>  Select clone then copy the text as shown below</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20241212-211508.png" width="622" loading="lazy" src="attachments/1740898344/1741324421.png?width=622" data-image-src="attachments/1740898344/1741324421.png" data-height="214" data-width="622" data-unresolved-comment-count="0" data-linked-resource-id="1741324421" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20241212-211508.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1740898344" data-linked-resource-container-version="1" data-media-id="9cc6a3c5-a8d5-4fde-9f9c-34a226a90c50" data-media-type="file"></span><p /><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20241212-211627.png" width="760" loading="lazy" src="attachments/1740898344/1741324427.png?width=760" data-image-src="attachments/1740898344/1741324427.png" data-height="177" data-width="1583" data-unresolved-comment-count="0" data-linked-resource-id="1741324427" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20241212-211627.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1740898344" data-linked-resource-container-version="1" data-media-id="c4ebb0ab-d792-4b2d-86a3-790a604b4fe7" data-media-type="file"></span><p>Next we need to tell the pipeline where in the repository the file is located. At the very bottom there is “Script Path”</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20241214-193732.png" width="760" loading="lazy" src="attachments/1740898344/1741324433.png?width=760" data-image-src="attachments/1740898344/1741324433.png" data-height="108" data-width="1700" data-unresolved-comment-count="0" data-linked-resource-id="1741324433" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20241214-193732.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1740898344" data-linked-resource-container-version="1" data-media-id="faf739bb-30bf-4362-944d-5dc81b4fe2d2" data-media-type="file"></span><p>Now we can save our changes! The next step will be setting up a Webhook on BitBucket, to do this you will need access to an account with admin credentials on a Repository such as our CI-Catherine account, please contact a team member for the login information.</p>
+                    </div>
+
+                                        <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1740898344/1741324342.png">1.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1740898344/1741324349.png">image-20241210-182512.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1740898344/1741324355.png">2.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1740898344/1741324361.png">image-20241210-182856.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1740898344/1741324367.png">image-20241211-193851.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1740898344/1741324373.png">image-20241211-193934.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1740898344/1741324379.png">image-20241211-194007.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1740898344/1741324385.png">image-20241212-203615.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1740898344/1741324391.png">image-20241212-203654.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1740898344/1741324397.png">image-20241212-204908.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1740898344/1741324403.png">image-20241212-205829.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1740898344/1741324409.png">image-20241212-210821.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1740898344/1741324415.png">image-20241212-211305.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1740898344/1741324421.png">image-20241212-211508.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1740898344/1741324427.png">image-20241212-211627.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1740898344/1741324433.png">image-20241214-193732.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on May 27, 2025 13:35</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

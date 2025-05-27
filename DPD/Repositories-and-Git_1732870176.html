@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DevOps / Pipeline &amp; Deployment : Repositories and Git</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">DevOps / Pipeline &amp; Deployment</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1179353439.html">DevOps / Pipeline &amp; Deployment Home</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Onboarding-Documents_1541537838.html">Onboarding Documents</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            DevOps / Pipeline &amp; Deployment : Repositories and Git
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                            
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Jonathan Bezeau</span>, last modified by <span class='editor'> Balazs Karner</span> on Apr 15, 2025
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <h1 id="RepositoriesandGit-CodeRepositories">Code Repositories</h1><p>We store our project files in <a class="external-link" href="https://bitbucket.org/VARLab/workspace/overview/" rel="nofollow">Bitbucket</a>, a service that acts as a management site for <a class="external-link" href="https://git-scm.com/" rel="nofollow">Git</a> source control management. The purpose of this specialized storage is to track the <strong>change history</strong> on files, allowing us to go forwards and back on the timeline as well as jumping sideways to alternative versions or <strong>branches</strong>.</p><p>The Git model of source control operates across time (changes in code), across contributors (branches), and space (distributed repositories). The “source of truth” of a project is the <em>main</em> branch on our <em>origin</em> server. So <em>main </em>on your <em>local </em>workstation is different than <em>main </em>on the <em>origin</em> server. Your <em>feature branch </em>on the <em>origin </em>server is different than <em>main</em> on the <em>origin</em> server.</p><p> <strong>All of these source branches can exist at the same time independently:</strong></p><div class="table-wrap"><table data-table-width="760" data-layout="default" data-local-id="74af62e7-f274-4d4a-9806-1239ac035416" class="confluenceTable"><tbody><tr><th class="confluenceTh"><p /></th><th class="confluenceTh"><p><strong>location: origin</strong></p></th><th class="confluenceTh"><p><strong>location: local</strong></p></th><th class="confluenceTh"><p><strong>location: someone else’s local</strong></p></th></tr><tr><td class="confluenceTd"><p>branch: main</p></td><td class="confluenceTd"><p>✅</p></td><td class="confluenceTd"><p>✅</p></td><td class="confluenceTd"><p>✅</p></td></tr><tr><td class="confluenceTd"><p>branch: feature/your-feature</p></td><td class="confluenceTd"><p>✅</p></td><td class="confluenceTd"><p>✅</p></td><td class="confluenceTd"><p>✅</p></td></tr></tbody></table></div><h1 id="RepositoriesandGit-GitHubFlow">GitHub Flow</h1><p>Because there are many options for where and how versions of our project can exist, there are many <a class="external-link" href="https://www.geeksforgeeks.org/branching-strategies-in-git/" rel="nofollow">branching strategies</a> that can be used in a Git repository. Our choice is <strong>GitHub flow</strong> and the distinguishing feature of this strategy is that the master or main source branch is the single source of truth for deployed software. This flow will not support concurrent branches for different release versions (2.x, 3.x) or separate builds for different platforms (Windows, Web, Mobile). CVRI has additional practices that we follow within this flow in order to have a consistent routine for troubleshooting.</p><p>For a single developer performing a single task, the only branches and commits they need to worry about will look like the diagram below. Each dot is a commit (a confirmed change) to the project, the top row represents the <em>main</em> branch and the bottom row represents a <em>feature</em> or <em>bug </em>branch.</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20250403-200114.png" width="503" loading="lazy" src="attachments/1732870176/1733361689.png?width=503" data-image-src="attachments/1732870176/1733361689.png" data-height="121" data-width="503" data-unresolved-comment-count="0" data-linked-resource-id="1733361689" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20250403-200114.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1732870176" data-linked-resource-container-version="14" data-media-id="797f726b-d6a5-48b3-828b-c4ce36953105" data-media-type="file"></span><p>The “true” image of a project are the files on a branch called <em><strong>main </strong></em>(or more awkwardly in some repos, <em><strong>master</strong></em>)<em>. </em>In a perfect world any version of <em><strong>main</strong> </em>would pass all tests, build, and run. Features should be either entirely missing if they have not been developed yet, or completely delivered, <em><strong>main</strong></em> would not have any work in progress.</p><h2 id="RepositoriesandGit-branch"><em>branch</em></h2><p>Working on a feature ticket starts with <strong>create a branch</strong> in <a class="external-link" href="https://varlab-dev.atlassian.net/jira/your-work" rel="nofollow">Jira</a> declare a branch named <em>feature/ticket-number-of-feature </em>to work on. This corresponds to <em>branch </em>in the diagram above, and copies the project in <em>main</em> for the developer to work on in isolation. Isolation in this case keeps changes delivered by other developers from disrupting the work in progress, but can create the possibility of conflicting changes. </p><h2 id="RepositoriesandGit-addandcommit">add and commit</h2><p>As you develop your feature, those changes are not tracked by your source repository. They are just visible in your local environment. In order to make your work real you need to <strong>add </strong>files that you have introduced net-new to the repo and then <strong>commit </strong>everything that has changed in the time you have worked on the project since the start of the branch or previous commit. In the diagram each commit is drawn as a green bubble. Smaller commits are better, as it is easier to track the differences from one to the next and micro-manage code states if we need to look at how things were a few changes ago.</p><h2 id="RepositoriesandGit-merge">merge</h2><p>Before we deliver our feature we have to perform a <strong>merge</strong> from <em>main </em>to catch our branch up on all of the changes that have happened while we were isolated, in order to find and resolve all of the <strong>merge conflicts </strong>where your changes are on the same lines as changes introduced by other developers and Git’s algorithms can not determine how the code should coexist.</p><h2 id="RepositoriesandGit-mergeintomaster">merge into master</h2><p>Delivering our feature to <em>main</em> starts with creating a <strong>pull request (PR) </strong>in <a class="external-link" href="https://varlab-dev.atlassian.net/jira/your-work" rel="nofollow">Jira</a>. Declaring a <strong>pull request</strong> will start a PR Pipeline Build, which in turn attaches reports and a link to your build to the PR entry in <a class="external-link" href="https://bitbucket.org/VARLab/workspace/overview/" rel="nofollow">Bitbucket</a>. These tools ensure that your code is based on the latest changes from <strong>main</strong>, and help other developers <strong>review</strong> your work and make sure that the design and programming practices are sound and that the changes have not broken any other features that you might not have thought to check for impact.</p><p>If the <strong>pull request</strong> is approved, you can <strong>merge</strong> your <strong>PR</strong>, which will apply the changes on your feature branch to the main branch in the repository. Otherwise we can see where there are conflicts or regressions in other features and we have to address those, <strong>merge </strong>from <em>main</em> again and update the PR for another round of review.</p><h1 id="RepositoriesandGit-UsingBitbucketandSourceTree">Using Bitbucket and SourceTree</h1><p>The CVRI Unity Onboarding confluence space has an excellent guide to development project source control practices: <a href="https://varlab-dev.atlassian.net/wiki/spaces/Onboarding/pages/1733526643/Using+Bitbucket+Sourcetree" data-linked-resource-id="1733526643" data-linked-resource-version="1" data-linked-resource-type="page">Using Bitbucket &amp; Sourcetree - Onboarding</a></p><h1 id="RepositoriesandGit-RepositoriesandPipelines">Repositories and Pipelines</h1><p>DevOps Pipelines at CVRI are driven by actions in our BitBucket repositories:</p><ul><li><p>Pipelines are set up on a per-repository basis. A repository will drive a pipeline if configured. We call this “onboarding” the project (that owns the repository) to Jenkins.</p></li><li><p>Creating a Pull Request in the repository will send a signal to Jenkins, which will kick off a Pull Request pipeline controlled by our <strong>jenkinsfile</strong> configuration. Basically the actions Jenkins takes when notified are:</p><ul><li><p>determine if it needs to clone or pull the repository</p></li><li><p>download if necessary and set up all of the build tools</p></li><li><p>check out the PR branch</p></li><li><p>merge main to the PR branch in order to force failures if there are merge conflicts</p></li><li><p>perform static analysis on the project files (lint)</p></li><li><p>run unit tests on the project</p></li><li><p>build the project and upload the output to a development web host for testing</p></li><li><p>upload code quality reports to BitBucket</p></li><li><p>clean up artifacts so we are ready to run again later</p></li></ul></li><li><p>Merging to main in the repository will also send a signal to Jenkins, which will kick off a different Deployment pipeline and jenkinsfile. The steps are basically the same as the Pull Request, except:</p><ul><li><p>we want to quit running the pipeline on any sign of failure… in the build, in the tests, in the static analysis… if anything is bad we do not want to replace valid running production software.</p></li><li><p>the build output is deployed to a production web host for student and instructor use</p></li></ul></li></ul><h1 id="RepositoriesandGit-Activities">Activities</h1><p>Whenever we talk about our practice or the GitHub flow these are a specific strategy of using Git features, and we’re choosing to do things this way or that when there are other orders of operations that could result in the same result. </p><p>So with regards to the source control activities, you can get pretty far away from steps below without any computer system preventing you or raising error messages… but when you’re developing projects and being reviewed on tickets for DLX the assumption is that your steps are guided by the process here, and if you did things differently the troubleshooting when things go wrong is going to be that much more complicated and time consuming.</p><ul class='childpages-macro'><li><a href="Create-a-Repository_1740963883.html" data-linked-resource-id="1740963883" data-linked-resource-version="2" data-linked-resource-type="page">Create a Repository</a></li><li><a href="Create-a-Ticket-and-a-Branch_1740668949.html" data-linked-resource-id="1740668949" data-linked-resource-version="1" data-linked-resource-type="page">Create a Ticket and a Branch</a></li><li><a href="Write-a-quick-game_1741258809.html" data-linked-resource-id="1741258809" data-linked-resource-version="1" data-linked-resource-type="page">Write a quick game</a></li><li><a href="Add-and-Commit-your-changes_1740668959.html" data-linked-resource-id="1740668959" data-linked-resource-version="1" data-linked-resource-type="page">Add and Commit your changes</a></li><li><a href="Merge-Your-Changes_1740996624.html" data-linked-resource-id="1740996624" data-linked-resource-version="1" data-linked-resource-type="page">Merge Your Changes</a></li></ul>
+                    </div>
+
+                                        <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1732870176/1733230637.png">image-20250403-195414.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1732870176/1733361689.png">image-20250403-200114.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1732870176/1739784193.png">image-20250408-184605.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1732870176/1739489289.png">image-20250408-184907.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1732870176/1740210177.png">image-20250408-203958.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1732870176/1741225988.png">image-20250409-144116.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1732870176/1741193219.png">image-20250409-144219.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1732870176/1741062149.png">image-20250409-151034.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1732870176/1741193232.png">image-20250409-154452.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1732870176/1741193240.png">image-20250409-155408.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1732870176/1741324300.png">image-20250409-160020.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1732870176/1741619218.png">image-20250409-175337.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1732870176/1741619224.png">image-20250409-180017.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on May 27, 2025 13:35</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

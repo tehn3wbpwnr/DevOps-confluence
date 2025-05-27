@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DevOps / Pipeline &amp; Deployment : Create a Ticket and a Branch</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">DevOps / Pipeline &amp; Deployment</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1179353439.html">DevOps / Pipeline &amp; Deployment Home</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Onboarding-Documents_1541537838.html">Onboarding Documents</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Repositories-and-Git_1732870176.html">Repositories and Git</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            DevOps / Pipeline &amp; Deployment : Create a Ticket and a Branch
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                            
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Jonathan Bezeau</span> on Apr 09, 2025
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <h2 id="CreateaTicketandaBranch-Createaticketandabranch">Create a ticket and a branch</h2><p>At CVRI we always work in the context of a Jira <strong>ticket</strong>. In Jira just click <strong>Create</strong> at the top of the screen, and fill out the information as depicted:</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20250409-180017.png" width="633" loading="lazy" src="attachments/1740668949/1741619234.png?width=633" data-image-src="attachments/1740668949/1741619234.png" data-height="1735" data-width="820" data-unresolved-comment-count="0" data-linked-resource-id="1741619234" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20250409-180017.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1740668949" data-linked-resource-container-version="1" data-media-id="55d9081c-9cef-49c1-87b0-3818f353d93c" data-media-type="file"></span><p>In the CVRI practice for our GitHub flow, we create feature and bug branches in the <em>origin</em> system, Bitbucket, and pull them to our <em>local </em>environment. Branch <em>checkout</em> means that all file changes we work on are <em>staged</em> to that branch. Creating a number of commits, and then push them back to Bitbucket where we do our <em>merge.</em></p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20250409-144116.png" width="488" loading="lazy" src="attachments/1740668949/1741619241.png?width=488" data-image-src="attachments/1740668949/1741619241.png" data-height="395" data-width="488" data-unresolved-comment-count="0" data-linked-resource-id="1741619241" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20250409-144116.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1740668949" data-linked-resource-container-version="1" data-media-id="5fe69e82-29ee-4e79-9e31-67d359dbf8e5" data-media-type="file"></span><p>The <em>create branch</em> link in Jira will open a new window in Bitbucket that asks you for the repository, branch type (feature or bug) and requires you to set a title. Having your ticket number (VCON-1015 here) in the branch name is critical for keeping the ticket and branch synchronized between the two systems.</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20250409-144219.png" width="509" loading="lazy" src="attachments/1740668949/1741619247.png?width=509" data-image-src="attachments/1740668949/1741619247.png" data-height="491" data-width="509" data-unresolved-comment-count="0" data-linked-resource-id="1741619247" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20250409-144219.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1740668949" data-linked-resource-container-version="1" data-media-id="2d9f5eab-3a00-4737-8762-621f5200bb3f" data-media-type="file"></span><p>When your branch is created, Bitbucket prompts you to check it out. This will set your local environment to focus on an isolated copy of the project. Before we’ve made any changes of course the file contents are identical, but as other developers update <em>main</em> we are isolated from those changes just as they are isolated from ours. This stable environment lets us code in peace without constantly taking time on other developers' bugs or incompatible changes.</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20250409-151034.png" width="633" loading="lazy" src="attachments/1740668949/1741619253.png?width=633" data-image-src="attachments/1740668949/1741619253.png" data-height="450" data-width="690" data-unresolved-comment-count="0" data-linked-resource-id="1741619253" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20250409-151034.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1740668949" data-linked-resource-container-version="1" data-media-id="d1b0e64b-adf2-422a-bdcf-6f3fcaf950a1" data-media-type="file"></span><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20250409-154452.png" width="633" loading="lazy" src="attachments/1740668949/1741619259.png?width=633" data-image-src="attachments/1740668949/1741619259.png" data-height="247" data-width="658" data-unresolved-comment-count="0" data-linked-resource-id="1741619259" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20250409-154452.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1740668949" data-linked-resource-container-version="1" data-media-id="e7800c18-a2b6-45f2-86ce-0445fc6f9524" data-media-type="file"></span>
+                    </div>
+
+                                        <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1740668949/1741619234.png">image-20250409-180017.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1740668949/1741619241.png">image-20250409-144116.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1740668949/1741619247.png">image-20250409-144219.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1740668949/1741619253.png">image-20250409-151034.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1740668949/1741619259.png">image-20250409-154452.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on May 27, 2025 13:35</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

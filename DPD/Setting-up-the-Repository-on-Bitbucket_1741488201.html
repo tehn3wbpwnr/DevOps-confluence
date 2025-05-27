@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DevOps / Pipeline &amp; Deployment : Setting up the Repository on Bitbucket</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">DevOps / Pipeline &amp; Deployment</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1179353439.html">DevOps / Pipeline &amp; Deployment Home</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Onboarding-Documents_1541537838.html">Onboarding Documents</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Pipelines_1495236695.html">Pipelines</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Creating-Your-First-Pipeline%21_1508212737.html">Creating Your First Pipeline!</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            DevOps / Pipeline &amp; Deployment : Setting up the Repository on Bitbucket
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                            
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Jonathan Bezeau</span> on Apr 09, 2025
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <p>Now we need to select the repository on Bitbucket we will be adding to the pipeline, I will use the CORE Sandbox, but you could use your onboarding project as we keep them around for a small time after onboarding. You will need to get the “Automation” Group added with admin privilege's, you may need to contact someone else with Admin Privilege's on the repo to add the group first. </p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" width="693" loading="lazy" src="attachments/1741488201/1740996649.png?width=693" data-image-src="attachments/1741488201/1740996649.png" data-height="452" data-width="1709" data-unresolved-comment-count="0" data-linked-resource-id="1740996649" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="bitbucket_repo_permissions.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1741488201" data-linked-resource-container-version="1" data-media-id="1551faa6-1561-480c-af30-d77157e94981" data-media-type="file"></span><p> On an account with <strong>admin</strong> permissions (CI-Catherine Account) on the repository you will need to select “Repository Settings”</p><p /><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20241214-180547.png" width="296" loading="lazy" src="attachments/1741488201/1740996656.png?width=296" data-image-src="attachments/1741488201/1740996656.png" data-height="497" data-width="296" data-unresolved-comment-count="0" data-linked-resource-id="1740996656" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20241214-180547.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1741488201" data-linked-resource-container-version="1" data-media-id="d2ad7165-d42a-4814-b661-741e87bd7c48" data-media-type="file"></span><p>Then we head to Webhook under Workflow</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20241214-180904.png" width="369" loading="lazy" src="attachments/1741488201/1740996662.png?width=369" data-image-src="attachments/1741488201/1740996662.png" data-height="236" data-width="369" data-unresolved-comment-count="0" data-linked-resource-id="1740996662" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20241214-180904.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1741488201" data-linked-resource-container-version="1" data-media-id="3f7a60ba-79f9-4da2-a1b7-75b0d4b2a5b2" data-media-type="file"></span><p>Here select “Add Webhook” Then should something like the following screen.</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20241214-181607.png" width="760" loading="lazy" src="attachments/1741488201/1740996668.png?width=760" data-image-src="attachments/1741488201/1740996668.png" data-height="301" data-width="953" data-unresolved-comment-count="0" data-linked-resource-id="1740996668" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20241214-181607.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1741488201" data-linked-resource-container-version="1" data-media-id="8453891a-3763-4a65-a604-4876e7fa21f8" data-media-type="file"></span><p>Title can be anything, the url should follow the pattern “<a class="external-link" href="https://jenkins.vconestoga.com/generic-webhooktrigger/invoke?token=" rel="nofollow">https://jenkins.vconestoga.com/generic-webhooktrigger/invoke?token=</a>*YOUR_SECRET_HERE*” with the secret being the value we put in the trigger token above in the previous section (In my case it was “OnboardingPR”).</p><p>We want to have the trigger be the following then can click create.</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20241214-181815.png" width="285" loading="lazy" src="attachments/1741488201/1740996674.png?width=285" data-image-src="attachments/1741488201/1740996674.png" data-height="490" data-width="285" data-unresolved-comment-count="0" data-linked-resource-id="1740996674" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20241214-181815.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1741488201" data-linked-resource-container-version="1" data-media-id="e93f0a56-7bc4-42ce-a593-134620df3bfc" data-media-type="file"></span><p>Now we need to setup a repository access token! In the left menu we will need to navigate to what is shown below.</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20241214-182038.png" width="297" loading="lazy" src="attachments/1741488201/1740996680.png?width=297" data-image-src="attachments/1741488201/1740996680.png" data-height="130" data-width="297" data-unresolved-comment-count="0" data-linked-resource-id="1740996680" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20241214-182038.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1741488201" data-linked-resource-container-version="1" data-media-id="74c4fa46-4a8a-4656-844a-8bbd80954572" data-media-type="file"></span><p>You should see this screen.</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" width="658" loading="lazy" src="attachments/1741488201/1740996686.png?width=658" data-image-src="attachments/1741488201/1740996686.png" data-height="334" data-width="670" data-unresolved-comment-count="0" data-linked-resource-id="1740996686" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="bitbucket_no_accesss_token.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1741488201" data-linked-resource-container-version="1" data-media-id="6965022a-9972-4277-9c23-a66d046bd4e3" data-media-type="file"></span><p>Click create Repository Access Token, it should be created like the following image.</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" width="506" loading="lazy" src="attachments/1741488201/1740996692.png?width=506" data-image-src="attachments/1741488201/1740996692.png" data-height="471" data-width="446" data-unresolved-comment-count="0" data-linked-resource-id="1740996692" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="bitbucket_access_token_scopes.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1741488201" data-linked-resource-container-version="1" data-media-id="88de522b-b07b-49ae-b04f-c9e7f1308c51" data-media-type="file"></span><p>Then when you click create make sure to <strong>copy</strong> the value before proceeding! We will take that token and head back to Jenkins. </p>
+                    </div>
+
+                                        <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1741488201/1740996649.png">bitbucket_repo_permissions.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1741488201/1740996656.png">image-20241214-180547.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1741488201/1740996662.png">image-20241214-180904.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1741488201/1740996668.png">image-20241214-181607.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1741488201/1740996674.png">image-20241214-181815.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1741488201/1740996680.png">image-20241214-182038.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1741488201/1740996686.png">bitbucket_no_accesss_token.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1741488201/1740996692.png">bitbucket_access_token_scopes.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on May 27, 2025 13:35</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

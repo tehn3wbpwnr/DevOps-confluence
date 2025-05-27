@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DevOps / Pipeline &amp; Deployment : DevOps Pipeline Features</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">DevOps / Pipeline &amp; Deployment</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1179353439.html">DevOps / Pipeline &amp; Deployment Home</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Windows-Jenkins-Documents_1542389772.html">Windows Jenkins Documents</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            DevOps / Pipeline &amp; Deployment : DevOps Pipeline Features
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                            
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Leo Bunting (Unlicensed)</span>, last modified on Dec 04, 2023
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <p>If you followed the DevOps pipeline onboarding instructions, the pipeline should build and test your project if you have either created a pull request or updated an existing pull request. Changing when the pipeline runs only requires making changes to the webhook triggers that were set up <a href="https://varlab-dev.atlassian.net/wiki/spaces/~62740c25f42962006fe0b80b/pages/850559019/Setting+up+Jenkins+DevOps+Pipeline+for+a+Unity+Project#Webhook" rel="nofollow">here</a>.</p><p>At various stages in the pipeline, your pull request will be updated with the following information.</p><div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>Currently, the pipeline can only build one branch at a time. If a new build is triggered while one is already running, it will be put in a queue and will run when it is its turn. This can cause long waits for build results. There are plans to add multi-branch functionality to the pipeline in the future.</p></div></div><h2 id="DevOpsPipelineFeatures-BuildStatus">Build Status</h2><p>Each stage of the pipeline’s lifecycle is reported to the corresponding Bitbucket pull request. Jenkins will update the build status when the pipeline is in progress, and when it has passed, failed, or been aborted.</p><p>The build status can be found in a pull request’s right-side menu, under the tab titled “<strong>X out of Y builds failed/passed.</strong>” Each build is labeled with its corresponding build ID on Jenkins.</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" width="190" loading="lazy" src="attachments/867074090/873988173.png?width=190" data-image-src="attachments/867074090/873988173.png" data-height="43" data-width="190" data-unresolved-comment-count="0" data-linked-resource-id="873988173" data-linked-resource-version="2" data-linked-resource-type="attachment" data-linked-resource-default-alias="inprogress_pipeline.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="867074090" data-linked-resource-container-version="6" data-media-id="7ebcf927-7705-4a5f-8c07-98a80a22ab38" data-media-type="file"></span><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" width="181" loading="lazy" src="attachments/867074090/874020914.png?width=181" data-image-src="attachments/867074090/874020914.png" data-height="39" data-width="181" data-unresolved-comment-count="0" data-linked-resource-id="874020914" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="successful_pipeline.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="867074090" data-linked-resource-container-version="6" data-media-id="357d9ebc-dd05-475d-93e5-c99ff241282c" data-media-type="file"></span><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" width="191" loading="lazy" src="attachments/867074090/874676593.png?width=191" data-image-src="attachments/867074090/874676593.png" data-height="46" data-width="191" data-unresolved-comment-count="0" data-linked-resource-id="874676593" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="failed_pipeline.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="867074090" data-linked-resource-container-version="6" data-media-id="e92ee189-b6e6-4a29-ba44-4b3a56960a9b" data-media-type="file"></span><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" width="193" loading="lazy" src="attachments/867074090/874020908.png?width=193" data-image-src="attachments/867074090/874020908.png" data-height="40" data-width="193" data-unresolved-comment-count="0" data-linked-resource-id="874020908" data-linked-resource-version="2" data-linked-resource-type="attachment" data-linked-resource-default-alias="aborted_pipeline.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="867074090" data-linked-resource-container-version="6" data-media-id="0bbbe3ce-c406-45b8-afa2-6c2b325ccc43" data-media-type="file"></span><h2 id="DevOpsPipelineFeatures-TestResults">Test Results</h2><p>The pipeline runs both a project’s EditMode and PlayMode tests. PlayMode tests are run in both the Editor and a WebGL build. The Editor PlayMode tests are only used for code coverage calculation, and only the WebGL test results will be displayed on a pull request.</p><p>PlayMode tests are run in WebGL to ensure we catch any bugs or failing tests that might only show up when running the WebGL build. This stage of the pipeline also simultaneously builds the project for WebGL.</p><p>Test results can be found in a pull request’s right-side menu, under the <strong>Reports </strong>tab. They’ll be titled with their corresponding build number and type of test.</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" width="289" loading="lazy" src="attachments/867074090/874643518.png?width=289" data-image-src="attachments/867074090/874643518.png" data-height="124" data-width="289" data-unresolved-comment-count="0" data-linked-resource-id="874643518" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="test_results.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="867074090" data-linked-resource-container-version="6" data-media-id="386f997a-3f87-4d50-87b3-c5d60bec093e" data-media-type="file"></span><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" width="760" loading="lazy" src="attachments/867074090/874086472.png?width=760" data-image-src="attachments/867074090/874086472.png" data-height="293" data-width="966" data-unresolved-comment-count="0" data-linked-resource-id="874086472" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20231204-211305.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="867074090" data-linked-resource-container-version="6" data-media-id="45fdd01a-8866-4943-bf49-fa2fcc2ba1d2" data-media-type="file"></span><h2 id="DevOpsPipelineFeatures-CodeCoverageResults">Code Coverage Results</h2><p>The pipeline calculates your branch’s line coverage using the EditMode and (editor) PlayMode code coverage results. Currently only the line coverage is reported back to the pull request.</p><p>Code coverage results can be found in a pull request’s right-side menu, under the Reports tab. It will be titled with its corresponding build number.</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" width="289" loading="lazy" src="attachments/867074090/873988180.png?width=289" data-image-src="attachments/867074090/873988180.png" data-height="124" data-width="289" data-unresolved-comment-count="0" data-linked-resource-id="873988180" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="code_coverage_results.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="867074090" data-linked-resource-container-version="6" data-media-id="8bea4900-7a00-4f09-ade4-f860b8d36a13" data-media-type="file"></span><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" width="760" loading="lazy" src="attachments/867074090/874479689.png?width=760" data-image-src="attachments/867074090/874479689.png" data-height="292" data-width="964" data-unresolved-comment-count="0" data-linked-resource-id="874479689" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20231204-211358.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="867074090" data-linked-resource-container-version="6" data-media-id="99e04ef7-4132-46ef-9503-e719e1b2a37a" data-media-type="file"></span><p />
+                    </div>
+
+                                        <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/867074090/874152014.png">aborted_pipeline.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/867074090/874020914.png">successful_pipeline.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/867074090/874348605.png">inprogress_pipeline.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/867074090/873988173.png">inprogress_pipeline.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/867074090/874676593.png">failed_pipeline.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/867074090/874020908.png">aborted_pipeline.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/867074090/874643518.png">test_results.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/867074090/874086472.png">image-20231204-211305.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/867074090/873988180.png">code_coverage_results.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/867074090/874479689.png">image-20231204-211358.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on May 27, 2025 13:34</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

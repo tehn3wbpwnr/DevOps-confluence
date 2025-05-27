@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DevOps / Pipeline &amp; Deployment : Regression Testing</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">DevOps / Pipeline &amp; Deployment</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1179353439.html">DevOps / Pipeline &amp; Deployment Home</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Windows-Jenkins-Documents_1542389772.html">Windows Jenkins Documents</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1567129601.html">CI/CD Pipeline Architecture Design</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1313800220.html">Node.js Applications: Process Flow-Based Documentation for CI,CD, and Continuous Deployment Pipelines</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Deploy-to-Test-Stage_1363345440.html">Deploy to Test Stage</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            DevOps / Pipeline &amp; Deployment : Regression Testing
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                            
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Jindo Kim</span> on Sept 26, 2024
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <style type="text/css">/*<![CDATA[*/
+div.rbtoc1748352903657 {padding: 0px;}
+div.rbtoc1748352903657 ul {list-style: none;margin-left: 0px;}
+div.rbtoc1748352903657 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style><div class="toc-macro rbtoc1748352903657"><style>[data-colorid=v8z2f7pavc]{color:#ff5630} html[data-color-mode=dark] [data-colorid=v8z2f7pavc]{color:#cf2600}</style>
+<ul class="toc-indentation">
+<li><a href="#RegressionTesting-SimpleDefinition:">Simple Definition:</a></li>
+<li><a href="#RegressionTesting-PossibleScenario:">Possible Scenario:</a>
+<ul class="toc-indentation">
+<li><a href="#RegressionTesting-RunTests">Run Tests</a></li>
+<li><a href="#RegressionTesting-CompareResults">Compare Results</a></li>
+</ul>
+</li>
+<li><a href="#RegressionTesting-References:">References:</a></li>
+</ul>
+</div><h1 id="RegressionTesting-SimpleDefinition:">Simple Definition: </h1><ul><li><p>Regression testing is simply the process of running existing unit, integration, and end-to-end tests on the codebase after new changes have been merged to ensure that they still pass successfully. This emphasizes that regression testing is not about creating new test cases, but about reusing existing tests to verify that recent changes have not disrupted anything unintentionally.</p><ul><li><p><a class="external-link" data-card-appearance="inline" href="https://www.browserstack.com/guide/retesting-vs-regression-testing" rel="nofollow">https://www.browserstack.com/guide/retesting-vs-regression-testing</a></p><ul><li><p>Regression Testing:</p><ul><li><p>It involves rerunning once-executed test cases to ensure they still pass after the changes are made.</p></li></ul></li><li><p>Re-testing:</p><ul><li><p>The process of testing a previously failed test case after its defects have been fixed.</p></li></ul></li></ul></li></ul></li></ul><h1 id="RegressionTesting-PossibleScenario:">Possible Scenario:</h1><h2 id="RegressionTesting-RunTests">Run Tests</h2><ul><li><p>Execute all existing tests from the Main Branch in the New Branch.</p></li></ul><h2 id="RegressionTesting-CompareResults">Compare Results</h2><ul><li><p>Compare the results with those from the Main Branch.</p><ul><li><p>Success: If all tests pass in both branches, Regression Testing is successful.</p></li><li><p>Failure: If any test fails in the New Branch but passed in the Main Branch, Regression Testing has failed.</p></li></ul></li></ul><h1 id="RegressionTesting-References:">References:</h1><ul><li><p><a class="external-link" data-card-appearance="inline" href="https://testfort.com/blog/regression-testing-how-when-and-why-you-should-do-it" rel="nofollow">https://testfort.com/blog/regression-testing-how-when-and-why-you-should-do-it</a></p></li><li><p><a class="external-link" data-card-appearance="inline" href="https://www.browserstack.com/guide/visual-regression-testing-with-cypress" rel="nofollow">https://www.browserstack.com/guide/visual-regression-testing-with-cypress</a></p><ul><li><p><em><u>Caution: Be sure not to get confused in the 'Write your first Cypress Visual Test' example. There is no such separate test case 'code' for Regression Testing.</u></em></p></li></ul></li><li><p><em><span data-colorid="v8z2f7pavc"><u>There would need to be more elaborate framework if we were regression testing at a stage where we allow tests to fail... then you need to compare test outputs and make sure no tests have changed from Pass to Fail...</u></span></em></p></li></ul>
+                    </div>
+
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on May 27, 2025 13:35</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

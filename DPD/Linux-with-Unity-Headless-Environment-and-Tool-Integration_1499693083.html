@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DevOps / Pipeline &amp; Deployment : Linux with Unity Headless Environment and Tool Integration</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">DevOps / Pipeline &amp; Deployment</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1179353439.html">DevOps / Pipeline &amp; Deployment Home</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Linux-Jenkins-Documents_1542455384.html">Linux Jenkins Documents</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Set-Up-on-Linux_1542881281.html">Set Up on Linux</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            DevOps / Pipeline &amp; Deployment : Linux with Unity Headless Environment and Tool Integration
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                            
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Jindo Kim</span> on Dec 03, 2024
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <h1 id="LinuxwithUnityHeadlessEnvironmentandToolIntegration-Background">Background</h1><p>Our current CI/CD pipeline runs on Jenkins with a Windows O/S. In the past, when we searched for information regarding Unity’s compatibility with Linux, we couldn’t find clear or definitive guidance. This uncertainty led us to conclude that Unity’s headless mode was not compatible with the Linux environment.</p><p>Moreover, there were previous attempts by <a class="confluence-userlink user-mention" data-account-id="62740c25f42962006fe0b80b" href="https://varlab-dev.atlassian.net/wiki/people/62740c25f42962006fe0b80b?ref=confluence" target="_blank" data-base-url="https://varlab-dev.atlassian.net/wiki">Leo Bunting (Unlicensed)</a> and Aaron to migrate our servers to Linux, but unfortunately, They were unsuccessful. This experience reinforced our decision to continue using Windows systems for our pipelines, as the challenges seemed insurmountable at the time.</p><p>However, we’ve currently confirmed that we can generate WebGL builds on a Ubuntu headless environment. This opens up the possibility of migrating our pipeline to Linux.</p><h1 id="LinuxwithUnityHeadlessEnvironmentandToolIntegration-ObjectivesandBenefits">Objectives and Benefits</h1><ul><li><p><strong>Optimized Resource Utilization</strong>: We can achieve better resource management by transitioning to a Linux environment. Linux systems are generally more efficient at handling resources, reducing the likelihood of such issues. This efficiency allows for smoother pipeline executions and minimizes the risk of resource-related disruptions.</p></li><li><p><strong>Enhanced Accessibility</strong>: In the Windows environment, access to the VM is limited to RDP (Remote Desktop Protocol), which permits only one DevOps engineer to access. This limitation poses challenges for team collaboration and task organization. It becomes difficult for multiple team members to work simultaneously, which can negatively impact overall team productivity and slow down development processes. On the other hand, Linux environments allow multiple users to access the VM simultaneously via SSH(Secure Shell). This capability enhances accessibility for the entire team, enabling better collaboration, efficient task management, and improved productivity.</p></li><li><p><strong>Improved Scalability</strong>: Windows is primarily designed around user login sessions and desktop interactions, which introduces complexities when using it as a server operating system. This design can lead to challenges in automating processes, managing services, and efficiently handling multiple concurrent tasks. These limitations make it difficult to scale our CI/CD infrastructure effectively when using Windows. In contrast, Ubuntu (Linux) is designed to excel in server environments. It provides a robust platform optimized for running services without the overhead of a graphical user interface. Linux systems handle processes and permissions in a way that facilitates automation, efficient resource management, and scalability.</p></li></ul><h1 id="LinuxwithUnityHeadlessEnvironmentandToolIntegration-Prerequisites">Prerequisites</h1><ul><li><p>All DLX projects must be able to generate WebGL builds using headless Unity on a Linux environment. </p></li><li><p>Ensure that both Edit Mode and Play Mode executions are functional within the Linux headless setup.</p><ul><li><p><sup>(Please refer to the user story ticket for the checklist and progress on WebGL build generation and Edit/Play Mode execution.</sup>
+
+    
+
+            
+
+
+
+
+    <span class="confluence-jim-macro jira-issue resolved" data-jira-key="CORE-1359" >
+                <a href="https://varlab-dev.atlassian.net/browse/CORE-1359" class="jira-issue-key"><img class="icon" src="https://varlab-dev.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10315?size=medium" />CORE-1359</a>
+                    -
+            <span class="summary">As a DevOps Engineer, I WANT to have Unity CI/CD running on Linux Environment SO THAT we can optimize resource utilization, enhance accessiblity and scalability by using Linux VM.</span>
+                                                            <span class="aui-lozenge aui-lozenge-subtle aui-lozenge-success jira-macro-single-issue-export-pdf">Done</span>
+            </span>
+<sup>)</sup></p></li></ul></li></ul>
+                    </div>
+
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on May 27, 2025 13:32</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

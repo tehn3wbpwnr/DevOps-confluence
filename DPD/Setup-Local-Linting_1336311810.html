@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DevOps / Pipeline &amp; Deployment : Setup Local Linting</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">DevOps / Pipeline &amp; Deployment</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1179353439.html">DevOps / Pipeline &amp; Deployment Home</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Windows-Jenkins-Documents_1542389772.html">Windows Jenkins Documents</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Set-Up-on-Windows_1541570589.html">Set Up on Windows</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            DevOps / Pipeline &amp; Deployment : Setup Local Linting
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                            
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Joshua Moore</span>, last modified on Oct 03, 2024
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <p>This article will cover how to setup local linting to enable you as a developer to check your code meets the style guidelines outlined here: <a href="https://varlab-dev.atlassian.net/wiki/spaces/VAR/pages/59507580/Code+Style+Guide" data-linked-resource-id="59507580" data-linked-resource-version="15" data-linked-resource-type="page">Code Style Guide</a>, While not strictly necessary it can prevent you having to fix code after waiting on the pipeline only to find out it failed based on styling. The tool we currently use to enforce styling is <strong>dotnet format</strong>. This uses a .editorconfig file to lay out a bunch of rules for styling and spacing.</p><p>There are a couple options to use linting locally, they are listed below.</p><style type='text/css'>/*<![CDATA[*/
+div.rbtoc1748352889151 {padding: 0px;}
+div.rbtoc1748352889151 ul {list-style: none;margin-left: 0px;}
+div.rbtoc1748352889151 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style><div class='toc-macro rbtoc1748352889151'>
+<ul class='toc-indentation'>
+<li><a href='#SetupLocalLinting-1.GeneratingaReportLocally'>1. Generating a Report Locally</a>
+<ul class='toc-indentation'>
+<li><a href='#SetupLocalLinting-FixWhitespaceError'>Fix Whitespace Error</a></li>
+</ul>
+</li>
+<li><a href='#SetupLocalLinting-2.EditorIntegratedTools'>2. Editor Integrated Tools</a>
+<ul class='toc-indentation'>
+<li><a href='#SetupLocalLinting-Unity/C#'>Unity/C#</a>
+<ul class='toc-indentation'>
+<li><a href='#SetupLocalLinting-VisualStudio'>Visual Studio</a></li>
+<li><a href='#SetupLocalLinting-VisualStudioCode'>Visual Studio Code</a></li>
+</ul>
+</li>
+<li><a href='#SetupLocalLinting-Javascript'>Javascript</a></li>
+</ul>
+</li>
+<li><a href='#SetupLocalLinting-3.UsingaPre-CommitCheck'>3. Using a Pre-Commit Check</a>
+<ul class='toc-indentation'>
+<li><a href='#SetupLocalLinting-Installpre-commit'>Install pre-commit</a></li>
+<li><a href='#SetupLocalLinting-InstallHusky/Husky.Net'>Install Husky/Husky.Net</a></li>
+<li><a href='#SetupLocalLinting-JobSetup'>Job Setup</a>
+<ul class='toc-indentation'>
+<li><a href='#SetupLocalLinting-C#'>C#</a></li>
+<li><a href='#SetupLocalLinting-JavaScript'>JavaScript</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href='#SetupLocalLinting-Notes'>Notes</a>
+<ul class='toc-indentation'>
+<li><a href='#SetupLocalLinting-Csharpier'>Csharpier</a></li>
+<li><a href='#SetupLocalLinting-MegaLinter'>MegaLinter</a></li>
+</ul>
+</li>
+</ul>
+</div><h2 id="SetupLocalLinting-1.GeneratingaReportLocally">1. Generating a Report Locally</h2><p>This is for generating a report that can give you a full breakdown of each rule break, its file location, and cause. Navigate to your project location in CMD, ensure there is a .editorconfig file in the location(download one below) ensure it is in the same folder as the .git folder (root of the repo)<br/><a class="external-link" data-card-appearance="inline" href="https://bitbucket.org/VARLab/devops-pipeline/src/main/Bash/.editorconfig" rel="nofollow">https://bitbucket.org/VARLab/devops-pipeline/src/main/Bash/.editorconfig</a> </p><p>Then run this command</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">dotnet format &lt;your-solution&gt;.sln --report &lt;where-you-want-the-report&gt;</pre>
+</div></div><p>This will create a json file with everything the tool found you can look through</p><h3 id="SetupLocalLinting-FixWhitespaceError">Fix Whitespace Error</h3><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20241003-185149.png" width="760" loading="lazy" src="attachments/1336311810/1378123812.png?width=760" data-image-src="attachments/1336311810/1378123812.png" data-height="299" data-width="888" data-unresolved-comment-count="0" data-linked-resource-id="1378123812" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20241003-185149.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1336311810" data-linked-resource-container-version="19" data-media-id="0cf49a8b-fea3-4706-ae4a-9cbfdedc848a" data-media-type="file"></span><p>In visual studio, or Rider you can run a format/code cleanup which will see the file and format according to the settings automatically!</p><h2 id="SetupLocalLinting-2.EditorIntegratedTools">2. Editor Integrated Tools</h2><h3 id="SetupLocalLinting-Unity/C#">Unity/C#</h3><h4 id="SetupLocalLinting-VisualStudio">Visual Studio</h4><p>Visual Studio has native support for .editorconfig files. A .editorconfig file lays out rules that will need to be followed and will work with intellisense to highlight incorrect syntax.</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20240917-005831.png" width="499" loading="lazy" src="attachments/1336311810/1340571651.png?width=499" data-image-src="attachments/1336311810/1340571651.png" data-height="65" data-width="295" data-unresolved-comment-count="0" data-linked-resource-id="1340571651" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20240917-005831.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1336311810" data-linked-resource-container-version="19" data-media-id="37fe428f-ff8d-4593-9612-6a0ce724b793" data-media-type="file"></span><p>Download the file below and preferably place it in the root of the repo(where you .git folder is).</p><p><a class="external-link" data-card-appearance="inline" href="https://bitbucket.org/VARLab/devops-pipeline/src/main/Bash/.editorconfig" rel="nofollow">https://bitbucket.org/VARLab/devops-pipeline/src/main/Bash/.editorconfig</a> </p><p>Then visual studio should automatically see the file and start using it with intellisense! Additionally running the Code Cleanup within VS should also see the .editorconfig and use that files settings to format the things it can automatically clean.</p><h4 id="SetupLocalLinting-VisualStudioCode">Visual Studio Code</h4><p>Unfortunately it does not seem to appear that VScode has the same support for .editorconfig there is an external extension: <a class="external-link" href="https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig" rel="nofollow">https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig</a> but it appears to only handle lighter weight options such as whitespace formatting, etc. So if this is your preferred editor you will need to <strong>see below</strong> to use a pre commit check that uses Husky.net to run the dotnet format tool.</p><h3 id="SetupLocalLinting-Javascript">Javascript</h3><p>To be added once we have a pipeline for web projects.</p><h2 id="SetupLocalLinting-3.UsingaPre-CommitCheck">3. Using a Pre-Commit Check</h2><p>There are several steps, once implemented it will prevent you from committing if there are rules being  broken.</p><h3 id="SetupLocalLinting-Installpre-commit">Install pre-commit</h3><div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>Requires Python installed</p></div></div><p>Setting this up is a more involved process, including needing python installed in your machine to access “pip” the package-management system for python.</p><p>The instructions are here to install pre-commit: <a class="external-link" data-card-appearance="inline" href="https://pre-commit.com/" rel="nofollow">https://pre-commit.com/</a> </p><h3 id="SetupLocalLinting-InstallHusky/Husky.Net">Install Husky/Husky.Net</h3><p><strong>C#: </strong>in your CMD, do the following to install Husky.net</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">cd &lt;Your project root directory&gt;
+dotnet new tool-manifest
+dotnet tool install Husky</pre>
+</div></div><p>Then setup for your project</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">cd &lt;Your project root directory&gt;
+dotnet husky install</pre>
+</div></div><p><strong>JavaScript: </strong><a class="external-link" data-card-appearance="inline" href="https://typicode.github.io/husky/get-started.html" rel="nofollow">https://typicode.github.io/husky/get-started.html</a> follow these instruction to get the package from npm</p><h3 id="SetupLocalLinting-JobSetup">Job Setup</h3><h4 id="SetupLocalLinting-C#">C#</h4><p>just checks if its safe to commit, if rules are broken or format changes are needed will fail. add -v flag for verbosity information (Allowed values are <code>q[uiet]</code>, <code>m[inimal]</code>, <code>n[ormal]</code>, <code>d[etailed]</code>, and <code>diag[nostic]</code>. Default value is <code>m[inimal]</code>.)</p><p>Lastly in CMD type the following.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">dotnet husky add pre-commit -c &quot;dotnet format &lt;your-solution&gt;.sln --verify-no-changes&quot;</pre>
+</div></div><h4 id="SetupLocalLinting-JavaScript">JavaScript</h4><p>To be added later.</p><h2 id="SetupLocalLinting-Notes">Notes</h2><h3 id="SetupLocalLinting-Csharpier">Csharpier</h3><p>This tool:<a class="external-link" data-card-appearance="inline" href="https://csharpier.com/" rel="nofollow">https://csharpier.com/</a>  is used to format white spacing, width, etc. has few options but is nice for just making everything uniform.</p><h3 id="SetupLocalLinting-MegaLinter">MegaLinter</h3><p>This tool:<a class="external-link" data-card-appearance="inline" href="https://megalinter.io/latest/" rel="nofollow">https://megalinter.io/latest/</a>  has many powerful options and comes with many flavours of tools setup to use. it typically seems to use docker with many versions/flavours you can pick from. In CI/CD terms we’d need to setup an agent to run a docker instance of some version such as </p><p>Docker image: <strong>oxsecurity/megalinter-dotnet:v8.0.0</strong> </p><p>Can also be used locally if you want, the link above has further details.</p><p /><p />
+                    </div>
+
+                                        <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1336311810/1340571651.png">image-20240917-005831.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1336311810/1340342277.editorconfig">.editorconfig</a> (binary/octet-stream)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1336311810/1378123812.png">image-20241003-185149.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on May 27, 2025 13:34</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

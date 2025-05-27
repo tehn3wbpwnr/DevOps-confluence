@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DevOps / Pipeline &amp; Deployment : DevOps / Pipeline &amp; Deployment Home</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">DevOps / Pipeline &amp; Deployment</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                    <img src="images/icons/contenttypes/home_page_16.png" height="16" width="16" border="0" align="absmiddle" alt="Home Page" style="float: none; vertical-align: middle;"/>
+                                                <span id="title-text">
+                            DevOps / Pipeline &amp; Deployment : DevOps / Pipeline &amp; Deployment Home
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                            
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Jonathan Bezeau</span>, last modified on Jun 18, 2024
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <style type='text/css'>/*<![CDATA[*/
+div.rbtoc1748352753567 {padding: 0px;}
+div.rbtoc1748352753567 ul {list-style: none;margin-left: 0px;}
+div.rbtoc1748352753567 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style><div class='toc-macro rbtoc1748352753567'>
+<ul class='toc-indentation'>
+<li><a href='#DevOps/Pipeline&amp;DeploymentHome-Overview'>Overview</a></li>
+<li><a href='#DevOps/Pipeline&amp;DeploymentHome-Projects'>Projects</a>
+<ul class='toc-indentation'>
+<li><a href='#DevOps/Pipeline&amp;DeploymentHome-DevelopmentPipeline'>Development Pipeline</a></li>
+<li><a href='#DevOps/Pipeline&amp;DeploymentHome-DeploymentPipeline'>Deployment Pipeline</a></li>
+<li><a href='#DevOps/Pipeline&amp;DeploymentHome-DLXWebHosting/LTIIntegration'>DLX Web Hosting / LTI Integration</a></li>
+</ul>
+</li>
+<li><a href='#DevOps/Pipeline&amp;DeploymentHome-Services'>Services</a>
+<ul class='toc-indentation'>
+<li><a href='#DevOps/Pipeline&amp;DeploymentHome-Bitbucket'>Bitbucket</a></li>
+<li><a href='#DevOps/Pipeline&amp;DeploymentHome-Jenkins'>Jenkins</a></li>
+<li><a href='#DevOps/Pipeline&amp;DeploymentHome-DLX-WebHost'>DLX-WebHost</a></li>
+<li><a href='#DevOps/Pipeline&amp;DeploymentHome-Moodle'>Moodle</a></li>
+</ul>
+</li>
+</ul>
+</div><h1 id="DevOps/Pipeline&amp;DeploymentHome-Overview">Overview</h1><p>DevOps Pipeline &amp; Deployment is an initiative to automate activities and practices around DLX development. We want to enable more thorough testing, avoid deploying breaking changes, and move from file-attachment to web-hosted deployment for our DLX projects.</p><h1 id="DevOps/Pipeline&amp;DeploymentHome-Projects">Projects</h1><h2 id="DevOps/Pipeline&amp;DeploymentHome-DevelopmentPipeline">Development Pipeline</h2><p>The development pipeline runs whenever a developer finishes work on a ticket and submits a Pull Request to ask that their work be evaluated and approved for merge to the main code line for their project. This pipeline needs to execute automated tests for the project and make the report available to reviewers so they can quickly reject requests that would introduce new bugs to the overall project. </p><h2 id="DevOps/Pipeline&amp;DeploymentHome-DeploymentPipeline">Deployment Pipeline</h2><p>The deployment pipeline runs whenever a developer merges their approved ticket to the main code branch. This pipeline needs to run the same tests as the development pipeline, but will not produce a report. Instead the compiled code is uploaded to a web host for users to access.</p><h2 id="DevOps/Pipeline&amp;DeploymentHome-DLXWebHosting/LTIIntegration">DLX Web Hosting / LTI Integration</h2><p>Our final DevOps step is hosting the built DLX applications. This could be done in two modes: unauthenticated hosting for casual testing purposes, and authenticated hosting for testing learning tool access (via link configured in Moodle) or as a production Digital Learning Experienced (via link configured in eConestoga and exposed in a learner’s course shell.</p><h1 id="DevOps/Pipeline&amp;DeploymentHome-Services">Services</h1><h2 id="DevOps/Pipeline&amp;DeploymentHome-Bitbucket">Bitbucket</h2><p>Bitbucket is our source control repository. It hosts many projects, some of which are set up to initiate a pipeline on our build server during events like a Pull Request or Merge.</p><h2 id="DevOps/Pipeline&amp;DeploymentHome-Jenkins">Jenkins</h2><p>Jenkins runs several build pipelines (on <a class="external-link" href="http://varlabjenkins.eastus.cloudapp.azure.com" rel="nofollow">varlabjenkins.eastus.cloudapp.azure.com</a>) which are invoked in different cases by webhook calls from Bitbucket. One is the development build, which runs tests and produces a report. The other is the deployment build, which runs tests and if everything works perfectly uploads the resulting build (Unity WebGL) to our hosting server.</p><h2 id="DevOps/Pipeline&amp;DeploymentHome-DLX-WebHost">DLX-WebHost</h2><p>Our deployment pipeline (as well as some manual processes) deploy builds to <a class="external-link" href="http://dlx-webhost.canadacentral.cloudapp.azure.com" rel="nofollow"><em>dlx-webhost.canadacentral.cloudapp.azure.com</em></a><em> </em>which we often prefer to redirect to with https through <a class="external-link" href="http://webdlx.vconestoga.com" rel="nofollow"><em>webdlx.vconestoga.com</em></a><em> </em></p><h2 id="DevOps/Pipeline&amp;DeploymentHome-Moodle">Moodle</h2><p>Moodle is an open-source Learning Management System (LMS) and we use it to test hosting / deployment of DLX before making it available to the production system eConestoga. VARLab hosts its own instance on <a class="external-link" href="https://vconestoga.duckdns.org/" rel="nofollow">https://vconestoga.duckdns.org/</a> </p><p>For web-hosted builds, these have to be set up so that they authenticate through the Learning Tool Interoperability (LTI) interface, effectively requiring a link and authorized token from Moodle.</p><ul class='childpages-macro'><li><a href="Bug-Reports_1355841537.html" data-linked-resource-id="1355841537" data-linked-resource-version="10" data-linked-resource-type="page">Bug Reports</a></li><li><a href="Containerization-Project_1439170564.html" data-linked-resource-id="1439170564" data-linked-resource-version="4" data-linked-resource-type="page">Containerization Project</a></li><li><a href="https://varlab-dev.atlassian.net/wiki/spaces/DPD/folder/1542455384" data-linked-resource-id="1542455384" data-linked-resource-version="1" data-linked-resource-type="folder">Linux Jenkins Documents</a></li><li><a href="https://varlab-dev.atlassian.net/wiki/spaces/DPD/folder/1575288834" data-linked-resource-id="1575288834" data-linked-resource-version="1" data-linked-resource-type="folder">CI/CD Pipeline</a></li><li><a href="https://varlab-dev.atlassian.net/wiki/spaces/DPD/folder/1542389772" data-linked-resource-id="1542389772" data-linked-resource-version="1" data-linked-resource-type="folder">Windows Jenkins Documents</a></li><li><a href="https://varlab-dev.atlassian.net/wiki/spaces/DPD/folder/1541537838" data-linked-resource-id="1541537838" data-linked-resource-version="1" data-linked-resource-type="folder">Onboarding Documents</a></li><li><a href="https://varlab-dev.atlassian.net/wiki/spaces/DPD/folder/1541832718" data-linked-resource-id="1541832718" data-linked-resource-version="1" data-linked-resource-type="folder">DLX Server Documents</a></li><li><a href="https://varlab-dev.atlassian.net/wiki/spaces/DPD/folder/1611694083" data-linked-resource-id="1611694083" data-linked-resource-version="1" data-linked-resource-type="folder">Developer Documents</a></li><li><a href="DevOps-Documents_1231618075.html" data-linked-resource-id="1231618075" data-linked-resource-version="1" data-linked-resource-type="page">DevOps Documents</a></li><li><a href="DevOps-QA_1332019201.html" data-linked-resource-id="1332019201" data-linked-resource-version="1" data-linked-resource-type="page">DevOps-QA</a></li></ul><p />
+                    </div>
+
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on May 27, 2025 13:32</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

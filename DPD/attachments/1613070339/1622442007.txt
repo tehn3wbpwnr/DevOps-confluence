@@ -1,0 +1,651 @@
+{
+  "summary": {
+    "totalFilesWithErrorsNumber": 3,
+    "totalFilesLinted": 3,
+    "totalFoundErrorNumber": 0,
+    "totalFoundWarningNumber": 17,
+    "totalFoundInfoNumber": 30,
+    "totalFoundNumber": 47,
+    "totalFixedNumber": 0,
+    "totalRemainingNumber": 47,
+    "totalFixedErrorNumber": 0,
+    "totalFixedWarningNumber": 0,
+    "totalFixedInfoNumber": 0,
+    "totalRemainingErrorNumber": 0,
+    "totalRemainingWarningNumber": 17,
+    "totalRemainingInfoNumber": 30,
+    "detectedRules": {
+      "LineLength": 17,
+      "DuplicateStringLiteral": 27,
+      "DuplicateNumberLiteral": 2,
+      "SpaceBeforeOpeningBrace": 1
+    },
+    "fixedRules": {}
+  },
+  "linesNumber": 244,
+  "files": {
+    "/var/lib/jenkins/workspace/PipelineForJenkins/PR-Pipeline/DevOps-Linux-Jenkins/DLXJenkins/Jenkinsfile": {S
+      "errors": [
+        {
+          "id": 0,
+          "line": 23,
+          "rule": "LineLength",
+          "severity": "warning",
+          "msg": "The line exceeds 120 characters. The line is 176 characters."
+        },
+        {
+          "id": 1,
+          "line": 29,
+          "rule": "DuplicateStringLiteral",
+          "severity": "info",
+          "msg": "Duplicate String Literal: PR_BRANCH",
+          "range": {
+            "start": {
+              "line": 29,
+              "character": 23
+            },
+            "end": {
+              "line": 29,
+              "character": 32
+            }
+          }
+        },
+        {
+          "id": 2,
+          "line": 30,
+          "rule": "DuplicateStringLiteral",
+          "severity": "info",
+          "msg": "Duplicate String Literal: PR_DESTINATION_BRANCH",
+          "range": {
+            "start": {
+              "line": 30,
+              "character": 23
+            },
+            "end": {
+              "line": 30,
+              "character": 44
+            }
+          }
+        },
+        {
+          "id": 3,
+          "line": 31,
+          "rule": "DuplicateStringLiteral",
+          "severity": "info",
+          "msg": "Duplicate String Literal: PR_REPO_HTML",
+          "range": {
+            "start": {
+              "line": 31,
+              "character": 23
+            },
+            "end": {
+              "line": 31,
+              "character": 35
+            }
+          }
+        },
+        {
+          "id": 4,
+          "line": 32,
+          "rule": "DuplicateStringLiteral",
+          "severity": "info",
+          "msg": "Duplicate String Literal: PR_REPO_NAME",
+          "range": {
+            "start": {
+              "line": 32,
+              "character": 23
+            },
+            "end": {
+              "line": 32,
+              "character": 35
+            }
+          }
+        },
+        {
+          "id": 5,
+          "line": 33,
+          "rule": "DuplicateStringLiteral",
+          "severity": "info",
+          "msg": "Duplicate String Literal: PR_COMMIT",
+          "range": {
+            "start": {
+              "line": 33,
+              "character": 23
+            },
+            "end": {
+              "line": 33,
+              "character": 32
+            }
+          }
+        },
+        {
+          "id": 6,
+          "line": 34,
+          "rule": "DuplicateStringLiteral",
+          "severity": "info",
+          "msg": "Duplicate String Literal: PR_PROJECT",
+          "range": {
+            "start": {
+              "line": 34,
+              "character": 23
+            },
+            "end": {
+              "line": 34,
+              "character": 33
+            }
+          }
+        },
+        {
+          "id": 7,
+          "line": 35,
+          "rule": "DuplicateStringLiteral",
+          "severity": "info",
+          "msg": "Duplicate String Literal: PR_STATE",
+          "range": {
+            "start": {
+              "line": 35,
+              "character": 23
+            },
+            "end": {
+              "line": 35,
+              "character": 31
+            }
+          }
+        },
+        {
+          "id": 8,
+          "line": 57,
+          "rule": "LineLength",
+          "severity": "warning",
+          "msg": "The line exceeds 120 characters. The line is 151 characters."
+        },
+        {
+          "id": 9,
+          "line": 96,
+          "rule": "LineLength",
+          "severity": "warning",
+          "msg": "The line exceeds 120 characters. The line is 195 characters."
+        },
+        {
+          "id": 10,
+          "line": 105,
+          "rule": "LineLength",
+          "severity": "warning",
+          "msg": "The line exceeds 120 characters. The line is 145 characters."
+        },
+        {
+          "id": 11,
+          "line": 122,
+          "rule": "LineLength",
+          "severity": "warning",
+          "msg": "The line exceeds 120 characters. The line is 162 characters."
+        },
+        {
+          "id": 12,
+          "line": 125,
+          "rule": "DuplicateNumberLiteral",
+          "severity": "info",
+          "msg": "Duplicate Number Literal: 0",
+          "range": {
+            "start": {
+              "line": 125,
+              "character": 36
+            },
+            "end": {
+              "line": 125,
+              "character": 37
+            }
+          }
+        },
+        {
+          "id": 13,
+          "line": 127,
+          "rule": "LineLength",
+          "severity": "warning",
+          "msg": "The line exceeds 120 characters. The line is 205 characters."
+        },
+        {
+          "id": 14,
+          "line": 131,
+          "rule": "LineLength",
+          "severity": "warning",
+          "msg": "The line exceeds 120 characters. The line is 194 characters."
+        },
+        {
+          "id": 15,
+          "line": 135,
+          "rule": "LineLength",
+          "severity": "warning",
+          "msg": "The line exceeds 120 characters. The line is 123 characters."
+        },
+        {
+          "id": 16,
+          "line": 138,
+          "rule": "SpaceBeforeOpeningBrace",
+          "severity": "info",
+          "msg": "The opening brace for the block in class None is not preceded by a space or whitespace",
+          "fixable": true,
+          "fixLabel": "Add space before opening brace",
+          "range": {
+            "start": {
+              "line": 138,
+              "character": 24
+            },
+            "end": {
+              "line": 138,
+              "character": 25
+            }
+          }
+        },
+        {
+          "id": 17,
+          "line": 139,
+          "rule": "LineLength",
+          "severity": "warning",
+          "msg": "The line exceeds 120 characters. The line is 205 characters."
+        },
+        {
+          "id": 18,
+          "line": 140,
+          "rule": "LineLength",
+          "severity": "warning",
+          "msg": "The line exceeds 120 characters. The line is 190 characters."
+        },
+        {
+          "id": 19,
+          "line": 194,
+          "rule": "LineLength",
+          "severity": "warning",
+          "msg": "The line exceeds 120 characters. The line is 154 characters."
+        },
+        {
+          "id": 20,
+          "line": 207,
+          "rule": "LineLength",
+          "severity": "warning",
+          "msg": "The line exceeds 120 characters. The line is 161 characters."
+        },
+        {
+          "id": 21,
+          "line": 210,
+          "rule": "DuplicateNumberLiteral",
+          "severity": "info",
+          "msg": "Duplicate Number Literal: 5",
+          "range": {
+            "start": {
+              "line": 210,
+              "character": 22
+            },
+            "end": {
+              "line": 210,
+              "character": 23
+            }
+          }
+        }
+      ]
+    },
+    "/var/lib/jenkins/workspace/PipelineForJenkins/PR-Pipeline/DevOps-Linux-Jenkins/JsJenkins/Jenkinsfile": {
+      "errors": [
+        {
+          "id": 34,
+          "line": 19,
+          "rule": "LineLength",
+          "severity": "warning",
+          "msg": "The line exceeds 120 characters. The line is 176 characters."
+        },
+        {
+          "id": 35,
+          "line": 25,
+          "rule": "DuplicateStringLiteral",
+          "severity": "info",
+          "msg": "Duplicate String Literal: PR_BRANCH",
+          "range": {
+            "start": {
+              "line": 25,
+              "character": 23
+            },
+            "end": {
+              "line": 25,
+              "character": 32
+            }
+          }
+        },
+        {
+          "id": 36,
+          "line": 26,
+          "rule": "DuplicateStringLiteral",
+          "severity": "info",
+          "msg": "Duplicate String Literal: PR_DESTINATION_BRANCH",
+          "range": {
+            "start": {
+              "line": 26,
+              "character": 23
+            },
+            "end": {
+              "line": 26,
+              "character": 44
+            }
+          }
+        },
+        {
+          "id": 37,
+          "line": 27,
+          "rule": "DuplicateStringLiteral",
+          "severity": "info",
+          "msg": "Duplicate String Literal: PR_REPO_HTML",
+          "range": {
+            "start": {
+              "line": 27,
+              "character": 23
+            },
+            "end": {
+              "line": 27,
+              "character": 35
+            }
+          }
+        },
+        {
+          "id": 38,
+          "line": 28,
+          "rule": "DuplicateStringLiteral",
+          "severity": "info",
+          "msg": "Duplicate String Literal: PR_REPO_NAME",
+          "range": {
+            "start": {
+              "line": 28,
+              "character": 23
+            },
+            "end": {
+              "line": 28,
+              "character": 35
+            }
+          }
+        },
+        {
+          "id": 39,
+          "line": 29,
+          "rule": "DuplicateStringLiteral",
+          "severity": "info",
+          "msg": "Duplicate String Literal: PR_COMMIT",
+          "range": {
+            "start": {
+              "line": 29,
+              "character": 23
+            },
+            "end": {
+              "line": 29,
+              "character": 32
+            }
+          }
+        },
+        {
+          "id": 40,
+          "line": 30,
+          "rule": "DuplicateStringLiteral",
+          "severity": "info",
+          "msg": "Duplicate String Literal: PR_PROJECT",
+          "range": {
+            "start": {
+              "line": 30,
+              "character": 23
+            },
+            "end": {
+              "line": 30,
+              "character": 33
+            }
+          }
+        },
+        {
+          "id": 41,
+          "line": 31,
+          "rule": "DuplicateStringLiteral",
+          "severity": "info",
+          "msg": "Duplicate String Literal: PR_STATE",
+          "range": {
+            "start": {
+              "line": 31,
+              "character": 23
+            },
+            "end": {
+              "line": 31,
+              "character": 31
+            }
+          }
+        },
+        {
+          "id": 42,
+          "line": 58,
+          "rule": "LineLength",
+          "severity": "warning",
+          "msg": "The line exceeds 120 characters. The line is 147 characters."
+        },
+        {
+          "id": 43,
+          "line": 132,
+          "rule": "DuplicateStringLiteral",
+          "severity": "info",
+          "msg": "Duplicate String Literal: \""
+        },
+        {
+          "id": 44,
+          "line": 132,
+          "rule": "DuplicateStringLiteral",
+          "severity": "info",
+          "msg": "Duplicate String Literal: cd \""
+        },
+        {
+          "id": 45,
+          "line": 142,
+          "rule": "DuplicateStringLiteral",
+          "severity": "info",
+          "msg": "Duplicate String Literal: sonarqube-scanner",
+          "range": {
+            "start": {
+              "line": 142,
+              "character": 51
+            },
+            "end": {
+              "line": 142,
+              "character": 68
+            }
+          }
+        },
+        {
+          "id": 46,
+          "line": 162,
+          "rule": "DuplicateStringLiteral",
+          "severity": "info",
+          "msg": "Duplicate String Literal: OK",
+          "range": {
+            "start": {
+              "line": 162,
+              "character": 61
+            },
+            "end": {
+              "line": 162,
+              "character": 63
+            }
+          }
+        }
+      ]
+    },
+    "/var/lib/jenkins/workspace/PipelineForJenkins/PR-Pipeline/DevOps-Linux-Jenkins/PipelineForJenkins/Jenkinsfile": {
+      "errors": [
+        {
+          "id": 22,
+          "line": 21,
+          "rule": "LineLength",
+          "severity": "warning",
+          "msg": "The line exceeds 120 characters. The line is 176 characters."
+        },
+        {
+          "id": 23,
+          "line": 27,
+          "rule": "DuplicateStringLiteral",
+          "severity": "info",
+          "msg": "Duplicate String Literal: PR_BRANCH",
+          "range": {
+            "start": {
+              "line": 27,
+              "character": 23
+            },
+            "end": {
+              "line": 27,
+              "character": 32
+            }
+          }
+        },
+        {
+          "id": 24,
+          "line": 28,
+          "rule": "DuplicateStringLiteral",
+          "severity": "info",
+          "msg": "Duplicate String Literal: PR_DESTINATION_BRANCH",
+          "range": {
+            "start": {
+              "line": 28,
+              "character": 23
+            },
+            "end": {
+              "line": 28,
+              "character": 44
+            }
+          }
+        },
+        {
+          "id": 25,
+          "line": 29,
+          "rule": "DuplicateStringLiteral",
+          "severity": "info",
+          "msg": "Duplicate String Literal: PR_REPO_HTML",
+          "range": {
+            "start": {
+              "line": 29,
+              "character": 23
+            },
+            "end": {
+              "line": 29,
+              "character": 35
+            }
+          }
+        },
+        {
+          "id": 26,
+          "line": 30,
+          "rule": "DuplicateStringLiteral",
+          "severity": "info",
+          "msg": "Duplicate String Literal: PR_REPO_NAME",
+          "range": {
+            "start": {
+              "line": 30,
+              "character": 23
+            },
+            "end": {
+              "line": 30,
+              "character": 35
+            }
+          }
+        },
+        {
+          "id": 27,
+          "line": 31,
+          "rule": "DuplicateStringLiteral",
+          "severity": "info",
+          "msg": "Duplicate String Literal: PR_COMMIT",
+          "range": {
+            "start": {
+              "line": 31,
+              "character": 23
+            },
+            "end": {
+              "line": 31,
+              "character": 32
+            }
+          }
+        },
+        {
+          "id": 28,
+          "line": 32,
+          "rule": "DuplicateStringLiteral",
+          "severity": "info",
+          "msg": "Duplicate String Literal: PR_PROJECT",
+          "range": {
+            "start": {
+              "line": 32,
+              "character": 23
+            },
+            "end": {
+              "line": 32,
+              "character": 33
+            }
+          }
+        },
+        {
+          "id": 29,
+          "line": 33,
+          "rule": "DuplicateStringLiteral",
+          "severity": "info",
+          "msg": "Duplicate String Literal: PR_STATE",
+          "range": {
+            "start": {
+              "line": 33,
+              "character": 23
+            },
+            "end": {
+              "line": 33,
+              "character": 31
+            }
+          }
+        },
+        {
+          "id": 30,
+          "line": 48,
+          "rule": "DuplicateStringLiteral",
+          "severity": "info",
+          "msg": "Duplicate String Literal: JDK 17",
+          "range": {
+            "start": {
+              "line": 48,
+              "character": 26
+            },
+            "end": {
+              "line": 48,
+              "character": 32
+            }
+          }
+        },
+        {
+          "id": 31,
+          "line": 49,
+          "rule": "DuplicateStringLiteral",
+          "severity": "info",
+          "msg": "Duplicate String Literal: Groovy",
+          "range": {
+            "start": {
+              "line": 49,
+              "character": 28
+            },
+            "end": {
+              "line": 49,
+              "character": 34
+            }
+          }
+        },
+        {
+          "id": 32,
+          "line": 73,
+          "rule": "LineLength",
+          "severity": "warning",
+          "msg": "The line exceeds 120 characters. The line is 123 characters."
+        },
+        {
+          "id": 33,
+          "line": 123,
+          "rule": "LineLength",
+          "severity": "warning",
+          "msg": "The line exceeds 120 characters. The line is 131 characters."
+        }
+      ]
+    }
+  }
+}

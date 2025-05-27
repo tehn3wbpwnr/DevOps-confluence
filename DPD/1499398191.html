@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DevOps / Pipeline &amp; Deployment : Environment Preparation Guide: Setting up a Linux VM for Headless Unity Editor (Batchmode) Operations</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">DevOps / Pipeline &amp; Deployment</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1179353439.html">DevOps / Pipeline &amp; Deployment Home</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Linux-Jenkins-Documents_1542455384.html">Linux Jenkins Documents</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Set-Up-on-Linux_1542881281.html">Set Up on Linux</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Linux-with-Unity-Headless-Environment-and-Tool-Integration_1499693083.html">Linux with Unity Headless Environment and Tool Integration</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            DevOps / Pipeline &amp; Deployment : Environment Preparation Guide: Setting up a Linux VM for Headless Unity Editor (Batchmode) Operations
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                            
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Jindo Kim</span>, last modified on Dec 12, 2024
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <h1 id="EnvironmentPreparationGuide:SettingupaLinuxVMforHeadlessUnityEditor(Batchmode)Operations-Objective"><style>[data-colorid=cegdyzdad0]{color:#ff5630} html[data-color-mode=dark] [data-colorid=cegdyzdad0]{color:#cf2600}</style>Objective</h1><ul><li><p>Document the complete process of setting up a Linux Virtual Machine (VM) environment capable of executing Unity in headless mode.</p></li></ul><style type="text/css">/*<![CDATA[*/
+div.rbtoc1748352767550 {padding: 0px;}
+div.rbtoc1748352767550 ul {list-style: none;margin-left: 0px;}
+div.rbtoc1748352767550 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style><div class="toc-macro rbtoc1748352767550">
+<ul class="toc-indentation">
+<li><a href="#EnvironmentPreparationGuide:SettingupaLinuxVMforHeadlessUnityEditor(Batchmode)Operations-Summary">Summary</a></li>
+<li><a href="#EnvironmentPreparationGuide:SettingupaLinuxVMforHeadlessUnityEditor(Batchmode)Operations-1.EnvironmentPreparation">1. Environment Preparation</a>
+<ul class="toc-indentation">
+<li><a href="#EnvironmentPreparationGuide:SettingupaLinuxVMforHeadlessUnityEditor(Batchmode)Operations-1.1CreatingVMinAzure">1.1 Creating VM in Azure</a></li>
+<li><a href="#EnvironmentPreparationGuide:SettingupaLinuxVMforHeadlessUnityEditor(Batchmode)Operations-1.2InstallaLightweightDesktopEnvironment">1.2 Install a Lightweight Desktop Environment</a></li>
+<li><a href="#EnvironmentPreparationGuide:SettingupaLinuxVMforHeadlessUnityEditor(Batchmode)Operations-1.3InstallandConfigureaRemoteDesktopProtocolserver">1.3 Install and Configure a Remote Desktop Protocol server</a></li>
+<li><a href="#EnvironmentPreparationGuide:SettingupaLinuxVMforHeadlessUnityEditor(Batchmode)Operations-1.4ConfigureFirewallRulesandSetUpUserCredentialsforRDPAccess">1.4 Configure Firewall Rules and Set Up User Credentials for RDP Access</a></li>
+</ul>
+</li>
+<li><a href="#EnvironmentPreparationGuide:SettingupaLinuxVMforHeadlessUnityEditor(Batchmode)Operations-2.OpenDLXprojectonUnityHub">2. Open DLX project on Unity Hub</a>
+<ul class="toc-indentation">
+<li><a href="#EnvironmentPreparationGuide:SettingupaLinuxVMforHeadlessUnityEditor(Batchmode)Operations-2.1InstallUnityHub">2.1 Install Unity Hub</a></li>
+<li><a href="#EnvironmentPreparationGuide:SettingupaLinuxVMforHeadlessUnityEditor(Batchmode)Operations-2.2RunUnityHub">2.2 Run Unity Hub</a></li>
+<li><a href="#EnvironmentPreparationGuide:SettingupaLinuxVMforHeadlessUnityEditor(Batchmode)Operations-2.3LogintoUnityHubwithID(CatherineID)">2.3 Login to Unity Hub with ID (Catherine ID)</a></li>
+<li><a href="#EnvironmentPreparationGuide:SettingupaLinuxVMforHeadlessUnityEditor(Batchmode)Operations-2.4GeneratingSSHkeytoaccessBitbucketrepositories">2.4 Generating SSH key to access Bitbucket repositories</a></li>
+<li><a href="#EnvironmentPreparationGuide:SettingupaLinuxVMforHeadlessUnityEditor(Batchmode)Operations-2.5AuthenticatingthemachinewiththeUPMPackageRegistry">2.5 Authenticating the machine with the UPM Package Registry</a></li>
+<li><a href="#EnvironmentPreparationGuide:SettingupaLinuxVMforHeadlessUnityEditor(Batchmode)Operations-2.6InstallGitandcloneDLXproject">2.6 Install Git and clone DLX project</a></li>
+<li><a href="#EnvironmentPreparationGuide:SettingupaLinuxVMforHeadlessUnityEditor(Batchmode)Operations-2.7InstallUnityEditorwithintheGUIenvironment.">2.7 Install Unity Editor within the GUI environment.</a></li>
+<li><a href="#EnvironmentPreparationGuide:SettingupaLinuxVMforHeadlessUnityEditor(Batchmode)Operations-2.8SuccessfullyopenaDLXprojectontheUnityhub">2.8 Successfully open a DLX project on the Unity hub</a></li>
+</ul>
+</li>
+</ul>
+</div><h2 id="EnvironmentPreparationGuide:SettingupaLinuxVMforHeadlessUnityEditor(Batchmode)Operations-Summary"><strong>Summary</strong></h2><ul><li><p>Working with Editmode, Playmode, and WebGL Builds for DLX projects in a Linux headless environment calls for Unity Editors. Without a graphical interface, installing Unity Hub and Editor often proves challenging. Installation becomes feasible by adopting a lightweight desktop environment for graphics and leveraging XRDP to offer user access to the X server. This approach then enables effective use of Editmode, Playmode, and WebGL builds in a headless setup.</p></li></ul><h2 id="EnvironmentPreparationGuide:SettingupaLinuxVMforHeadlessUnityEditor(Batchmode)Operations-1.EnvironmentPreparation"><strong>1. Environment Preparation</strong></h2><h3 id="EnvironmentPreparationGuide:SettingupaLinuxVMforHeadlessUnityEditor(Batchmode)Operations-1.1CreatingVMinAzure">1.1 Creating VM in Azure</h3><div id="expander-1460722665" class="expand-container"><div id="expander-control-1460722665" class="expand-control"><span class="expand-control-icon"><img style="vertical-align:middle;" class="expand-control-image" src="images/icons/grey_arrow_down.png"/></span><span class="expand-control-text">VM Specifications</span></div><div id="expander-content-1460722665" class="expand-content"><ul><li><p>Security type - Standard</p></li><li><p>Publisher - Canonical</p></li><li><p>Image - Ubuntu Pro 22.04 LTS - Gen2</p></li><li><p>VM architecture - x64</p></li><li><p>Size - Any Dv3 or Ev3 series</p></li></ul></div></div><h3 id="EnvironmentPreparationGuide:SettingupaLinuxVMforHeadlessUnityEditor(Batchmode)Operations-1.2InstallaLightweightDesktopEnvironment">1.2 Install a Lightweight Desktop Environment</h3><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: bash; gutter: false; theme: Confluence" data-theme="Confluence">sudo apt-get update
+sudo apt-get install xfce4 xfce4-goodies -y</pre>
+</div></div><ul><li><p>Installing a lightweight desktop environment such as XFCE (XForms Common Environment) on a headless Ubuntu VM allows us to use system resources efficiently while smoothly installing and running graphical applications like Unity Hub and Unity Editor. </p></li></ul><div id="expander-564749758" class="expand-container"><div id="expander-control-564749758" class="expand-control"><span class="expand-control-icon"><img style="vertical-align:middle;" class="expand-control-image" src="images/icons/grey_arrow_down.png"/></span><span class="expand-control-text">About the XFCE</span></div><div id="expander-content-564749758" class="expand-content"><ul><li><p>Lightweight Desktop Environments for Ubuntu - XFCE </p><ul><li><p><a class="external-link" data-card-appearance="inline" href="https://www.xfce.org/" rel="nofollow">https://www.xfce.org/</a></p></li></ul></li><li><p><strong>XFCE</strong> is a lightweight and highly customizable desktop environment for Unix-like operating systems, including Linux. </p><ul><li><p><a class="external-link" data-card-appearance="inline" href="https://packages.ubuntu.com/search?keywords=xfce4" rel="nofollow">https://packages.ubuntu.com/search?keywords=xfce4</a> </p></li></ul></li><li><p>The <code>xfce4-goodies</code> package complements the core XFCE desktop by adding a collection of additional plugins, applications, and utilities. </p><ul><li><p><a class="external-link" data-card-appearance="inline" href="https://packages.ubuntu.com/search?keywords=xfce4-goodies" rel="nofollow">https://packages.ubuntu.com/search?keywords=xfce4-goodies</a> </p></li></ul></li></ul></div></div><div id="expander-1639500198" class="expand-container"><div id="expander-control-1639500198" class="expand-control"><span class="expand-control-icon"><img style="vertical-align:middle;" class="expand-control-image" src="images/icons/grey_arrow_down.png"/></span><span class="expand-control-text">How does Xfce support Unity&rsquo;s headless environment?</span></div><div id="expander-content-1639500198" class="expand-content"><p><em><strong><span data-colorid="cegdyzdad0"><u>This section encompasses highly complex technology integrations that have not yet been documented.</u></span></strong></em></p><p><a class="external-link" href="https://docs.xfce.org/xfce/xfwm4/introduction" rel="nofollow">https://docs.xfce.org/xfce/xfwm4/introduction</a> </p><p><em>xfwm4</em> includes its own compositing manager, which takes advantage of the new <a class="external-link" data-card-appearance="inline" href="http://X.org" rel="nofollow">http://X.org</a>  's server extensions.</p><p>Keyword: WebGL &lt;&lt; Emscripten &lt;&lt; OpenGL &lt;&lt; DRI/<strong>GLX</strong>(OpenGL Extension to the X Window System) &lt;&lt; X server &lt;&lt; X windows manager &lt;&lt; xfwm4</p><p><a class="external-link" data-card-appearance="inline" href="https://www.oreilly.com/library/view/opengl-programming-guide/9780132748445/app06lev1sec2.html" rel="nofollow">https://www.oreilly.com/library/view/opengl-programming-guide/9780132748445/app06lev1sec2.html</a> </p><p><a class="external-link" data-card-appearance="inline" href="https://www-f9.ijs.si/~matevz/docs/007-2392-003/sgi_html/ch02.html" rel="nofollow">https://www-f9.ijs.si/~matevz/docs/007-2392-003/sgi_html/ch02.html</a> </p><p><a class="external-link" data-card-appearance="inline" href="https://en.wikipedia.org/wiki/Direct_Rendering_Infrastructure" rel="nofollow">https://en.wikipedia.org/wiki/Direct_Rendering_Infrastructure</a> </p><p><a class="external-link" data-card-appearance="inline" href="https://docs.unity3d.com/6000.0/Documentation/Manual/OpenGLCoreDetails.html" rel="nofollow">https://docs.unity3d.com/6000.0/Documentation/Manual/OpenGLCoreDetails.html</a> </p><p><a class="external-link" data-card-appearance="inline" href="https://emscripten.org/docs/porting/multimedia_and_graphics/OpenGL-support.html" rel="nofollow">https://emscripten.org/docs/porting/multimedia_and_graphics/OpenGL-support.html</a> </p><p><a class="external-link" data-card-appearance="inline" href="https://www.x.org/wiki/guide/concepts/#index6h4" rel="nofollow">https://www.x.org/wiki/guide/concepts/#index6h4</a> </p></div></div><ul><li><p>Reference: <a class="external-link" data-card-appearance="inline" href="https://aditya-sunjava.medium.com/exploring-the-best-lightweight-desktop-environments-for-ubuntu-and-other-popular-linux-4a08ba31f23f" rel="nofollow">https://aditya-sunjava.medium.com/exploring-the-best-lightweight-desktop-environments-for-ubuntu-and-other-popular-linux-4a08ba31f23f</a>  </p></li></ul><h3 id="EnvironmentPreparationGuide:SettingupaLinuxVMforHeadlessUnityEditor(Batchmode)Operations-1.3InstallandConfigureaRemoteDesktopProtocolserver">1.3 Install and Configure a Remote Desktop Protocol server</h3><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: bash; gutter: false; theme: Confluence" data-theme="Confluence">sudo apt-get update
+sudo apt-get install xrdp -y    // Install XRDP
+sudo systemctl start xrdp       // Start XRDP Service
+sudo systemctl enable xrdp      // Enable XRDP to Start on Boot
+echo xfce4-session &gt;~/.xsession // Configure XRDP to Use XFCE Desktop Environment
+sudo systemctl restart xrdp     // Restart XRDP Service to Apply Configuration Changes</pre>
+</div></div><ul><li><p>When connecting to a VM via the RDP port (3389) using xrdp, xrdp launches the selected window manager (e.g., Xfce) to start a new X server session. An X server using the X11 protocol is activated in this process, allowing Unity Hub and Unity Editor to be installed and used in GUI mode.</p></li></ul><div id="expander-742514844" class="expand-container"><div id="expander-control-742514844" class="expand-control"><span class="expand-control-icon"><img style="vertical-align:middle;" class="expand-control-image" src="images/icons/grey_arrow_down.png"/></span><span class="expand-control-text">About the XRDP</span></div><div id="expander-content-742514844" class="expand-content"><ul><li><p>xrdp provides a graphical login to remote machines using RDP (Microsoft Remote Desktop Protocol)</p><ul><li><p><a class="external-link" href="https://www.xrdp.org/" rel="nofollow">https://www.xrdp.org/</a> </p></li><li><p><a class="external-link" data-card-appearance="inline" href="https://wiki.archlinux.org/title/Xrdp" rel="nofollow">https://wiki.archlinux.org/title/Xrdp</a></p></li><li><p><a class="external-link" data-card-appearance="inline" href="https://learn.microsoft.com/en-us/azure/virtual-machines/linux/use-remote-desktop?tabs=azure-cli" rel="nofollow">https://learn.microsoft.com/en-us/azure/virtual-machines/linux/use-remote-desktop?tabs=azure-cli</a>  </p></li></ul></li></ul></div></div><h3 id="EnvironmentPreparationGuide:SettingupaLinuxVMforHeadlessUnityEditor(Batchmode)Operations-1.4ConfigureFirewallRulesandSetUpUserCredentialsforRDPAccess">1.4 Configure Firewall Rules and Set Up User Credentials for RDP Access</h3><ul><li><p>Add the Inbound Port(3389) rule to the networking configuration of the virtual machine</p></li></ul><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20241204-205413.png" width="760" loading="lazy" src="attachments/1499398191/1501560861.png?width=760" data-image-src="attachments/1499398191/1501560861.png" data-height="120" data-width="1522" data-unresolved-comment-count="0" data-linked-resource-id="1501560861" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20241204-205413.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1499398191" data-linked-resource-container-version="10" data-media-id="463f5ca3-10ea-4b9b-9faf-ea9d7d2ca342" data-media-type="file" /></span><ul><li><p>Determine User Account and Set Password for RDP Access</p></li></ul><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: bash; gutter: false; theme: Confluence" data-theme="Confluence">whoami  # Displays the current logged-in user's username
+sudo passwd your-username  # Changes the password for the specified user</pre>
+</div></div><p /><ul><li><p>Access Ubuntu GUI mode through RDP + public IP address + UserID and password </p></li></ul><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20241204-210945.png" width="536" loading="lazy" src="attachments/1499398191/1500839985.png?width=536" data-image-src="attachments/1499398191/1500839985.png" data-height="303" data-width="536" data-unresolved-comment-count="0" data-linked-resource-id="1500839985" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20241204-210945.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1499398191" data-linked-resource-container-version="10" data-media-id="cef4926d-384c-4276-9a86-fde64792bbbc" data-media-type="file" /></span><p /><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20241204-210829.png" width="760" loading="lazy" src="attachments/1499398191/1500839979.png?width=760" data-image-src="attachments/1499398191/1500839979.png" data-height="1439" data-width="2559" data-unresolved-comment-count="0" data-linked-resource-id="1500839979" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20241204-210829.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1499398191" data-linked-resource-container-version="10" data-media-id="bf7ec128-4319-4c62-a612-111a5084eb6e" data-media-type="file" /></span><hr /><hr /><h2 id="EnvironmentPreparationGuide:SettingupaLinuxVMforHeadlessUnityEditor(Batchmode)Operations-2.OpenDLXprojectonUnityHub"><strong>2. Open DLX project on Unity Hub</strong></h2><h3 id="EnvironmentPreparationGuide:SettingupaLinuxVMforHeadlessUnityEditor(Batchmode)Operations-2.1InstallUnityHub">2.1 Install Unity Hub</h3><ul><li><p>Please follow the instructions provided by this link:<a class="external-link" data-card-appearance="inline" href="https://docs.unity3d.com/hub/manual/InstallHub.html#:~:text=from%20cloud%20servers.-,Install%20the%20Unity%20Hub%20on%20Linux,-Debian%20or%20Ubuntu" rel="nofollow">https://docs.unity3d.com/hub/manual/InstallHub.html#:~:text=from%20cloud%20servers.-,Install%20the%20Unity%20Hub%20on%20Linux,-Debian%20or%20Ubuntu</a></p></li></ul><h3 id="EnvironmentPreparationGuide:SettingupaLinuxVMforHeadlessUnityEditor(Batchmode)Operations-2.2RunUnityHub">2.2 Run Unity Hub</h3><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">unityhub</pre>
+</div></div><div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon" /><div class="confluence-information-macro-body"><p><strong>Important:</strong><br /><strong>Unity Hub must be launched from the terminal within the GUI environment.</strong></p></div></div><ul><li><p>Run Unity Hub via SSH on Headless Ubuntu</p></li></ul><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20241204-215313.png" width="760" loading="lazy" src="attachments/1499398191/1502216195.png?width=760" data-image-src="attachments/1499398191/1502216195.png" data-height="100" data-width="1080" data-unresolved-comment-count="0" data-linked-resource-id="1502216195" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20241204-215313.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1499398191" data-linked-resource-container-version="10" data-media-id="db52bcdb-4a04-41fb-a5d8-42e0c0a956e3" data-media-type="file" /></span><ul><li><p>Run Unity Hub via RDP (xrdp) on GUI-enabled Ubuntu </p></li></ul><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20241204-215451.png" width="760" loading="lazy" src="attachments/1499398191/1502347266.png?width=760" data-image-src="attachments/1499398191/1502347266.png" data-height="744" data-width="1058" data-unresolved-comment-count="0" data-linked-resource-id="1502347266" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20241204-215451.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1499398191" data-linked-resource-container-version="10" data-media-id="46d3098b-be31-42f8-8054-08c1deb5078b" data-media-type="file" /></span><h3 id="EnvironmentPreparationGuide:SettingupaLinuxVMforHeadlessUnityEditor(Batchmode)Operations-2.3LogintoUnityHubwithID(CatherineID)">2.3 Login to Unity Hub with ID (Catherine ID)</h3><ul><li><p>No instruction.</p></li></ul><h3 id="EnvironmentPreparationGuide:SettingupaLinuxVMforHeadlessUnityEditor(Batchmode)Operations-2.4GeneratingSSHkeytoaccessBitbucketrepositories">2.4 Generating SSH key to access Bitbucket repositories</h3><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">ssh-keygen -t rsa -b 4096 -C &quot;your_email_account&quot;</pre>
+</div></div><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20241205-162315.png" width="664" loading="lazy" src="attachments/1499398191/1503985677.png?width=664" data-image-src="attachments/1499398191/1503985677.png" data-height="116" data-width="664" data-unresolved-comment-count="0" data-linked-resource-id="1503985677" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20241205-162315.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1499398191" data-linked-resource-container-version="10" data-media-id="f1c4e0e7-0dee-4187-b30c-a7e69aea65ec" data-media-type="file" /></span><ul><li><p>Register the public key(id_rsa.pub) to Bitbucket</p><ul><li><p>please follow the instructions as <a data-card-appearance="inline" href="https://varlab-dev.atlassian.net/wiki/spaces/VAR/pages/497123337/Setting+Up+Bitbucket+Sourcetree#Public-Key" rel="nofollow">https://varlab-dev.atlassian.net/wiki/spaces/VAR/pages/497123337/Setting+Up+Bitbucket+Sourcetree#Public-Key</a> </p></li></ul></li><li><p>Setting permission for SSH keys and Directory</p></li></ul><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence"># Set read/write permission for the owner only on the private key file (id_rsa)
+chmod 600 ~/.ssh/id_rsa
+# Set read permission for everyone and read/write for the owner on the public key file (id_rsa.pub)
+chmod 644 ~/.ssh/id_rsa.pub
+# Set read, write, and execute permissions for the owner only on the .ssh directory
+chmod 700 ~/.ssh
+# List all files and directories in .ssh with detailed permissions              
+ls -l ~/.ssh
+# Test SSH key authentication with the Bitbucket server                   
+ssh -T git@bitbucket.org       </pre>
+</div></div><p /><h3 id="EnvironmentPreparationGuide:SettingupaLinuxVMforHeadlessUnityEditor(Batchmode)Operations-2.5AuthenticatingthemachinewiththeUPMPackageRegistry">2.5 Authenticating the machine with the UPM Package Registry</h3><ul><li><p>Install Node Package Manager</p></li></ul><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">sudo apt update
+sudo apt install nodejs
+sudo apt install npm</pre>
+</div></div><ul><li><p>Install Nano</p></li></ul><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">sudo apt update
+sudo apt install nano</pre>
+</div></div><ul><li><p>To complete this step, please see the instructions as <a href="https://varlab-dev.atlassian.net/wiki/spaces/VAR/pages/783614144/Accessing+the+Package+Registry+for+Developers" data-linked-resource-id="783614144" data-linked-resource-version="5" data-linked-resource-type="page">Accessing the Package Registry for Developers</a> </p></li></ul><h3 id="EnvironmentPreparationGuide:SettingupaLinuxVMforHeadlessUnityEditor(Batchmode)Operations-2.6InstallGitandcloneDLXproject">2.6 Install Git and clone DLX project</h3><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">sudo apt update
+sudo apt install git
+git --version
+git clone git@bitbucket.org:&lt;repository-path&gt;.git</pre>
+</div></div><h3 id="EnvironmentPreparationGuide:SettingupaLinuxVMforHeadlessUnityEditor(Batchmode)Operations-2.7InstallUnityEditorwithintheGUIenvironment.">2.7 Install Unity Editor within the GUI environment.</h3><ul><li><p>Add a project in the same way as in the Windows environment.</p></li></ul><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20241206-142140.png" width="760" loading="lazy" src="attachments/1499398191/1506410498.png?width=760" data-image-src="attachments/1499398191/1506410498.png" data-height="413" data-width="1362" data-unresolved-comment-count="0" data-linked-resource-id="1506410498" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20241206-142140.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1499398191" data-linked-resource-container-version="10" data-media-id="f2ddadce-18ad-4208-a0df-d0cc7b18290a" data-media-type="file" /></span><ul><li><p>Add WebGL and Linux-related modules.</p></li></ul><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20241206-142903.png" width="731" loading="lazy" src="attachments/1499398191/1506476036.png?width=731" data-image-src="attachments/1499398191/1506476036.png" data-height="200" data-width="731" data-unresolved-comment-count="0" data-linked-resource-id="1506476036" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20241206-142903.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1499398191" data-linked-resource-container-version="10" data-media-id="ce98fe1f-6ecb-4357-a147-48e5c62bdaa2" data-media-type="file" /></span><h3 id="EnvironmentPreparationGuide:SettingupaLinuxVMforHeadlessUnityEditor(Batchmode)Operations-2.8SuccessfullyopenaDLXprojectontheUnityhub">2.8 Successfully open a DLX project on the Unity hub</h3><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20241206-151453.png" width="760" loading="lazy" src="attachments/1499398191/1506738180.png?width=760" data-image-src="attachments/1499398191/1506738180.png" data-height="824" data-width="1248" data-unresolved-comment-count="0" data-linked-resource-id="1506738180" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20241206-151453.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1499398191" data-linked-resource-container-version="10" data-media-id="43eb0920-dcb9-42e4-a8f2-71760b762997" data-media-type="file" /></span>
+                    </div>
+
+                                        <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1499398191/1501560861.png">image-20241204-205413.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1499398191/1500839979.png">image-20241204-210829.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1499398191/1500839985.png">image-20241204-210945.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1499398191/1502216195.png">image-20241204-215313.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1499398191/1502347266.png">image-20241204-215451.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1499398191/1503985677.png">image-20241205-162315.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1499398191/1506410498.png">image-20241206-142140.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1499398191/1506476036.png">image-20241206-142903.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1499398191/1506738180.png">image-20241206-151453.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on May 27, 2025 13:32</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

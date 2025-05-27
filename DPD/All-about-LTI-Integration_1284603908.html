@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DevOps / Pipeline &amp; Deployment : All about LTI Integration</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">DevOps / Pipeline &amp; Deployment</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1179353439.html">DevOps / Pipeline &amp; Deployment Home</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="DLX-Server-Documents_1541832718.html">DLX Server Documents</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            DevOps / Pipeline &amp; Deployment : All about LTI Integration
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                            
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Chris Park</span>, last modified on Dec 23, 2024
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <style type='text/css'>/*<![CDATA[*/
+div.rbtoc1748352933459 {padding: 0px;}
+div.rbtoc1748352933459 ul {list-style: none;margin-left: 0px;}
+div.rbtoc1748352933459 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style><div class='toc-macro rbtoc1748352933459'>
+<ul class='toc-indentation'>
+<li><a href='#AllaboutLTIIntegration-1.WhatisLTI(LearningToolsInteroperability)?'>1. What is LTI(Learning Tools Interoperability)?</a>
+<ul class='toc-indentation'>
+<li><a href='#AllaboutLTIIntegration-1.1OAuth2.0'>1.1 OAuth 2.0</a></li>
+<li><a href='#AllaboutLTIIntegration-1.2OpenIDConnect'>1.2 Open ID Connect</a></li>
+</ul>
+</li>
+<li><a href='#AllaboutLTIIntegration-2.WhatisLMS(LearningManagementSystem)?'>2. What is LMS(Learning Management System)?</a></li>
+<li><a href='#AllaboutLTIIntegration-3.Whatdlx-webhostserverdo?'>3. What dlx-web host server do?</a></li>
+<li><a href='#AllaboutLTIIntegration-4.WhatisMoodle?'>4. What is Moodle?</a></li>
+<li><a href='#AllaboutLTIIntegration-DetailedInformation'>Detailed Information</a></li>
+</ul>
+</div><h1 id="AllaboutLTIIntegration-1.WhatisLTI(LearningToolsInteroperability)?">1. What is LTI(Learning Tools Interoperability)?</h1><p>:  Simply, LTI is a standardized protocol that uses in learning platform(e.g. eConestoga) to communicate securely and smoothly with learning-related external tools(e.g. Zoom, Google Meet, Microsoft Teams …etc.).</p><p>Our target deployment platform is eConestoga and eConestoga is following the LTI 1.3/Advantage. Therefore, we also need to follow and support LTI1.3/Advantage to deploy our dlx project to eConestoga.</p><p>LTI1.3/Advantage supports OAuth 2.0 and OpenID authentication.<br/>The summary of authentication process between LMS and server looks like the chart below</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="Blank board (3)-20240814-170646.png" width="760" loading="lazy" src="attachments/1284603908/1284440137.png?width=760" data-image-src="attachments/1284603908/1284440137.png" data-height="387" data-width="1477" data-unresolved-comment-count="0" data-linked-resource-id="1284440137" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="Blank board (3)-20240814-170646.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1284603908" data-linked-resource-container-version="18" data-media-id="33048864-01e3-463f-9641-944ff659191c" data-media-type="file"></span><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20240814-172102.png" width="526" loading="lazy" src="attachments/1284603908/1284767782.png?width=526" data-image-src="attachments/1284603908/1284767782.png" data-height="139" data-width="526" data-unresolved-comment-count="0" data-linked-resource-id="1284767782" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20240814-172102.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1284603908" data-linked-resource-container-version="18" data-media-id="cb650b9c-aecd-4055-8300-02b1553c470e" data-media-type="file"></span><p /><h2 id="AllaboutLTIIntegration-1.1OAuth2.0"><strong>1.1 </strong><a class="external-link" href="https://auth0.com/intro-to-iam/what-is-oauth-2" rel="nofollow"><strong>OAuth 2.0</strong></a></h2><p>: Used to <strong>authorize</strong> the user to access certain resources. OAuth allows third-party applications to access resources without the user providing their credentials.</p><p style="margin-left: 30.0px;">- <strong>OAuth 2.0 </strong>authentication is used on the <strong><span style="background-color: rgb(198,237,251);">server side(dlx-webhost) to grant LMS(eConestoga or Moodle) access to specific resources(dlx WebGL)</span></strong>.</p><p style="margin-left: 30.0px;">- <strong>OAuth 2.0</strong> authentication is processed in the form of JWT(Json Web Token) called ‘ltik’.</p><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>More details about <strong>OAuth 2.0</strong> is described at this document <a href="OAuth-2.0-and-LTI-Authorization_1530757122.html" data-linked-resource-id="1530757122" data-linked-resource-version="13" data-linked-resource-type="page">OAuth 2.0 and LTI Authorization</a> </p></div></div><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20240814-145035.png" width="710" loading="lazy" src="attachments/1284603908/1284177968.png?width=710" data-image-src="attachments/1284603908/1284177968.png" data-height="273" data-width="850" data-unresolved-comment-count="0" data-linked-resource-id="1284177968" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20240814-145035.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1284603908" data-linked-resource-container-version="18" data-media-id="2170417e-0f0c-485a-aa73-95957cc8d993" data-media-type="file"></span><p /><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20240814-171859.png" width="694" loading="lazy" src="attachments/1284603908/1283653710.png?width=694" data-image-src="attachments/1284603908/1283653710.png" data-height="404" data-width="760" data-unresolved-comment-count="0" data-linked-resource-id="1283653710" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20240814-171859.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1284603908" data-linked-resource-container-version="18" data-media-id="cf151834-7399-40ec-a7ad-968ff1d299e9" data-media-type="file"></span><p /><h2 id="AllaboutLTIIntegration-1.2OpenIDConnect"><strong>1.2</strong><a class="external-link" href="https://openid.net/developers/how-connect-works/" rel="nofollow"><strong> Open ID Connect</strong></a></h2><p>: Used to <strong>authenticate </strong>the user's identity. The user is authenticated through an OpenID provider, and the LMS or external tool uses this authentication result to verify the user's identity.</p><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>More details about <strong>OIDC</strong> is described at this document <a href="Open-ID-Connect-and-LTI-Integration_1532952589.html" data-linked-resource-id="1532952589" data-linked-resource-version="19" data-linked-resource-type="page">Open ID Connect and LTI Integration</a> </p></div></div><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20240814-171350.png" width="674" loading="lazy" src="attachments/1284603908/1284735019.png?width=674" data-image-src="attachments/1284603908/1284735019.png" data-height="231" data-width="891" data-unresolved-comment-count="0" data-linked-resource-id="1284735019" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20240814-171350.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1284603908" data-linked-resource-container-version="18" data-media-id="e3a93008-d08b-46c5-bd2f-efa482ab1331" data-media-type="file"></span><div id="expander-492512774" class="expand-container"><div id="expander-control-492512774" class="expand-control"><span class="expand-control-icon"><img style="vertical-align:middle;" class="expand-control-image" src="images/icons/grey_arrow_down.png"></span><span class="expand-control-text">Example id_token form</span></div><div id="expander-content-492512774" class="expand-content"><p>provider:main Login request:<br/>provider:main {<br/>    response_type: 'id_token',<br/>    response_mode: 'form_post',<br/>    id_token_signed_response_alg: 'RS256',<br/>    scope: 'openid',<br/>    client_id: 'bgo9eFCTs1dSK68',<br/>    redirect_uri: '<a class="external-link" href="https://webdlx.vconestoga.com/dlx/EcoQuorum" rel="nofollow">https://webdlx.vconestoga.com/dlx/EcoQuorum</a>',<br/>    login_hint: '84',<br/>    nonce: '9qlfz5smj2xdcq6uxb5639xf9',<br/>    prompt: 'none',<br/>    state: '3a6f64efe478c31bf83749cc27781eba7afa2331d247a97604',<br/>    lti_message_hint: '362',<br/>    lti_deployment_id: '252'<br/>}</p></div></div><p><strong>LTI 1.3 Official Document</strong><br/>: <a class="external-link" data-card-appearance="inline" href="https://www.imsglobal.org/spec/lti/v1p3/" rel="nofollow">https://www.imsglobal.org/spec/lti/v1p3/</a> </p><p /><h1 id="AllaboutLTIIntegration-2.WhatisLMS(LearningManagementSystem)?">2. What is LMS(Learning Management System)?</h1><p>: <strong>LMS is learning platform</strong> such as eConestoga, D2L, or Moodle. Those learning platform has their own learning tools, but also using tools from outside of LMS and we need to <u>register that '</u><strong><u>external tool</u></strong><u>'</u> <span style="background-color: rgb(198,237,251);">to host our dlx projects on eConestoga</span>.</p><p> If we have ‘external tool' that provides dlx projects(WebGL Builds), <strong>we don’t have to upload the latest dlx project every time</strong> because all projects will be always up-to-date through ‘deployment pipeline' and hosted through this 'external tool’.</p><p style="text-align: center;">- It is literally <strong>Automated Deployment</strong> ! -</p><p /><p>So, we need two things to reach out 'Automated Deployment'</p><ul><li><p><strong>First we need server</strong> that hosts our dlx projects<br/>&gt;&gt; It will be a external tool<br/>&gt;&gt; In this case, our dlx-web host is our external tool</p></li><li><p><strong>Second we need to register</strong> our external tool on eConestoga<br/>&gt;&gt; We need permission from eConestoga</p></li></ul><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20240814-180046.png" width="760" loading="lazy" src="attachments/1284603908/1284341861.png?width=760" data-image-src="attachments/1284603908/1284341861.png" data-height="535" data-width="911" data-unresolved-comment-count="0" data-linked-resource-id="1284341861" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20240814-180046.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1284603908" data-linked-resource-container-version="18" data-media-id="441447f1-6fb2-4e27-b6d9-a38887ee7756" data-media-type="file"></span><p /><h1 id="AllaboutLTIIntegration-3.Whatdlx-webhostserverdo?">3. What dlx-web host server do? </h1><p>: dlx-web host server <strong>is the server to host dlx projects as a external tool of LMS</strong>.</p><p>Here is the deployment process of dlx projects:</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="Blank board (4)-20240814-181502.png" width="760" loading="lazy" src="attachments/1284603908/1284964363.png?width=760" data-image-src="attachments/1284603908/1284964363.png" data-height="392" data-width="2659" data-unresolved-comment-count="0" data-linked-resource-id="1284964363" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="Blank board (4)-20240814-181502.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1284603908" data-linked-resource-container-version="18" data-media-id="c9a00b86-3484-4bbc-a790-4afddcaf4bcf" data-media-type="file"></span><p> </p><p>In dlx-web host server, a service called ‘<strong>LTIjs</strong>’ is listening to requests from the LMS side behind the scenes. </p><p>This LTIjs service supports LTI 1.3, OAuth 2.0, and Open_ID connection that they are required for LTI intergration with LMS. More detailed things about LTIjs service will be discussed in the link below<br/>&gt;&gt; About dlx-web host server: <a data-card-appearance="inline" href="https://varlab-dev.atlassian.net/wiki/spaces/VAR/pages/1284341869/About+LTIjs" rel="nofollow">https://varlab-dev.atlassian.net/wiki/spaces/VAR/pages/1284341869/About+LTIjs</a> </p><h1 id="AllaboutLTIIntegration-4.WhatisMoodle?">4. What is Moodle?</h1><p>: Moodle is the testing environment of LMS. So, we can test the LTI integration before we actually apply any changes on our target deployment platform which is eConestoga.</p><p> Moodle is the best environment to test and investigate about the LTI integration process between LMS and external tool. We can test such as external tool registration, resource hosting, deeplink process, or grading service.</p><p>More detailed things such as ‘how to register external tool’ or 'how to submit a grade' will be discussed on the link below.<br/>: <a href="About-Moodle_1283915842.html" data-linked-resource-id="1283915842" data-linked-resource-version="4" data-linked-resource-type="page">About Moodle</a> </p><h1 id="AllaboutLTIIntegration-DetailedInformation">Detailed Information</h1><ul class='childpages-macro'><li><a href="1520566280.html" data-linked-resource-id="1520566280" data-linked-resource-version="15" data-linked-resource-type="page">How does the dlx server host the dlx WebGL Build?</a></li><li><a href="About-dlx-web-host-server_1284341869.html" data-linked-resource-id="1284341869" data-linked-resource-version="19" data-linked-resource-type="page">About dlx-web host server</a></li><li><a href="About-Moodle_1283915842.html" data-linked-resource-id="1283915842" data-linked-resource-version="4" data-linked-resource-type="page">About Moodle</a></li><li><a href="NamesAndRoles-Sample-JSON-Object_1369669660.html" data-linked-resource-id="1369669660" data-linked-resource-version="1" data-linked-resource-type="page">NamesAndRoles Sample JSON Object</a></li><li><a href="LTIjs-Library_1329463297.html" data-linked-resource-id="1329463297" data-linked-resource-version="2" data-linked-resource-type="page">LTIjs Library</a></li></ul>
+                    </div>
+
+                                        <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1284603908/1283784801.png">image-20240814-144801.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1284603908/1284177968.png">image-20240814-145035.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1284603908/1284472895.png">Blank board (2)-20240814-170222.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1284603908/1284440137.png">Blank board (3)-20240814-170646.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1284603908/1284735019.png">image-20240814-171350.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1284603908/1283653710.png">image-20240814-171859.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1284603908/1284767782.png">image-20240814-172102.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1284603908/1284341861.png">image-20240814-180046.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1284603908/1284964363.png">Blank board (4)-20240814-181502.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on May 27, 2025 13:35</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

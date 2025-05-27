@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DevOps / Pipeline &amp; Deployment : Build, Push, and Update Container Application</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">DevOps / Pipeline &amp; Deployment</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1179353439.html">DevOps / Pipeline &amp; Deployment Home</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Containerization-Project_1439170564.html">Containerization Project</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            DevOps / Pipeline &amp; Deployment : Build, Push, and Update Container Application
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                            
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Jonathan Bezeau</span>, last modified on Nov 08, 2024
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <style type='text/css'>/*<![CDATA[*/
+div.rbtoc1748352761816 {padding: 0px;}
+div.rbtoc1748352761816 ul {list-style: none;margin-left: 0px;}
+div.rbtoc1748352761816 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style><div class='toc-macro rbtoc1748352761816'>
+<ul class='toc-indentation'>
+<li><a href='#Build,Push,andUpdateContainerApplication-AccessSetup'>Access Setup</a></li>
+<li><a href='#Build,Push,andUpdateContainerApplication-BuildAndDeploy'>Build And Deploy</a>
+<ul class='toc-indentation'>
+<li><a href='#Build,Push,andUpdateContainerApplication-LoginUsingManageIdentity'>Login Using Manage Identity</a></li>
+<li><a href='#Build,Push,andUpdateContainerApplication-LogintoContainerRegistry'>Login to Container Registry</a></li>
+<li><a href='#Build,Push,andUpdateContainerApplication-BuildThedockerfile'>Build The docker file</a></li>
+<li><a href='#Build,Push,andUpdateContainerApplication-PushTheImagetoTheContainerRegistry'>Push The Image to The Container Registry</a></li>
+<li><a href='#Build,Push,andUpdateContainerApplication-UpdateTheContainerApp'>Update The Container App</a></li>
+</ul>
+</li>
+<li><a href='#Build,Push,andUpdateContainerApplication-ProcessOutput'>Process Output</a></li>
+</ul>
+</div><h1 id="Build,Push,andUpdateContainerApplication-AccessSetup">Access Setup</h1><ul><li><p>create a Managed Identity for the build VM (jenkins-win-docker)</p></li></ul><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="Screenshot 2024-11-08 153621.png" width="533" loading="lazy" src="attachments/1453424652/1453129738.png?width=533" data-image-src="attachments/1453424652/1453129738.png" data-height="389" data-width="533" data-unresolved-comment-count="0" data-linked-resource-id="1453129738" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="Screenshot 2024-11-08 153621.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1453424652" data-linked-resource-container-version="3" data-media-id="eec2a46b-a914-4ccc-a811-cfbdcc664633" data-media-type="file"></span><ul><li><p>assign <strong>acr push </strong>to the <em>jenkins-win-docker </em>identity on the container registry (WebBuilds)</p></li><li><p>assign <strong>contributor </strong>to the <em>jenkins-win-docker</em> identity on the container app resource group (AssetStore)</p><ul><li><p>this could be more granular but we couldn’t identify a Job Role for pushing to container apps, and chose not to manage separate access rights for all container app instances</p></li></ul></li></ul><h1 id="Build,Push,andUpdateContainerApplication-BuildAndDeploy">Build And Deploy</h1><p>Use PowerShell to run commands using the <strong>az </strong>Azure CLI</p><h4 id="Build,Push,andUpdateContainerApplication-LoginUsingManageIdentity">Login Using Manage Identity</h4><p>: az login --identity --username<em> xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx</em></p><h4 id="Build,Push,andUpdateContainerApplication-LogintoContainerRegistry">Login to Container Registry</h4><p>: az acr login --name  WebBuilds</p><h4 id="Build,Push,andUpdateContainerApplication-BuildThedockerfile">Build The docker file</h4><p>: docker build -t <a class="external-link" data-card-appearance="inline" href="http://webbuilds.azurecr.io/assetstore-server:1.2" rel="nofollow">http://webbuilds.azurecr.io/assetstore-server:1.2</a>  C:/ProgramData/Jenkins/.jenkins/workspace/Asset-Store/Asset-Store-Deployment-Pipeline/JS_Project/server/.</p><h4 id="Build,Push,andUpdateContainerApplication-PushTheImagetoTheContainerRegistry">Push The Image to The Container Registry</h4><p>: docker push <a class="external-link" data-card-appearance="inline" href="http://webbuilds.azurecr.io/assetstore-server:1.2" rel="nofollow">http://webbuilds.azurecr.io/assetstore-server:1.2</a> </p><h4 id="Build,Push,andUpdateContainerApplication-UpdateTheContainerApp">Update The Container App</h4><p>: az containerapp update --name assetstore-server --resource-group AssetStore --image <a class="external-link" data-card-appearance="inline" href="http://webbuilds.azurecr.io/assetstore-server:1.2" rel="nofollow">http://webbuilds.azurecr.io/assetstore-server:1.2</a> </p><ul><li><p>--name must match the name of the container already set up on an application</p></li></ul><h1 id="Build,Push,andUpdateContainerApplication-ProcessOutput">Process Output</h1><p>Omitting output from login step due to sensitive ID values.</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20241108-205223.png" width="760" loading="lazy" src="attachments/1453424652/1454440450.png?width=760" data-image-src="attachments/1453424652/1454440450.png" data-height="46" data-width="1070" data-unresolved-comment-count="0" data-linked-resource-id="1454440450" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20241108-205223.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1453424652" data-linked-resource-container-version="3" data-media-id="8d5c0057-0a07-403d-a56a-a1348702c762" data-media-type="file"></span><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20241108-205358.png" width="760" loading="lazy" src="attachments/1453424652/1453883400.png?width=760" data-image-src="attachments/1453424652/1453883400.png" data-height="297" data-width="874" data-unresolved-comment-count="0" data-linked-resource-id="1453883400" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20241108-205358.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1453424652" data-linked-resource-container-version="3" data-media-id="0b92e4d8-8c68-4512-ac2a-87aa32c6ce71" data-media-type="file"></span><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20241108-205653.png" width="673" loading="lazy" src="attachments/1453424652/1454538761.png?width=673" data-image-src="attachments/1453424652/1454538761.png" data-height="171" data-width="673" data-unresolved-comment-count="0" data-linked-resource-id="1454538761" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20241108-205653.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1453424652" data-linked-resource-container-version="3" data-media-id="a7d755d8-3e85-4d80-b702-8f2bd105b81a" data-media-type="file"></span><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20241108-205711.png" width="760" loading="lazy" src="attachments/1453424652/1454571523.png?width=760" data-image-src="attachments/1453424652/1454571523.png" data-height="550" data-width="1155" data-unresolved-comment-count="0" data-linked-resource-id="1454571523" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20241108-205711.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1453424652" data-linked-resource-container-version="3" data-media-id="94838c0a-f946-40f6-9710-ec7e6abde296" data-media-type="file"></span><p /><p /><p />
+                    </div>
+
+                                        <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1453424652/1453129738.png">Screenshot 2024-11-08 153621.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1453424652/1453391883.png">image-20241108-205127.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1453424652/1454440450.png">image-20241108-205223.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1453424652/1453883400.png">image-20241108-205358.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1453424652/1454080010.png">image-20241108-205535.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1453424652/1453457416.png">image-20241108-205549.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1453424652/1454538761.png">image-20241108-205653.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1453424652/1454342163.png">image-20241108-205703.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1453424652/1454571523.png">image-20241108-205711.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on May 27, 2025 13:32</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

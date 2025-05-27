@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DevOps / Pipeline &amp; Deployment : What is Grafana?</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">DevOps / Pipeline &amp; Deployment</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1179353439.html">DevOps / Pipeline &amp; Deployment Home</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Linux-Jenkins-Documents_1542455384.html">Linux Jenkins Documents</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="About-Grafana_1598488581.html">About Grafana</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            DevOps / Pipeline &amp; Deployment : What is Grafana?
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                            
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Chris Park</span>, last modified on Feb 03, 2025
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <hr/><p><strong><u>[Table of contents]</u></strong></p><style type='text/css'>/*<![CDATA[*/
+div.rbtoc1748352811315 {padding: 0px;}
+div.rbtoc1748352811315 ul {list-style: none;margin-left: 0px;}
+div.rbtoc1748352811315 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style><div class='toc-macro rbtoc1748352811315'>
+<ul class='toc-indentation'>
+<li><a href='#WhatisGrafana?-1.WhatisGrafana?'>1. What is Grafana?</a>
+<ul class='toc-indentation'>
+<li><a href='#WhatisGrafana?-1.1NotablecharacteristicsofGrafana'>1.1 Notable characteristics of Grafana</a>
+<ul class='toc-indentation'>
+<li><a href='#WhatisGrafana?-Alerts'>Alerts</a></li>
+<li><a href='#WhatisGrafana?-Annotations'>Annotations</a></li>
+<li><a href='#WhatisGrafana?-Plugins'>Plugins</a></li>
+</ul>
+</li>
+<li><a href='#WhatisGrafana?-1.2CouldVSLocal'>1.2 Could VS Local</a>
+<ul class='toc-indentation'>
+<li><a href='#WhatisGrafana?-GrafanaCloud'>Grafana Cloud</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href='#WhatisGrafana?-2.WhatisPrometheus?'>2. What is Prometheus?</a></li>
+<li><a href='#WhatisGrafana?-3.HowcanweintegrateGrafanaintooursystem?'>3. How can we integrate Grafana into our system?</a></li>
+<li><a href='#WhatisGrafana?-4.Howdoesitlooklike?'>4. How does it look like?</a></li>
+<li><a href='#WhatisGrafana?-References'>References</a></li>
+</ul>
+</div><hr/><h1 id="WhatisGrafana?-1.WhatisGrafana?">1. <a class="external-link" href="https://grafana.com/docs/grafana/latest/introduction/" rel="nofollow">What is Grafana?</a></h1><p>: Grafana is an open-source <strong>data visualization and monitoring tool</strong> that visualizes data such as metrics, logs, and traces from various sources.<strong> It provides customizable dashboards</strong> to display collected data from the configured data sources.</p><h2 id="WhatisGrafana?-1.1NotablecharacteristicsofGrafana">1.1 Notable characteristics of Grafana </h2><p>Grafana offers more than just data visualization. Here is a list of services you can use with Grafana:</p><h3 id="WhatisGrafana?-Alerts"><strong>Alerts</strong></h3><p>: Through the Grafana API, <strong>we can configure alert rules</strong> for each job and <strong>send SMS messages, emails, or app notifications</strong> based on the notifier channels we have defined.</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20250203-203424.png" width="736" loading="lazy" src="attachments/1598128152/1597571157.png?width=736" data-image-src="attachments/1598128152/1597571157.png" data-height="380" data-width="902" data-unresolved-comment-count="0" data-linked-resource-id="1597571157" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20250203-203424.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1598128152" data-linked-resource-container-version="4" data-media-id="245330a0-44d9-4576-b030-dcc8f0a5a5e3" data-media-type="file"></span><p /><h3 id="WhatisGrafana?-Annotations"><strong>Annotations</strong></h3><p>: <strong>Developers can add meaningful annotations at graphs</strong>. These annotations can be very useful for troubleshooting when the system encounters issues.</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20250203-210839.png" width="721" loading="lazy" src="attachments/1598128152/1598193713.png?width=721" data-image-src="attachments/1598128152/1598193713.png" data-height="470" data-width="721" data-unresolved-comment-count="0" data-linked-resource-id="1598193713" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20250203-210839.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1598128152" data-linked-resource-container-version="4" data-media-id="92965d07-5135-4ac0-a8d0-fb447930f791" data-media-type="file"></span><p /><h3 id="WhatisGrafana?-Plugins"><strong>Plugins</strong></h3><p>: Grafana has a lot of plugins so that developers can integrate different software or app easily such as Jira, Mongo DB, Azure Cloud, dash board …etc. You can explore more about the Grafana plugin though these link.<br/>- <strong>Grafana Dashboard</strong>: <a class="external-link" data-card-appearance="inline" href="https://grafana.com/grafana/dashboards/" rel="nofollow">https://grafana.com/grafana/dashboards/</a> <br/>- <strong>Grafana Plugins</strong>: <a class="external-link" data-card-appearance="inline" href="https://grafana.com/grafana/plugins/" rel="nofollow">https://grafana.com/grafana/plugins/</a> </p><p /><h2 id="WhatisGrafana?-1.2CouldVSLocal"><strong>1.2 Could VS Local</strong></h2><p>: We can use Grafana Could with free account or install it locally, so we can consider which one is more valuable in our system.</p><h3 id="WhatisGrafana?-GrafanaCloud"><strong>Grafana Cloud</strong></h3><p>: Grafana Cloud <strong>is a fully managed service provided by Grafana Labs</strong>. Users can focus on data visualization and monitoring right away without managing servers.</p><p><strong>[ Major Advantages ]</strong></p><ul><li><p><strong>Save Resources of Jenkins Machine</strong><br/>- <br/></p></li><li><p><strong>Enough </strong><br/></p></li><li><p><strong>Easy Setup</strong><br/>- Ready to use in minutes without server setup or infrastructure setup<br/>- Major data sources such as Prometheus, Loki, and Tempo are built-in<br/></p></li><li><p><strong>Automatic Management (Managed Service)</strong><br/>-Automatically handles upgrades and maintenance of Grafana, Prometheus, and Loki<br/>- Automatically applies security patches and the latest features<br/>Scalability</p></li></ul><p /><hr/><h1 id="WhatisGrafana?-2.WhatisPrometheus?">2. <a class="external-link" href="https://prometheus.io/docs/introduction/overview/" rel="nofollow">What is Prometheus?</a></h1><p>: Prometheus is an open-source monitoring and alerting system, primarily used for collecting and storing time-series metrics data. In other words, Prometheus collects metrics data from Jenkins, and Grafana queries this data from Prometheus to visualize it on the dashboard.</p><p /><p /><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20250203-212725.png" width="713" loading="lazy" src="attachments/1598128152/1597800512.png?width=713" data-image-src="attachments/1598128152/1597800512.png" data-height="283" data-width="713" data-unresolved-comment-count="0" data-linked-resource-id="1597800512" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20250203-212725.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1598128152" data-linked-resource-container-version="4" data-media-id="ea4de2ed-279c-431a-ac88-4bf02bceb401" data-media-type="file"></span><p /><p /><hr/><h1 id="WhatisGrafana?-3.HowcanweintegrateGrafanaintooursystem?">3. How can we integrate Grafana into our system?</h1><p /><p /><p /><p /><hr/><h1 id="WhatisGrafana?-4.Howdoesitlooklike?">4. How does it look like?</h1><p /><p /><p /><hr/><h1 id="WhatisGrafana?-References">References</h1><p /><p /><p /><hr/>
+                    </div>
+
+                                        <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1598128152/1597571157.png">image-20250203-203424.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1598128152/1598193713.png">image-20250203-210839.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1598128152/1597800512.png">image-20250203-212725.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on May 27, 2025 13:33</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

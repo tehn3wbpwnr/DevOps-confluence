@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DevOps / Pipeline &amp; Deployment : CIS MongoDB 5 Benchmark Implementation in DLX-LTI Webserver</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">DevOps / Pipeline &amp; Deployment</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1179353439.html">DevOps / Pipeline &amp; Deployment Home</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="DevOps-Documents_1231618075.html">DevOps Documents</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            DevOps / Pipeline &amp; Deployment : CIS MongoDB 5 Benchmark Implementation in DLX-LTI Webserver
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                            
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Chris Park</span>, last modified on Aug 13, 2024
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <style type='text/css'>/*<![CDATA[*/
+div.rbtoc1748352996016 {padding: 0px;}
+div.rbtoc1748352996016 ul {list-style: none;margin-left: 0px;}
+div.rbtoc1748352996016 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style><div class='toc-macro rbtoc1748352996016'>
+<ul class='toc-indentation'>
+<li><a href='#CISMongoDB5BenchmarkImplementationinDLX-LTIWebserver-1.InstallationandPatching'>1. Installation and Patching</a>
+<ul class='toc-indentation'>
+<li><a href='#CISMongoDB5BenchmarkImplementationinDLX-LTIWebserver-1.1EnsuretheappropriateMongoDBsoftwareversion/patchesareinstalled'>1.1 Ensure the appropriate MongoDB software version/patches are installed</a></li>
+</ul>
+</li>
+<li><a href='#CISMongoDB5BenchmarkImplementationinDLX-LTIWebserver-2.Authentication'>2. Authentication</a>
+<ul class='toc-indentation'>
+<li><a href='#CISMongoDB5BenchmarkImplementationinDLX-LTIWebserver-2.1EnsureAuthenticationisconfigured'>2.1 Ensure Authentication is configured</a></li>
+<li><a href='#CISMongoDB5BenchmarkImplementationinDLX-LTIWebserver-2.2EnsurethatMongoDBdoesnotbypassauthenticationviathelocalhostexception'>2.2 Ensure that MongoDB does not bypass authentication via the localhost exception</a></li>
+<li><a href='#CISMongoDB5BenchmarkImplementationinDLX-LTIWebserver-2.3Ensureauthenticationisenabledintheshardedcluster'>2.3 Ensure authentication is enabled in the sharded cluster</a></li>
+</ul>
+</li>
+<li><a href='#CISMongoDB5BenchmarkImplementationinDLX-LTIWebserver-3.Authorization'>3. Authorization</a>
+<ul class='toc-indentation'>
+<li><a href='#CISMongoDB5BenchmarkImplementationinDLX-LTIWebserver-3.1Ensureleastprivilegefordatabaseaccounts'>3.1 Ensure least privilege for database accounts</a></li>
+<li><a href='#CISMongoDB5BenchmarkImplementationinDLX-LTIWebserver-3.2Ensurethatrole-basedaccesscontrolisenabledandconfiguredappropriately'>3.2 Ensure that role-based access control is enabled and configured appropriately</a></li>
+<li><a href='#CISMongoDB5BenchmarkImplementationinDLX-LTIWebserver-3.3EnsurethatMongoDBisrunusinganon-privileged,dedicatedserviceaccount'>3.3 Ensure that MongoDB is run using a non-privileged, dedicated service account</a></li>
+<li><a href='#CISMongoDB5BenchmarkImplementationinDLX-LTIWebserver-3.4EnsurethateachroleforeachMongoDBdatabaseisneededandgrantsonlythenecessaryprivileges'>3.4 Ensure that each role for each MongoDB database is needed and grants only the necessary privileges</a></li>
+<li><a href='#CISMongoDB5BenchmarkImplementationinDLX-LTIWebserver-3.5ReviewSuperuser/AdminRoles'>3.5 Review Superuser/Admin Roles</a></li>
+</ul>
+</li>
+<li><a href='#CISMongoDB5BenchmarkImplementationinDLX-LTIWebserver-4.DataEncryption'>4. Data Encryption</a>
+<ul class='toc-indentation'>
+<li><a href='#CISMongoDB5BenchmarkImplementationinDLX-LTIWebserver-4.1EnsurelegacyTLSprotocolsaredisabled'>4.1 Ensure legacy TLS protocols are disabled</a></li>
+<li><a href='#CISMongoDB5BenchmarkImplementationinDLX-LTIWebserver-4.2EnsureWeakProtocolsareDisabled'>4.2 Ensure Weak Protocols are Disabled</a></li>
+<li><a href='#CISMongoDB5BenchmarkImplementationinDLX-LTIWebserver-4.3EnsureEncryptionofDatainTransitTLSorSSL(TransportEncryption)'>4.3 Ensure Encryption of Data in Transit TLS or SSL (Transport Encryption)</a></li>
+<li><a href='#CISMongoDB5BenchmarkImplementationinDLX-LTIWebserver-4.4EnsureFederalInformationProcessingStandard(FIPS)isenabled'>4.4 Ensure Federal Information Processing Standard (FIPS) is enabled</a></li>
+<li><a href='#CISMongoDB5BenchmarkImplementationinDLX-LTIWebserver-4.5EnsureEncryptionofDataatRest'>4.5 Ensure Encryption of Data at Rest</a></li>
+</ul>
+</li>
+<li><a href='#CISMongoDB5BenchmarkImplementationinDLX-LTIWebserver-5.AuditLogging'>5. Audit Logging</a>
+<ul class='toc-indentation'>
+<li><a href='#CISMongoDB5BenchmarkImplementationinDLX-LTIWebserver-5.1Ensurethatsystemactivityisaudited'>5.1 Ensure that system activity is audited</a></li>
+<li><a href='#CISMongoDB5BenchmarkImplementationinDLX-LTIWebserver-5.2Ensurethatauditfiltersareconfiguredproperly'>5.2 Ensure that audit filters are configured properly</a></li>
+<li><a href='#CISMongoDB5BenchmarkImplementationinDLX-LTIWebserver-5.3Ensurethatloggingcapturesasmuchinformationaspossible'>5.3 Ensure that logging captures as much information as possible</a></li>
+<li><a href='#CISMongoDB5BenchmarkImplementationinDLX-LTIWebserver-5.4Ensurethatnewentriesareappendedtotheendofthelogfile'>5.4 Ensure that new entries are appended to the end of the log file</a></li>
+</ul>
+</li>
+<li><a href='#CISMongoDB5BenchmarkImplementationinDLX-LTIWebserver-6.OperatingSystemHardening'>6. Operating System Hardening</a>
+<ul class='toc-indentation'>
+<li><a href='#CISMongoDB5BenchmarkImplementationinDLX-LTIWebserver-6.1EnsurethatMongoDBusesanon-defaultport'>6.1 Ensure that MongoDB uses a non-default port</a></li>
+<li><a href='#CISMongoDB5BenchmarkImplementationinDLX-LTIWebserver-6.2EnsurethatoperatingsystemresourcelimitsaresetforMongoDB'>6.2 Ensure that operating system resource limits are set for MongoDB</a></li>
+<li><a href='#CISMongoDB5BenchmarkImplementationinDLX-LTIWebserver-6.3Ensurethatserver-sidescriptingisdisabledifnotneeded'>6.3 Ensure that server-side scripting is disabled if not needed</a></li>
+</ul>
+</li>
+<li><a href='#CISMongoDB5BenchmarkImplementationinDLX-LTIWebserver-7.FilePermissions'>7. File Permissions</a>
+<ul class='toc-indentation'>
+<li><a href='#CISMongoDB5BenchmarkImplementationinDLX-LTIWebserver-7.1Ensureappropriatekeyfilepermissionsareset(Manual)'>7.1 Ensure appropriate key file permissions are set (Manual)</a></li>
+<li><a href='#CISMongoDB5BenchmarkImplementationinDLX-LTIWebserver-7.2Ensureappropriatedatabasefilepermissionsareset'>7.2 Ensure appropriate database file permissions are set</a></li>
+</ul>
+</li>
+<li><a href='#CISMongoDB5BenchmarkImplementationinDLX-LTIWebserver-References'>References</a></li>
+</ul>
+</div><h1 id="CISMongoDB5BenchmarkImplementationinDLX-LTIWebserver-1.InstallationandPatching"><strong>1. Installation and Patching</strong></h1><h2 style="margin-left: 30.0px;" id="CISMongoDB5BenchmarkImplementationinDLX-LTIWebserver-1.1EnsuretheappropriateMongoDBsoftwareversion/patchesareinstalled">1.1 Ensure the appropriate MongoDB software version/patches are installed</h2><p style="margin-left: 30.0px;">: MongoDB server(v7.0.12) and MongoShell(v2.2.14) are updated to the latest version.</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20240731-180543.png" width="689" loading="lazy" src="attachments/1251541039/1252392992.png?width=689" data-image-src="attachments/1251541039/1252392992.png" data-height="57" data-width="451" data-unresolved-comment-count="0" data-linked-resource-id="1252392992" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20240731-180543.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1251541039" data-linked-resource-container-version="12" data-media-id="709f3c72-dd4c-449b-8231-305c8c6aca50" data-media-type="file"></span><p /><h1 id="CISMongoDB5BenchmarkImplementationinDLX-LTIWebserver-2.Authentication"><strong>2. Authentication</strong></h1><h2 style="margin-left: 30.0px;" id="CISMongoDB5BenchmarkImplementationinDLX-LTIWebserver-2.1EnsureAuthenticationisconfigured"><em>2.1 Ensure Authentication is configured</em></h2><p style="margin-left: 30.0px;">: Enable the authorization option, and create the admin account ‘ciCatherine' with 'userAdminAnyDatabase’ role.<br/>&gt;&gt; User ID, PW, and Database information are required to access the MongoDB</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20240731-183518.png" width="709" loading="lazy" src="attachments/1251541039/1252392999.png?width=709" data-image-src="attachments/1251541039/1252392999.png" data-height="25" data-width="451" data-unresolved-comment-count="0" data-linked-resource-id="1252392999" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20240731-183518.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1251541039" data-linked-resource-container-version="12" data-media-id="fd947ad2-c2e2-49a6-9a4f-a70acb4d34a9" data-media-type="file"></span><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20240802-174648.png" width="730" loading="lazy" src="attachments/1251541039/1259798534.png?width=730" data-image-src="attachments/1251541039/1259798534.png" data-height="233" data-width="861" data-unresolved-comment-count="0" data-linked-resource-id="1259798534" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20240802-174648.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1251541039" data-linked-resource-container-version="12" data-media-id="8ebcc51e-0429-4c59-9312-49bc07a0ec38" data-media-type="file"></span><p /><h2 style="margin-left: 30.0px;" id="CISMongoDB5BenchmarkImplementationinDLX-LTIWebserver-2.2EnsurethatMongoDBdoesnotbypassauthenticationviathelocalhostexception"><em>2.2 Ensure that MongoDB does not bypass authentication via the localhost exception</em></h2><p style="margin-left: 30.0px;">: Disable the bypass option. The user need proper authentication to access the database.<br/>&gt;&gt; Disable bypassing authentication when accessing the database from localhost</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20240731-183803.png" width="685" loading="lazy" src="attachments/1251541039/1252229184.png?width=685" data-image-src="attachments/1251541039/1252229184.png" data-height="26" data-width="451" data-unresolved-comment-count="0" data-linked-resource-id="1252229184" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20240731-183803.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1251541039" data-linked-resource-container-version="12" data-media-id="b0ce7dc5-e6c8-488f-8685-c246fa069547" data-media-type="file"></span><p /><h2 style="margin-left: 30.0px;" id="CISMongoDB5BenchmarkImplementationinDLX-LTIWebserver-2.3Ensureauthenticationisenabledintheshardedcluster"><em>2.3 Ensure authentication is enabled in the sharded cluster </em></h2><p style="margin-left: 30.0px;">&gt;&gt; Currently, dlx-server's database size is not large and all data communication is done internally, so it is judged inefficient to use a sharded cluster.</p><p /><h1 id="CISMongoDB5BenchmarkImplementationinDLX-LTIWebserver-3.Authorization"><strong>3. Authorization</strong></h1><h2 style="margin-left: 30.0px;" id="CISMongoDB5BenchmarkImplementationinDLX-LTIWebserver-3.1Ensureleastprivilegefordatabaseaccounts"><em>3.1 Ensure least privilege for database accounts</em></h2><p style="margin-left: 30.0px;">: The 'userAdminAnyDatabase' role was granted only to the ciCatherine account, which is the administrator account that will manage the accounts, and the ltiManager account that will be used for the LTIjs service was granted only readWrite access to the 'test' and 'DLX' databases that are required to run the service.</p><p style="margin-left: 30.0px;"><strong>[Summary]</strong><br/>&gt;&gt; ciCatherine (admin account)<br/>: Manage db and its collections [= Managing db accounts] (Can’t update data inside of the collection)<br/>&gt;&gt; ltiManager (account for LTIjs service)<br/>: Read and Write permission for the ‘DLX’ and ‘test' database (Can’t create the db account)<br/>['DLX' Database: database for hosting a dlx project]<br/>['test' Database: database for the <u>security</u>(=open_id) ]</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20240801-180842.png" width="274" loading="lazy" src="attachments/1251541039/1256357890.png?width=274" data-image-src="attachments/1251541039/1256357890.png" data-height="87" data-width="274" data-unresolved-comment-count="0" data-linked-resource-id="1256357890" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20240801-180842.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1251541039" data-linked-resource-container-version="12" data-media-id="1b91ecde-9c79-4290-9f78-1078c3777e93" data-media-type="file"></span><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20240801-180857.png" width="274" loading="lazy" src="attachments/1251541039/1257046017.png?width=274" data-image-src="attachments/1251541039/1257046017.png" data-height="123" data-width="274" data-unresolved-comment-count="0" data-linked-resource-id="1257046017" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20240801-180857.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1251541039" data-linked-resource-container-version="12" data-media-id="a7e42275-4d26-482c-9963-4abbcd4e7b6b" data-media-type="file"></span><p /><h2 style="margin-left: 30.0px;" id="CISMongoDB5BenchmarkImplementationinDLX-LTIWebserver-3.2Ensurethatrole-basedaccesscontrolisenabledandconfiguredappropriately"><em>3.2 Ensure that role-based access control is enabled and configured appropriately</em></h2><p style="margin-left: 30.0px;">: As mentioned earlier, we separated the database management account and the account that runs the service and granted only limited roles.</p><p /><h2 style="margin-left: 30.0px;" id="CISMongoDB5BenchmarkImplementationinDLX-LTIWebserver-3.3EnsurethatMongoDBisrunusinganon-privileged,dedicatedserviceaccount">3.3 <em>Ensure that MongoDB is run using a non-privileged, dedicated service account</em></h2><p style="margin-left: 30.0px;">: LTIjs service is connected with ‘ltiManager’ account which has only ‘read’ and ‘write’ permissions to the ‘test' and 'DLX’ collection.</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20240801-183047.png" width="689" loading="lazy" src="attachments/1251541039/1257439233.png?width=689" data-image-src="attachments/1251541039/1257439233.png" data-height="85" data-width="451" data-unresolved-comment-count="0" data-linked-resource-id="1257439233" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20240801-183047.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1251541039" data-linked-resource-container-version="12" data-media-id="b4917c5d-110a-4027-91e5-fb854512b01d" data-media-type="file"></span><p style="margin-left: 30.0px;"></p><h2 style="margin-left: 30.0px;" id="CISMongoDB5BenchmarkImplementationinDLX-LTIWebserver-3.4EnsurethateachroleforeachMongoDBdatabaseisneededandgrantsonlythenecessaryprivileges"><em>3.4 Ensure that each role for each MongoDB database is needed and grants only the necessary privileges</em></h2><p style="margin-left: 30.0px;">: Privilege list of 'readWrite' has been reviewed. We decided all privileges have been set properly.</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20240801-184849.png" width="324" loading="lazy" src="attachments/1251541039/1257373705.png?width=324" data-image-src="attachments/1251541039/1257373705.png" data-height="508" data-width="324" data-unresolved-comment-count="0" data-linked-resource-id="1257373705" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20240801-184849.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1251541039" data-linked-resource-container-version="12" data-media-id="f611b725-bd26-4a10-962f-b92abea86f7c" data-media-type="file"></span><p /><h2 style="margin-left: 30.0px;" id="CISMongoDB5BenchmarkImplementationinDLX-LTIWebserver-3.5ReviewSuperuser/AdminRoles">3.5 <em>Review Superuser/Admin Roles</em></h2><p style="margin-left: 30.0px;">:  Privilege list of 'dbAdminAnyDatabase' has been reviewed. We decided all privileges have been set properly.</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20240801-190140.png" width="347" loading="lazy" src="attachments/1251541039/1257570309.png?width=347" data-image-src="attachments/1251541039/1257570309.png" data-height="623" data-width="347" data-unresolved-comment-count="0" data-linked-resource-id="1257570309" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20240801-190140.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1251541039" data-linked-resource-container-version="12" data-media-id="87cf2847-106c-42f5-bb4c-afc9a0d1fc17" data-media-type="file"></span><p /><h1 id="CISMongoDB5BenchmarkImplementationinDLX-LTIWebserver-4.DataEncryption"><strong>4. Data Encryption</strong></h1><h2 style="margin-left: 30.0px;" id="CISMongoDB5BenchmarkImplementationinDLX-LTIWebserver-4.1EnsurelegacyTLSprotocolsaredisabled"><em>4.1 Ensure legacy TLS protocols are disabled </em></h2><h2 style="margin-left: 30.0px;" id="CISMongoDB5BenchmarkImplementationinDLX-LTIWebserver-4.2EnsureWeakProtocolsareDisabled"><em>4.2 Ensure Weak Protocols are Disabled</em></h2><h2 style="margin-left: 30.0px;" id="CISMongoDB5BenchmarkImplementationinDLX-LTIWebserver-4.3EnsureEncryptionofDatainTransitTLSorSSL(TransportEncryption)"><em>4.3 Ensure Encryption of Data in Transit TLS or SSL (Transport Encryption) </em></h2><h2 style="margin-left: 30.0px;" id="CISMongoDB5BenchmarkImplementationinDLX-LTIWebserver-4.4EnsureFederalInformationProcessingStandard(FIPS)isenabled"><em>4.4 Ensure Federal Information Processing Standard (FIPS) is enabled</em></h2><h2 style="margin-left: 30.0px;" id="CISMongoDB5BenchmarkImplementationinDLX-LTIWebserver-4.5EnsureEncryptionofDataatRest"><em>4.5 Ensure Encryption of Data at Rest </em></h2><p>&gt;&gt; Our local MongoDB doesn’t have an incoming and outgoing connection.</p><p>Namely, we don’t use <em>TLS/SSL </em>protocol and decide unnecessary to use the protocol just for local use.</p><p /><h1 id="CISMongoDB5BenchmarkImplementationinDLX-LTIWebserver-5.AuditLogging"><strong>5. Audit Logging</strong></h1><h2 style="margin-left: 30.0px;" id="CISMongoDB5BenchmarkImplementationinDLX-LTIWebserver-5.1Ensurethatsystemactivityisaudited"><em>5.1 Ensure that system activity is audited </em></h2><h2 style="margin-left: 30.0px;" id="CISMongoDB5BenchmarkImplementationinDLX-LTIWebserver-5.2Ensurethatauditfiltersareconfiguredproperly"><em>5.2 Ensure that audit filters are configured properly </em></h2><p style="margin-left: 30.0px;">&gt;&gt; Our MongoDB is ‘Community Edition’, so it doesn’t support audited log service.<br/>&gt;&gt; Audited log service is only included ‘Enterprise’ edition.</p><h2 style="margin-left: 30.0px;" id="CISMongoDB5BenchmarkImplementationinDLX-LTIWebserver-5.3Ensurethatloggingcapturesasmuchinformationaspossible"><em>5.3 Ensure that logging captures as much information as possible </em></h2><p style="margin-left: 30.0px;">: Disabled the 'quiet' feature of systemLog according to the documentation.</p><p /><h2 style="margin-left: 30.0px;" id="CISMongoDB5BenchmarkImplementationinDLX-LTIWebserver-5.4Ensurethatnewentriesareappendedtotheendofthelogfile">5.4 Ensure that new entries are appended to the end of the log file </h2><p style="margin-left: 30.0px;">: Abled 'logAppend' feature of systemLog according to the documentation.</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20240801-195048.png" width="359" loading="lazy" src="attachments/1251541039/1257504800.png?width=359" data-image-src="attachments/1251541039/1257504800.png" data-height="101" data-width="301" data-unresolved-comment-count="0" data-linked-resource-id="1257504800" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20240801-195048.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1251541039" data-linked-resource-container-version="12" data-media-id="52e24e82-2bbc-4f58-ba82-6f172e80dfe8" data-media-type="file"></span><p /><h1 id="CISMongoDB5BenchmarkImplementationinDLX-LTIWebserver-6.OperatingSystemHardening"><strong>6. Operating System Hardening</strong></h1><h2 style="margin-left: 30.0px;" id="CISMongoDB5BenchmarkImplementationinDLX-LTIWebserver-6.1EnsurethatMongoDBusesanon-defaultport"><em>6.1 Ensure that MongoDB uses a non-default port </em></h2><p style="margin-left: 30.0px;">: Changing the default port used by MongoDB makes it harder for attackers to find the database and target it.</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20240801-200929.png" width="703" loading="lazy" src="attachments/1251541039/1257504809.png?width=703" data-image-src="attachments/1251541039/1257504809.png" data-height="39" data-width="451" data-unresolved-comment-count="0" data-linked-resource-id="1257504809" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20240801-200929.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1251541039" data-linked-resource-container-version="12" data-media-id="1061e8b4-c187-4711-abb6-b7d029449fa6" data-media-type="file"></span><p /><h2 style="margin-left: 30.0px;" id="CISMongoDB5BenchmarkImplementationinDLX-LTIWebserver-6.2EnsurethatoperatingsystemresourcelimitsaresetforMongoDB"><em>6.2 Ensure that operating system resource limits are set for MongoDB</em></h2><p style="margin-left: 30.0px;"> : Checked the system resources used by the operating system based on the list in the documentation.</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20240801-201819.png" width="451" loading="lazy" src="attachments/1251541039/1257242648.png?width=451" data-image-src="attachments/1251541039/1257242648.png" data-height="208" data-width="451" data-unresolved-comment-count="0" data-linked-resource-id="1257242648" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20240801-201819.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1251541039" data-linked-resource-container-version="12" data-media-id="288c83c1-df16-41dc-a51f-e9e63a06445b" data-media-type="file"></span><p style="margin-left: 30.0px;"></p><h2 style="margin-left: 30.0px;" id="CISMongoDB5BenchmarkImplementationinDLX-LTIWebserver-6.3Ensurethatserver-sidescriptingisdisabledifnotneeded"><em>6.3 Ensure that server-side scripting is disabled if not needed</em></h2><p style="margin-left: 30.0px;">: Updated 'javascriptEnabled' to false as per the documentation to prevent server-side scripts from running.</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20240801-202128.png" width="310" loading="lazy" src="attachments/1251541039/1257701399.png?width=310" data-image-src="attachments/1251541039/1257701399.png" data-height="67" data-width="190" data-unresolved-comment-count="0" data-linked-resource-id="1257701399" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20240801-202128.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1251541039" data-linked-resource-container-version="12" data-media-id="07549e30-62d2-425e-b4c3-68260d264f93" data-media-type="file"></span><p /><h1 id="CISMongoDB5BenchmarkImplementationinDLX-LTIWebserver-7.FilePermissions"><strong>7. File Permissions</strong></h1><h2 style="margin-left: 30.0px;" id="CISMongoDB5BenchmarkImplementationinDLX-LTIWebserver-7.1Ensureappropriatekeyfilepermissionsareset(Manual)"><em>7.1 Ensure appropriate key file permissions are set (Manual)</em></h2><p style="margin-left: 30.0px;">&gt;&gt; Currently, dlx-server has no permissions to manage as it does not have any shard cluster and no external communication using TLS/SSL.</p><h2 style="margin-left: 30.0px;" id="CISMongoDB5BenchmarkImplementationinDLX-LTIWebserver-7.2Ensureappropriatedatabasefilepermissionsareset"><em>7.2 Ensure appropriate database file permissions are set</em></h2><p style="margin-left: 30.0px;">: Set ownership of the database file to ‘mongodb’ user and remove other permissions.<br/>&gt;&gt; [ sudo chmod 770 /var/lib/mongodb ]<br/>&gt;&gt; [ sudo chown mongodb:mongodb /var/lib/mongodb ]</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20240806-153800.png" width="487" loading="lazy" src="attachments/1251541039/1263075331.png?width=487" data-image-src="attachments/1251541039/1263075331.png" data-height="18" data-width="487" data-unresolved-comment-count="0" data-linked-resource-id="1263075331" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20240806-153800.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1251541039" data-linked-resource-container-version="12" data-media-id="910f76a2-a3eb-4cbd-be3c-018752bc6d99" data-media-type="file"></span><p /><h1 id="CISMongoDB5BenchmarkImplementationinDLX-LTIWebserver-References">References</h1><p>CIS MongoDB Benchmark Documentation: <a class="external-link" data-card-appearance="inline" href="https://www.cisecurity.org/benchmark/mongodb" rel="nofollow">https://www.cisecurity.org/benchmark/mongodb</a> </p><p>MongoDB Release Note: <a class="external-link" data-card-appearance="inline" href="https://www.mongodb.com/docs/v7.0/release-notes/7.0/" rel="nofollow">https://www.mongodb.com/docs/v7.0/release-notes/7.0/</a></p><p>MongoDB Download Link: <a class="external-link" data-card-appearance="inline" href="https://www.mongodb.com/try/download/community" rel="nofollow">https://www.mongodb.com/try/download/community</a></p><p>Mongosh(MongoDB Shell) Release Note: <a class="external-link" data-card-appearance="inline" href="https://www.mongodb.com/ko-kr/docs/mongodb-shell/changelog/" rel="nofollow">https://www.mongodb.com/ko-kr/docs/mongodb-shell/changelog/</a></p><p>MongoDB Security Note: <a class="external-link" data-card-appearance="inline" href="https://www.mongodb.com/resources/products/alerts" rel="nofollow">https://www.mongodb.com/resources/products/alerts</a></p><p>MongoDB Shard Cluster: <a class="external-link" data-card-appearance="inline" href="https://www.mongodb.com/ko-kr/docs/manual/core/sharded-cluster-shards/" rel="nofollow">https://www.mongodb.com/ko-kr/docs/manual/core/sharded-cluster-shards/</a></p>
+                    </div>
+
+                                        <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1251541039/1252392992.png">image-20240731-180543.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1251541039/1252392999.png">image-20240731-183518.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1251541039/1252163602.png">image-20240731-183550.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1251541039/1252229184.png">image-20240731-183803.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1251541039/1256357890.png">image-20240801-180842.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1251541039/1256849410.png">image-20240801-180855.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1251541039/1257046017.png">image-20240801-180857.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1251541039/1257439233.png">image-20240801-183047.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1251541039/1257373705.png">image-20240801-184849.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1251541039/1257570309.png">image-20240801-190140.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1251541039/1257504800.png">image-20240801-195048.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1251541039/1257504809.png">image-20240801-200929.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1251541039/1257242648.png">image-20240801-201819.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1251541039/1257701399.png">image-20240801-202128.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1251541039/1257766925.png">image-20240801-202841.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1251541039/1257865243.png">image-20240801-202848.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1251541039/1257406475.png">image-20240801-203934.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1251541039/1259798534.png">image-20240802-174648.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1251541039/1263468545.png">image-20240806-143340.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1251541039/1263075331.png">image-20240806-153800.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1251541039/1420951573.jpg">cis1804-20241027-223244.jpg</a> (image/jpeg)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on May 27, 2025 13:36</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

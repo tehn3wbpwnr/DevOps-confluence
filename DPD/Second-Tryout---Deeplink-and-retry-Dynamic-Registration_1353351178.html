@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DevOps / Pipeline &amp; Deployment : Second Tryout - Deeplink and retry Dynamic Registration</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">DevOps / Pipeline &amp; Deployment</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1179353439.html">DevOps / Pipeline &amp; Deployment Home</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="DLX-Server-Documents_1541832718.html">DLX Server Documents</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Deploy-DLX-Project-on-eConestoga_1356234766.html">Deploy DLX Project on eConestoga</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="LTI-Integration-Tryouts-on-eConestoga_1356922894.html">LTI Integration Tryouts on eConestoga</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            DevOps / Pipeline &amp; Deployment : Second Tryout - Deeplink and retry Dynamic Registration
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                            
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Jindo Kim</span>, last modified on Oct 05, 2024
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <div class="contentLayout2"><style>[data-colorid=dfeg4op56r]{color:#ff5630} html[data-color-mode=dark] [data-colorid=dfeg4op56r]{color:#cf2600}[data-colorid=oppj0oukm9]{color:#ff5630} html[data-color-mode=dark] [data-colorid=oppj0oukm9]{color:#cf2600}[data-colorid=efosmen21g]{color:#ff5630} html[data-color-mode=dark] [data-colorid=efosmen21g]{color:#cf2600}[data-colorid=w526wgeubg]{color:#ff5630} html[data-color-mode=dark] [data-colorid=w526wgeubg]{color:#cf2600}[data-colorid=vs51tblgvf]{color:#ff5630} html[data-color-mode=dark] [data-colorid=vs51tblgvf]{color:#cf2600}[data-colorid=dav1hpojvw]{color:#ff5630} html[data-color-mode=dark] [data-colorid=dav1hpojvw]{color:#cf2600}[data-colorid=qh58wzlbv8]{color:#ff5630} html[data-color-mode=dark] [data-colorid=qh58wzlbv8]{color:#cf2600}[data-colorid=tpk81zkl4m]{color:#ff5630} html[data-color-mode=dark] [data-colorid=tpk81zkl4m]{color:#cf2600}[data-colorid=ngygovkayh]{color:#ff5630} html[data-color-mode=dark] [data-colorid=ngygovkayh]{color:#cf2600}[data-colorid=yiv3olqrcx]{color:#ff5630} html[data-color-mode=dark] [data-colorid=yiv3olqrcx]{color:#cf2600}[data-colorid=rxq84e5b8s]{color:#ff5630} html[data-color-mode=dark] [data-colorid=rxq84e5b8s]{color:#cf2600}</style>
+<div class="columnLayout fixed-width" data-layout="fixed-width">
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<style type="text/css">/*<![CDATA[*/
+div.rbtoc1748352970219 {padding: 0px;}
+div.rbtoc1748352970219 ul {list-style: disc;margin-left: 0px;}
+div.rbtoc1748352970219 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style><div class="toc-macro rbtoc1748352970219">
+<ul class="toc-indentation">
+<li><a href="#SecondTryout-DeeplinkandretryDynamicRegistration-Summary">Summary</a></li>
+<li><a href="#SecondTryout-DeeplinkandretryDynamicRegistration-RegisteredLinksList(as2024-09-23)">Registered Links List (as 2024-09-23)</a>
+<ul class="toc-indentation">
+<li><a href="#SecondTryout-DeeplinkandretryDynamicRegistration-1stAttemptsofDeeplink">1st Attempts of Deeplink</a>
+<ul class="toc-indentation">
+<li><a href="#SecondTryout-DeeplinkandretryDynamicRegistration-Configuration">Configuration</a></li>
+<li><a href="#SecondTryout-DeeplinkandretryDynamicRegistration-TheScreenshotsofDeeplinkProcessTriggeroneConestogaandMoodle">The Screen shots of Deeplink Process Trigger on eConestoga and Moodle</a></li>
+<li><a href="#SecondTryout-DeeplinkandretryDynamicRegistration-TheScreenShotsoftheResultofDeeplinkProcess">The Screen Shots of the Result of Deeplink Process</a></li>
+<li><a href="#SecondTryout-DeeplinkandretryDynamicRegistration-LogComparison">Log Comparison</a>
+<ul class="toc-indentation">
+<li><a href="#SecondTryout-DeeplinkandretryDynamicRegistration-Receivingrequestat/loginpath">Receiving request at /login path</a></li>
+<li><a href="#SecondTryout-DeeplinkandretryDynamicRegistration-DetailedRequestLog">Detailed Request Log</a>
+<ul class="toc-indentation">
+<li><a href="#SecondTryout-DeeplinkandretryDynamicRegistration-ComparisonandAnalysis">Comparison and Analysis</a></li>
+<li><a href="#SecondTryout-DeeplinkandretryDynamicRegistration-NetworkTrafficRelatedtothispoint">Network Traffic Related to this point</a>
+<ul class="toc-indentation">
+<li><a href="#SecondTryout-DeeplinkandretryDynamicRegistration-Receivingrequestatpath:/login">Receiving request at path: /login</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#SecondTryout-DeeplinkandretryDynamicRegistration-LoginRequestSourceLog">Login Request Source Log</a></li>
+<li><a href="#SecondTryout-DeeplinkandretryDynamicRegistration-LogrelatedtoCheckingandhandlingtheactivestatusoftheplatform">Log related to Checking and handling the active status of the platform</a></li>
+<li><a href="#SecondTryout-DeeplinkandretryDynamicRegistration-LogrelatedtoGeneratingandstoringtheStatevalue">Log related to Generating and storing the State value</a></li>
+<li><a href="#SecondTryout-DeeplinkandretryDynamicRegistration-Logrelatedtoredirecttoauthenticationendpoint.">Log related to redirect to authentication endpoint.</a>
+<ul class="toc-indentation">
+<li><a href="#SecondTryout-DeeplinkandretryDynamicRegistration-ComparisonandAnalysis.1">Comparison and Analysis</a></li>
+<li><a href="#SecondTryout-DeeplinkandretryDynamicRegistration-NetworkTrafficRelatedtothispoint.1">Network Traffic Related to this point</a>
+<ul class="toc-indentation">
+<li><a href="#SecondTryout-DeeplinkandretryDynamicRegistration-Redirectto‘redirectUrl’">Redirect to &lsquo;redirectUrl&rsquo;</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div><h1 id="SecondTryout-DeeplinkandretryDynamicRegistration-Summary">Summary</h1><ul><li><p>In the first tryout, we successfully completed the steps of receiving the Registration <em><strong>(Client_id)</strong></em> and Deployment <em><strong>(Deployment_Id)</strong></em>, as well as creating a link for <strong>the Basic Launch Type</strong>. In this second tryout, we are focusing on attempting <strong>the Create Link for the Deeplink Type</strong> (a method that allows connecting multiple DLXs with a single link) and retrying Dynamic Registration. This document covers the analysis based on application and HTTP logs during the second tryout, and compares them with Moodle logs from another platform under the same conditions, aiming to serve as a valuable resource for the next tryout.</p></li></ul><p /><ul><li><p>Screenshot Illustrating the Create Link Process</p></li></ul><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20240924-002049.png" width="760" loading="lazy" src="attachments/1353351178/1354268675.png?width=760" data-image-src="attachments/1353351178/1354268675.png" data-height="649" data-width="785" data-unresolved-comment-count="0" data-linked-resource-id="1354268675" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20240924-002049.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1353351178" data-linked-resource-container-version="13" data-media-id="2411a06d-0950-4e5b-8ed2-b62461299bba" data-media-type="file" /></span><p> </p><h1 id="SecondTryout-DeeplinkandretryDynamicRegistration-RegisteredLinksList(as2024-09-23)">Registered Links List (as 2024-09-23)</h1><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20240924-003502.png" width="760" loading="lazy" src="attachments/1353351178/1354268683.png?width=760" data-image-src="attachments/1353351178/1354268683.png" data-height="456" data-width="829" data-unresolved-comment-count="0" data-linked-resource-id="1354268683" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20240924-003502.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1353351178" data-linked-resource-container-version="13" data-media-id="ea69df53-53f6-481c-89e5-df2b2e5815c6" data-media-type="file" /></span><h2 id="SecondTryout-DeeplinkandretryDynamicRegistration-1stAttemptsofDeeplink">1st Attempts of Deeplink</h2><h3 id="SecondTryout-DeeplinkandretryDynamicRegistration-Configuration">Configuration</h3><ul><li><p>Link URL: https://webdlx.vconestoga.com/deeplink</p></li><li><p>Type: Deep Linking Quicklink</p><ul><li><p>Width: 800</p></li><li><p>Height: 600</p></li></ul></li></ul><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20240924-003700.png" width="760" loading="lazy" src="attachments/1353351178/1354366982.png?width=760" data-image-src="attachments/1353351178/1354366982.png" data-height="644" data-width="768" data-unresolved-comment-count="0" data-linked-resource-id="1354366982" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20240924-003700.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1353351178" data-linked-resource-container-version="13" data-media-id="f1a185c1-6870-47dc-a651-7f95a7aea375" data-media-type="file" /></span><p /><h3 id="SecondTryout-DeeplinkandretryDynamicRegistration-TheScreenshotsofDeeplinkProcessTriggeroneConestogaandMoodle">The Screen shots of Deeplink Process Trigger on eConestoga and Moodle</h3></div>
+</div>
+</div>
+<div class="columnLayout two-equal" data-layout="two-equal">
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<p>eConestoga</p><p>Step: </p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20240924-004953.png" width="362" loading="lazy" src="attachments/1353351178/1353875464.png?width=362" data-image-src="attachments/1353351178/1353875464.png" data-height="529" data-width="397" data-unresolved-comment-count="0" data-linked-resource-id="1353875464" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20240924-004953.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1353351178" data-linked-resource-container-version="13" data-media-id="ba7bbcb0-5ee9-4ba6-8c98-7b8a47a50046" data-media-type="file" /></span><p /><p /></div>
+</div>
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<p>Moodle</p><p>Step: Deeplink Process Trigger</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20240924-005054.png" width="362" loading="lazy" src="attachments/1353351178/1353678867.png?width=362" data-image-src="attachments/1353351178/1353678867.png" data-height="307" data-width="854" data-unresolved-comment-count="0" data-linked-resource-id="1353678867" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20240924-005054.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1353351178" data-linked-resource-container-version="13" data-media-id="ca6c8dd6-9105-466d-9bce-0779d03c0f04" data-media-type="file" /></span><p /></div>
+</div>
+</div>
+<div class="columnLayout fixed-width" data-layout="fixed-width">
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<h3 id="SecondTryout-DeeplinkandretryDynamicRegistration-TheScreenShotsoftheResultofDeeplinkProcess">The Screen Shots of the Result of Deeplink Process</h3></div>
+</div>
+</div>
+<div class="columnLayout two-equal" data-layout="two-equal">
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<p>eConestoga</p><ul><li><p>Result:</p></li></ul><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20240924-005008.png" width="362" loading="lazy" src="attachments/1353351178/1353613379.png?width=362" data-image-src="attachments/1353351178/1353613379.png" data-height="374" data-width="502" data-unresolved-comment-count="0" data-linked-resource-id="1353613379" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20240924-005008.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1353351178" data-linked-resource-container-version="13" data-media-id="51361253-8ddd-4b98-b407-fa86a20beb97" data-media-type="file" /></span></div>
+</div>
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<p>Moodle</p><ul><li><p>Result:</p></li></ul><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20240924-005151.png" width="362" loading="lazy" src="attachments/1353351178/1354268696.png?width=362" data-image-src="attachments/1353351178/1354268696.png" data-height="616" data-width="722" data-unresolved-comment-count="0" data-linked-resource-id="1354268696" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20240924-005151.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1353351178" data-linked-resource-container-version="13" data-media-id="3e35dc35-bd29-4854-be6c-1c3545f1f43c" data-media-type="file" /></span><p /></div>
+</div>
+</div>
+<div class="columnLayout fixed-width" data-layout="fixed-width">
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<p /><p /><h3 id="SecondTryout-DeeplinkandretryDynamicRegistration-LogComparison">Log Comparison</h3><p><em><strong><span data-colorid="tpk81zkl4m"><u>The left side shows eConestoga, and the right side displays the Moodle log.</u></span></strong></em></p><hr /><h4 id="SecondTryout-DeeplinkandretryDynamicRegistration-Receivingrequestat/loginpath">Receiving request at /login path</h4></div>
+</div>
+</div>
+<div class="columnLayout two-equal" data-layout="two-equal">
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<p><sub>provider:main Receiving request at path: /login</sub></p></div>
+</div>
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<p><sub>provider:main Receiving request at path: /login</sub></p></div>
+</div>
+</div>
+<div class="columnLayout fixed-width" data-layout="fixed-width">
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<hr /><h4 id="SecondTryout-DeeplinkandretryDynamicRegistration-DetailedRequestLog">Detailed Request Log</h4></div>
+</div>
+</div>
+<div class="columnLayout two-equal" data-layout="two-equal">
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<p><sub>provider:main Request Form: {</sub><br /><sub>  &quot;query&quot;: {},</sub><br /><sub>  &quot;body&quot;: {</sub><br /><sub>    &quot;iss&quot;: &quot;</sub><a class="external-link" href="https://testconestoga.desire2learn.com" rel="nofollow"><sub>https://testconestoga.desire2learn.com</sub></a><sub>&quot;,</sub><br /><sub>    &quot;login_hint&quot;: &quot;e82cb6de-8852-4094-938b-b3f386b6d6fe_270978&quot;,</sub><br /><sub>    &quot;</sub><strong><span data-colorid="rxq84e5b8s"><sub>target_link_uri</sub></span></strong><sub>&quot;: &quot;</sub><a class="external-link" href="https://webdlx.vconestoga.com/deeplink" rel="nofollow"><sub>https://webdlx.vconestoga.com/deeplink</sub></a><sub>&quot;,</sub><br /><sub>    &quot;lti_deployment_id&quot;: &quot;178ce421-9978-4fb4-8deb-b24f11f79e84&quot;,</sub><br /><sub>    &quot;client_id&quot;: &quot;71120111-f7b5-4a62-ad06-6e36f0ac5fa0&quot;,</sub><br /><sub>    &quot;lti_storage_target&quot;: &quot;_parent&quot;,</sub><br /><sub>    &quot;lti_message_hint&quot;: &quot;lNgfyt_aa9y-ESOYiAD5f7ZvFyPH6VZWnPv1QbITQBo~&quot;</sub><br /><sub>  },</sub><br /><sub>  &quot;params&quot;: {},</sub><br /><sub>  &quot;headers&quot;: {</sub><br /><sub>    &quot;host&quot;: &quot;</sub><a class="external-link" href="http://webdlx.vconestoga.com" rel="nofollow"><sub>webdlx.vconestoga.com</sub></a><sub>&quot;,</sub><br /><sub>    &quot;x-real-ip&quot;: &quot;172.97.171.75&quot;,</sub><br /><sub>    &quot;x-scheme&quot;: &quot;https&quot;,</sub><br /><sub>    &quot;connection&quot;: &quot;close&quot;,</sub><br /><sub>    &quot;content-length&quot;: &quot;359&quot;,</sub><br /><sub>    &quot;cache-control&quot;: &quot;max-age=0&quot;,</sub><br /><sub>    &quot;sec-ch-ua&quot;: &quot;\&quot;Microsoft Edge\&quot;;v=\&quot;129\&quot;, \&quot;Not=A?Brand\&quot;;v=\&quot;8\&quot;, \&quot;Chromium\&quot;;v=\&quot;129\&quot;&quot;,</sub><br /><sub>    &quot;sec-ch-ua-mobile&quot;: &quot;?0&quot;,</sub><br /><sub>    &quot;sec-ch-ua-platform&quot;: &quot;\&quot;Windows\&quot;&quot;,</sub><br /><sub>    &quot;origin&quot;: &quot;</sub><a class="external-link" href="https://testconestoga.desire2learn.com" rel="nofollow"><sub>https://testconestoga.desire2learn.com</sub></a><sub>&quot;,</sub><br /><sub>    &quot;content-type&quot;: &quot;application/x-www-form-urlencoded&quot;,</sub><br /><sub>    &quot;upgrade-insecure-requests&quot;: &quot;1&quot;,</sub><br /><sub>    &quot;user-agent&quot;: &quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36 Edg/129.0.0.0&quot;,</sub><br /><sub>    &quot;accept&quot;: &quot;text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,</sub><em><sub>/</sub></em><sub>;q=0.8,application/signed-exchange;v=b3;q=0.7&quot;,</sub><br /><sub>    &quot;sec-fetch-site&quot;: &quot;cross-site&quot;,</sub><br /><sub>    &quot;sec-fetch-mode&quot;: &quot;navigate&quot;,</sub><br /><sub>    &quot;sec-fetch-dest&quot;: &quot;iframe&quot;,</sub><br /><sub>    &quot;referer&quot;: &quot;</sub><a class="external-link" href="https://testconestoga.desire2learn.com/" rel="nofollow"><sub>https://testconestoga.desire2learn.com/</sub></a><sub>&quot;,</sub><br /><sub>    &quot;accept-encoding&quot;: &quot;gzip, deflate, br, zstd&quot;,</sub><br /><sub>    &quot;accept-language&quot;: &quot;en-US,en;q=0.9,en-CA;q=0.8&quot;,</sub><br /><sub>    &quot;</sub><strong><span data-colorid="vs51tblgvf"><sub>cookie</sub></span></strong><sub>&quot;: &quot;ltiaHR0cHM6Ly90ZXN0Y29uZXN0b2dhLmRlc2lyZTJsZWFybi5jb203MTEyMDExMS1mN2I1LTRhNjItYWQwNi02ZTM2ZjBhYzVmYTAxNzhjZTQyMS05OTc4LTRmYjQtOGRlYi1iMjRmMTFmNzllODQ%3D=s%3Ae82cb6de-8852-4094-938b-b3f386b6d6fe_270978.5JUskJ9KZC9qN3kK84Roo1I5aF5htGvmy4CDU2U00PA; ltik=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwbGF0Zm9ybVVybCI6Imh0dHBzOi8vdGVzdGNvbmVzdG9nYS5kZXNpcmUybGVhcm4uY29tIiwiY2xpZW50SWQiOiI3MTEyMDExMS1mN2I1LTRhNjItYWQwNi02ZTM2ZjBhYzVmYTAiLCJkZXBsb3ltZW50SWQiOiIxNzhjZTQyMS05OTc4LTRmYjQtOGRlYi1iMjRmMTFmNzllODQiLCJwbGF0Zm9ybUNvZGUiOiJsdGlhSFIwY0hNNkx5OTBaWE4wWTI5dVpYTjBiMmRoTG1SbGMybHlaVEpzWldGeWJpNWpiMjAzTVRFeU1ERXhNUzFtTjJJMUxUUmhOakl0WVdRd05pMDJaVE0yWmpCaFl6Vm1ZVEF4TnpoalpUUXlNUzA1T1RjNExUUm1ZalF0T0dSbFlpMWlNalJtTVRGbU56bGxPRFElM0QiLCJjb250ZXh0SWQiOiJodHRwcyUzQSUyRiUyRnRlc3Rjb25lc3RvZ2EuZGVzaXJlMmxlYXJuLmNvbTcxMTIwMTExLWY3YjUtNGE2Mi1hZDA2LTZlMzZmMGFjNWZhMDE3OGNlNDIxLTk5NzgtNGZiNC04ZGViLWIyNGYxMWY3OWU4NDQxODAxNV8zMzAwNDVfNDE4MDE1IiwidXNlciI6ImU4MmNiNmRlLTg4NTItNDA5NC05MzhiLWIzZjM4NmI2ZDZmZV8yNzA5NzgiLCJzIjoiNTM0NGFiYTdjNmY2NDBlNTRkMjI4ODA5OGU2ODc2N2M0OWQ3OGNlM2MyYTcxNzQ4ODQiLCJpYXQiOjE3MjcxMTY0Mjd9.vogaWataZvecikHrXYTsOYiEuZzdBrj_7GiensN1vxM&quot;</sub><br /><sub>  },</sub><br /><sub>  &quot;method&quot;: &quot;POST&quot;,</sub><br /><sub>  &quot;url&quot;: &quot;/login&quot;,</sub><br /><sub>  &quot;ip&quot;: &quot;::ffff:10.5.0.4&quot;</sub><br /><sub>}</sub></p></div>
+</div>
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<p><sub>provider:main Request Form: {</sub><br /><sub>   &quot;query&quot;: {},</sub><br /><sub>   &quot;body&quot;: {</sub><br /><sub>     &quot;iss&quot;: &quot;</sub><a class="external-link" href="https://vconestoga.duckdns.org" rel="nofollow"><sub>https://vconestoga.duckdns.org</sub></a><sub> &quot;,</sub><br /><sub>     &quot;</sub><strong><span data-colorid="efosmen21g"><sub>target_link_uri</sub></span></strong><sub>&quot;: &quot;</sub><a class="external-link" href="https://webdlx.vconestoga.com" rel="nofollow"><sub>https://webdlx.vconestoga.com</sub></a><sub>&quot;,</sub><br /><sub>     &quot;login_hint&quot;: &quot;21&quot;,</sub><br /><sub>     &quot;lti_message_hint&quot;: &quot;0&quot;,</sub><br /><sub>     &quot;client_id&quot;: &quot;bgo9eFCTs1dSK68&quot;,</sub><br /><sub>     &quot;lti_deployment_id&quot;: &quot;252&quot;</sub><br /><sub>   },</sub><br /><sub>   &quot;params&quot;: {},</sub><br /><sub>   &quot;headers&quot;: {</sub><br /><sub>     &quot;host&quot;: &quot;</sub><a class="external-link" href="http://webdlx.vconestoga.com" rel="nofollow"><sub>webdlx.vconestoga.com</sub></a><sub>&quot;,</sub><br /><sub>     &quot;x-real-ip&quot;: &quot;99.251.69.209&quot;,</sub><br /><sub>     &quot;x-scheme&quot;: &quot;https&quot;,</sub><br /><sub>     &quot;connection&quot;: &quot;close&quot;,</sub><br /><sub>     &quot;content-length&quot;: &quot;173&quot;,</sub><br /><sub>     &quot;cache-control&quot;: &quot;max-age=0&quot;,</sub><br /><sub>     &quot;sec-ch-ua&quot;: &quot;\&quot;Chromium\&quot;;v=\&quot;128\&quot;, \&quot;Not;A=Brand\&quot;;v=\&quot;24\&quot;, \&quot;Google Chrome\&quot;;v=\&quot;128\&quot;&quot;,</sub><br /><sub>     &quot;sec-ch-ua-mobile&quot;: &quot;?0&quot;,</sub><br /><sub>     &quot;sec-ch-ua-platform&quot;: &quot;\&quot;Windows\&quot;&quot;,</sub><br /><sub>     &quot;upgrade-insecure-requests&quot;: &quot;1&quot;,</sub><br /><sub>     &quot;origin&quot;: &quot;</sub><a class="external-link" href="https://vconestoga.duckdns.org" rel="nofollow"><sub>https://vconestoga.duckdns.org</sub></a><sub> &quot;,</sub><br /><sub>     &quot;content-type&quot;: &quot;application/x-www-form-urlencoded&quot;,</sub><br /><sub>     &quot;user-agent&quot;: &quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36&quot;,</sub><br /><sub>     &quot;accept&quot;: &quot;text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,</sub><em><sub>/</sub></em><sub>;q=0.8,application/signed-exchange;v=b3;q=0.7&quot;,</sub><br /><sub>     &quot;sec-fetch-site&quot;: &quot;cross-site&quot;,</sub><br /><sub>     &quot;sec-fetch-mode&quot;: &quot;navigate&quot;,</sub><br /><sub>     &quot;sec-fetch-dest&quot;: &quot;iframe&quot;,</sub><br /><sub>     &quot;referer&quot;: &quot;</sub><a class="external-link" href="https://vconestoga.duckdns.org/" rel="nofollow"><sub>https://vconestoga.duckdns.org/</sub></a><sub> &quot;,</sub><br /><sub>     &quot;accept-encoding&quot;: &quot;gzip, deflate, br, zstd&quot;,</sub><br /><sub>     &quot;accept-language&quot;: &quot;en-US,en;q=0.9,ko;q=0.8&quot;</sub><br /><sub>   },</sub><br /><sub>   &quot;method&quot;: &quot;POST&quot;,</sub><br /><sub>   &quot;url&quot;: &quot;/login&quot;,</sub><br /><sub>   &quot;ip&quot;: &quot;::ffff:10.5.0.4&quot;</sub><br /><sub> }</sub></p></div>
+</div>
+</div>
+<div class="columnLayout fixed-width" data-layout="fixed-width">
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<h5 id="SecondTryout-DeeplinkandretryDynamicRegistration-ComparisonandAnalysis">Comparison and Analysis</h5><ul><li><p>Target Link URI:</p><ul><li><p>eConestoga: specific URI - <a class="external-link" href="https://webdlx.vconestoga.com/deeplink" rel="nofollow">https://webdlx.vconestoga.com/deeplink</a></p></li><li><p>Moodle: Uses a more general URI - <a class="external-link" href="https://webdlx.vconestoga.com" rel="nofollow">https://webdlx.vconestoga.com</a></p></li></ul></li><li><p>Additional Parameters:</p><ul><li><p>eConestoga: </p><ul><li><p><strong><span data-colorid="oppj0oukm9">lti_storage_target: log from Moodle doesn&rsquo;t contains</span></strong></p><ul><li><p>To gain further insights into this parameter, please refer to this link: <a class="external-link" data-card-appearance="inline" href="https://www.imsglobal.org/spec/lti-cs-oidc/v0p1" rel="nofollow">https://www.imsglobal.org/spec/lti-cs-oidc/v0p1</a> </p></li></ul></li><li><p>lti_message_hint: providing more context or hints then Moodle</p></li></ul></li><li><p>Moodle:</p><ul><li><p>lti_message_hint: it contains only simple value, '0'.</p></li></ul></li></ul></li><li><p>Cookies and Security <em><span data-colorid="dav1hpojvw"><u>(This Analysis is not yet conclusive)</u></span></em> :</p><ul><li><p>eConestoga: Sends a cookie in the headers</p></li><li><p>Moodle: Not provided</p></li></ul></li></ul><h5 id="SecondTryout-DeeplinkandretryDynamicRegistration-NetworkTrafficRelatedtothispoint">Network Traffic Related to this point</h5><h6 id="SecondTryout-DeeplinkandretryDynamicRegistration-Receivingrequestatpath:/login"> Receiving request at path: /login</h6></div>
+</div>
+</div>
+<div class="columnLayout two-equal" data-layout="two-equal">
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<p>Headers(/login) </p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20240925-004125.png" width="362" loading="lazy" src="attachments/1353351178/1358430211.png?width=362" data-image-src="attachments/1353351178/1358430211.png" data-height="163" data-width="731" data-unresolved-comment-count="0" data-linked-resource-id="1358430211" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20240925-004125.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1353351178" data-linked-resource-container-version="13" data-media-id="95e69483-5600-44e1-a6cd-9830e3505162" data-media-type="file" /></span><p>Payload(/login)</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20240925-004230.png" width="362" loading="lazy" src="attachments/1353351178/1358200839.png?width=362" data-image-src="attachments/1353351178/1358200839.png" data-height="209" data-width="692" data-unresolved-comment-count="0" data-linked-resource-id="1358200839" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20240925-004230.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1353351178" data-linked-resource-container-version="13" data-media-id="a9234730-f4eb-4ed3-b2b5-21323d0b0637" data-media-type="file" /></span></div>
+</div>
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<p>Headers(/login)</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20240925-004530.png" width="362" loading="lazy" src="attachments/1353351178/1357774856.png?width=362" data-image-src="attachments/1353351178/1357774856.png" data-height="162" data-width="955" data-unresolved-comment-count="0" data-linked-resource-id="1357774856" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20240925-004530.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1353351178" data-linked-resource-container-version="13" data-media-id="5a406851-4dcb-4a92-8c86-c4d71c8a9a0d" data-media-type="file" /></span><p>Payload(/login)</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20240925-004558.png" width="362" loading="lazy" src="attachments/1353351178/1358037011.png?width=362" data-image-src="attachments/1353351178/1358037011.png" data-height="191" data-width="826" data-unresolved-comment-count="0" data-linked-resource-id="1358037011" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20240925-004558.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1353351178" data-linked-resource-container-version="13" data-media-id="fada5c4e-5dad-4862-8066-1cdcb623f481" data-media-type="file" /></span><p /></div>
+</div>
+</div>
+<div class="columnLayout fixed-width" data-layout="fixed-width">
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<p /><hr /><h4 id="SecondTryout-DeeplinkandretryDynamicRegistration-LoginRequestSourceLog">Login Request Source Log<br /></h4></div>
+</div>
+</div>
+<div class="columnLayout two-equal" data-layout="two-equal">
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<p><sub>provider:main Receiving a login request from: </sub><a class="external-link" href="https://testconestoga.desire2learn.com," rel="nofollow"><sub>https://testconestoga.desire2learn.com,</sub></a><sub> clientId: 71120111-f7b5-4a62-ad06-6e36f0ac5fa0</sub></p></div>
+</div>
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<p><sub>provider:main Receiving a login request from: </sub><a class="external-link" href="https://vconestoga.duckdns.org," rel="nofollow"><sub>https://vconestoga.duckdns.org,</sub></a><sub> clientId: bgo9eFCTs1dSK68</sub></p></div>
+</div>
+</div>
+<div class="columnLayout fixed-width" data-layout="fixed-width">
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<p /><hr /><h4 id="SecondTryout-DeeplinkandretryDynamicRegistration-LogrelatedtoCheckingandhandlingtheactivestatusoftheplatform">Log related to Checking and handling the active status of the platform</h4></div>
+</div>
+</div>
+<div class="columnLayout two-equal" data-layout="two-equal">
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<p><sub>provider:main Redirecting to platform authentication endpoint</sub></p></div>
+</div>
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<p><sub>provider:main Redirecting to platform authentication endpoint</sub></p></div>
+</div>
+</div>
+<div class="columnLayout fixed-width" data-layout="fixed-width">
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<div id="expander-1715158582" class="expand-container"><div id="expander-control-1715158582" class="expand-control"><span class="expand-control-icon"><img style="vertical-align:middle;" class="expand-control-image" src="images/icons/grey_arrow_down.png"/></span><span class="expand-control-text">Related code for this log</span></div><div id="expander-content-1715158582" class="expand-content"><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: js; gutter: false; theme: Confluence" data-theme="Confluence">const platformActive = await platform.platformActive();
+---if (!platformActive) return (0, _classPrivateFieldGet2.default)(this, _inactivePlatformCallback2).call(this, req, res);
+provMainDebug('Redirecting to platform authentication endpoint');</pre>
+</div></div></div></div><p /><hr /><h4 id="SecondTryout-DeeplinkandretryDynamicRegistration-LogrelatedtoGeneratingandstoringtheStatevalue">Log related to Generating and storing the State value</h4></div>
+</div>
+</div>
+<div class="columnLayout two-equal" data-layout="two-equal">
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<p><strong><span data-colorid="dfeg4op56r"><sub>provider:main Target Link URI:  </sub></span></strong><a class="external-link" href="https://webdlx.vconestoga.com/deeplink" rel="nofollow"><strong><span data-colorid="w526wgeubg"><sub>https://webdlx.vconestoga.com/deeplink</sub></span></strong></a></p></div>
+</div>
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<p><strong><span data-colorid="qh58wzlbv8"><sub>provider:main Target Link URI:  </sub></span></strong><a class="external-link" href="https://webdlx.vconestoga.com" rel="nofollow"><strong><span data-colorid="yiv3olqrcx"><sub>https://webdlx.vconestoga.com</sub></span></strong></a></p></div>
+</div>
+</div>
+<div class="columnLayout fixed-width" data-layout="fixed-width">
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<div id="expander-1702284814" class="expand-container"><div id="expander-control-1702284814" class="expand-control"><span class="expand-control-icon"><img style="vertical-align:middle;" class="expand-control-image" src="images/icons/grey_arrow_down.png"/></span><span class="expand-control-text">Related code for this log</span></div><div id="expander-content-1702284814" class="expand-content"><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: js; gutter: false; theme: Confluence" data-theme="Confluence">let state = encodeURIComponent(crypto.randomBytes(25).toString('hex'));
+provMainDebug('Target Link URI: ', params.target_link_uri);</pre>
+</div></div></div></div><p /><hr /><h4 id="SecondTryout-DeeplinkandretryDynamicRegistration-Logrelatedtoredirecttoauthenticationendpoint.">Log related to redirect to authentication endpoint.</h4></div>
+</div>
+</div>
+<div class="columnLayout two-equal" data-layout="two-equal">
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<p><sub>provider:main Login request:</sub><br /><sub>provider:main {</sub><br /><sub>  response_type: 'id_token',</sub><br /><sub>  response_mode: 'form_post',</sub><br /><sub>  id_token_signed_response_alg: 'RS256',</sub><br /><sub>  scope: 'openid',</sub><br /><sub>  client_id: '71120111-f7b5-4a62-ad06-6e36f0ac5fa0',</sub><br /><sub>  redirect_uri: '</sub><a class="external-link" href="https://webdlx.vconestoga.com/deeplink" rel="nofollow"><sub>https://webdlx.vconestoga.com/deeplink</sub></a><sub>',</sub><br /><sub>  login_hint: 'e82cb6de-8852-4094-938b-b3f386b6d6fe_270978',</sub><br /><sub>  nonce: 'p6hjmqn1zgh4685x57n6esuvb',</sub><br /><sub>  prompt: 'none',</sub><br /><sub>  state: 'd08e2a5e4608f49c361bdea6fceddc99968d566c811eaf4e5f',</sub><br /><sub>  lti_message_hint: 'lNgfyt_aa9y-ESOYiAD5f7ZvFyPH6VZWnPv1QbITQBo~',</sub><br /><sub>  lti_deployment_id: '178ce421-9978-4fb4-8deb-b24f11f79e84'</sub><br /><sub>}</sub></p></div>
+</div>
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<p><sub>provider:main Login request:</sub><br /><sub>provider:main {</sub><br /><sub>   response_type: 'id_token',</sub><br /><sub>   response_mode: 'form_post',</sub><br /><sub>   id_token_signed_response_alg: 'RS256',</sub><br /><sub>   scope: 'openid',</sub><br /><sub>   client_id: 'bgo9eFCTs1dSK68',</sub><br /><sub>   redirect_uri: '</sub><a class="external-link" href="https://webdlx.vconestoga.com" rel="nofollow"><sub>https://webdlx.vconestoga.com</sub></a><sub>',</sub><br /><sub>   login_hint: '21',</sub><br /><sub>   nonce: 'q76r4kbxgofms710a402xyr87',</sub><br /><sub>   prompt: 'none',</sub><br /><sub>   state: '31188e01d6b343cec29c40a8819f0b3ae1d494180cc4cb3cc4',</sub><br /><sub>   lti_message_hint: '0',</sub><br /><sub>   lti_deployment_id: '252'</sub><br /><sub> }</sub></p></div>
+</div>
+</div>
+<div class="columnLayout fixed-width" data-layout="fixed-width">
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<div id="expander-1509911033" class="expand-container"><div id="expander-control-1509911033" class="expand-control"><span class="expand-control-icon"><img style="vertical-align:middle;" class="expand-control-image" src="images/icons/grey_arrow_down.png"/></span><span class="expand-control-text">Related code for this log</span></div><div id="expander-content-1509911033" class="expand-content"><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: js; gutter: false; theme: Confluence" data-theme="Confluence">const query = await Request.ltiAdvantageLogin(params, platform, state);
+provMainDebug('Login request: ');
+provMainDebug(query);
+res.redirect(url.format({
+  pathname: await platform.platformAuthEndpoint(),
+  query
+}));</pre>
+</div></div></div></div><h5 id="SecondTryout-DeeplinkandretryDynamicRegistration-ComparisonandAnalysis.1">Comparison and Analysis</h5><ul><li><p>No-log before this process</p><ul><li><p>Cookie Settings</p></li></ul></li></ul><div id="expander-837100436" class="expand-container"><div id="expander-control-837100436" class="expand-control"><span class="expand-control-icon"><img style="vertical-align:middle;" class="expand-control-image" src="images/icons/grey_arrow_down.png"/></span><span class="expand-control-text">Related code for Cookie Setting</span></div><div id="expander-content-837100436" class="expand-content"><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: js; gutter: false; theme: Confluence" data-theme="Confluence">const cookieOptions = JSON.parse(JSON.stringify((0, _classPrivateFieldGet2.default)(this, _cookieOptions)));
+cookieOptions.maxAge = 60 * 1000; // Adding max age to state cookie = 1min
+res.cookie('state' + state, iss, cookieOptions);</pre>
+</div></div></div></div><ul><li><p>redirect_uri</p><ul><li><p>eConestoga: <a class="external-link" href="https://webdlx.vconestoga.com/deeplink" rel="nofollow">https://webdlx.vconestoga.com/deeplink</a></p></li><li><p>Moodle: <a class="external-link" href="https://webdlx.vconestoga.com" rel="nofollow">https://webdlx.vconestoga.com</a></p></li></ul></li><li><p>etc</p><ul><li><p>The values of <code>login_hint</code>, <code>lti_message_hint</code>, and <code>lti_deployment_id</code> seem to be much more specific or encrypted compared to those in Moodle.</p></li></ul></li></ul><h5 id="SecondTryout-DeeplinkandretryDynamicRegistration-NetworkTrafficRelatedtothispoint.1">Network Traffic Related to this point</h5><h6 id="SecondTryout-DeeplinkandretryDynamicRegistration-Redirectto‘redirectUrl’"> Redirect to &lsquo;redirectUrl&rsquo;</h6></div>
+</div>
+</div>
+<div class="columnLayout two-equal" data-layout="two-equal">
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<p>Headers(<a class="external-link" href="https://testconestoga.desire2learn.com/d2l/lti/authenticate" rel="nofollow">https://testconestoga.desire2learn.com/d2l/lti/authenticate</a>)</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20240925-004405.png" width="362" loading="lazy" src="attachments/1353351178/1358037005.png?width=362" data-image-src="attachments/1353351178/1358037005.png" data-height="223" data-width="866" data-unresolved-comment-count="0" data-linked-resource-id="1358037005" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20240925-004405.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1353351178" data-linked-resource-container-version="13" data-media-id="800f9180-ed51-4239-b854-29e358b0ae0c" data-media-type="file" /></span><p>Payload(<a class="external-link" href="https://testconestoga.desire2learn.com/d2l/lti/authenticate" rel="nofollow">https://testconestoga.desire2learn.com/d2l/lti/authenticate</a>)</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20240925-004439.png" width="362" loading="lazy" src="attachments/1353351178/1357676551.png?width=362" data-image-src="attachments/1353351178/1357676551.png" data-height="328" data-width="734" data-unresolved-comment-count="0" data-linked-resource-id="1357676551" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20240925-004439.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1353351178" data-linked-resource-container-version="13" data-media-id="c2815554-286e-48e6-90f3-9cf9d0462ed5" data-media-type="file" /></span></div>
+</div>
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<p>Headers(<a class="external-link" href="https://vconestoga.duckdns.org/mod/lti/auth.php" rel="nofollow">https://vconestoga.duckdns.org/mod/lti/auth.php</a>)</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20240925-005033.png" width="362" loading="lazy" src="attachments/1353351178/1358430224.png?width=362" data-image-src="attachments/1353351178/1358430224.png" data-height="202" data-width="830" data-unresolved-comment-count="0" data-linked-resource-id="1358430224" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20240925-005033.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1353351178" data-linked-resource-container-version="13" data-media-id="972d2624-4080-45c7-90c9-00b7f193a7af" data-media-type="file" /></span><p>Payload(<a class="external-link" href="https://vconestoga.duckdns.org/mod/lti/auth.php" rel="nofollow">https://vconestoga.duckdns.org/mod/lti/auth.php</a>)</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20240925-005107.png" width="362" loading="lazy" src="attachments/1353351178/1357774865.png?width=362" data-image-src="attachments/1353351178/1357774865.png" data-height="317" data-width="822" data-unresolved-comment-count="0" data-linked-resource-id="1357774865" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20240925-005107.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1353351178" data-linked-resource-container-version="13" data-media-id="702319f2-6c50-4239-b00a-2c5b3a58ea25" data-media-type="file" /></span><p /></div>
+</div>
+</div>
+<div class="columnLayout fixed-width" data-layout="fixed-width">
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<p><em><strong><span data-colorid="ngygovkayh"><u>No network communication or logs recorded on our server</u></span></strong></em></p><ul><li><p>Attempted to communicate with the test eConestoga&rsquo;s authentication endpoint, but unlike the network communication with Moodle, it returned a 400 (Bad Request) response.</p></li></ul><hr /></div>
+</div>
+</div>
+<div class="columnLayout two-equal" data-layout="two-equal">
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<p>No more log</p></div>
+</div>
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<p>  provider:main Receiving request at path: /<br />  provider:main Path does not match reserved endpoints<br />  provider:main Cookies received:<br />  provider:main [Object: null prototype] {<br />   state31188e01d6b343cec29c40a8819f0b3ae1d494180cc4cb3cc4: '<a class="external-link" href="https://vconestoga.duckdns.org" rel="nofollow">https://vconestoga.duckdns.org</a> '<br /> }<br />  provider:main Received idtoken for validation<br />  provider:auth Response state: 31188e01d6b343cec29c40a8819f0b3ae1d494180cc4cb3cc4<br />  provider:auth Attempting to validate iss claim<br />  provider:auth Request Iss claim: <a class="external-link" href="https://vconestoga.duckdns.org" rel="nofollow">https://vconestoga.duckdns.org</a> <br />  provider:auth Response Iss claim: <a class="external-link" href="https://vconestoga.duckdns.org" rel="nofollow">https://vconestoga.duckdns.org</a> <br />  provider:auth Attempting to retrieve registered platform<br />  provider:auth Retrieving key from jwk_set<br />  provider:auth Converting JWK key to PEM key<br />  provider:auth Attempting to verify JWT with the given key<br /> provider:auth Token signature verified<br /> provider:auth Initiating OIDC aditional validation steps<br /> provider:auth Validating if aud (Audience) claim matches the value of the tool's clientId given by the platform<br /> provider:auth Aud claim: bgo9eFCTs1dSK68<br /> provider:auth Checking alg claim. Alg: RS256<br /> provider:auth Max age parameter:  10<br /> provider:auth Checking iat claim to prevent old tokens from being passed.<br /> provider:auth Iat claim: 1727138790<br /> provider:auth Exp claim: 1727138850<br /> provider:auth Current_time: 1727138799.273<br /> provider:auth Time passed: 9.273000001907349<br /> provider:auth Validating nonce<br /> provider:auth Nonce: q76r4kbxgofms710a402xyr87<br /> provider:auth Tool's clientId: bgo9eFCTs1dSK68<br /> provider:auth Storing nonce<br />  provider:auth Initiating LTI 1.3 core claims validation<br />  provider:auth Checking Message type claim<br />  provider:auth Checking LTI Version claim<br />  provider:auth Checking Deployment Id claim<br />  provider:auth Checking Sub claim<br />  provider:auth Checking Roles claim<br />  provider:auth Successfully validated token!<br />  provider:main Generating ltik<br />  provider:main Redirecting to endpoint with ltik<br />  provider:main Receiving request at path: /<br />  provider:main Path does not match reserved endpoints<br />  provider:main Cookies received:<br />  provider:main [Object: null prototype] {<br />   ltiaHR0cHM6Ly92Y29uZXN0b2dhLmR1Y2tkbnMub3JnYmdvOWVGQ1RzMWRTSzY4MjUy: '21'<br /> }<br />  provider:main Ltik found<br />  provider:main Ltik successfully verified<br />  provider:main Attempting to retrieve matching session cookie<br />  provider:auth Valid session found<br />  provider:main Passing request to next handler<br />  provider:main Redirecting to:  /deeplink<br />  provider:main Changing context token path to: /deeplink<br />  provider:main Receiving request at path: /deeplink<br />  provider:main Path does not match reserved endpoints<br />  provider:main Cookies received:<br />  provider:main [Object: null prototype] {<br />   ltiaHR0cHM6Ly92Y29uZXN0b2dhLmR1Y2tkbnMub3JnYmdvOWVGQ1RzMWRTSzY4MjUy: '21'<br /> }<br />  provider:main Ltik found<br />  provider:main Ltik successfully verified<br />  provider:main Attempting to retrieve matching session cookie<br />  provider:auth Valid session found<br /> 2024-09-24T00:46:39.393Z provider:main Passing request to next handler<br /> Tue, 24 Sep 2024 00:46:39 GMT provider:main Request Form: {<br />   &quot;query&quot;: {<br />     &quot;ltik&quot;: &quot;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwbGF0Zm9ybVVybCI6Imh0dHBzOi8vdmNvbmVzdG9nYS5kdWNrZG5zLm9yZyIsImNsaWVudElkIjoiYmdvOWVGQ1RzMWRTSzY4IiwiZGVwbG95bWVudElkIjoiMjUyIiwicGxhdGZvcm1Db2RlIjoibHRpYUhSMGNITTZMeTkyWTI5dVpYTjBiMmRoTG1SMVkydGtibk11YjNKblltZHZPV1ZHUTFSek1XUlRTelk0TWpVeSIsImNvbnRleHRJZCI6Imh0dHBzJTNBJTJGJTJGdmNvbmVzdG9nYS5kdWNrZG5zLm9yZ2JnbzllRkNUczFkU0s2ODI1MjhfTkYiLCJ1c2VyIjoiMjEiLCJzIjoiMzExODhlMDFkNmIzNDNjZWMyOWM0MGE4ODE5ZjBiM2FlMWQ0OTQxODBjYzRjYjNjYzQiLCJpYXQiOjE3MjcxMzg3OTl9.LZ7YC-2c16S5pIBPFU1HVrYwesgDK1uRXvi1oULVaAM&quot;<br />   },<br />   &quot;body&quot;: {},<br />   &quot;params&quot;: {},<br />   &quot;headers&quot;: {<br />     &quot;host&quot;: &quot;<a class="external-link" href="http://webdlx.vconestoga.com" rel="nofollow">webdlx.vconestoga.com</a>&quot;,<br />     &quot;x-real-ip&quot;: &quot;99.251.69.209&quot;,<br />     &quot;x-scheme&quot;: &quot;https&quot;,<br />     &quot;connection&quot;: &quot;close&quot;,<br />     &quot;cache-control&quot;: &quot;max-age=0&quot;,<br />     &quot;upgrade-insecure-requests&quot;: &quot;1&quot;,<br />     &quot;user-agent&quot;: &quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36&quot;,<br />     &quot;accept&quot;: &quot;text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,<em>/</em>;q=0.8,application/signed-exchange;v=b3;q=0.7&quot;,<br />     &quot;sec-fetch-site&quot;: &quot;cross-site&quot;,<br />     &quot;sec-fetch-mode&quot;: &quot;navigate&quot;,<br />     &quot;sec-fetch-dest&quot;: &quot;iframe&quot;,<br />     &quot;sec-ch-ua&quot;: &quot;\&quot;Chromium\&quot;;v=\&quot;128\&quot;, \&quot;Not;A=Brand\&quot;;v=\&quot;24\&quot;, \&quot;Google Chrome\&quot;;v=\&quot;128\&quot;&quot;,<br />     &quot;sec-ch-ua-mobile&quot;: &quot;?0&quot;,<br />     &quot;sec-ch-ua-platform&quot;: &quot;\&quot;Windows\&quot;&quot;,<br />     &quot;accept-encoding&quot;: &quot;gzip, deflate, br, zstd&quot;,<br />     &quot;accept-language&quot;: &quot;en-US,en;q=0.9,ko;q=0.8&quot;,<br />     &quot;cookie&quot;: &quot;ltiaHR0cHM6Ly92Y29uZXN0b2dhLmR1Y2tkbnMub3JnYmdvOWVGQ1RzMWRTSzY4MjUy=s%3A21.Ul3%2BK%2FmVkwm2UK2MZkRrPv7kNFp3TD5HizHl9KN4cZs&quot;<br />   },<br />   &quot;method&quot;: &quot;GET&quot;,<br />   &quot;url&quot;: &quot;/deeplink?ltik=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwbGF0Zm9ybVVybCI6Imh0dHBzOi8vdmNvbmVzdG9nYS5kdWNrZG5zLm9yZyIsImNsaWVudElkIjoiYmdvOWVGQ1RzMWRTSzY4IiwiZGVwbG95bWVudElkIjoiMjUyIiwicGxhdGZvcm1Db2RlIjoibHRpYUhSMGNITTZMeTkyWTI5dVpYTjBiMmRoTG1SMVkydGtibk11YjNKblltZHZPV1ZHUTFSek1XUlRTelk0TWpVeSIsImNvbnRleHRJZCI6Imh0dHBzJTNBJTJGJTJGdmNvbmVzdG9nYS5kdWNrZG5zLm9yZ2JnbzllRkNUczFkU0s2ODI1MjhfTkYiLCJ1c2VyIjoiMjEiLCJzIjoiMzExODhlMDFkNmIzNDNjZWMyOWM0MGE4ODE5ZjBiM2FlMWQ0OTQxODBjYzRjYjNjYzQiLCJpYXQiOjE3MjcxMzg3OTl9.LZ7YC-2c16S5pIBPFU1HVrYwesgDK1uRXvi1oULVaAM&quot;,<br />   &quot;ip&quot;: &quot;::ffff:10.5.0.4&quot;<br /> }<br />  provider:main Receiving request at path: /deeplink/contents<br />  provider:main Path does not match reserved endpoints<br />  provider:main Cookies received:<br />  provider:main [Object: null prototype] {<br />   ltiaHR0cHM6Ly92Y29uZXN0b2dhLmR1Y2tkbnMub3JnYmdvOWVGQ1RzMWRTSzY4MjUy: '21'<br /> }<br />  provider:main Ltik found<br />  provider:main Ltik successfully verified<br />  provider:main Attempting to retrieve matching session cookie<br />  provider:auth Valid session found<br /> 2024-09-24T00:46:39.776Z provider:main Passing request to next handler<br /> Tue, 24 Sep 2024 00:46:39 GMT provider:main Request Form: {<br />   &quot;query&quot;: {},<br />   &quot;body&quot;: {},<br />   &quot;params&quot;: {},<br />   &quot;headers&quot;: {<br />     &quot;host&quot;: &quot;<a class="external-link" href="http://webdlx.vconestoga.com" rel="nofollow">webdlx.vconestoga.com</a>&quot;,<br />     &quot;x-real-ip&quot;: &quot;99.251.69.209&quot;,<br />     &quot;x-scheme&quot;: &quot;https&quot;,<br />     &quot;connection&quot;: &quot;close&quot;,<br />     &quot;sec-ch-ua&quot;: &quot;\&quot;Chromium\&quot;;v=\&quot;128\&quot;, \&quot;Not;A=Brand\&quot;;v=\&quot;24\&quot;, \&quot;Google Chrome\&quot;;v=\&quot;128\&quot;&quot;,<br />     &quot;sec-ch-ua-mobile&quot;: &quot;?0&quot;,<br />     &quot;authorization&quot;: &quot;Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwbGF0Zm9ybVVybCI6Imh0dHBzOi8vdmNvbmVzdG9nYS5kdWNrZG5zLm9yZyIsImNsaWVudElkIjoiYmdvOWVGQ1RzMWRTSzY4IiwiZGVwbG95bWVudElkIjoiMjUyIiwicGxhdGZvcm1Db2RlIjoibHRpYUhSMGNITTZMeTkyWTI5dVpYTjBiMmRoTG1SMVkydGtibk11YjNKblltZHZPV1ZHUTFSek1XUlRTelk0TWpVeSIsImNvbnRleHRJZCI6Imh0dHBzJTNBJTJGJTJGdmNvbmVzdG9nYS5kdWNrZG5zLm9yZ2JnbzllRkNUczFkU0s2ODI1MjhfTkYiLCJ1c2VyIjoiMjEiLCJzIjoiMzExODhlMDFkNmIzNDNjZWMyOWM0MGE4ODE5ZjBiM2FlMWQ0OTQxODBjYzRjYjNjYzQiLCJpYXQiOjE3MjcxMzg3OTl9.LZ7YC-2c16S5pIBPFU1HVrYwesgDK1uRXvi1oULVaAM&quot;,<br />     &quot;user-agent&quot;: &quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36&quot;,<br />     &quot;sec-ch-ua-platform&quot;: &quot;\&quot;Windows\&quot;&quot;,<br />     &quot;accept&quot;: &quot;<em>/</em>&quot;,<br />     &quot;sec-fetch-site&quot;: &quot;same-origin&quot;,<br />     &quot;sec-fetch-mode&quot;: &quot;cors&quot;,<br />     &quot;sec-fetch-dest&quot;: &quot;empty&quot;,<br />     &quot;accept-encoding&quot;: &quot;gzip, deflate, br, zstd&quot;,<br />     &quot;accept-language&quot;: &quot;en-US,en;q=0.9,ko;q=0.8&quot;,<br />     &quot;cookie&quot;: &quot;ltiaHR0cHM6Ly92Y29uZXN0b2dhLmR1Y2tkbnMub3JnYmdvOWVGQ1RzMWRTSzY4MjUy=s%3A21.Ul3%2BK%2FmVkwm2UK2MZkRrPv7kNFp3TD5HizHl9KN4cZs&quot;<br />   },<br />   &quot;method&quot;: &quot;GET&quot;,<br />   &quot;url&quot;: &quot;/deeplink/contents&quot;,<br />   &quot;ip&quot;: &quot;::ffff:10.5.0.4&quot;<br /> }<br /> Discovered Project List: [<br />   'CORE-Sandbox',<br />   'CORE-Sandbox-V2',<br />   'Jindo-Pipeline-Test',<br />   'LTI-Package-Test',<br />   'LTI-Package-TestDeployment',<br />   'Paramedic-Ambulance',<br />   'Photogrammetry',<br />   'Public-Health-Inspection',<br />   'Trades-Electrical',<br />   'assets',<br />   'conestoga-build',<br />   'dlx-client',<br />   'mpcl1',<br />   'mpcl2',<br />   'powerline',<br />   'rab',<br />   'reactmultiplayerapp',<br />   'var'<br /> ]<br /> Database is up-to-date<br /> Added new dlx items for course: [ 'assets' ]</p></div>
+</div>
+</div>
+</div>
+                    </div>
+
+                                        <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1353351178/1353613363.png">image-20240924-000135.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1353351178/1354268675.png">image-20240924-002049.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1353351178/1353678857.png">image-20240924-003424.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1353351178/1354268683.png">image-20240924-003502.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1353351178/1354366982.png">image-20240924-003700.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1353351178/1353875464.png">image-20240924-004953.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1353351178/1353613379.png">image-20240924-005008.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1353351178/1353678867.png">image-20240924-005054.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1353351178/1354268696.png">image-20240924-005151.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1353351178/1358430211.png">image-20240925-004125.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1353351178/1358200839.png">image-20240925-004230.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1353351178/1358037005.png">image-20240925-004405.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1353351178/1357676551.png">image-20240925-004439.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1353351178/1357774856.png">image-20240925-004530.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1353351178/1358037011.png">image-20240925-004558.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1353351178/1358430224.png">image-20240925-005033.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1353351178/1357774865.png">image-20240925-005107.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on May 27, 2025 13:36</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

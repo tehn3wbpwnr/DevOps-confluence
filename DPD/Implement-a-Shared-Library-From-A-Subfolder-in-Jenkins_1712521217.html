@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DevOps / Pipeline &amp; Deployment : Implement a Shared Library From A Subfolder in Jenkins</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">DevOps / Pipeline &amp; Deployment</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1179353439.html">DevOps / Pipeline &amp; Deployment Home</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Linux-Jenkins-Documents_1542455384.html">Linux Jenkins Documents</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Set-Up-on-Jenkins_1545011216.html">Set Up on Jenkins</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            DevOps / Pipeline &amp; Deployment : Implement a Shared Library From A Subfolder in Jenkins
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                            
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Jindo Kim</span>, last modified on Mar 27, 2025
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <h1 id="ImplementaSharedLibraryFromASubfolderinJenkins-Objective">Objective</h1><ul><li><p>This document describes how to modularize and framework a portion of the code repository (specific sub-folders) as libraries for operating Jenkins Pipelines.</p></li></ul><p /><style type='text/css'>/*<![CDATA[*/
+div.rbtoc1748352804446 {padding: 0px;}
+div.rbtoc1748352804446 ul {list-style: none;margin-left: 0px;}
+div.rbtoc1748352804446 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style><div class='toc-macro rbtoc1748352804446'>
+<ul class='toc-indentation'>
+<li><a href='#ImplementaSharedLibraryFromASubfolderinJenkins-1.WhyDoWeNeedaSharedLibrary?'>1. Why Do We Need a Shared Library?</a>
+<ul class='toc-indentation'>
+<li><a href='#ImplementaSharedLibraryFromASubfolderinJenkins-1.1HowJenkinsOperatesforExternalPackagesandLibrarieswithoutasharedlibraryfeature'>1.1 How Jenkins Operates for External Packages and Libraries without a shared library feature</a>
+<ul class='toc-indentation'>
+<li><a href='#ImplementaSharedLibraryFromASubfolderinJenkins-1.1.1.Jenkinsenforcessecuritythroughtwomechanisms:'>1.1.1. Jenkins enforces security through two mechanisms:</a></li>
+<li><a href='#ImplementaSharedLibraryFromASubfolderinJenkins-1.1.2.Thisrestrictiveenvironmenthasseveralimplications:'>1.1.2. This restrictive environment has several implications:</a></li>
+<li><a href='#ImplementaSharedLibraryFromASubfolderinJenkins-1.1.3.Additionalrestriction(Thiswouldnotworkevenafterasharedlibraryimplemented)'>1.1.3. Additional restriction ( This would not work even after a shared library implemented )</a></li>
+</ul>
+</li>
+<li><a href='#ImplementaSharedLibraryFromASubfolderinJenkins-1.2.WhatisaGlobalSharedLibraryinJenkins?'>1.2. What is a Global Shared Library in Jenkins?</a></li>
+<li><a href='#ImplementaSharedLibraryFromASubfolderinJenkins-1.3.UsingStandardandCustomLibrariesinJenkins:'>1.3. Using Standard and Custom Libraries in Jenkins:</a></li>
+</ul>
+</li>
+<li><a href='#ImplementaSharedLibraryFromASubfolderinJenkins-2.GlobalTrustedvsUntrustedPipelineLibraries'>2. Global Trusted vs Untrusted Pipeline Libraries</a>
+<ul class='toc-indentation'>
+<li><a href='#ImplementaSharedLibraryFromASubfolderinJenkins-2.1KeyDifferencesBetweenTrustedandUntrustedLibraries'>2.1 Key Differences Between Trusted and Untrusted Libraries</a></li>
+<li><a href='#ImplementaSharedLibraryFromASubfolderinJenkins-2.2CurrentImplementation:UntrustedMethodwithCode-BasedConfiguration'>2.2 Current Implementation: Untrusted Method with Code-Based Configuration</a></li>
+</ul>
+</li>
+<li><a href='#ImplementaSharedLibraryFromASubfolderinJenkins-3.HowaSharedLibraryGotImplementedinOurJenkins'>3. How a Shared Library Got Implemented in Our Jenkins</a>
+<ul class='toc-indentation'>
+<li><a href='#ImplementaSharedLibraryFromASubfolderinJenkins-3.1.ArchitectureDiagram(High-LevelExplanation)'>3.1. Architecture Diagram (High-Level Explanation)</a></li>
+<li><a href='#ImplementaSharedLibraryFromASubfolderinJenkins-3.2.Code-BasedImplementationOverview(Low-LevelExplanation)'>3.2. Code-Based Implementation Overview (Low-Level Explanation)</a>
+<ul class='toc-indentation'>
+<li><a href='#ImplementaSharedLibraryFromASubfolderinJenkins-3.2.1.LoadSharedLibraryastheFirstStageinAllPipelines'>3.2.1. Load Shared Library as the First Stage in All Pipelines</a></li>
+<li><a href='#ImplementaSharedLibraryFromASubfolderinJenkins-3.2.2Usingthe‘FakeGitRepository’Strategy'>3.2.2 Using the ‘Fake Git Repository’ Strategy</a>
+<ul class='toc-indentation'>
+<li><a href='#ImplementaSharedLibraryFromASubfolderinJenkins-3.2.2.1.Whatdoesthismean?'>3.2.2.1. What does this mean?</a></li>
+<li><a href='#ImplementaSharedLibraryFromASubfolderinJenkins-3.2.2.2.Whyisthisnecessary?'>3.2.2.2. Why is this necessary?</a></li>
+<li><a href='#ImplementaSharedLibraryFromASubfolderinJenkins-3.2.2.3.Howdoesitwork?'>3.2.2.3. How does it work?</a></li>
+</ul>
+</li>
+<li><a href='#ImplementaSharedLibraryFromASubfolderinJenkins-3.2.3Using‘Static’packagefromtheSharedLibrary'>3.2.3 Using ‘Static’ package from the Shared Library</a>
+<ul class='toc-indentation'>
+<li><a href='#ImplementaSharedLibraryFromASubfolderinJenkins-3.2.3.1InaJenkinfile'>3.2.3.1 In a Jenkinfile</a></li>
+<li><a href='#ImplementaSharedLibraryFromASubfolderinJenkins-3.2.3.2inOtherGroovyFile'>3.2.3.2 in Other Groovy File</a></li>
+</ul>
+</li>
+<li><a href='#ImplementaSharedLibraryFromASubfolderinJenkins-3.2.4(New/Important)Using‘NotStatic’packagefromtheSharedLibrary'>3.2.4 (New/Important) Using ‘Not Static’ package from the Shared Library</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div><h2 id="ImplementaSharedLibraryFromASubfolderinJenkins-1.WhyDoWeNeedaSharedLibrary?">1. Why Do We Need a Shared Library?</h2><ul><li><p>Jenkins pipelines often require reusable code to avoid duplication and ensure consistency across multiple pipelines. However, Jenkins imposes strict security restrictions on what code can execute within its environment. These restrictions and the need for centralized code management make <strong>Shared Libraries </strong>an essential tool.</p></li></ul><h3 id="ImplementaSharedLibraryFromASubfolderinJenkins-1.1HowJenkinsOperatesforExternalPackagesandLibrarieswithoutasharedlibraryfeature">1.1 How Jenkins Operates for External Packages and Libraries without a shared library feature</h3><h4 id="ImplementaSharedLibraryFromASubfolderinJenkins-1.1.1.Jenkinsenforcessecuritythroughtwomechanisms:">1.1.1. Jenkins enforces security through two mechanisms:</h4><ul><li><p><strong>Groovy Sandbox</strong>: By default, Jenkins pipelines run in a sandboxed environment that limits access to Groovy methods. Only a subset of &quot;safe&quot; methods can be executed without prior approval.</p></li><li><p><strong>Script Approval</strong>: For any method or class not included in the sandbox (e.g., Java Standard Library methods like <code>java.io</code>), administrators must explicitly approve their usage.</p></li></ul><h4 id="ImplementaSharedLibraryFromASubfolderinJenkins-1.1.2.Thisrestrictiveenvironmenthasseveralimplications:">1.1.2. This restrictive environment has several implications:</h4><ul><li><p><strong>Approval Overhead</strong>: Using external libraries or custom functions requires manual script approval, slowing development down.</p></li><li><p><strong>Reusability Challenges</strong>: Teams must duplicate code across pipelines without a centralized mechanism, leading to maintenance challenges.</p></li></ul><h4 id="ImplementaSharedLibraryFromASubfolderinJenkins-1.1.3.Additionalrestriction(Thiswouldnotworkevenafterasharedlibraryimplemented)">1.1.3. Additional restriction ( This would not work even after a shared library implemented )</h4><ul><li><p><strong>Limited Flexibility</strong>: Certain features, such as Java's <code>Enum</code> data structure, are not supported in the sandbox.</p></li></ul><p><strong>References:</strong></p><ul><li><p><a class="external-link" href="https://www.jenkins.io/doc/book/managing/script-approval/" rel="nofollow"><u>Jenkins Script Approval Documentation</u></a></p></li><li><p><a class="external-link" href="https://issues.jenkins.io/browse/JENKINS-33023" rel="nofollow"><u>JENKINS-33023: Enums Not Supported in Sandbox</u></a></p></li></ul><p /><h3 id="ImplementaSharedLibraryFromASubfolderinJenkins-1.2.WhatisaGlobalSharedLibraryinJenkins?">1.2. What is a Global Shared Library in Jenkins?</h3><ul><li><p>Script Approval is the process of getting approval to use methods, such as <code>java.io</code>, from Java standard libraries or external libraries in Jenkins Pipeline Scripts, and Global <strong>“Untrusted”</strong> Shared Library is the process of getting approval to use custom packages developed by developers in Jenkins Pipeline Scripts.</p><ul><li><p>“A Shared Library in Jenkins is a collection of reusable code, often written in Groovy, that allows teams to share common pipeline logic and functionality across multiple Jenkins pipelines.” According to <a class="external-link" data-card-appearance="inline" href="https://www.scaler.com/topics/jenkins-shared-library/#:~:text=What%20Is%20a,and%20development%20workflows." rel="nofollow">https://www.scaler.com/topics/jenkins-shared-library/#:~:text=What%20Is%20a,and%20development%20workflows.</a>  </p></li></ul></li></ul><p /><h3 id="ImplementaSharedLibraryFromASubfolderinJenkins-1.3.UsingStandardandCustomLibrariesinJenkins:">1.3. Using Standard and Custom Libraries in Jenkins:</h3><ul><li><p>To use functionality from external libraries or custom code, Jenkins provides two options:</p><ul><li><p><strong>Standard Libraries</strong>: To utilize certain functions from the Java Standard Library (e.g., <code>java.io</code>), we must go through <strong>Script Approval</strong>.</p><ul><li><p>The Configuration of Script Approval</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20250325-153236.png" width="710" loading="lazy" src="attachments/1712521217/1714061348.png?width=710" data-image-src="attachments/1712521217/1714061348.png" data-height="280" data-width="896" data-unresolved-comment-count="0" data-linked-resource-id="1714061348" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20250325-153236.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1712521217" data-linked-resource-container-version="4" data-media-id="e75ac8ae-f5c6-4f01-b15c-90b2bb9e2c31" data-media-type="file"></span><p /></li></ul></li><li><p><strong>Custom Libraries</strong>: To use custom functions or classes developed by the team, the <strong>Shared Library </strong>is essential because it allows us to bypass the restrictive nature of <strong>Groovy Sandbox</strong>. It provides a way to centrally manage reusable code, streamline approvals, and ensure consistent pipeline usage. </p><ul><li><p>The Configuration of Global Pipeline Libraries</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20250325-153202.png" width="760" loading="lazy" src="attachments/1712521217/1714520080.png?width=760" data-image-src="attachments/1712521217/1714520080.png" data-height="390" data-width="1211" data-unresolved-comment-count="0" data-linked-resource-id="1714520080" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20250325-153202.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1712521217" data-linked-resource-container-version="4" data-media-id="4dafca81-7618-44c7-abbf-742fb117626e" data-media-type="file"></span></li></ul></li></ul></li></ul><hr/><h2 id="ImplementaSharedLibraryFromASubfolderinJenkins-2.GlobalTrustedvsUntrustedPipelineLibraries">2. Global Trusted vs Untrusted Pipeline Libraries</h2><ul><li><p>In Jenkins, Shared Libraries can be configured as either <strong>Trusted </strong>or <strong>Untrusted</strong>, depending on the level of access required. Each method has distinct characteristics and use cases.</p></li></ul><h3 id="ImplementaSharedLibraryFromASubfolderinJenkins-2.1KeyDifferencesBetweenTrustedandUntrustedLibraries">2.1 Key Differences Between Trusted and Untrusted Libraries</h3><ul><li><p><strong>Trusted Libraries </strong>:</p><ul><li><p>Have full access to Jenkins internals and the Groovy runtime.</p></li><li><p>Can execute arbitrary code without sandbox restrictions.</p></li><li><p>Typically used for highly sensitive or administrative tasks.</p></li><li><p>Requires careful management to prevent security risks.</p></li></ul></li><li><p><strong>Untrusted Libraries </strong>:</p><ul><li><p>Run within the Groovy Sandbox, subject to the same restrictions as standard pipeline scripts.</p></li><li><p>Suitable for most use cases where elevated permissions are unnecessary.</p></li><li><p>More straightforward to configure and manage but less flexible than Trusted Libraries.</p></li></ul></li></ul><p /><h3 id="ImplementaSharedLibraryFromASubfolderinJenkins-2.2CurrentImplementation:UntrustedMethodwithCode-BasedConfiguration">2.2 Current Implementation: Untrusted Method with Code-Based Configuration</h3><ul><li><p>Our pipelines currently utilize the <strong>Untrusted method </strong>for Shared Libraries. Instead of configuring this through the Jenkins GUI/Web UI, we manage the Shared Library programmatically by modifying the Jenkins service file. This approach was chosen for the following reasons:</p><ul><li><p><strong>Git Repository Restriction</strong>:</p><ul><li><p>Configuring Untrusted Shared Libraries via the Jenkins GUI requires a separate Bitbucket repository for each library.</p></li><li><p>Given the many services already developed within the existing Jenkins pipeline repository, creating a new repository for each service would be impractical.</p><ul><li><p>Jenkins Service File Configuration to allow in VM</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20250325-173054.png" width="688" loading="lazy" src="attachments/1712521217/1714421779.png?width=688" data-image-src="attachments/1712521217/1714421779.png" data-height="129" data-width="694" data-unresolved-comment-count="0" data-linked-resource-id="1714421779" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20250325-173054.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1712521217" data-linked-resource-container-version="4" data-media-id="2e33e61a-8d6c-4f0b-ae20-55631f330f9a" data-media-type="file"></span></li><li><p>The limitation of Global Shared Library Configuration via Jenkins GUI/Web UI</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20250325-171054.png" width="657" loading="lazy" src="attachments/1712521217/1714749463.png?width=657" data-image-src="attachments/1712521217/1714749463.png" data-height="173" data-width="657" data-unresolved-comment-count="0" data-linked-resource-id="1714749463" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20250325-171054.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1712521217" data-linked-resource-container-version="4" data-media-id="9951a328-dada-43c1-b116-41e19f5da907" data-media-type="file"></span><p /></li></ul></li></ul></li><li><p><strong>Code-Based Implementation(Dynamic Shared Library) Limitation</strong>:</p><ul><li><p><strong>Supports Only Untrusted Libraries</strong>: The Trusted method cannot be used with this approach, limiting access to Jenkins internals.</p></li></ul></li></ul></li></ul><hr/><h2 id="ImplementaSharedLibraryFromASubfolderinJenkins-3.HowaSharedLibraryGotImplementedinOurJenkins">3. How a Shared Library Got Implemented in Our Jenkins</h2><h3 id="ImplementaSharedLibraryFromASubfolderinJenkins-3.1.ArchitectureDiagram(High-LevelExplanation)">3.1. Architecture Diagram (High-Level Explanation)</h3><div class="ap-container" id="ap-com.realtimeboard.plugins.confluence-server-plugin__miro-macro-resizing5813116509361754438">
+
+  <div class="ap-content " id="embedded-com.realtimeboard.plugins.confluence-server-plugin__miro-macro-resizing5813116509361754438"></div>
+  <script nonce="88fd87822338648bb69122381bed6d99" class="ap-iframe-body-script">
+  (function(){
+    var data = {
+    "addon_key":"com.realtimeboard.plugins.confluence-server-plugin",
+    "uniqueKey":"com.realtimeboard.plugins.confluence-server-plugin__miro-macro-resizing5813116509361754438",
+    "key":"miro-macro-resizing",
+     "moduleType":"dynamicContentMacros",      "moduleLocation":"content",         "cp":"/wiki",
+            "general":"",
+    "w":"",
+    "h":"",
+    "url":"https://miro.com/embed/confluence-cloud-app/viewer?hash=&accessLink=https%3A%2F%2Fmiro.com%2Fapp%2Flive-embed%2FuXjVILhsb0c%3D%2F%3FboardAccessToken%3DsQ7GJ2GSVj3mSGVdlPKIwUjbwaCaaZMa%26autoplay%3Dtrue%26embedMode%3Dview_only_without_ui%26moveToWidget%3D3458764622281638337&pageId=1712521217&type=html_export&resize=true&xdm_e=https%3A%2F%2Fvarlab-dev.atlassian.net&xdm_c=channel-com.realtimeboard.plugins.confluence-server-plugin__miro-macro-resizing5813116509361754438&cp=%2Fwiki&xdm_deprecated_addon_key_do_not_use=com.realtimeboard.plugins.confluence-server-plugin&lic=none&cv=1000.0.0-c1c731773e6f&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI3MTIwMjA6OGE2ZDQ5ODAtMWI3YS00ODkwLTk1MGMtZjVkOGI4NjAyY2NlIiwicXNoIjoiZmE3N2U5MWVhNGRlYzQ1NzA1NmE0MDVmYmM2MzdiMWEzNGYxNTliZjMzMjY3NWM0ZGExNzAwNjM2YmRlMTgxZSIsImlzcyI6IjBjNzRjMWFmLTY0YTYtMzY2Zi05NGIwLTMzMzZkOWNhOTU4OCIsImNvbnRleHQiOnt9LCJleHAiOjE3NDgzNTI5ODQsImlhdCI6MTc0ODM1MjgwNH0.LO8DdGleMyH_qifXKk4j_NP6rK3YC2rN2Ic7Q3D2Qb4",
+     "contextJwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI3MTIwMjA6OGE2ZDQ5ODAtMWI3YS00ODkwLTk1MGMtZjVkOGI4NjAyY2NlIiwicXNoIjoiY29udGV4dC1xc2giLCJpc3MiOiIwYzc0YzFhZi02NGE2LTM2NmYtOTRiMC0zMzM2ZDljYTk1ODgiLCJjb250ZXh0Ijp7InVybCI6eyJkaXNwbGF5VXJsIjoiaHR0cHM6XC9cL3ZhcmxhYi1kZXYuYXRsYXNzaWFuLm5ldFwvd2lraSJ9LCJjb25mbHVlbmNlIjp7ImVkaXRvciI6eyJ2ZXJzaW9uIjoidjIifSwibWFjcm8iOnsib3V0cHV0VHlwZSI6Imh0bWxfZXhwb3J0IiwiaGFzaCI6IjMyMDk2MTVjLWExZWItNGUwMC05ZjQ0LTM3OTExOTk5OTUxNyIsImlkIjoiMzIwOTYxNWMtYTFlYi00ZTAwLTlmNDQtMzc5MTE5OTk5NTE3In0sImNvbnRlbnQiOnsidHlwZSI6InBhZ2UiLCJ2ZXJzaW9uIjoiNCIsImlkIjoiMTcxMjUyMTIxNyJ9LCJzcGFjZSI6eyJrZXkiOiJEUEQiLCJpZCI6IjExNzkzNTMxMjgifX19LCJleHAiOjE3NDgzNTM3MDQsImlhdCI6MTc0ODM1MjgwNH0.SirEX3pvUnMPbE8U26TTzmdzrgBmjUwO3yDeQAOq6HI",    "structuredContext": "{\"confluence\":{\"editor\":{\"version\":\"v2\"},\"macro\":{\"outputType\":\"html_export\",\"hash\":\"3209615c-a1eb-4e00-9f44-379119999517\",\"id\":\"3209615c-a1eb-4e00-9f44-379119999517\"},\"content\":{\"type\":\"page\",\"version\":\"4\",\"id\":\"1712521217\"},\"space\":{\"key\":\"DPD\",\"id\":\"1179353128\"}},\"url\":{\"displayUrl\":\"https://varlab-dev.atlassian.net/wiki\"}}",
+    "contentClassifier":"content",
+    "productCtx":"{\"page.id\":\"1712521217\",\"macro.hash\":\"3209615c-a1eb-4e00-9f44-379119999517\",\"space.key\":\"DPD\",\"page.type\":\"page\",\"content.version\":\"4\",\"page.title\":\"Implement a Shared Library From A Subfolder in Jenkins\",\"macro.localId\":\"8c858410-10f6-4b3a-99a0-680be6a819bd\",\"macro.body\":\"\",\": = | RAW | = :\":\"accessLink=https://miro.com/app/live-embed/uXjVILhsb0c=/?boardAccessToken=sQ7GJ2GSVj3mSGVdlPKIwUjbwaCaaZMa&autoplay=true&embedMode=view_only_without_ui&moveToWidget=3458764622281638337\",\"space.id\":\"1179353128\",\"macro.truncated\":\"false\",\"content.type\":\"page\",\"output.type\":\"html_export\",\"page.version\":\"4\",\"macro.fragmentLocalId\":\"\",\"accessLink\":\"https://miro.com/app/live-embed/uXjVILhsb0c=/?boardAccessToken=sQ7GJ2GSVj3mSGVdlPKIwUjbwaCaaZMa&autoplay=true&embedMode=view_only_without_ui&moveToWidget=3458764622281638337\",\"content.id\":\"1712521217\",\"macro.id\":\"3209615c-a1eb-4e00-9f44-379119999517\",\"user.isExternalCollaborator\":\"false\",\"editor.version\":\"v2\"}",
+    "timeZone":"UTC",
+    "origin":"https://miro.com",
+    "hostOrigin":"https://varlab-dev.atlassian.net",
+    "sandbox":"allow-downloads allow-forms allow-modals allow-popups allow-popups-to-escape-sandbox allow-scripts allow-same-origin allow-top-navigation-by-user-activation allow-storage-access-by-user-activation",            "apiMigrations": {
+        "gdpr": true
+    }
+}
+;
+    if(window.AP && window.AP.subCreate) {
+      window._AP.appendConnectAddon(data);
+    } else {
+      require(['ac/create'], function(create){
+        create.appendConnectAddon(data);
+      });
+    }
+
+    // For Confluence App Analytics. This code works in conjunction with CFE's ConnectSupport.js.
+    // Here, we add a listener to the initial HTML page that stores events if the ConnectSupport component
+    // has not mounted yet. In CFE, we process the missed event data and disable this initial listener.
+    const __MAX_EVENT_ARRAY_SIZE__ = 20;
+    const connectAppAnalytics = "ecosystem.confluence.connect.analytics";
+    window.connectHost && window.connectHost.onIframeEstablished((eventData) => {
+      if (!window.__CONFLUENCE_CONNECT_SUPPORT_LOADED__) {
+        let events = JSON.parse(window.localStorage.getItem(connectAppAnalytics)) || [];
+        if (events.length >= __MAX_EVENT_ARRAY_SIZE__) {
+          events.shift();
+        }
+        events.push(eventData);
+        window.localStorage.setItem(connectAppAnalytics, JSON.stringify(events));
+      }
+    });
+
+  }());
+</script>
+
+</div>
+<p /><h3 id="ImplementaSharedLibraryFromASubfolderinJenkins-3.2.Code-BasedImplementationOverview(Low-LevelExplanation)">3.2. Code-Based Implementation Overview (Low-Level Explanation)</h3><div id="expander-2132727224" class="expand-container"><div id="expander-control-2132727224" class="expand-control"><span class="expand-control-icon"><img style="vertical-align:middle;" class="expand-control-image" src="images/icons/grey_arrow_down.png"></span><span class="expand-control-text">Jenkins Load Shared Library Stage Code</span></div><div id="expander-content-2132727224" class="expand-content"><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">stage(&#39;Load Shared Library&#39;) {
+    steps {
+        script {
+            try {
+                def LIBRARY_PATH = &#39;sharedLibraries&#39;
+                echo &quot;Loading local shared library from ${WORKSPACE}/${LIBRARY_PATH}&quot;
+
+                // Create temporary Git repository
+                sh &quot;&quot;&quot;
+                    cd ${WORKSPACE}/${LIBRARY_PATH} &amp;&amp; \
+                    (rm -rf .git || true) &amp;&amp; \
+                    git init &amp;&amp; \
+                    git add --all &amp;&amp; \
+                    git commit -m &#39;init&#39;
+                &quot;&quot;&quot;
+
+                // Get the path of the temporary Git repository
+                def repoPath = sh(returnStdout: true, script: &#39;pwd&#39;).trim() + &quot;/${LIBRARY_PATH}&quot;
+
+                // Shared Library Registration
+                sharedLib = library identifier: &#39;local-lib@master&#39;,
+                        retriever: modernSCM([$class: &#39;GitSCMSource&#39;, remote: &quot;${repoPath}&quot;]),
+                        changelog: false
+                echo &#39;Successfully loaded shared library&#39;
+            } catch (Exception e) {
+                echo &quot;Failed to load shared library: ${e.message}&quot;
+                error(&#39;Shared Library Loading Failed&#39;)
+            }
+        }
+    }
+}</pre>
+</div></div></div></div><h4 id="ImplementaSharedLibraryFromASubfolderinJenkins-3.2.1.LoadSharedLibraryastheFirstStageinAllPipelines">3.2.1. Load Shared Library as the First Stage in All Pipelines</h4><ul><li><p>Add the Load Shared Library step as the first stage in all Jenkins pipelines. This step runs before any other stages and initializes the Shared Library to be utilized in the remaining pipeline stages.</p></li></ul><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20250325-184346.png" width="760" loading="lazy" src="attachments/1712521217/1714356275.png?width=760" data-image-src="attachments/1712521217/1714356275.png" data-height="318" data-width="1248" data-unresolved-comment-count="0" data-linked-resource-id="1714356275" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20250325-184346.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1712521217" data-linked-resource-container-version="4" data-media-id="7c4a7d3a-55bf-4378-9181-00e80ad7db59" data-media-type="file"></span><p /><h4 id="ImplementaSharedLibraryFromASubfolderinJenkins-3.2.2Usingthe‘FakeGitRepository’Strategy">3.2.2 Using the ‘Fake Git Repository’ Strategy</h4><h5 id="ImplementaSharedLibraryFromASubfolderinJenkins-3.2.2.1.Whatdoesthismean?">3.2.2.1. What does this mean?</h5><ul><li><p>Jenkins requires that Shared Libraries be loaded from a Git repository or another SCM (Source Code Management) system. This is a built-in design constraint in Jenkins.</p></li><li><p>However, in our case, the <code>sharedLibraries</code> folder is not a standalone Git repository—it’s just a subfolder inside an existing Bitbucket repository (<code>devops-linux-jenkins</code>).</p></li><li><p>To meet Jenkins' requirement without creating a separate Git repository, we simulate (or &quot;fake&quot;) a Git repository using commands like <code>git init</code>, <code>git add --all</code>, and <code>git commit</code>.</p></li></ul><h5 id="ImplementaSharedLibraryFromASubfolderinJenkins-3.2.2.2.Whyisthisnecessary?">3.2.2.2. Why is this necessary?</h5><ul><li><p>Jenkins doesn’t natively support loading Shared Libraries directly from arbitrary local folders unless they are structured as Git repositories.</p></li><li><p>By faking a Git repository, we bypass this limitation while keeping the <code>sharedLibraries</code> folder within its original parent repository.</p></li></ul><h5 id="ImplementaSharedLibraryFromASubfolderinJenkins-3.2.2.3.Howdoesitwork?">3.2.2.3. How does it work? </h5><p>This process is temporary and only exists during the pipeline execution. Here's how it works, step by step:</p><ul><li><p><strong>Clean Up Existing Git Data</strong></p><ul><li><p><code>(rm -rf .git || true)</code>: Removes any existing <code>.git</code> directory to ensure a clean start.</p></li></ul></li><li><p><strong>Create a Temporary Git Repository</strong></p><ul><li><p><code>git init</code>: Initializes a new Git repository in the <code>sharedLibraries</code> folder.</p></li><li><p><code>git add --all</code>: Stages all files in the folder.</p></li><li><p><code>git commit -m 'init</code>: Creates an initial commit, making the folder appear as a valid Git repository to Jenkins.</p></li></ul></li><li><p><strong>Register the Shared Library in Jenkins</strong></p><ul><li><p><strong>Important</strong>: to declare variables that will store the Shared Library and its components at the top of jenkinsfile:</p><ul><li><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">def sharedLib // Use this variable to store the shared library, acting as an import statement
+def resultStatus // Use this variable to store the package(class) of result status, acting as an import statement</pre>
+</div></div></li></ul></li><li><p><code>sharedLib = library</code><strong> Command</strong>: Registers the Shared Library in Jenkins and assigns it to the <code>sharedLib</code> variable:</p><ul><li><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">sharedLib = library identifier: &#39;local-lib@master&#39;,
+      retriever: modernSCM([$class: &#39;GitSCMSource&#39;, remote: &quot;${repoPath}&quot;]),
+      changelog: false  </pre>
+</div></div></li></ul></li><li><p><code>remote: &quot;${repoPath}&quot;</code>:<br/>Specifies the path of the temporary Git repository created earlier.</p></li><li><p><code>changelog: false</code>:<br/>Disables changelog generation to avoid unnecessary logs.</p></li></ul></li></ul><h4 id="ImplementaSharedLibraryFromASubfolderinJenkins-3.2.3Using‘Static’packagefromtheSharedLibrary">3.2.3 Using ‘Static’ package from the Shared Library</h4><h5 id="ImplementaSharedLibraryFromASubfolderinJenkins-3.2.3.1InaJenkinfile">3.2.3.1 In a Jenkinfile</h5><div id="expander-200322379" class="expand-container"><div id="expander-control-200322379" class="expand-control"><span class="expand-control-icon"><img style="vertical-align:middle;" class="expand-control-image" src="images/icons/grey_arrow_down.png"></span><span class="expand-control-text">Example Class of resource packge in the &#39;sharedLibraries\src\resource&#39; folder</span></div><div id="expander-content-200322379" class="expand-content"><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">package resource
+
+class ResultStatus {
+    private String test
+
+    ResultStatus(String test) {
+        this.test = test
+    }
+    static final Map&lt;String, String&gt; STAGE_STATUS = [
+        &#39;SUCCESS&#39;: &#39;SUCCESS&#39;,
+        &#39;FAILURE&#39;: &#39;FAILURE&#39;,
+        &#39;ABORTED&#39;: &#39;ABORTED&#39;,
+        &#39;SKIPPED&#39;: &#39;SKIPPED&#39;
+    ]
+    static final Map&lt;String, String&gt; BUILD_STATUS = [
+        &#39;SUCCESS&#39;: &#39;SUCCESS&#39;,
+        &#39;UNSTABLE&#39;: &#39;UNSTABLE&#39;,
+        &#39;FAILURE&#39;: &#39;FAILURE&#39;,
+        &#39;ABORTED&#39;: &#39;ABORTED&#39;,
+        &#39;NOT_BUILT&#39;: &#39;NOT_BUILT&#39;
+    ]
+    void call() {
+        return this.test
+    }
+}</pre>
+</div></div></div></div><ul><li><p><code>resultStatus = sharedLib.resource.ResultStatus</code></p><ul><li><p>Example: Accessing a utility class from the Shared Library</p></li></ul></li><li><p><code>currentBuild.result = resultStatus.BUILD_STATUS.ABORTED</code></p><ul><li><p>Example: Setting the build result based on a constant from the Shared Library</p></li></ul></li></ul><h5 id="ImplementaSharedLibraryFromASubfolderinJenkins-3.2.3.2inOtherGroovyFile">3.2.3.2 in Other Groovy File</h5><ul><li><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: groovy; gutter: false; theme: Confluence" data-theme="Confluence">// groovy/unityHelper.groovy
+import static resource.ResultStatus.STAGE_STATUS
+import static resource.ResultStatus.BUILD_STATUS</pre>
+</div></div></li><li><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: groovy; gutter: false; theme: Confluence" data-theme="Confluence">// groovy/unityHelper.groovy
+catchError(buildResult: BUILD_STATUS.SUCCESS, stageResult: STAGE_STATUS.FAILURE) {
+    error(&quot;${stageName} Unity batch mode failed with exit code: ${exitCode}, but build will continue.&quot;)
+}</pre>
+</div></div></li></ul><h4 id="ImplementaSharedLibraryFromASubfolderinJenkins-3.2.4(New/Important)Using‘NotStatic’packagefromtheSharedLibrary">3.2.4 <strong>(New/Important)</strong> Using ‘Not Static’ package from the Shared Library</h4><ul><li><p>Regarding Groovy Class Construction &amp; Dynamic Memory Allocation in Jenkinsfile</p></li></ul><ul><li><p><code>resultStatus = sharedLib.resource.ResultStatus</code></p><ul><li><p>The same way to access a utility class from the Shared Library</p></li></ul></li><li><p><code>def resultStatusClass = resultStatus.new(&quot;constructor test&quot;)</code></p><ul><li><p>Using <code>.new()</code> function to instantiate  instead of new Class();</p></li></ul></li><li><p><code>def resultStatusValue = resultStatusClass.call()</code></p></li><li><p><code>echo &quot;Result Status Value: ${resultStatusValue}&quot;</code></p><ul><li><p>How to call ‘call’ function and It would return ‘constructor test’ text and assign the text to resultStatusValue variable</p></li><li><p>Outcome:</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20250327-210521.png" width="301" loading="lazy" src="attachments/1712521217/1719435337.png?width=301" data-image-src="attachments/1712521217/1719435337.png" data-height="44" data-width="301" data-unresolved-comment-count="0" data-linked-resource-id="1719435337" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20250327-210521.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1712521217" data-linked-resource-container-version="4" data-media-id="b70b00b3-edbb-4001-9c6e-cce732b81968" data-media-type="file"></span></li></ul></li></ul><p />
+                    </div>
+
+                                        <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1712521217/1714520080.png">image-20250325-153202.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1712521217/1714061348.png">image-20250325-153236.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1712521217/1714651150.png">image-20250325-170454.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1712521217/1714749463.png">image-20250325-171054.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1712521217/1714421779.png">image-20250325-173054.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1712521217/1714126872.png">image-20250325-184325.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1712521217/1714356275.png">image-20250325-184346.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1712521217/1719435337.png">image-20250327-210521.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on May 27, 2025 13:33</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

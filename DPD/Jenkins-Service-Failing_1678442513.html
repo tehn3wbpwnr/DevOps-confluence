@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DevOps / Pipeline &amp; Deployment : Jenkins Service Failing</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">DevOps / Pipeline &amp; Deployment</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1179353439.html">DevOps / Pipeline &amp; Deployment Home</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Linux-Jenkins-Documents_1542455384.html">Linux Jenkins Documents</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Bug-Fix-and-Trouble-Shooting_1678409764.html">Bug Fix and Trouble Shooting</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            DevOps / Pipeline &amp; Deployment : Jenkins Service Failing
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                            
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Chris Park</span>, last modified on Mar 10, 2025
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <p>: This issue occurred after the <code>jenkins.service</code> file was overwritten by 'apt upgrade'.</p><hr/><p><strong>Contents</strong></p><style type='text/css'>/*<![CDATA[*/
+div.rbtoc1748352812220 {padding: 0px;}
+div.rbtoc1748352812220 ul {list-style: none;margin-left: 0px;}
+div.rbtoc1748352812220 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style><div class='toc-macro rbtoc1748352812220'>
+<ul class='toc-indentation'>
+<li><a href='#JenkinsServiceFailing-1.Diagnosistheissue'>1. Diagnosis the issue</a></li>
+<li><a href='#JenkinsServiceFailing-2.Troubleshooting'>2. Troubleshooting</a></li>
+</ul>
+</div><hr/><h1 id="JenkinsServiceFailing-1.Diagnosistheissue">1. <strong>Diagnosis the issue</strong></h1><p>The situation is like the screenshot shown as below</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="스크린샷 2025-03-10 141630-20250310-181630.png" width="760" loading="lazy" src="attachments/1678442513/1678573580.png?width=760" data-image-src="attachments/1678442513/1678573580.png" data-height="243" data-width="856" data-unresolved-comment-count="0" data-linked-resource-id="1678573580" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="스크린샷 2025-03-10 141630-20250310-181630.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1678442513" data-linked-resource-container-version="4" data-media-id="a88a85f4-af36-46d7-a98f-0f7fcc7ae53c" data-media-type="file"></span><p> For a more <strong>detailed diagnosis</strong>, please run the command <code>'systemctl show jenkins | grep -E '^User=|^Group='</code> to <u>check the system environment variables of the Jenkins service</u>. The output should resemble the log below.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">User=jenkins-ubuntu-dev-test
+Group=jenkins-ubuntu-dev-test</pre>
+</div></div><p /><p>If the outputs are </p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">User=jenkins
+Group=jenkins</pre>
+</div></div><p>or does not match the VM host user, we <strong>need to update</strong> the <code>jenkins.service</code> file.</p><hr/><h1 id="JenkinsServiceFailing-2.Troubleshooting"><strong>2. Troubleshooting</strong></h1><p>Here is the break downs for fixing this issue.</p><ol start="1"><li><p><strong>Navigate to the service file:</strong><br/>Go to <code>/lib/systemd/system/</code> and open the <code>jenkins.service</code> file with superuser permissions.</p></li><li><p><strong>Navigate to the service file:</strong><br/>Go to <code>/lib/systemd/system/</code> and open the <code>jenkins.service</code> file with superuser permissions.</p></li><li><p><strong>Update the user and group:</strong><br/>Change these values to match the VM host user (e.g., <code>jenkins-ubuntu-dev-test</code>).</p></li><li><p><strong>Enable system logging:</strong><br/>Uncomment the following line to enable system logging <br/>&gt;&gt; ‘<code>#Environment=&quot;JENKINS_LOG=%L/jenkins/jenkins.log</code>’ for system logging</p></li><li><p><strong>Save the changes and exit the editor</strong></p></li><li><p><strong>Reload the systemd daemon: </strong><br/>&gt;&gt; <code>sudo systemctl daemon-reload</code></p></li><li><p><strong>Restart the Jenkins service: </strong><br/>&gt;&gt;<code>sudo systemctl restart jenkins</code></p></li><li><p><strong>Check the service status: </strong><br/>&gt;&gt; <code>sudo systemctl status jenkins</code></p></li></ol><hr/><p>I hope these steps resolve your issue. Good luck! <img class="emoticon emoticon-wink" data-emoji-id="1f609" data-emoji-shortname=":wink:" data-emoji-fallback="😉" src="images/icons/emoticons/wink.png" width="16" height="16" data-emoticon-name="wink" alt="(wink)"/> </p><p />
+                    </div>
+
+                                        <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1678442513/1678573580.png">스크린샷 2025-03-10 141630-20250310-181630.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on May 27, 2025 13:33</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

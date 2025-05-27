@@ -1,0 +1,1578 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="102" result="Failed(Child)" total="102" passed="60" failed="42" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2025-03-12 13:22:16Z" end-time="2025-03-12 13:22:32Z" duration="15.6733077">
+  <test-suite type="TestSuite" id="1124" name="DLX Template" fullname="DLX Template" runstate="Runnable" testcasecount="102" result="Failed" site="Child" start-time="2025-03-12 13:22:16Z" end-time="2025-03-12 13:22:32Z" duration="15.673308" total="102" passed="60" failed="42" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1121" name="VARLab.DLX.Tests.PlayMode.dll" fullname="/var/lib/jenkins/workspace/Tattoo-and-Piercing-Studio-Inspection/TPI-PR/Unity_Project/Library/ScriptAssemblies/VARLab.DLX.Tests.PlayMode.dll" runstate="Runnable" testcasecount="102" result="Failed" site="Child" start-time="2025-03-12 13:22:16Z" end-time="2025-03-12 13:22:32Z" duration="15.664740" total="102" passed="60" failed="42" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="12338" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1122" name="Tests" fullname="Tests" runstate="Runnable" testcasecount="102" result="Failed" site="Child" start-time="2025-03-12 13:22:16Z" end-time="2025-03-12 13:22:32Z" duration="15.663920" total="102" passed="60" failed="42" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="1123" name="PlayMode" fullname="Tests.PlayMode" runstate="Runnable" testcasecount="102" result="Failed" site="Child" start-time="2025-03-12 13:22:16Z" end-time="2025-03-12 13:22:32Z" duration="15.662813" total="102" passed="60" failed="42" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1003" name="ActivityLogBuilderIntegrationTest" fullname="Tests.PlayMode.ActivityLogBuilderIntegrationTest" classname="Tests.PlayMode.ActivityLogBuilderIntegrationTest" runstate="Runnable" testcasecount="3" result="Passed" start-time="2025-03-12 13:22:16Z" end-time="2025-03-12 13:22:17Z" duration="1.150714" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1004" name="SceneLoaded" fullname="Tests.PlayMode.ActivityLogBuilderIntegrationTest.SceneLoaded" methodname="SceneLoaded" classname="Tests.PlayMode.ActivityLogBuilderIntegrationTest" runstate="Runnable" seed="965048616" result="Passed" start-time="2025-03-12 13:22:16Z" end-time="2025-03-12 13:22:17Z" duration="0.725739" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Order" value="0" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1005" name="ContentContainerVisibleWhenActivityLogListEmpty" fullname="Tests.PlayMode.ActivityLogBuilderIntegrationTest.ContentContainerVisibleWhenActivityLogListEmpty" methodname="ContentContainerVisibleWhenActivityLogListEmpty" classname="Tests.PlayMode.ActivityLogBuilderIntegrationTest" runstate="Runnable" seed="1360158702" result="Passed" start-time="2025-03-12 13:22:17Z" end-time="2025-03-12 13:22:17Z" duration="0.205135" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Order" value="1" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1006" name="ContentContainerVisibleWhenActivityLogListHasEntries" fullname="Tests.PlayMode.ActivityLogBuilderIntegrationTest.ContentContainerVisibleWhenActivityLogListHasEntries" methodname="ContentContainerVisibleWhenActivityLogListHasEntries" classname="Tests.PlayMode.ActivityLogBuilderIntegrationTest" runstate="Runnable" seed="1700042720" result="Passed" start-time="2025-03-12 13:22:17Z" end-time="2025-03-12 13:22:17Z" duration="0.201620" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Order" value="2" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1007" name="ActivityLogTests" fullname="Tests.PlayMode.ActivityLogTests" classname="Tests.PlayMode.ActivityLogTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2025-03-12 13:22:17Z" end-time="2025-03-12 13:22:21Z" duration="4.044067" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1010" name="ActivityLog_DisabledLogging_DoesNotCreateLogs" fullname="Tests.PlayMode.ActivityLogTests.ActivityLog_DisabledLogging_DoesNotCreateLogs" methodname="ActivityLog_DisabledLogging_DoesNotCreateLogs" classname="Tests.PlayMode.ActivityLogTests" runstate="Runnable" seed="258224333" result="Passed" start-time="2025-03-12 13:22:17Z" end-time="2025-03-12 13:22:17Z" duration="0.014933" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Invalid inspectable on , please set the location of the inspectable object
+No Camera set for an inspectable 
+]]></output>
+            </test-case>
+            <test-case id="1012" name="ActivityLog_LogExitPoi_CreatesCorrectLog" fullname="Tests.PlayMode.ActivityLogTests.ActivityLog_LogExitPoi_CreatesCorrectLog" methodname="ActivityLog_LogExitPoi_CreatesCorrectLog" classname="Tests.PlayMode.ActivityLogTests" runstate="Runnable" seed="1260745810" result="Passed" start-time="2025-03-12 13:22:17Z" end-time="2025-03-12 13:22:18Z" duration="1.004406" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Invalid inspectable on , please set the location of the inspectable object
+No Camera set for an inspectable 
+]]></output>
+            </test-case>
+            <test-case id="1013" name="ActivityLog_LogObjectClicked_CreatesCorrectLog" fullname="Tests.PlayMode.ActivityLogTests.ActivityLog_LogObjectClicked_CreatesCorrectLog" methodname="ActivityLog_LogObjectClicked_CreatesCorrectLog" classname="Tests.PlayMode.ActivityLogTests" runstate="Runnable" seed="1015480283" result="Passed" start-time="2025-03-12 13:22:18Z" end-time="2025-03-12 13:22:19Z" duration="1.004864" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Invalid inspectable on , please set the location of the inspectable object
+No Camera set for an inspectable 
+]]></output>
+            </test-case>
+            <test-case id="1014" name="ActivityLog_LogPhotoTaken_CreatesCorrectLog" fullname="Tests.PlayMode.ActivityLogTests.ActivityLog_LogPhotoTaken_CreatesCorrectLog" methodname="ActivityLog_LogPhotoTaken_CreatesCorrectLog" classname="Tests.PlayMode.ActivityLogTests" runstate="Runnable" seed="1513319123" result="Passed" start-time="2025-03-12 13:22:19Z" end-time="2025-03-12 13:22:20Z" duration="1.004514" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Invalid inspectable on , please set the location of the inspectable object
+No Camera set for an inspectable 
+]]></output>
+            </test-case>
+            <test-case id="1011" name="ActivityLog_LogPoiEnter_CreatesCorrectLog" fullname="Tests.PlayMode.ActivityLogTests.ActivityLog_LogPoiEnter_CreatesCorrectLog" methodname="ActivityLog_LogPoiEnter_CreatesCorrectLog" classname="Tests.PlayMode.ActivityLogTests" runstate="Runnable" seed="1954140172" result="Passed" start-time="2025-03-12 13:22:20Z" end-time="2025-03-12 13:22:21Z" duration="1.003924" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Invalid inspectable on , please set the location of the inspectable object
+No Camera set for an inspectable 
+]]></output>
+            </test-case>
+            <test-case id="1009" name="ActivityLog_OnLogAdded_IsInvokedCorrectly" fullname="Tests.PlayMode.ActivityLogTests.ActivityLog_OnLogAdded_IsInvokedCorrectly" methodname="ActivityLog_OnLogAdded_IsInvokedCorrectly" classname="Tests.PlayMode.ActivityLogTests" runstate="Runnable" seed="112033801" result="Passed" start-time="2025-03-12 13:22:21Z" end-time="2025-03-12 13:22:21Z" duration="0.003083" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Invalid inspectable on , please set the location of the inspectable object
+No Camera set for an inspectable 
+]]></output>
+            </test-case>
+            <test-case id="1008" name="ActivityLog_Start_InitializesCorrectly" fullname="Tests.PlayMode.ActivityLogTests.ActivityLog_Start_InitializesCorrectly" methodname="ActivityLog_Start_InitializesCorrectly" classname="Tests.PlayMode.ActivityLogTests" runstate="Runnable" seed="2064356586" result="Passed" start-time="2025-03-12 13:22:21Z" end-time="2025-03-12 13:22:21Z" duration="0.004747" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Invalid inspectable on , please set the location of the inspectable object
+No Camera set for an inspectable 
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1015" name="GalleryBuilderIntegrationTest" fullname="Tests.PlayMode.GalleryBuilderIntegrationTest" classname="Tests.PlayMode.GalleryBuilderIntegrationTest" runstate="Runnable" testcasecount="4" result="Passed" start-time="2025-03-12 13:22:21Z" end-time="2025-03-12 13:22:22Z" duration="0.646507" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1016" name="SceneLoaded" fullname="Tests.PlayMode.GalleryBuilderIntegrationTest.SceneLoaded" methodname="SceneLoaded" classname="Tests.PlayMode.GalleryBuilderIntegrationTest" runstate="Runnable" seed="812934537" result="Passed" start-time="2025-03-12 13:22:21Z" end-time="2025-03-12 13:22:21Z" duration="0.239488" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Order" value="0" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1017" name="EmptyContentContainerVisibleWhenActivityLogListEmpty" fullname="Tests.PlayMode.GalleryBuilderIntegrationTest.EmptyContentContainerVisibleWhenActivityLogListEmpty" methodname="EmptyContentContainerVisibleWhenActivityLogListEmpty" classname="Tests.PlayMode.GalleryBuilderIntegrationTest" runstate="Runnable" seed="1512420823" result="Passed" start-time="2025-03-12 13:22:21Z" end-time="2025-03-12 13:22:22Z" duration="0.201398" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Order" value="1" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1018" name="ContentContainerVisibleWhenActivityLogListHasEntries" fullname="Tests.PlayMode.GalleryBuilderIntegrationTest.ContentContainerVisibleWhenActivityLogListHasEntries" methodname="ContentContainerVisibleWhenActivityLogListHasEntries" classname="Tests.PlayMode.GalleryBuilderIntegrationTest" runstate="Runnable" seed="286801892" result="Passed" start-time="2025-03-12 13:22:22Z" end-time="2025-03-12 13:22:22Z" duration="0.201654" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Order" value="2" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1019" name="ImageGalleyContainsOnePhoto" fullname="Tests.PlayMode.GalleryBuilderIntegrationTest.ImageGalleyContainsOnePhoto" methodname="ImageGalleyContainsOnePhoto" classname="Tests.PlayMode.GalleryBuilderIntegrationTest" runstate="Runnable" seed="16413545" result="Passed" start-time="2025-03-12 13:22:22Z" end-time="2025-03-12 13:22:22Z" duration="0.001743" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Order" value="3" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1020" name="ImageHandlerIntegrationTests" fullname="Tests.PlayMode.ImageHandlerIntegrationTests" classname="Tests.PlayMode.ImageHandlerIntegrationTests" runstate="Runnable" testcasecount="7" result="Failed" site="Child" start-time="2025-03-12 13:22:22Z" end-time="2025-03-12 13:22:22Z" duration="0.557737" total="7" passed="1" failed="6" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <output><![CDATA[Invalid inspectable on , please set the location of the inspectable object
+Invalid inspectable on , please set the location of the inspectable object
+]]></output>
+            <test-case id="1021" name="CheckIfInspectableCameraIsNotNull" fullname="Tests.PlayMode.ImageHandlerIntegrationTests.CheckIfInspectableCameraIsNotNull" methodname="CheckIfInspectableCameraIsNotNull" classname="Tests.PlayMode.ImageHandlerIntegrationTests" runstate="Runnable" seed="160015539" result="Passed" start-time="2025-03-12 13:22:22Z" end-time="2025-03-12 13:22:22Z" duration="0.001869" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Order" value="0" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1022" name="CheckIfTempPhotoWasTaken" fullname="Tests.PlayMode.ImageHandlerIntegrationTests.CheckIfTempPhotoWasTaken" methodname="CheckIfTempPhotoWasTaken" classname="Tests.PlayMode.ImageHandlerIntegrationTests" runstate="Runnable" seed="1149258490" result="Failed" start-time="2025-03-12 13:22:22Z" end-time="2025-03-12 13:22:22Z" duration="0.527420" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Order" value="1" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[Unhandled log message: '[Error] RenderTexture.Create failed'. Use UnityEngine.TestTools.LogAssert.Expect]]></message>
+                <stack-trace><![CDATA[UnityEngine.Camera:Render ()
+VARLab.DLX.ImageHandler:CaptureImage (VARLab.DLX.InspectableObject) (at Assets/Scripts/ImageSystem/ImageHandler.cs:93)
+VARLab.DLX.ImageHandler:TakeTempPhoto (VARLab.DLX.InspectableObject) (at Assets/Scripts/ImageSystem/ImageHandler.cs:77)
+Tests.PlayMode.ImageHandlerIntegrationTests/<CheckIfTempPhotoWasTaken>d__12:MoveNext () (at Assets/Tests/Play Mode/ImageHandlerIntegrationTests.cs:101)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+]]></output>
+            </test-case>
+            <test-case id="1023" name="CheckIfPhotoIsSavedToList" fullname="Tests.PlayMode.ImageHandlerIntegrationTests.CheckIfPhotoIsSavedToList" methodname="CheckIfPhotoIsSavedToList" classname="Tests.PlayMode.ImageHandlerIntegrationTests" runstate="Runnable" seed="149678945" result="Failed" start-time="2025-03-12 13:22:22Z" end-time="2025-03-12 13:22:22Z" duration="0.007510" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Order" value="2" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[Unhandled log message: '[Error] RenderTexture.Create failed'. Use UnityEngine.TestTools.LogAssert.Expect]]></message>
+                <stack-trace><![CDATA[UnityEngine.Rendering.RenderPipelineManager:DoRenderLoop_Internal (UnityEngine.Rendering.RenderPipelineAsset,intptr,UnityEngine.Object,Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle)
+
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+]]></output>
+            </test-case>
+            <test-case id="1024" name="CheckIfPhotoIsRemovedFromList" fullname="Tests.PlayMode.ImageHandlerIntegrationTests.CheckIfPhotoIsRemovedFromList" methodname="CheckIfPhotoIsRemovedFromList" classname="Tests.PlayMode.ImageHandlerIntegrationTests" runstate="Runnable" seed="1569826437" result="Failed" start-time="2025-03-12 13:22:22Z" end-time="2025-03-12 13:22:22Z" duration="0.003558" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Order" value="3" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[Unhandled log message: '[Error] RenderTexture.Create failed'. Use UnityEngine.TestTools.LogAssert.Expect]]></message>
+                <stack-trace><![CDATA[UnityEngine.Rendering.RenderPipelineManager:DoRenderLoop_Internal (UnityEngine.Rendering.RenderPipelineAsset,intptr,UnityEngine.Object,Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle)
+
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+]]></output>
+            </test-case>
+            <test-case id="1025" name="RemovePhotoReturnsFalseIfIDNotFound" fullname="Tests.PlayMode.ImageHandlerIntegrationTests.RemovePhotoReturnsFalseIfIDNotFound" methodname="RemovePhotoReturnsFalseIfIDNotFound" classname="Tests.PlayMode.ImageHandlerIntegrationTests" runstate="Runnable" seed="1226634483" result="Failed" start-time="2025-03-12 13:22:22Z" end-time="2025-03-12 13:22:22Z" duration="0.003367" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Order" value="4" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[Unhandled log message: '[Error] RenderTexture.Create failed'. Use UnityEngine.TestTools.LogAssert.Expect]]></message>
+                <stack-trace><![CDATA[UnityEngine.Rendering.RenderPipelineManager:DoRenderLoop_Internal (UnityEngine.Rendering.RenderPipelineAsset,intptr,UnityEngine.Object,Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle)
+
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+]]></output>
+            </test-case>
+            <test-case id="1026" name="OnTempPhotoTakenDoesNotGetInvokedWithObjectViewerInspectables" fullname="Tests.PlayMode.ImageHandlerIntegrationTests.OnTempPhotoTakenDoesNotGetInvokedWithObjectViewerInspectables" methodname="OnTempPhotoTakenDoesNotGetInvokedWithObjectViewerInspectables" classname="Tests.PlayMode.ImageHandlerIntegrationTests" runstate="Runnable" seed="2026105180" result="Failed" start-time="2025-03-12 13:22:22Z" end-time="2025-03-12 13:22:22Z" duration="0.003390" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Order" value="5" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[Unhandled log message: '[Error] RenderTexture.Create failed'. Use UnityEngine.TestTools.LogAssert.Expect]]></message>
+                <stack-trace><![CDATA[UnityEngine.Rendering.RenderPipelineManager:DoRenderLoop_Internal (UnityEngine.Rendering.RenderPipelineAsset,intptr,UnityEngine.Object,Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle)
+
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+]]></output>
+            </test-case>
+            <test-case id="1027" name="PhotoSavedEventIsTriggeredWhenAPhotoIsSaved" fullname="Tests.PlayMode.ImageHandlerIntegrationTests.PhotoSavedEventIsTriggeredWhenAPhotoIsSaved" methodname="PhotoSavedEventIsTriggeredWhenAPhotoIsSaved" classname="Tests.PlayMode.ImageHandlerIntegrationTests" runstate="Runnable" seed="2035405397" result="Failed" start-time="2025-03-12 13:22:22Z" end-time="2025-03-12 13:22:22Z" duration="0.003383" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Order" value="6" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[Unhandled log message: '[Error] RenderTexture.Create failed'. Use UnityEngine.TestTools.LogAssert.Expect]]></message>
+                <stack-trace><![CDATA[UnityEngine.Rendering.RenderPipelineManager:DoRenderLoop_Internal (UnityEngine.Rendering.RenderPipelineAsset,intptr,UnityEngine.Object,Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle)
+
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1028" name="InspectableObjectIntegrationTest" fullname="Tests.PlayMode.InspectableObjectIntegrationTest" classname="Tests.PlayMode.InspectableObjectIntegrationTest" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2025-03-12 13:22:22Z" end-time="2025-03-12 13:22:22Z" duration="0.025397" total="5" passed="4" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <output><![CDATA[RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+]]></output>
+            <test-case id="1030" name="CheckListOfObjectState" fullname="Tests.PlayMode.InspectableObjectIntegrationTest.CheckListOfObjectState" methodname="CheckListOfObjectState" classname="Tests.PlayMode.InspectableObjectIntegrationTest" runstate="Runnable" seed="712253327" result="Passed" start-time="2025-03-12 13:22:22Z" end-time="2025-03-12 13:22:22Z" duration="0.007508" asserts="0">
+              <properties>
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Invalid inspectable on , please set the location of the inspectable object
+]]></output>
+            </test-case>
+            <test-case id="1029" name="CheckObjectId" fullname="Tests.PlayMode.InspectableObjectIntegrationTest.CheckObjectId" methodname="CheckObjectId" classname="Tests.PlayMode.InspectableObjectIntegrationTest" runstate="Runnable" seed="1439902813" result="Passed" start-time="2025-03-12 13:22:22Z" end-time="2025-03-12 13:22:22Z" duration="0.001652" asserts="0">
+              <properties>
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Invalid inspectable on , please set the location of the inspectable object
+]]></output>
+            </test-case>
+            <test-case id="1032" name="CheckPhotoDeleted" fullname="Tests.PlayMode.InspectableObjectIntegrationTest.CheckPhotoDeleted" methodname="CheckPhotoDeleted" classname="Tests.PlayMode.InspectableObjectIntegrationTest" runstate="Runnable" seed="1746996370" result="Passed" start-time="2025-03-12 13:22:22Z" end-time="2025-03-12 13:22:22Z" duration="0.004018" asserts="0">
+              <properties>
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Invalid inspectable on , please set the location of the inspectable object
+]]></output>
+            </test-case>
+            <test-case id="1031" name="CheckPhotoTaken" fullname="Tests.PlayMode.InspectableObjectIntegrationTest.CheckPhotoTaken" methodname="CheckPhotoTaken" classname="Tests.PlayMode.InspectableObjectIntegrationTest" runstate="Runnable" seed="387977873" result="Passed" start-time="2025-03-12 13:22:22Z" end-time="2025-03-12 13:22:22Z" duration="0.001651" asserts="0">
+              <properties>
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Invalid inspectable on , please set the location of the inspectable object
+]]></output>
+            </test-case>
+            <test-case id="1033" name="GenerateIdFailsIfObjectNameIsNull" fullname="Tests.PlayMode.InspectableObjectIntegrationTest.GenerateIdFailsIfObjectNameIsNull" methodname="GenerateIdFailsIfObjectNameIsNull" classname="Tests.PlayMode.InspectableObjectIntegrationTest" runstate="Runnable" seed="1024145138" result="Failed" start-time="2025-03-12 13:22:22Z" end-time="2025-03-12 13:22:22Z" duration="0.004745" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[Unhandled log message: '[Error] RenderTexture.Create failed'. Use UnityEngine.TestTools.LogAssert.Expect]]></message>
+                <stack-trace><![CDATA[UnityEngine.Rendering.RenderPipelineManager:DoRenderLoop_Internal (UnityEngine.Rendering.RenderPipelineAsset,intptr,UnityEngine.Object,Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle)
+
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[Invalid inspectable on , please set the location of the inspectable object
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1034" name="InspectionLogTests" fullname="Tests.PlayMode.InspectionLogTests" classname="Tests.PlayMode.InspectionLogTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2025-03-12 13:22:22Z" end-time="2025-03-12 13:22:23Z" duration="0.357679" total="4" passed="0" failed="4" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <output><![CDATA[RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+]]></output>
+            <test-case id="1035" name="SceneLoaded" fullname="Tests.PlayMode.InspectionLogTests.SceneLoaded" methodname="SceneLoaded" classname="Tests.PlayMode.InspectionLogTests" runstate="Runnable" seed="902821283" result="Failed" start-time="2025-03-12 13:22:22Z" end-time="2025-03-12 13:22:23Z" duration="0.339348" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Order" value="0" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[Unhandled log message: '[Error] RenderTexture.Create failed'. Use UnityEngine.TestTools.LogAssert.Expect]]></message>
+                <stack-trace><![CDATA[UnityEngine.Rendering.RenderPipelineManager:DoRenderLoop_Internal (UnityEngine.Rendering.RenderPipelineAsset,intptr,UnityEngine.Object,Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle)
+
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+]]></output>
+            </test-case>
+            <test-case id="1036" name="ContentContainerVisibleWhenInspectionLogListEmpty" fullname="Tests.PlayMode.InspectionLogTests.ContentContainerVisibleWhenInspectionLogListEmpty" methodname="ContentContainerVisibleWhenInspectionLogListEmpty" classname="Tests.PlayMode.InspectionLogTests" runstate="Runnable" seed="1237891645" result="Failed" label="Error" start-time="2025-03-12 13:22:23Z" end-time="2025-03-12 13:22:23Z" duration="0.010265" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Order" value="1" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[System.NullReferenceException : Object reference not set to an instance of an object]]></message>
+                <stack-trace><![CDATA[  at Tests.PlayMode.InspectionLogTests+<ContentContainerVisibleWhenInspectionLogListEmpty>d__11.MoveNext () [0x0003a] in /var/lib/jenkins/workspace/Tattoo-and-Piercing-Studio-Inspection/TPI-PR/Unity_Project/Assets/Tests/Play Mode/InspectionLogTests.cs:71 
+  at UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0004e] in ./Library/PackageCache/com.unity.test-framework/UnityEngine.TestRunner/NUnitExtensions/Attributes/TestEnumerator.cs:44 ]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1037" name="ContentContainerVisibleWhenInspectionLogListFull" fullname="Tests.PlayMode.InspectionLogTests.ContentContainerVisibleWhenInspectionLogListFull" methodname="ContentContainerVisibleWhenInspectionLogListFull" classname="Tests.PlayMode.InspectionLogTests" runstate="Runnable" seed="1975399626" result="Failed" label="Error" start-time="2025-03-12 13:22:23Z" end-time="2025-03-12 13:22:23Z" duration="0.001309" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Order" value="2" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[System.NullReferenceException : Object reference not set to an instance of an object]]></message>
+                <stack-trace><![CDATA[  at Tests.PlayMode.InspectionLogTests+<ContentContainerVisibleWhenInspectionLogListFull>d__12.MoveNext () [0x00048] in /var/lib/jenkins/workspace/Tattoo-and-Piercing-Studio-Inspection/TPI-PR/Unity_Project/Assets/Tests/Play Mode/InspectionLogTests.cs:91 
+  at UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0004e] in ./Library/PackageCache/com.unity.test-framework/UnityEngine.TestRunner/NUnitExtensions/Attributes/TestEnumerator.cs:44 ]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1038" name="WhenRowRemovedInvokeDeleteInspection" fullname="Tests.PlayMode.InspectionLogTests.WhenRowRemovedInvokeDeleteInspection" methodname="WhenRowRemovedInvokeDeleteInspection" classname="Tests.PlayMode.InspectionLogTests" runstate="Runnable" seed="880792311" result="Failed" label="Error" start-time="2025-03-12 13:22:23Z" end-time="2025-03-12 13:22:23Z" duration="0.001598" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Order" value="3" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[System.NullReferenceException : Object reference not set to an instance of an object]]></message>
+                <stack-trace><![CDATA[  at Tests.PlayMode.InspectionLogTests+<WhenRowRemovedInvokeDeleteInspection>d__13.MoveNext () [0x00058] in /var/lib/jenkins/workspace/Tattoo-and-Piercing-Studio-Inspection/TPI-PR/Unity_Project/Assets/Tests/Play Mode/InspectionLogTests.cs:113 
+  at UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0004e] in ./Library/PackageCache/com.unity.test-framework/UnityEngine.TestRunner/NUnitExtensions/Attributes/TestEnumerator.cs:44 ]]></stack-trace>
+              </failure>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1039" name="InspectionReviewIntegrationTest" fullname="Tests.PlayMode.InspectionReviewIntegrationTest" classname="Tests.PlayMode.InspectionReviewIntegrationTest" runstate="Runnable" testcasecount="9" result="Passed" start-time="2025-03-12 13:22:23Z" end-time="2025-03-12 13:22:24Z" duration="0.825540" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1040" name="SceneLoaded" fullname="Tests.PlayMode.InspectionReviewIntegrationTest.SceneLoaded" methodname="SceneLoaded" classname="Tests.PlayMode.InspectionReviewIntegrationTest" runstate="Runnable" seed="780512923" result="Passed" start-time="2025-03-12 13:22:23Z" end-time="2025-03-12 13:22:23Z" duration="0.276711" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Order" value="0" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1041" name="InspectionReviewWindowIsHiddenOnStart" fullname="Tests.PlayMode.InspectionReviewIntegrationTest.InspectionReviewWindowIsHiddenOnStart" methodname="InspectionReviewWindowIsHiddenOnStart" classname="Tests.PlayMode.InspectionReviewIntegrationTest" runstate="Runnable" seed="1113878617" result="Passed" start-time="2025-03-12 13:22:23Z" end-time="2025-03-12 13:22:23Z" duration="0.101955" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Order" value="1" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1042" name="InspectionReviewWindowDisplayStyleIsFlex" fullname="Tests.PlayMode.InspectionReviewIntegrationTest.InspectionReviewWindowDisplayStyleIsFlex" methodname="InspectionReviewWindowDisplayStyleIsFlex" classname="Tests.PlayMode.InspectionReviewIntegrationTest" runstate="Runnable" seed="1080411886" result="Passed" start-time="2025-03-12 13:22:23Z" end-time="2025-03-12 13:22:23Z" duration="0.217845" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Order" value="2" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1043" name="TabsAreNotNull" fullname="Tests.PlayMode.InspectionReviewIntegrationTest.TabsAreNotNull" methodname="TabsAreNotNull" classname="Tests.PlayMode.InspectionReviewIntegrationTest" runstate="Runnable" seed="1445728944" result="Passed" start-time="2025-03-12 13:22:23Z" end-time="2025-03-12 13:22:23Z" duration="0.002025" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Order" value="3" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1044" name="ProgressIndicatorIsNotNull" fullname="Tests.PlayMode.InspectionReviewIntegrationTest.ProgressIndicatorIsNotNull" methodname="ProgressIndicatorIsNotNull" classname="Tests.PlayMode.InspectionReviewIntegrationTest" runstate="Runnable" seed="1404340838" result="Passed" start-time="2025-03-12 13:22:23Z" end-time="2025-03-12 13:22:23Z" duration="0.001602" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Order" value="4" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1045" name="SelectedTabHasTheCorrectClass" fullname="Tests.PlayMode.InspectionReviewIntegrationTest.SelectedTabHasTheCorrectClass" methodname="SelectedTabHasTheCorrectClass" classname="Tests.PlayMode.InspectionReviewIntegrationTest" runstate="Runnable" seed="639512064" result="Passed" start-time="2025-03-12 13:22:23Z" end-time="2025-03-12 13:22:23Z" duration="0.007943" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Order" value="5" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1046" name="UnselectedTabsHaveTheCorrectClass" fullname="Tests.PlayMode.InspectionReviewIntegrationTest.UnselectedTabsHaveTheCorrectClass" methodname="UnselectedTabsHaveTheCorrectClass" classname="Tests.PlayMode.InspectionReviewIntegrationTest" runstate="Runnable" seed="631352086" result="Passed" start-time="2025-03-12 13:22:23Z" end-time="2025-03-12 13:22:23Z" duration="0.009431" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Order" value="6" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1047" name="OnHideDisplayStyleIsNone" fullname="Tests.PlayMode.InspectionReviewIntegrationTest.OnHideDisplayStyleIsNone" methodname="OnHideDisplayStyleIsNone" classname="Tests.PlayMode.InspectionReviewIntegrationTest" runstate="Runnable" seed="2139391244" result="Passed" start-time="2025-03-12 13:22:23Z" end-time="2025-03-12 13:22:24Z" duration="0.101568" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Order" value="7" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1048" name="TabOneEventInvokedWhenTabOneButtonClicked" fullname="Tests.PlayMode.InspectionReviewIntegrationTest.TabOneEventInvokedWhenTabOneButtonClicked" methodname="TabOneEventInvokedWhenTabOneButtonClicked" classname="Tests.PlayMode.InspectionReviewIntegrationTest" runstate="Runnable" seed="1988251355" result="Passed" start-time="2025-03-12 13:22:24Z" end-time="2025-03-12 13:22:24Z" duration="0.101821" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Order" value="8" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1072" name="InspectionsTests" fullname="Tests.PlayMode.InspectionsTests" classname="Tests.PlayMode.InspectionsTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2025-03-12 13:22:24Z" end-time="2025-03-12 13:22:24Z" duration="0.036892" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <output><![CDATA[Invalid inspectable on , please set the location of the inspectable object
+Invalid inspectable on , please set the location of the inspectable object
+Inspectable One ObjectId: Bathroom_ObjectOne
+Inspectable Two ObjectId: Bathroom_ObjectTwo
+]]></output>
+            <test-case id="1073" name="CheckIfListEmpty" fullname="Tests.PlayMode.InspectionsTests.CheckIfListEmpty" methodname="CheckIfListEmpty" classname="Tests.PlayMode.InspectionsTests" runstate="Runnable" seed="547689912" result="Passed" start-time="2025-03-12 13:22:24Z" end-time="2025-03-12 13:22:24Z" duration="0.005682" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Order" value="0" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1074" name="AddInspectionToList" fullname="Tests.PlayMode.InspectionsTests.AddInspectionToList" methodname="AddInspectionToList" classname="Tests.PlayMode.InspectionsTests" runstate="Runnable" seed="280473823" result="Passed" start-time="2025-03-12 13:22:24Z" end-time="2025-03-12 13:22:24Z" duration="0.004773" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Order" value="1" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[AddInspection] No existing inspection found. Adding new inspection for ObjectOne.
+[Inspection details] Compliant: True, HasPhoto: True
+[AddInspection] Total inspections in record: 1
+]]></output>
+            </test-case>
+            <test-case id="1075" name="CheckInspectionWorks" fullname="Tests.PlayMode.InspectionsTests.CheckInspectionWorks" methodname="CheckInspectionWorks" classname="Tests.PlayMode.InspectionsTests" runstate="Runnable" seed="1456608831" result="Passed" start-time="2025-03-12 13:22:24Z" end-time="2025-03-12 13:22:24Z" duration="0.004747" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Order" value="2" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[AddInspection] Found existing inspection for ObjectOne.
+[AddInspection] Updated compliance state from True to False.
+[Inspection details] Compliant: False, HasPhoto: True
+[AddInspection] Total inspections in record: 1
+]]></output>
+            </test-case>
+            <test-case id="1076" name="DeleteInspectionWorks" fullname="Tests.PlayMode.InspectionsTests.DeleteInspectionWorks" methodname="DeleteInspectionWorks" classname="Tests.PlayMode.InspectionsTests" runstate="Runnable" seed="1642418019" result="Passed" start-time="2025-03-12 13:22:24Z" end-time="2025-03-12 13:22:24Z" duration="0.004738" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Order" value="3" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[AddInspection] No existing inspection found. Adding new inspection for ObjectTwo.
+[Inspection details] Compliant: True, HasPhoto: False
+[AddInspection] Total inspections in record: 2
+]]></output>
+            </test-case>
+            <test-case id="1077" name="PhotoDoesNotGetDeleteInReinspection" fullname="Tests.PlayMode.InspectionsTests.PhotoDoesNotGetDeleteInReinspection" methodname="PhotoDoesNotGetDeleteInReinspection" classname="Tests.PlayMode.InspectionsTests" runstate="Runnable" seed="1721269974" result="Passed" start-time="2025-03-12 13:22:24Z" end-time="2025-03-12 13:22:24Z" duration="0.005516" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Order" value="4" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[AddInspection] No existing inspection found. Adding new inspection for ObjectOne.
+[Inspection details] Compliant: True, HasPhoto: True
+[AddInspection] Total inspections in record: 1
+[AddInspection] Found existing inspection for ObjectOne.
+[AddInspection] Updated compliance state from True to False.
+[Inspection details] Compliant: False, HasPhoto: False
+[AddInspection] Total inspections in record: 1
+]]></output>
+            </test-case>
+            <test-case id="1078" name="RetrievePreviousInspection_InvokesEventWithCorrectData" fullname="Tests.PlayMode.InspectionsTests.RetrievePreviousInspection_InvokesEventWithCorrectData" methodname="RetrievePreviousInspection_InvokesEventWithCorrectData" classname="Tests.PlayMode.InspectionsTests" runstate="Runnable" seed="1861054555" result="Passed" start-time="2025-03-12 13:22:24Z" end-time="2025-03-12 13:22:24Z" duration="0.005285" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Order" value="5" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[AddInspection] Found existing inspection for ObjectOne.
+[AddInspection] Updated compliance state from False to True.
+[Inspection details] Compliant: True, HasPhoto: True
+[AddInspection] Total inspections in record: 1
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1049" name="InspectionWindowIntegrationTest" fullname="Tests.PlayMode.InspectionWindowIntegrationTest" classname="Tests.PlayMode.InspectionWindowIntegrationTest" runstate="Runnable" testcasecount="22" result="Failed" site="Child" start-time="2025-03-12 13:22:24Z" end-time="2025-03-12 13:22:24Z" duration="0.553201" total="22" passed="0" failed="22" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1050" name="SceneLoaded" fullname="Tests.PlayMode.InspectionWindowIntegrationTest.SceneLoaded" methodname="SceneLoaded" classname="Tests.PlayMode.InspectionWindowIntegrationTest" runstate="Runnable" seed="1641372304" result="Failed" start-time="2025-03-12 13:22:24Z" end-time="2025-03-12 13:22:24Z" duration="0.442459" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Order" value="0" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[Unhandled log message: '[Error] RenderTexture.Create failed'. Use UnityEngine.TestTools.LogAssert.Expect]]></message>
+                <stack-trace><![CDATA[UnityEngine.Rendering.RenderPipelineManager:DoRenderLoop_Internal (UnityEngine.Rendering.RenderPipelineAsset,intptr,UnityEngine.Object,Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle)
+
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+]]></output>
+            </test-case>
+            <test-case id="1051" name="OnPhotoTakenIsInvokedWhenCameraButtonIsClicked" fullname="Tests.PlayMode.InspectionWindowIntegrationTest.OnPhotoTakenIsInvokedWhenCameraButtonIsClicked" methodname="OnPhotoTakenIsInvokedWhenCameraButtonIsClicked" classname="Tests.PlayMode.InspectionWindowIntegrationTest" runstate="Runnable" seed="2034853934" result="Failed" start-time="2025-03-12 13:22:24Z" end-time="2025-03-12 13:22:24Z" duration="0.005281" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Order" value="1" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[Unhandled log message: '[Error] RenderTexture.Create failed'. Use UnityEngine.TestTools.LogAssert.Expect]]></message>
+                <stack-trace><![CDATA[UnityEngine.Rendering.RenderPipelineManager:DoRenderLoop_Internal (UnityEngine.Rendering.RenderPipelineAsset,intptr,UnityEngine.Object,Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle)
+
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+]]></output>
+            </test-case>
+            <test-case id="1052" name="OnWindowOpenedIsInvokedWhenWindowIsDisplayed" fullname="Tests.PlayMode.InspectionWindowIntegrationTest.OnWindowOpenedIsInvokedWhenWindowIsDisplayed" methodname="OnWindowOpenedIsInvokedWhenWindowIsDisplayed" classname="Tests.PlayMode.InspectionWindowIntegrationTest" runstate="Runnable" seed="682482083" result="Failed" start-time="2025-03-12 13:22:24Z" end-time="2025-03-12 13:22:24Z" duration="0.004036" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Order" value="2" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[Unhandled log message: '[Error] RenderTexture.Create failed'. Use UnityEngine.TestTools.LogAssert.Expect]]></message>
+                <stack-trace><![CDATA[UnityEngine.Rendering.RenderPipelineManager:DoRenderLoop_Internal (UnityEngine.Rendering.RenderPipelineAsset,intptr,UnityEngine.Object,Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle)
+
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+]]></output>
+            </test-case>
+            <test-case id="1053" name="OnWindowClosedIsInvokedWhenWindowIsHidden" fullname="Tests.PlayMode.InspectionWindowIntegrationTest.OnWindowClosedIsInvokedWhenWindowIsHidden" methodname="OnWindowClosedIsInvokedWhenWindowIsHidden" classname="Tests.PlayMode.InspectionWindowIntegrationTest" runstate="Runnable" seed="1728218572" result="Failed" start-time="2025-03-12 13:22:24Z" end-time="2025-03-12 13:22:24Z" duration="0.003664" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Order" value="3" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[Unhandled log message: '[Error] RenderTexture.Create failed'. Use UnityEngine.TestTools.LogAssert.Expect]]></message>
+                <stack-trace><![CDATA[UnityEngine.Rendering.RenderPipelineManager:DoRenderLoop_Internal (UnityEngine.Rendering.RenderPipelineAsset,intptr,UnityEngine.Object,Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle)
+
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+]]></output>
+            </test-case>
+            <test-case id="1054" name="OnCompliantSelectIsInvokedWhenCompliantButtonIsClicked" fullname="Tests.PlayMode.InspectionWindowIntegrationTest.OnCompliantSelectIsInvokedWhenCompliantButtonIsClicked" methodname="OnCompliantSelectIsInvokedWhenCompliantButtonIsClicked" classname="Tests.PlayMode.InspectionWindowIntegrationTest" runstate="Runnable" seed="1678158563" result="Failed" start-time="2025-03-12 13:22:24Z" end-time="2025-03-12 13:22:24Z" duration="0.005347" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Order" value="4" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[Unhandled log message: '[Error] RenderTexture.Create failed'. Use UnityEngine.TestTools.LogAssert.Expect]]></message>
+                <stack-trace><![CDATA[UnityEngine.Rendering.RenderPipelineManager:DoRenderLoop_Internal (UnityEngine.Rendering.RenderPipelineAsset,intptr,UnityEngine.Object,Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle)
+
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+]]></output>
+            </test-case>
+            <test-case id="1055" name="OnNonCompliantSelectIsInvokedWhenNonCompliantButtonIsClicked" fullname="Tests.PlayMode.InspectionWindowIntegrationTest.OnNonCompliantSelectIsInvokedWhenNonCompliantButtonIsClicked" methodname="OnNonCompliantSelectIsInvokedWhenNonCompliantButtonIsClicked" classname="Tests.PlayMode.InspectionWindowIntegrationTest" runstate="Runnable" seed="545991513" result="Failed" start-time="2025-03-12 13:22:24Z" end-time="2025-03-12 13:22:24Z" duration="0.005012" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Order" value="5" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[Unhandled log message: '[Error] RenderTexture.Create failed'. Use UnityEngine.TestTools.LogAssert.Expect]]></message>
+                <stack-trace><![CDATA[UnityEngine.Rendering.RenderPipelineManager:DoRenderLoop_Internal (UnityEngine.Rendering.RenderPipelineAsset,intptr,UnityEngine.Object,Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle)
+
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+]]></output>
+            </test-case>
+            <test-case id="1056" name="OnInspectionLogInvokedWhenCompliantSelected" fullname="Tests.PlayMode.InspectionWindowIntegrationTest.OnInspectionLogInvokedWhenCompliantSelected" methodname="OnInspectionLogInvokedWhenCompliantSelected" classname="Tests.PlayMode.InspectionWindowIntegrationTest" runstate="Runnable" seed="1086679605" result="Failed" start-time="2025-03-12 13:22:24Z" end-time="2025-03-12 13:22:24Z" duration="0.005962" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Order" value="6" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[Unhandled log message: '[Error] RenderTexture.Create failed'. Use UnityEngine.TestTools.LogAssert.Expect]]></message>
+                <stack-trace><![CDATA[UnityEngine.Rendering.RenderPipelineManager:DoRenderLoop_Internal (UnityEngine.Rendering.RenderPipelineAsset,intptr,UnityEngine.Object,Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle)
+
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+]]></output>
+            </test-case>
+            <test-case id="1057" name="OnInspectionLogInvokedWhenNonCompliantSelected" fullname="Tests.PlayMode.InspectionWindowIntegrationTest.OnInspectionLogInvokedWhenNonCompliantSelected" methodname="OnInspectionLogInvokedWhenNonCompliantSelected" classname="Tests.PlayMode.InspectionWindowIntegrationTest" runstate="Runnable" seed="960241055" result="Failed" start-time="2025-03-12 13:22:24Z" end-time="2025-03-12 13:22:24Z" duration="0.006663" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Order" value="7" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[Unhandled log message: '[Error] RenderTexture.Create failed'. Use UnityEngine.TestTools.LogAssert.Expect]]></message>
+                <stack-trace><![CDATA[UnityEngine.Rendering.RenderPipelineManager:DoRenderLoop_Internal (UnityEngine.Rendering.RenderPipelineAsset,intptr,UnityEngine.Object,Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle)
+
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+]]></output>
+            </test-case>
+            <test-case id="1058" name="CompliantButtonDisplaysNotification" fullname="Tests.PlayMode.InspectionWindowIntegrationTest.CompliantButtonDisplaysNotification" methodname="CompliantButtonDisplaysNotification" classname="Tests.PlayMode.InspectionWindowIntegrationTest" runstate="Runnable" seed="890567562" result="Failed" start-time="2025-03-12 13:22:24Z" end-time="2025-03-12 13:22:24Z" duration="0.005600" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Order" value="8" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[Unhandled log message: '[Error] RenderTexture.Create failed'. Use UnityEngine.TestTools.LogAssert.Expect]]></message>
+                <stack-trace><![CDATA[UnityEngine.Rendering.RenderPipelineManager:DoRenderLoop_Internal (UnityEngine.Rendering.RenderPipelineAsset,intptr,UnityEngine.Object,Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle)
+
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+]]></output>
+            </test-case>
+            <test-case id="1059" name="NonCompliantButtonDisplaysNotification" fullname="Tests.PlayMode.InspectionWindowIntegrationTest.NonCompliantButtonDisplaysNotification" methodname="NonCompliantButtonDisplaysNotification" classname="Tests.PlayMode.InspectionWindowIntegrationTest" runstate="Runnable" seed="414304677" result="Failed" start-time="2025-03-12 13:22:24Z" end-time="2025-03-12 13:22:24Z" duration="0.005336" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Order" value="9" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[Unhandled log message: '[Error] RenderTexture.Create failed'. Use UnityEngine.TestTools.LogAssert.Expect]]></message>
+                <stack-trace><![CDATA[UnityEngine.Rendering.RenderPipelineManager:DoRenderLoop_Internal (UnityEngine.Rendering.RenderPipelineAsset,intptr,UnityEngine.Object,Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle)
+
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+]]></output>
+            </test-case>
+            <test-case id="1060" name="CompliantButtonDisplaysNotification_WithPhoto" fullname="Tests.PlayMode.InspectionWindowIntegrationTest.CompliantButtonDisplaysNotification_WithPhoto" methodname="CompliantButtonDisplaysNotification_WithPhoto" classname="Tests.PlayMode.InspectionWindowIntegrationTest" runstate="Runnable" seed="1192762737" result="Failed" start-time="2025-03-12 13:22:24Z" end-time="2025-03-12 13:22:24Z" duration="0.005494" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Order" value="10" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[Unhandled log message: '[Error] RenderTexture.Create failed'. Use UnityEngine.TestTools.LogAssert.Expect]]></message>
+                <stack-trace><![CDATA[UnityEngine.Rendering.RenderPipelineManager:DoRenderLoop_Internal (UnityEngine.Rendering.RenderPipelineAsset,intptr,UnityEngine.Object,Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle)
+
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+]]></output>
+            </test-case>
+            <test-case id="1061" name="NonCompliantButtonDisplaysNotification_WithPhoto" fullname="Tests.PlayMode.InspectionWindowIntegrationTest.NonCompliantButtonDisplaysNotification_WithPhoto" methodname="NonCompliantButtonDisplaysNotification_WithPhoto" classname="Tests.PlayMode.InspectionWindowIntegrationTest" runstate="Runnable" seed="1519623040" result="Failed" start-time="2025-03-12 13:22:24Z" end-time="2025-03-12 13:22:24Z" duration="0.005691" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Order" value="11" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[Unhandled log message: '[Error] RenderTexture.Create failed'. Use UnityEngine.TestTools.LogAssert.Expect]]></message>
+                <stack-trace><![CDATA[UnityEngine.Rendering.RenderPipelineManager:DoRenderLoop_Internal (UnityEngine.Rendering.RenderPipelineAsset,intptr,UnityEngine.Object,Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle)
+
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+]]></output>
+            </test-case>
+            <test-case id="1062" name="InspectionWindow_UpdateInspectionLabel_ShowsDefaultMessageWhenNoData" fullname="Tests.PlayMode.InspectionWindowIntegrationTest.InspectionWindow_UpdateInspectionLabel_ShowsDefaultMessageWhenNoData" methodname="InspectionWindow_UpdateInspectionLabel_ShowsDefaultMessageWhenNoData" classname="Tests.PlayMode.InspectionWindowIntegrationTest" runstate="Runnable" seed="289375122" result="Failed" start-time="2025-03-12 13:22:24Z" end-time="2025-03-12 13:22:24Z" duration="0.005470" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Order" value="12" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[Unhandled log message: '[Error] RenderTexture.Create failed'. Use UnityEngine.TestTools.LogAssert.Expect]]></message>
+                <stack-trace><![CDATA[UnityEngine.Rendering.RenderPipelineManager:DoRenderLoop_Internal (UnityEngine.Rendering.RenderPipelineAsset,intptr,UnityEngine.Object,Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle)
+
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+]]></output>
+            </test-case>
+            <test-case id="1063" name="InspectionWindow_UpdateInspectionLabel_ShowsCompliantWithoutPhotoMessage" fullname="Tests.PlayMode.InspectionWindowIntegrationTest.InspectionWindow_UpdateInspectionLabel_ShowsCompliantWithoutPhotoMessage" methodname="InspectionWindow_UpdateInspectionLabel_ShowsCompliantWithoutPhotoMessage" classname="Tests.PlayMode.InspectionWindowIntegrationTest" runstate="Runnable" seed="1053344610" result="Failed" start-time="2025-03-12 13:22:24Z" end-time="2025-03-12 13:22:24Z" duration="0.005136" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Order" value="13" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[Unhandled log message: '[Error] RenderTexture.Create failed'. Use UnityEngine.TestTools.LogAssert.Expect]]></message>
+                <stack-trace><![CDATA[UnityEngine.Rendering.RenderPipelineManager:DoRenderLoop_Internal (UnityEngine.Rendering.RenderPipelineAsset,intptr,UnityEngine.Object,Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle)
+
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+]]></output>
+            </test-case>
+            <test-case id="1064" name="InspectionWindow_UpdateInspectionLabel_ShowsNonCompliantWithPhotoMessage" fullname="Tests.PlayMode.InspectionWindowIntegrationTest.InspectionWindow_UpdateInspectionLabel_ShowsNonCompliantWithPhotoMessage" methodname="InspectionWindow_UpdateInspectionLabel_ShowsNonCompliantWithPhotoMessage" classname="Tests.PlayMode.InspectionWindowIntegrationTest" runstate="Runnable" seed="1511016939" result="Failed" start-time="2025-03-12 13:22:24Z" end-time="2025-03-12 13:22:24Z" duration="0.004333" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Order" value="14" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[Unhandled log message: '[Error] RenderTexture.Create failed'. Use UnityEngine.TestTools.LogAssert.Expect]]></message>
+                <stack-trace><![CDATA[UnityEngine.Rendering.RenderPipelineManager:DoRenderLoop_Internal (UnityEngine.Rendering.RenderPipelineAsset,intptr,UnityEngine.Object,Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle)
+
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+]]></output>
+            </test-case>
+            <test-case id="1065" name="HasFlashCoroutine" fullname="Tests.PlayMode.InspectionWindowIntegrationTest.HasFlashCoroutine" methodname="HasFlashCoroutine" classname="Tests.PlayMode.InspectionWindowIntegrationTest" runstate="Runnable" seed="1066620128" result="Failed" start-time="2025-03-12 13:22:24Z" end-time="2025-03-12 13:22:24Z" duration="0.004152" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Order" value="15" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[Unhandled log message: '[Error] RenderTexture.Create failed'. Use UnityEngine.TestTools.LogAssert.Expect]]></message>
+                <stack-trace><![CDATA[UnityEngine.Rendering.RenderPipelineManager:DoRenderLoop_Internal (UnityEngine.Rendering.RenderPipelineAsset,intptr,UnityEngine.Object,Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle)
+
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+]]></output>
+            </test-case>
+            <test-case id="1066" name="HasPhotoFrame" fullname="Tests.PlayMode.InspectionWindowIntegrationTest.HasPhotoFrame" methodname="HasPhotoFrame" classname="Tests.PlayMode.InspectionWindowIntegrationTest" runstate="Runnable" seed="1752472309" result="Failed" start-time="2025-03-12 13:22:24Z" end-time="2025-03-12 13:22:24Z" duration="0.004014" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Order" value="16" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[Unhandled log message: '[Error] RenderTexture.Create failed'. Use UnityEngine.TestTools.LogAssert.Expect]]></message>
+                <stack-trace><![CDATA[UnityEngine.Rendering.RenderPipelineManager:DoRenderLoop_Internal (UnityEngine.Rendering.RenderPipelineAsset,intptr,UnityEngine.Object,Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle)
+
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+]]></output>
+            </test-case>
+            <test-case id="1067" name="InspectionWindow_CompliantToNonCompliant_ShowsConfirmationDialog" fullname="Tests.PlayMode.InspectionWindowIntegrationTest.InspectionWindow_CompliantToNonCompliant_ShowsConfirmationDialog" methodname="InspectionWindow_CompliantToNonCompliant_ShowsConfirmationDialog" classname="Tests.PlayMode.InspectionWindowIntegrationTest" runstate="Runnable" seed="2017614159" result="Failed" start-time="2025-03-12 13:22:24Z" end-time="2025-03-12 13:22:24Z" duration="0.003930" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Order" value="17" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[Unhandled log message: '[Error] RenderTexture.Create failed'. Use UnityEngine.TestTools.LogAssert.Expect]]></message>
+                <stack-trace><![CDATA[UnityEngine.Rendering.RenderPipelineManager:DoRenderLoop_Internal (UnityEngine.Rendering.RenderPipelineAsset,intptr,UnityEngine.Object,Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle)
+
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+]]></output>
+            </test-case>
+            <test-case id="1068" name="InspectionWindow_NonCompliantToCompliant_ShowsConfirmationDialog" fullname="Tests.PlayMode.InspectionWindowIntegrationTest.InspectionWindow_NonCompliantToCompliant_ShowsConfirmationDialog" methodname="InspectionWindow_NonCompliantToCompliant_ShowsConfirmationDialog" classname="Tests.PlayMode.InspectionWindowIntegrationTest" runstate="Runnable" seed="281417118" result="Failed" start-time="2025-03-12 13:22:24Z" end-time="2025-03-12 13:22:24Z" duration="0.003802" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Order" value="18" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[Unhandled log message: '[Error] RenderTexture.Create failed'. Use UnityEngine.TestTools.LogAssert.Expect]]></message>
+                <stack-trace><![CDATA[UnityEngine.Rendering.RenderPipelineManager:DoRenderLoop_Internal (UnityEngine.Rendering.RenderPipelineAsset,intptr,UnityEngine.Object,Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle)
+
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+]]></output>
+            </test-case>
+            <test-case id="1069" name="InspectionWindow_AlreadyCompliant_ShowsNotification" fullname="Tests.PlayMode.InspectionWindowIntegrationTest.InspectionWindow_AlreadyCompliant_ShowsNotification" methodname="InspectionWindow_AlreadyCompliant_ShowsNotification" classname="Tests.PlayMode.InspectionWindowIntegrationTest" runstate="Runnable" seed="443169573" result="Failed" start-time="2025-03-12 13:22:24Z" end-time="2025-03-12 13:22:24Z" duration="0.004260" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Order" value="19" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[Unhandled log message: '[Error] RenderTexture.Create failed'. Use UnityEngine.TestTools.LogAssert.Expect]]></message>
+                <stack-trace><![CDATA[UnityEngine.Rendering.RenderPipelineManager:DoRenderLoop_Internal (UnityEngine.Rendering.RenderPipelineAsset,intptr,UnityEngine.Object,Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle)
+
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+]]></output>
+            </test-case>
+            <test-case id="1070" name="InspectionWindow_AlreadyNonCompliant_ShowsNotification" fullname="Tests.PlayMode.InspectionWindowIntegrationTest.InspectionWindow_AlreadyNonCompliant_ShowsNotification" methodname="InspectionWindow_AlreadyNonCompliant_ShowsNotification" classname="Tests.PlayMode.InspectionWindowIntegrationTest" runstate="Runnable" seed="44368243" result="Failed" start-time="2025-03-12 13:22:24Z" end-time="2025-03-12 13:22:24Z" duration="0.003455" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Order" value="20" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[Unhandled log message: '[Error] RenderTexture.Create failed'. Use UnityEngine.TestTools.LogAssert.Expect]]></message>
+                <stack-trace><![CDATA[UnityEngine.Rendering.RenderPipelineManager:DoRenderLoop_Internal (UnityEngine.Rendering.RenderPipelineAsset,intptr,UnityEngine.Object,Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle)
+
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+]]></output>
+            </test-case>
+            <test-case id="1071" name="InspectionWindow_ConfirmationDialogPrimaryButton_SavesAndClosesWindow" fullname="Tests.PlayMode.InspectionWindowIntegrationTest.InspectionWindow_ConfirmationDialogPrimaryButton_SavesAndClosesWindow" methodname="InspectionWindow_ConfirmationDialogPrimaryButton_SavesAndClosesWindow" classname="Tests.PlayMode.InspectionWindowIntegrationTest" runstate="Runnable" seed="2066089618" result="Failed" start-time="2025-03-12 13:22:24Z" end-time="2025-03-12 13:22:24Z" duration="0.003386" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Order" value="21" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[Unhandled log message: '[Error] RenderTexture.Create failed'. Use UnityEngine.TestTools.LogAssert.Expect]]></message>
+                <stack-trace><![CDATA[UnityEngine.Rendering.RenderPipelineManager:DoRenderLoop_Internal (UnityEngine.Rendering.RenderPipelineAsset,intptr,UnityEngine.Object,Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle)
+
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1079" name="LearnerSessionIntegrationTests" fullname="Tests.PlayMode.LearnerSessionIntegrationTests" classname="Tests.PlayMode.LearnerSessionIntegrationTests" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2025-03-12 13:22:24Z" end-time="2025-03-12 13:22:24Z" duration="0.008977" total="2" passed="1" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <output><![CDATA[RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+]]></output>
+            <test-case id="1081" name="LoginHandler_Login_ShouldExecuteCallback" fullname="Tests.PlayMode.LearnerSessionIntegrationTests.LoginHandler_Login_ShouldExecuteCallback" methodname="LoginHandler_Login_ShouldExecuteCallback" classname="Tests.PlayMode.LearnerSessionIntegrationTests" runstate="Runnable" seed="1114127978" result="Failed" start-time="2025-03-12 13:22:24Z" end-time="2025-03-12 13:22:24Z" duration="0.003348" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[Unhandled log message: '[Error] RenderTexture.Create failed'. Use UnityEngine.TestTools.LogAssert.Expect]]></message>
+                <stack-trace><![CDATA[UnityEngine.Rendering.RenderPipelineManager:DoRenderLoop_Internal (UnityEngine.Rendering.RenderPipelineAsset,intptr,UnityEngine.Object,Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle)
+
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+]]></output>
+            </test-case>
+            <test-case id="1080" name="LoginHandler_Startup_ShouldInitialize" fullname="Tests.PlayMode.LearnerSessionIntegrationTests.LoginHandler_Startup_ShouldInitialize" methodname="LoginHandler_Startup_ShouldInitialize" classname="Tests.PlayMode.LearnerSessionIntegrationTests" runstate="Runnable" seed="78689145" result="Passed" start-time="2025-03-12 13:22:24Z" end-time="2025-03-12 13:22:24Z" duration="0.000589" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1082" name="MenuIntegrationTests" fullname="Tests.PlayMode.MenuIntegrationTests" classname="Tests.PlayMode.MenuIntegrationTests" runstate="Runnable" testcasecount="7" result="Failed" site="Child" start-time="2025-03-12 13:22:24Z" end-time="2025-03-12 13:22:25Z" duration="0.339839" total="7" passed="0" failed="7" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <output><![CDATA[RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+]]></output>
+            <test-case id="1083" name="SceneLoaded" fullname="Tests.PlayMode.MenuIntegrationTests.SceneLoaded" methodname="SceneLoaded" classname="Tests.PlayMode.MenuIntegrationTests" runstate="Runnable" seed="1075485312" result="Failed" start-time="2025-03-12 13:22:24Z" end-time="2025-03-12 13:22:25Z" duration="0.314664" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Order" value="0" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[Unhandled log message: '[Error] RenderTexture.Create failed'. Use UnityEngine.TestTools.LogAssert.Expect]]></message>
+                <stack-trace><![CDATA[UnityEngine.Rendering.RenderPipelineManager:DoRenderLoop_Internal (UnityEngine.Rendering.RenderPipelineAsset,intptr,UnityEngine.Object,Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle)
+
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+RenderTexture.Create failed
+]]></output>
+            </test-case>
+            <test-case id="1084" name="CheckIfUIIsEnabledOnShow" fullname="Tests.PlayMode.MenuIntegrationTests.CheckIfUIIsEnabledOnShow" methodname="CheckIfUIIsEnabledOnShow" classname="Tests.PlayMode.MenuIntegrationTests" runstate="Runnable" seed="570440190" result="Failed" label="Error" start-time="2025-03-12 13:22:25Z" end-time="2025-03-12 13:22:25Z" duration="0.012492" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Order" value="1" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[System.NullReferenceException : Object reference not set to an instance of an object]]></message>
+                <stack-trace><![CDATA[  at Tests.PlayMode.MenuIntegrationTests+<CheckIfUIIsEnabledOnShow>d__6.MoveNext () [0x00048] in /var/lib/jenkins/workspace/Tattoo-and-Piercing-Studio-Inspection/TPI-PR/Unity_Project/Assets/Tests/Play Mode/MenuIntegrationTests.cs:54 
+  at UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0004e] in ./Library/PackageCache/com.unity.test-framework/UnityEngine.TestRunner/NUnitExtensions/Attributes/TestEnumerator.cs:44 ]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1085" name="CheckIfUIIsDisabledOnHide" fullname="Tests.PlayMode.MenuIntegrationTests.CheckIfUIIsDisabledOnHide" methodname="CheckIfUIIsDisabledOnHide" classname="Tests.PlayMode.MenuIntegrationTests" runstate="Runnable" seed="378726875" result="Failed" label="Error" start-time="2025-03-12 13:22:25Z" end-time="2025-03-12 13:22:25Z" duration="0.001323" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Order" value="2" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[System.NullReferenceException : Object reference not set to an instance of an object]]></message>
+                <stack-trace><![CDATA[  at Tests.PlayMode.MenuIntegrationTests+<CheckIfUIIsDisabledOnHide>d__7.MoveNext () [0x0003a] in /var/lib/jenkins/workspace/Tattoo-and-Piercing-Studio-Inspection/TPI-PR/Unity_Project/Assets/Tests/Play Mode/MenuIntegrationTests.cs:75 
+  at UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0004e] in ./Library/PackageCache/com.unity.test-framework/UnityEngine.TestRunner/NUnitExtensions/Attributes/TestEnumerator.cs:44 ]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1086" name="PauseButtonClickTriggersOnPauseClickedEvent" fullname="Tests.PlayMode.MenuIntegrationTests.PauseButtonClickTriggersOnPauseClickedEvent" methodname="PauseButtonClickTriggersOnPauseClickedEvent" classname="Tests.PlayMode.MenuIntegrationTests" runstate="Runnable" seed="357832318" result="Failed" label="Error" start-time="2025-03-12 13:22:25Z" end-time="2025-03-12 13:22:25Z" duration="0.001277" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Order" value="3" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[System.NullReferenceException : Object reference not set to an instance of an object]]></message>
+                <stack-trace><![CDATA[  at Tests.PlayMode.MenuIntegrationTests+<PauseButtonClickTriggersOnPauseClickedEvent>d__8.MoveNext () [0x00041] in /var/lib/jenkins/workspace/Tattoo-and-Piercing-Studio-Inspection/TPI-PR/Unity_Project/Assets/Tests/Play Mode/MenuIntegrationTests.cs:95 
+  at UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0004e] in ./Library/PackageCache/com.unity.test-framework/UnityEngine.TestRunner/NUnitExtensions/Attributes/TestEnumerator.cs:44 ]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1087" name="InspectionReviewClickTriggersOnInspectionReviewClickedEvent" fullname="Tests.PlayMode.MenuIntegrationTests.InspectionReviewClickTriggersOnInspectionReviewClickedEvent" methodname="InspectionReviewClickTriggersOnInspectionReviewClickedEvent" classname="Tests.PlayMode.MenuIntegrationTests" runstate="Runnable" seed="909856674" result="Failed" label="Error" start-time="2025-03-12 13:22:25Z" end-time="2025-03-12 13:22:25Z" duration="0.001245" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Order" value="4" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[System.NullReferenceException : Object reference not set to an instance of an object]]></message>
+                <stack-trace><![CDATA[  at Tests.PlayMode.MenuIntegrationTests+<InspectionReviewClickTriggersOnInspectionReviewClickedEvent>d__9.MoveNext () [0x00041] in /var/lib/jenkins/workspace/Tattoo-and-Piercing-Studio-Inspection/TPI-PR/Unity_Project/Assets/Tests/Play Mode/MenuIntegrationTests.cs:120 
+  at UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0004e] in ./Library/PackageCache/com.unity.test-framework/UnityEngine.TestRunner/NUnitExtensions/Attributes/TestEnumerator.cs:44 ]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1088" name="SettingsClickTriggersOnSettingsClickedEvent" fullname="Tests.PlayMode.MenuIntegrationTests.SettingsClickTriggersOnSettingsClickedEvent" methodname="SettingsClickTriggersOnSettingsClickedEvent" classname="Tests.PlayMode.MenuIntegrationTests" runstate="Runnable" seed="1583338870" result="Failed" label="Error" start-time="2025-03-12 13:22:25Z" end-time="2025-03-12 13:22:25Z" duration="0.001253" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Order" value="5" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[System.NullReferenceException : Object reference not set to an instance of an object]]></message>
+                <stack-trace><![CDATA[  at Tests.PlayMode.MenuIntegrationTests+<SettingsClickTriggersOnSettingsClickedEvent>d__10.MoveNext () [0x00041] in /var/lib/jenkins/workspace/Tattoo-and-Piercing-Studio-Inspection/TPI-PR/Unity_Project/Assets/Tests/Play Mode/MenuIntegrationTests.cs:145 
+  at UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0004e] in ./Library/PackageCache/com.unity.test-framework/UnityEngine.TestRunner/NUnitExtensions/Attributes/TestEnumerator.cs:44 ]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1089" name="ButtonClickedIsNotTriggeredWhenButtonsAreDisabled" fullname="Tests.PlayMode.MenuIntegrationTests.ButtonClickedIsNotTriggeredWhenButtonsAreDisabled" methodname="ButtonClickedIsNotTriggeredWhenButtonsAreDisabled" classname="Tests.PlayMode.MenuIntegrationTests" runstate="Runnable" seed="1472858277" result="Failed" label="Error" start-time="2025-03-12 13:22:25Z" end-time="2025-03-12 13:22:25Z" duration="0.001335" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Order" value="6" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[System.NullReferenceException : Object reference not set to an instance of an object]]></message>
+                <stack-trace><![CDATA[  at Tests.PlayMode.MenuIntegrationTests+<ButtonClickedIsNotTriggeredWhenButtonsAreDisabled>d__11.MoveNext () [0x00048] in /var/lib/jenkins/workspace/Tattoo-and-Piercing-Studio-Inspection/TPI-PR/Unity_Project/Assets/Tests/Play Mode/MenuIntegrationTests.cs:171 
+  at UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0004e] in ./Library/PackageCache/com.unity.test-framework/UnityEngine.TestRunner/NUnitExtensions/Attributes/TestEnumerator.cs:44 ]]></stack-trace>
+              </failure>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1090" name="PauseWindowTests" fullname="Tests.PlayMode.PauseWindowTests" classname="Tests.PlayMode.PauseWindowTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2025-03-12 13:22:25Z" end-time="2025-03-12 13:22:25Z" duration="0.442305" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1091" name="SetupTestEnvironment" fullname="Tests.PlayMode.PauseWindowTests.SetupTestEnvironment" methodname="SetupTestEnvironment" classname="Tests.PlayMode.PauseWindowTests" runstate="Runnable" seed="119142779" result="Passed" start-time="2025-03-12 13:22:25Z" end-time="2025-03-12 13:22:25Z" duration="0.405224" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Order" value="0" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1092" name="PauseWindow_Start_IsHidden" fullname="Tests.PlayMode.PauseWindowTests.PauseWindow_Start_IsHidden" methodname="PauseWindow_Start_IsHidden" classname="Tests.PlayMode.PauseWindowTests" runstate="Runnable" seed="1388275224" result="Passed" start-time="2025-03-12 13:22:25Z" end-time="2025-03-12 13:22:25Z" duration="0.002991" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Order" value="1" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1093" name="PauseWindow_Show_DisplaysWindowAndInvokesEvent" fullname="Tests.PlayMode.PauseWindowTests.PauseWindow_Show_DisplaysWindowAndInvokesEvent" methodname="PauseWindow_Show_DisplaysWindowAndInvokesEvent" classname="Tests.PlayMode.PauseWindowTests" runstate="Runnable" seed="50360046" result="Passed" start-time="2025-03-12 13:22:25Z" end-time="2025-03-12 13:22:25Z" duration="0.018190" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Order" value="2" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1094" name="PauseWindow_RestartButton_HidesWindowAndInvokesEvents" fullname="Tests.PlayMode.PauseWindowTests.PauseWindow_RestartButton_HidesWindowAndInvokesEvents" methodname="PauseWindow_RestartButton_HidesWindowAndInvokesEvents" classname="Tests.PlayMode.PauseWindowTests" runstate="Runnable" seed="1100261061" result="Passed" start-time="2025-03-12 13:22:25Z" end-time="2025-03-12 13:22:25Z" duration="0.006200" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Order" value="3" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Restart button clicked - Starting from beginning
+]]></output>
+            </test-case>
+            <test-case id="1095" name="PauseWindow_ContinueButton_HidesWindowAndInvokesEvent" fullname="Tests.PlayMode.PauseWindowTests.PauseWindow_ContinueButton_HidesWindowAndInvokesEvent" methodname="PauseWindow_ContinueButton_HidesWindowAndInvokesEvent" classname="Tests.PlayMode.PauseWindowTests" runstate="Runnable" seed="670642514" result="Passed" start-time="2025-03-12 13:22:25Z" end-time="2025-03-12 13:22:25Z" duration="0.006723" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Order" value="4" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1096" name="PoiTests" fullname="Tests.PlayMode.PoiTests" classname="Tests.PlayMode.PoiTests" runstate="Runnable" testcasecount="8" result="Passed" start-time="2025-03-12 13:22:25Z" end-time="2025-03-12 13:22:26Z" duration="0.616721" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1097" name="SceneLoaded" fullname="Tests.PlayMode.PoiTests.SceneLoaded" methodname="SceneLoaded" classname="Tests.PlayMode.PoiTests" runstate="Runnable" seed="203964691" result="Passed" start-time="2025-03-12 13:22:25Z" end-time="2025-03-12 13:22:25Z" duration="0.460172" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Order" value="0" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1104" name="CheckPoiInteracted_DoesNotTriggersPoiInteracted_IfPoiInteracted" fullname="Tests.PlayMode.PoiTests.CheckPoiInteracted_DoesNotTriggersPoiInteracted_IfPoiInteracted" methodname="CheckPoiInteracted_DoesNotTriggersPoiInteracted_IfPoiInteracted" classname="Tests.PlayMode.PoiTests" runstate="Runnable" seed="323087278" result="Passed" start-time="2025-03-12 13:22:25Z" end-time="2025-03-12 13:22:25Z" duration="0.003115" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1103" name="CheckPoiInteracted_TriggersPoiInteracted_IfPoiNotInteracted" fullname="Tests.PlayMode.PoiTests.CheckPoiInteracted_TriggersPoiInteracted_IfPoiNotInteracted" methodname="CheckPoiInteracted_TriggersPoiInteracted_IfPoiNotInteracted" classname="Tests.PlayMode.PoiTests" runstate="Runnable" seed="1548414345" result="Passed" start-time="2025-03-12 13:22:25Z" end-time="2025-03-12 13:22:25Z" duration="0.003552" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Invalid inspectable on , please set the location of the inspectable object
+No Camera set for an inspectable 
+]]></output>
+            </test-case>
+            <test-case id="1100" name="Poi_OnTriggerEnter_InvokesHandlerOnEnterEvent" fullname="Tests.PlayMode.PoiTests.Poi_OnTriggerEnter_InvokesHandlerOnEnterEvent" methodname="Poi_OnTriggerEnter_InvokesHandlerOnEnterEvent" classname="Tests.PlayMode.PoiTests" runstate="Runnable" seed="827231295" result="Passed" start-time="2025-03-12 13:22:25Z" end-time="2025-03-12 13:22:25Z" duration="0.024817" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Player entered Tattoo Area
+]]></output>
+            </test-case>
+            <test-case id="1099" name="Poi_OnTriggerEnter_InvokesOnEnterEvent" fullname="Tests.PlayMode.PoiTests.Poi_OnTriggerEnter_InvokesOnEnterEvent" methodname="Poi_OnTriggerEnter_InvokesOnEnterEvent" classname="Tests.PlayMode.PoiTests" runstate="Runnable" seed="257513303" result="Passed" start-time="2025-03-12 13:22:25Z" end-time="2025-03-12 13:22:26Z" duration="0.038876" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Player exited Tattoo Area
+Player entered Tattoo Area
+]]></output>
+            </test-case>
+            <test-case id="1102" name="Poi_OnTriggerExit_InvokesHandlerOnExitEvent" fullname="Tests.PlayMode.PoiTests.Poi_OnTriggerExit_InvokesHandlerOnExitEvent" methodname="Poi_OnTriggerExit_InvokesHandlerOnExitEvent" classname="Tests.PlayMode.PoiTests" runstate="Runnable" seed="1671417530" result="Passed" start-time="2025-03-12 13:22:26Z" end-time="2025-03-12 13:22:26Z" duration="0.040234" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Player exited Tattoo Area
+]]></output>
+            </test-case>
+            <test-case id="1101" name="Poi_OnTriggerExit_InvokesOnExitEvent" fullname="Tests.PlayMode.PoiTests.Poi_OnTriggerExit_InvokesOnExitEvent" methodname="Poi_OnTriggerExit_InvokesOnExitEvent" classname="Tests.PlayMode.PoiTests" runstate="Runnable" seed="533739181" result="Passed" start-time="2025-03-12 13:22:26Z" end-time="2025-03-12 13:22:26Z" duration="0.039095" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Player entered Tattoo Area
+Player exited Tattoo Area
+]]></output>
+            </test-case>
+            <test-case id="1098" name="Poi_Start_InitializesNameCorrectly" fullname="Tests.PlayMode.PoiTests.Poi_Start_InitializesNameCorrectly" methodname="Poi_Start_InitializesNameCorrectly" classname="Tests.PlayMode.PoiTests" runstate="Runnable" seed="143867288" result="Passed" start-time="2025-03-12 13:22:26Z" end-time="2025-03-12 13:22:26Z" duration="0.001803" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1105" name="SaveDataSupportTests" fullname="Tests.PlayMode.SaveDataSupportTests" classname="Tests.PlayMode.SaveDataSupportTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2025-03-12 13:22:26Z" end-time="2025-03-12 13:22:26Z" duration="0.451574" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1106" name="SceneLoaded" fullname="Tests.PlayMode.SaveDataSupportTests.SceneLoaded" methodname="SceneLoaded" classname="Tests.PlayMode.SaveDataSupportTests" runstate="Runnable" seed="825490441" result="Passed" start-time="2025-03-12 13:22:26Z" end-time="2025-03-12 13:22:26Z" duration="0.412613" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Order" value="0" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[ScormManager: Not in a deployed WebGL environment, deleting.
+]]></output>
+            </test-case>
+            <test-case id="1107" name="OnInitializeIsInvokedOnStart" fullname="Tests.PlayMode.SaveDataSupportTests.OnInitializeIsInvokedOnStart" methodname="OnInitializeIsInvokedOnStart" classname="Tests.PlayMode.SaveDataSupportTests" runstate="Runnable" seed="938466347" result="Passed" start-time="2025-03-12 13:22:26Z" end-time="2025-03-12 13:22:26Z" duration="0.001946" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Order" value="1" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1108" name="SaveDataVersionIsSetToApplicationVersion" fullname="Tests.PlayMode.SaveDataSupportTests.SaveDataVersionIsSetToApplicationVersion" methodname="SaveDataVersionIsSetToApplicationVersion" classname="Tests.PlayMode.SaveDataSupportTests" runstate="Runnable" seed="1244218517" result="Passed" start-time="2025-03-12 13:22:26Z" end-time="2025-03-12 13:22:26Z" duration="0.002044" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Order" value="2" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1109" name="OnLoadIsTriggeredWhenCloudSaveLoadIsSuccessful" fullname="Tests.PlayMode.SaveDataSupportTests.OnLoadIsTriggeredWhenCloudSaveLoadIsSuccessful" methodname="OnLoadIsTriggeredWhenCloudSaveLoadIsSuccessful" classname="Tests.PlayMode.SaveDataSupportTests" runstate="Runnable" seed="905880048" result="Passed" start-time="2025-03-12 13:22:26Z" end-time="2025-03-12 13:22:26Z" duration="0.023796" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Order" value="3" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1110" name="OnLoadIsNotTriggerIfLoadFails" fullname="Tests.PlayMode.SaveDataSupportTests.OnLoadIsNotTriggerIfLoadFails" methodname="OnLoadIsNotTriggerIfLoadFails" classname="Tests.PlayMode.SaveDataSupportTests" runstate="Runnable" seed="1744085806" result="Passed" start-time="2025-03-12 13:22:26Z" end-time="2025-03-12 13:22:26Z" duration="0.002346" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Order" value="4" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1111" name="CustomSaveHandlerDeleteTriggered" fullname="Tests.PlayMode.SaveDataSupportTests.CustomSaveHandlerDeleteTriggered" methodname="CustomSaveHandlerDeleteTriggered" classname="Tests.PlayMode.SaveDataSupportTests" runstate="Runnable" seed="1490149852" result="Passed" start-time="2025-03-12 13:22:26Z" end-time="2025-03-12 13:22:26Z" duration="0.003508" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Order" value="4" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Unloading the last loaded scene Assets/Scenes/CloudSaveTestScene.unity(build index: 7), is not supported. Please use SceneManager.LoadScene()/EditorSceneManager.OpenScene() to switch to another scene.
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1116" name="TimerManagerTests" fullname="Tests.PlayMode.TimerManagerTests" classname="Tests.PlayMode.TimerManagerTests" runstate="Runnable" testcasecount="4" result="Failed" site="Child" start-time="2025-03-12 13:22:26Z" end-time="2025-03-12 13:22:31Z" duration="5.029396" total="4" passed="3" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1119" name="TimerIsResetting" fullname="Tests.PlayMode.TimerManagerTests.TimerIsResetting" methodname="TimerIsResetting" classname="Tests.PlayMode.TimerManagerTests" runstate="Runnable" seed="1489842597" result="Failed" start-time="2025-03-12 13:22:26Z" end-time="2025-03-12 13:22:28Z" duration="2.017907" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[Unhandled log message: '[Error] default: HTTP Error: HTTP/1.1 404 Not Found'. Use UnityEngine.TestTools.LogAssert.Expect]]></message>
+                <stack-trace><![CDATA[VARLab.CloudSave.AzureSaveSystem/<LoadRequest>d__17:MoveNext () (at ./Library/PackageCache/com.varlab.cloudsave/Runtime/Scripts/AzureSaveSystem.cs:129)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr) (at /home/bokken/build/output/unity/unity/Runtime/Export/Scripting/Coroutines.cs:17)
+
+]]></stack-trace>
+              </failure>
+              <output><![CDATA[default: HTTP Error: HTTP/1.1 404 Not Found
+Load Action Failed
+default: HTTP Error: HTTP/1.1 404 Not Found
+Load Action Failed
+Delete Action Success
+5.2E-06
+]]></output>
+            </test-case>
+            <test-case id="1118" name="TimerIsRunning" fullname="Tests.PlayMode.TimerManagerTests.TimerIsRunning" methodname="TimerIsRunning" classname="Tests.PlayMode.TimerManagerTests" runstate="Runnable" seed="1702082061" result="Passed" start-time="2025-03-12 13:22:28Z" end-time="2025-03-12 13:22:30Z" duration="2.002962" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[2.0013372
+]]></output>
+            </test-case>
+            <test-case id="1120" name="TimersOffset" fullname="Tests.PlayMode.TimerManagerTests.TimersOffset" methodname="TimersOffset" classname="Tests.PlayMode.TimerManagerTests" runstate="Runnable" seed="691486531" result="Passed" start-time="2025-03-12 13:22:30Z" end-time="2025-03-12 13:22:31Z" duration="1.003436" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[3.999732
+4.0005829
+]]></output>
+            </test-case>
+            <test-case id="1117" name="TimerStartsAtZero" fullname="Tests.PlayMode.TimerManagerTests.TimerStartsAtZero" methodname="TimerStartsAtZero" classname="Tests.PlayMode.TimerManagerTests" runstate="Runnable" seed="881543478" result="Passed" start-time="2025-03-12 13:22:31Z" end-time="2025-03-12 13:22:31Z" duration="0.002467" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1112" name="TPISceneManagerTests" fullname="Tests.PlayMode.TPISceneManagerTests" classname="Tests.PlayMode.TPISceneManagerTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2025-03-12 13:22:31Z" end-time="2025-03-12 13:22:32Z" duration="0.568608" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1114" name="TPISceneManager_Awake_DestroysDuplicateInstances" fullname="Tests.PlayMode.TPISceneManagerTests.TPISceneManager_Awake_DestroysDuplicateInstances" methodname="TPISceneManager_Awake_DestroysDuplicateInstances" classname="Tests.PlayMode.TPISceneManagerTests" runstate="Runnable" seed="1338437560" result="Passed" start-time="2025-03-12 13:22:31Z" end-time="2025-03-12 13:22:31Z" duration="0.003873" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1113" name="TPISceneManager_Awake_InitializesSingleton" fullname="Tests.PlayMode.TPISceneManagerTests.TPISceneManager_Awake_InitializesSingleton" methodname="TPISceneManager_Awake_InitializesSingleton" classname="Tests.PlayMode.TPISceneManagerTests" runstate="Runnable" seed="1996716328" result="Passed" start-time="2025-03-12 13:22:31Z" end-time="2025-03-12 13:22:31Z" duration="0.002213" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1115" name="TPISceneManager_RestartScene_InvokesEvent" fullname="Tests.PlayMode.TPISceneManagerTests.TPISceneManager_RestartScene_InvokesEvent" methodname="TPISceneManager_RestartScene_InvokesEvent" classname="Tests.PlayMode.TPISceneManagerTests" runstate="Runnable" seed="652329465" result="Passed" start-time="2025-03-12 13:22:31Z" end-time="2025-03-12 13:22:32Z" duration="0.560153" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="Category" value="BuildServer" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[Code Coverage] Code Coverage results for visited sequence points were saved in /var/lib/jenkins/workspace/Tattoo-and-Piercing-Studio-Inspection/TPI-PR/PRJob/TPI-102-set-up-azure-container/coverage_results/Unity_Project-opencov/PlayMode/TestCoverageResults_0001.xml
+Saving results to: /home/jenkins-ubuntu-dev-test/.config/unity3d/VARLab/DLX Template/TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DevOps / Pipeline &amp; Deployment : Convert Trusted launch VM to Standard</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">DevOps / Pipeline &amp; Deployment</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1179353439.html">DevOps / Pipeline &amp; Deployment Home</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Containerization-Project_1439170564.html">Containerization Project</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            DevOps / Pipeline &amp; Deployment : Convert Trusted launch VM to Standard
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                            
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Jindo Kim</span>, last modified on Nov 07, 2024
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <p /><a data-card-appearance="block" href="https://varlab-dev.atlassian.net/wiki/x/BADIVQ" rel="nofollow">https://varlab-dev.atlassian.net/wiki/x/BADIVQ</a><h1 id="ConvertTrustedlaunchVMtoStandard-Summary">Summary</h1><ul><li><p>This document provides instructions for 'Converting a Trusted Launch VM to a Standard VM' as a step toward completing the Containerization Project.</p><ul><li><p>Reference: <a class="external-link" data-card-appearance="inline" href="https://learn.microsoft.com/en-us/answers/questions/1380011/converting-trusted-azure-vms-to-standard-vms" rel="nofollow">https://learn.microsoft.com/en-us/answers/questions/1380011/converting-trusted-azure-vms-to-standard-vms</a> </p></li></ul></li></ul><hr/><style type='text/css'>/*<![CDATA[*/
+div.rbtoc1748352757214 {padding: 0px;}
+div.rbtoc1748352757214 ul {list-style: none;margin-left: 0px;}
+div.rbtoc1748352757214 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style><div class='toc-macro rbtoc1748352757214'>
+<ul class='toc-indentation'>
+<li><a href='#ConvertTrustedlaunchVMtoStandard-Summary'>Summary</a></li>
+<li><a href='#ConvertTrustedlaunchVMtoStandard-1.Creatinga‘Container’tostorethe‘vhd’fileasablob'>1. Creating a ‘Container’ to store the ‘vhd’ file as a blob</a>
+<ul class='toc-indentation'>
+<li><a href='#ConvertTrustedlaunchVMtoStandard-Reference:https://learn.microsoft.com/en-us/azure/storage/common/storage-account-create?tabs=azure-portal'>Reference: https://learn.microsoft.com/en-us/azure/storage/common/storage-account-create?tabs=azure-portal</a></li>
+</ul>
+</li>
+<li><a href='#ConvertTrustedlaunchVMtoStandard-2.CopyingtheOSdiskofanAzureVMtoastorageaccount'>2. Copying the OS disk of an Azure VM to a storage account</a>
+<ul class='toc-indentation'>
+<li><a href='#ConvertTrustedlaunchVMtoStandard-Reference:https://github.com/haukened/AzCopyVHD/blob/main/AzCopyVHD.ps1'>Reference: https://github.com/haukened/AzCopyVHD/blob/main/AzCopyVHD.ps1</a></li>
+</ul>
+</li>
+<li><a href='#ConvertTrustedlaunchVMtoStandard-3.CreateaOSdiskwithnewconfiguration,usingvhdfileintheContainer'>3. Create a OS disk with new configuration, using vhd file in the Container</a>
+<ul class='toc-indentation'>
+<li><a href='#ConvertTrustedlaunchVMtoStandard-References:https://learn.microsoft.com/en-us/answers/questions/792044/how-to-create-a-vm-from-vhd-file-in-azure'>References: https://learn.microsoft.com/en-us/answers/questions/792044/how-to-create-a-vm-from-vhd-file-in-azure</a></li>
+</ul>
+</li>
+<li><a href='#ConvertTrustedlaunchVMtoStandard-4.CreateanewVMusingtheOSdisk'>4. Create a new VM using the OS disk</a></li>
+</ul>
+</div><h1 id="ConvertTrustedlaunchVMtoStandard-1.Creatinga‘Container’tostorethe‘vhd’fileasablob">1. Creating a ‘Container’ to store the ‘vhd’ file as a blob</h1><p>Create a storage account where the VHD file will be stored as a blob.</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20241106-203059.png" width="758" loading="lazy" src="attachments/1447886864/1448050692.png?width=758" data-image-src="attachments/1447886864/1448050692.png" data-height="757" data-width="769" data-unresolved-comment-count="0" data-linked-resource-id="1448050692" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20241106-203059.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1447886864" data-linked-resource-container-version="4" data-media-id="25036f8a-c322-4a7e-8bf0-19d4d6f62d79" data-media-type="file"></span><p /><p>Using the created storage account, go to the 'Containers' menu to add a container where the VHD file will be stored.</p><ul><li><p><em>The 'vhd-container' has been created and will serve as the container for storing the trustedVMGen28GiB.vhd (the VM OS disk file) in this instruction.</em></p></li></ul><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20241106-203511.png" width="760" loading="lazy" src="attachments/1447886864/1446936590.png?width=760" data-image-src="attachments/1447886864/1446936590.png" data-height="488" data-width="1413" data-unresolved-comment-count="0" data-linked-resource-id="1446936590" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20241106-203511.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1447886864" data-linked-resource-container-version="4" data-media-id="fb4f93eb-2dca-42ed-8d6c-ef57bb1fbbaa" data-media-type="file"></span><h2 id="ConvertTrustedlaunchVMtoStandard-Reference:https://learn.microsoft.com/en-us/azure/storage/common/storage-account-create?tabs=azure-portal">Reference: <a class="external-link" data-card-appearance="inline" href="https://learn.microsoft.com/en-us/azure/storage/common/storage-account-create?tabs=azure-portal" rel="nofollow">https://learn.microsoft.com/en-us/azure/storage/common/storage-account-create?tabs=azure-portal</a> </h2><p /><hr/><h1 id="ConvertTrustedlaunchVMtoStandard-2.CopyingtheOSdiskofanAzureVMtoastorageaccount">2. Copying the OS disk of an Azure VM to a storage account</h1><p>Please refer to the attachment below this section to complete this step.</p><p /><p /><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20241107-141649.png" width="760" loading="lazy" src="attachments/1447886864/1450409985.png?width=760" data-image-src="attachments/1447886864/1450409985.png" data-height="323" data-width="826" data-unresolved-comment-count="0" data-linked-resource-id="1450409985" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20241107-141649.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1447886864" data-linked-resource-container-version="4" data-media-id="9bc905db-be82-441b-9e40-7eb96185ba81" data-media-type="file"></span><h2 id="ConvertTrustedlaunchVMtoStandard-Reference:https://github.com/haukened/AzCopyVHD/blob/main/AzCopyVHD.ps1">Reference: <a class="external-link" data-card-appearance="inline" href="https://github.com/haukened/AzCopyVHD/blob/main/AzCopyVHD.ps1" rel="nofollow">https://github.com/haukened/AzCopyVHD/blob/main/AzCopyVHD.ps1</a> </h2><p /><hr/><h1 id="ConvertTrustedlaunchVMtoStandard-3.CreateaOSdiskwithnewconfiguration,usingvhdfileintheContainer">3. Create a OS disk with new configuration, using vhd file in the Container</h1><p /><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20241107-151834.png" width="760" loading="lazy" src="attachments/1447886864/1451196417.png?width=760" data-image-src="attachments/1447886864/1451196417.png" data-height="362" data-width="971" data-unresolved-comment-count="0" data-linked-resource-id="1451196417" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20241107-151834.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1447886864" data-linked-resource-container-version="4" data-media-id="c758e33a-f381-490e-aa10-db7e639135d6" data-media-type="file"></span><p /><p>Create a disk using the saved blob (VHD file).</p><ul><li><p><em>In particular, it is recommended to use the values for OS type, VM generation, VM architecture, and size that were originally configured in the existing VM.</em></p></li><li><p><em>Finally, the primary objective is to change the Security Type to Standard.</em></p></li></ul><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20241107-152303.png" width="724" loading="lazy" src="attachments/1447886864/1450770435.png?width=724" data-image-src="attachments/1447886864/1450770435.png" data-height="855" data-width="724" data-unresolved-comment-count="0" data-linked-resource-id="1450770435" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20241107-152303.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1447886864" data-linked-resource-container-version="4" data-media-id="59b24a4d-797e-4fd1-a1c9-f3ff1fc31a35" data-media-type="file"></span><h2 id="ConvertTrustedlaunchVMtoStandard-References:https://learn.microsoft.com/en-us/answers/questions/792044/how-to-create-a-vm-from-vhd-file-in-azure">References: <a class="external-link" data-card-appearance="inline" href="https://learn.microsoft.com/en-us/answers/questions/792044/how-to-create-a-vm-from-vhd-file-in-azure" rel="nofollow">https://learn.microsoft.com/en-us/answers/questions/792044/how-to-create-a-vm-from-vhd-file-in-azure</a> </h2><p /><hr/><h1 id="ConvertTrustedlaunchVMtoStandard-4.CreateanewVMusingtheOSdisk">4. Create a new VM using the OS disk</h1><p /><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20241107-153113.png" width="760" loading="lazy" src="attachments/1447886864/1450672132.png?width=760" data-image-src="attachments/1447886864/1450672132.png" data-height="343" data-width="891" data-unresolved-comment-count="0" data-linked-resource-id="1450672132" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20241107-153113.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1447886864" data-linked-resource-container-version="4" data-media-id="e3bfac4c-8d93-44f1-b4ed-5d4e9e8dbdd7" data-media-type="file"></span><p /><p>The new virtual machine with the ‘Standard Security Type’</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20241107-153906.png" width="593" loading="lazy" src="attachments/1447886864/1450573828.png?width=593" data-image-src="attachments/1447886864/1450573828.png" data-height="619" data-width="593" data-unresolved-comment-count="0" data-linked-resource-id="1450573828" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20241107-153906.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1447886864" data-linked-resource-container-version="4" data-media-id="97666781-f94a-4254-ae4b-bcfcd924013e" data-media-type="file"></span><p />
+                    </div>
+
+                                        <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1447886864/1447067663.png">image-20241106-195907.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1447886864/1446608908.png">image-20241106-200518.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1447886864/1447690257.png">image-20241106-201154.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1447886864/1448181765.png">image-20241106-202723.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1447886864/1448050692.png">image-20241106-203059.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1447886864/1448181773.png">image-20241106-203319.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1447886864/1448149006.png">image-20241106-203359.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1447886864/1446936590.png">image-20241106-203511.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1447886864/1448181779.png">image-20241106-211043.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1447886864/1447264280.png">image-20241106-212025.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1447886864/1447526416.png">image-20241106-212622.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1447886864/1447362576.png">image-20241106-212946.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1447886864/1450409985.png">image-20241107-141649.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1447886864/1451196417.png">image-20241107-151834.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1447886864/1450442762.png">image-20241107-152207.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1447886864/1450770435.png">image-20241107-152303.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1447886864/1450672132.png">image-20241107-153113.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1447886864/1450803206.png">image-20241107-153725.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1447886864/1450573828.png">image-20241107-153906.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on May 27, 2025 13:32</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

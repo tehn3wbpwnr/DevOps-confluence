@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DevOps / Pipeline &amp; Deployment : Linting JenkinsFiles + Groovy scripts</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">DevOps / Pipeline &amp; Deployment</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1179353439.html">DevOps / Pipeline &amp; Deployment Home</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1575288834.html">CI/CD Pipeline</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            DevOps / Pipeline &amp; Deployment : Linting JenkinsFiles + Groovy scripts
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                            
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Joshua Moore</span>, last modified on Feb 21, 2025
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <h2 id="LintingJenkinsFiles+Groovyscripts-Summary">Summary</h2><p>This document is where I will be storing my research for linting our pipeline, specifically the pipeline that runs when we update the repository for our Jenkinsfiles and groovy scripts. After a brief search I found two possible avenues for us to perform the linting, one directly with the Jenkins server, another leveraging a linting tool from an NPM package. Below I will cover the features of each.</p><p>After reviewing the documentation pages for each, I believe <strong>NPM Groovy Lint </strong>will be best for our needs. It will allow us to run within the Jenkinsfile itself, has more features, and is customizable with rulesets. Additionally we can use the plugin in our VS Code editor to have access to the features while developing.</p><h2 id="LintingJenkinsFiles+Groovyscripts-JenkinsServerCommand-linePipelineLinter">Jenkins Server Command-line Pipeline Linter</h2><p>It appears that Jenkins Server instances come with a built in linter. This can be used via CLI or HTTP POST request. Link to Jenkins Docs: <a class="external-link" data-card-appearance="inline" href="https://www.jenkins.io/doc/book/pipeline/development/#linter" rel="nofollow">https://www.jenkins.io/doc/book/pipeline/development/#linter</a> </p><p><strong>CLI</strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: bash; gutter: false; theme: Confluence" data-theme="Confluence"># ssh (Jenkins CLI)
+# JENKINS_PORT=[sshd port on controller]
+# JENKINS_HOST=[Jenkins controller hostname]
+ssh -p $JENKINS_PORT $JENKINS_HOST declarative-linter &lt; Jenkinsfile</pre>
+</div></div><p><strong>HTTP</strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: bash; gutter: false; theme: Confluence" data-theme="Confluence"># curl (REST API)
+# These instructions assume that the security realm of Jenkins is something other than &quot;None&quot; and you have an account.
+# JENKINS_URL=[root URL of Jenkins controller]
+# JENKINS_AUTH=[your Jenkins username and an API token in the following format: your_username:api_token]
+curl -X POST --user &quot;$JENKINS_AUTH&quot; -F &quot;jenkinsfile=&lt;Jenkinsfile&quot; &quot;$JENKINS_URL/pipeline-model-converter/validate&quot;</pre>
+</div></div><p>These will at a base level check if the Jenkins File will be able to run, checking for proper use of key words, bracket levels, etc. This is advantageous as it will prevent having to manually run the new script to see if it will even start, catching syntax related issues. However it does <strong>not </strong>appear to cover any sort of styling.</p><h2 id="LintingJenkinsFiles+Groovyscripts-NPMGroovyLint">NPM Groovy Lint</h2><p>This is an open source package that can run as a linting tool to perform linting, formatting, and auto-fixing. Link to github: <a class="external-link" data-card-appearance="inline" href="https://github.com/nvuillam/npm-groovy-lint" rel="nofollow">https://github.com/nvuillam/npm-groovy-lint</a> Additionally, the user created a VS extension for similar purposes that we could look into using, <a class="external-link" href="https://marketplace.visualstudio.com/items?itemName=NicolasVuillamy.vscode-groovy-lint" rel="nofollow">Groovy Lint</a> which will perform the same actions, but locally while developing instead of on the server.</p><h3 id="LintingJenkinsFiles+Groovyscripts-VSCodeExtension">VS Code Extension</h3><p>Here I will briefly cover using the extension. It is simple to install via the extensions tab, you can search for “Groovy Lint” and it should be at the top, additionally the link is here: <a class="external-link" href="https://marketplace.visualstudio.com/items?itemName=NicolasVuillamy.vscode-groovy-lint" rel="nofollow">Groovy Lint</a>, once installed it should automatically work on jenkinsFiles and groovy scripts, within the bottom window “problems” tab it should have everything it finds from, error, warn, info level messages. additionally it will highlight the files on the left hand side based on the highest level of rule break (red = error).</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20250207-230218.png" width="452" loading="lazy" src="attachments/1613070339/1613234180.png?width=452" data-image-src="attachments/1613070339/1613234180.png" data-height="216" data-width="452" data-unresolved-comment-count="0" data-linked-resource-id="1613234180" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20250207-230218.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1613070339" data-linked-resource-container-version="7" data-media-id="8062d225-f9a6-4044-875e-4a340b404c7b" data-media-type="file"></span><h3 id="LintingJenkinsFiles+Groovyscripts-Rulesets">Rulesets</h3><p>This section will go over our current rule violations, Here are the log files from running the tool</p><p><span class="confluence-embedded-file-wrapper"><a class="confluence-embedded-file" href="attachments/1613070339/1622442007.txt" data-nice-type="Text File" data-file-src="/wiki/download/attachments/1613070339/JenkinsRules.txt?version=1&amp;modificationDate=1739395455587&amp;cacheVersion=1&amp;api=v2" data-linked-resource-id="1622442007" data-linked-resource-type="attachment" data-linked-resource-container-id="1613070339" data-linked-resource-default-alias="JenkinsRules.txt" data-mime-type="text/plain" data-has-thumbnail="true" data-linked-resource-version="1" data-media-id="e9d8e7c9-41ad-418d-87c4-ebe3fcf5cde1" data-media-type="file"><img src="attachments/thumbnails/1613070339/1622442007" height="250"/></a></span> </p><p><span class="confluence-embedded-file-wrapper"><a class="confluence-embedded-file" href="attachments/1613070339/1622442001.txt" data-nice-type="Text File" data-file-src="/wiki/download/attachments/1613070339/GroovyRules.txt?version=1&amp;modificationDate=1739395114877&amp;cacheVersion=1&amp;api=v2" data-linked-resource-id="1622442001" data-linked-resource-type="attachment" data-linked-resource-container-id="1613070339" data-linked-resource-default-alias="GroovyRules.txt" data-mime-type="text/plain" data-has-thumbnail="true" data-linked-resource-version="1" data-media-id="4c7437a4-8b16-4045-af9a-f18d41772ae2" data-media-type="file"><img src="attachments/thumbnails/1613070339/1622442001" height="250"/></a></span> </p><p>link to full rules list: <a class="external-link" data-card-appearance="inline" href="https://codenarc.org/codenarc-rule-index.html" rel="nofollow">https://codenarc.org/codenarc-rule-index.html</a> </p><h4 id="LintingJenkinsFiles+Groovyscripts-RecommendedGroovy">Recommended Groovy</h4><p>This will cover the default rules within the recommended groovy ruleset that our files currently break as of 2/12/2024, This is intended to spark a discussion about which rules we want to ignore or keep.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">  &quot;CatchException&quot;: Checks for catching a Exception. In most cases that is too broad or general. 
+  It should usually be restricted to framework or infrastructure code, rather than application code.
+  
+  &quot;LineLength&quot;: Checks the maximum length for each line of source code. It checks for number of characters,
+  so lines that include tabs may appear longer than the allowed number when viewing the file. The maximum
+  line length can be configured by setting the length property, which defaults to 120.
+  NOTE: This rule does not support the @SuppressAnnotations 
+  
+  &quot;MethodReturnTypeRequired&quot;: Checks that method return types are not dynamic, that is
+  they are explicitly stated and different than def.
+  
+  &quot;NoDef&quot;: Do not allow using the def keyword in code. Use a specific type instead.
+  
+  &quot;VariableTypeRequired&quot;: Checks that variable types are explicitly specified in declarations (and not using def).
+  
+  &quot;DuplicateStringLiteral&quot;: This rule checks for duplicate String literals within the current class.
+  Code containing duplicate String literals can usually be improved by declaring the String as a constant field.
+  This rule ignores (zero-length) empty strings.
+  
+  &quot;DuplicateNumberLiteral&quot;: This rule checks for duplicate number literals within the current class.
+  Code containing duplicate Number literals can usually be improved by declaring the Number as a constant field.
+  
+  &quot;UnnecessaryGetter&quot;: Checks for explicit calls to getter/accessor methods which can, for the most part, 
+  be replaced by property access. A getter is defined as a no-argument method call that matches get[A-Z] 
+  but not getClass() or get[A-Z][A-Z] such as getURL().
+  Calls to getter methods within Spock method calls Mock(), Stub() and Spy() are ignored.
+  NOTE: checkIsMethods	If true, then also check isXxx() getters methods.	true - this can be set to false
+  
+  &quot;MethodParameterTypeRequired&quot;: Checks that method parameters are not dynamically typed, that is they are 
+  explicitly stated and different than def.
+  
+  &quot;InvertedIfElse&quot;: An inverted if-else statement is one in which there is a single if statement with a 
+  single else branch and the boolean test of the if is negated. For instance if (!x) false else true. It is 
+  usually clearer to write this as if (x) true else false.
+  
+  &quot;ImplicitClosureParameter&quot;: Checks for the implicit it closure parameter being used. 
+  Also checks if an explicit it parameter has been specified.
+  
+  &quot;CompileStatic&quot;: Enforces classes are annotated either with one of the @CompileStatic, 
+  @GrailsCompileStatic or @CompileDynamic annotations.
+  
+  &quot;JavaIoPackageAccess&quot;: This rule reports violations of the Enterprise JavaBeans specification by using 
+  the java.io package to access files or the file system. The Enterprise JavaBeans specification 
+  requires that every bean provider follow a set of programming guidelines designed to ensure that the 
+  bean will be portable and behave consistently in any EJB container [1].
+  In this case, the program violates the following EJB guideline: “An enterprise bean must not use the 
+  java.io package to attempt to access files and directories in the file system.”
+  A requirement that the specification justifies in the following way: “The file system APIs are not 
+  well-suited for business components to access data. Business components should use a resource manager API, 
+  such as JDBC, to store data.”
+  
+  &quot;DuplicateMapLiteral&quot;: This rule checks for duplicate Map literals within the current class. This rule 
+  only checks for Maps where the keys and values are all constants or literals.
+  Code containing duplicate Map literals can usually be improved by declaring the Map as a constant field.
+  By default, the rule does not analyze test files. This rule sets the default value of the 
+  doNotApplyToFilesMatching property to ignore file names ending in ‘Spec.groovy’, ‘Test.groovy’, 
+  ‘Tests.groovy’ or ‘TestCase.groovy’.
+  
+  &quot;ReturnsNullInsteadOfEmptyCollection&quot;: If you have a method or closure that returns a collection, then 
+  when there are no results return a zero-length (empty) collection rather than null. It is often a better 
+  design to return a zero-length collection rather than a null reference to indicate that there are no 
+  results (i.e., an empty list of results). This way, no explicit check for null is needed by clients 
+  of the method.
+  
+  &quot;SpaceAfterClosingBrace&quot;: Check that there is at least one space (blank) or whitespace after each closing 
+  brace (“{”) for method/class/interface declarations, closure expressions and block statements.
+  A closure expression followed by a dot operator (.), a comma, an opening parenthesis, a closing 
+  parenthesis, an opening square brace, a closing square brace (]), the spread-dot operator (*.), a 
+  semicolon or the null-safe operator (?.) does not cause a violation.
+  
+  &quot;UnnecessaryElseStatement&quot;: When an if statement block ends with a return statement, then the 
+  else is unnecessary. The logic in the else branch can be run without being in a new scope.
+  EXAMPLE:
+  if(value){
+        println &#39;Executing if logic...&#39;
+        return true
+    } else {
+        println &#39;Executing else logic...&#39;
+    }
+
+    // can be replaced by:
+
+    if(value){
+        println &#39;Executing if logic...&#39;
+        return true
+    }
+    println &#39;Executing else logic...&#39;
+  
+  &quot;ParameterCount&quot;: Checks if the number of parameters in method/constructor exceeds the 
+  number of parameters specified by the maxParameters property. (5 is default)
+  
+  &quot;FactoryMethodName&quot;: A factory method is a method that creates objects, and they are typically 
+  named either buildFoo(), makeFoo(), or createFoo(). This rule enforces that only one naming 
+  convention is used. It defaults to allowing makeFoo(), but that can be changed using the property 
+  regex. The regex is a negative expression; it specifically bans methods named build* or create*. 
+  However, methods named build or build* receive some special treatment because of the popular Builder 
+  Pattern. If the ‘build’ method is in a class named *Builder then it does not cause a violation.
+  
+  &quot;IfStatementCouldBeTernary&quot;: Checks for:
+  An if statement where both the if and else blocks contain only a single return statement returning 
+  a constant or literal value.
+  A block where the second-to-last statement in a block is an if statement with no else, 
+  where the block contains a single return statement, and the last statement in the block is a return 
+  statement, and both return statements return a constant or literal value. This check is disabled 
+  by setting checkLastStatementImplicitElse to false.
+  
+  &quot;ParameterReassignment&quot;: Checks for a method or closure parameter being reassigned to a new value 
+  within the body of the method/closure, which is a confusing and questionable practice. Use a 
+  temporary variable instead.</pre>
+</div></div><p>Several of these I think are easy to turn off, such as the FactoryMethodName rule being flagged on “buildProject”, additionally the unnecessaryGetter rule I believe is getting false positives, based on some of our method names such as “getMessage()”</p><h4 id="LintingJenkinsFiles+Groovyscripts-RecommendedJenkinsFile">Recommended JenkinsFile</h4><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">  &quot;LineLength&quot;: Checks the maximum length for each line of source code. It checks for number of characters,
+  so lines that include tabs may appear longer than the allowed number when viewing the file. The maximum
+  line length can be configured by setting the length property, which defaults to 120.
+  NOTE: This rule does not support the @SuppressAnnotations
+  
+  &quot;DuplicateStringLiteral&quot;: This rule checks for duplicate String literals within the current class.
+  Code containing duplicate String literals can usually be improved by declaring the String as a constant field.
+  This rule ignores (zero-length) empty strings.
+  
+  &quot;DuplicateNumberLiteral&quot;: This rule checks for duplicate number literals within the current class.
+  Code containing duplicate Number literals can usually be improved by declaring the Number as a constant field.
+  
+  &quot;SpaceBeforeOpeningBrace&quot;: Check that there is at least one space (blank) or whitespace before each opening 
+  brace (“{”) for method/class/interface declarations, closure expressions and block statements.
+  A closure expression a preceded by an opening parenthesis, an opening square brace ([), or a dollar 
+  sign ($) within a GString does not cause a violation.</pre>
+</div></div><p>These ones should be easy fixes<br/></p><h4 id="LintingJenkinsFiles+Groovyscripts-PossibleRulechanges:">Possible Rule changes:</h4><p>The following have been added on top of the default rule files to ignore the following rules.<br/>Remove/Ignore<br/>Catch Exception: can probably be turned off, as I believe in the pipeline catching general exceptions should be fine.<br/>UnnecessaryGetter: This is being triggered by any methods we have that have is/get as the start, and we aren't using oop anyway<br/>JavaIoPackageAccess: JavaBeans state basically we shouldn't directly access the file system, but we have need to.<br/>FactoryMethodName: triggered by function name like MakeReport, we dont use factory methods<br/>ImplicitClosureParameter:<br/>NoDef:<br/>VariableTypeRequired:<br/>MethodParameterTypeRequired:<br/>CompileStatic: <br/></p><p />
+                    </div>
+
+                                        <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1613070339/1613234180.png">image-20250207-230218.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1613070339/1622442001.txt">GroovyRules.txt</a> (text/plain)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1613070339/1622442007.txt">JenkinsRules.txt</a> (text/plain)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on May 27, 2025 13:33</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

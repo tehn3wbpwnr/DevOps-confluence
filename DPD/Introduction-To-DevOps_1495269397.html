@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DevOps / Pipeline &amp; Deployment : Introduction To DevOps</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">DevOps / Pipeline &amp; Deployment</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1179353439.html">DevOps / Pipeline &amp; Deployment Home</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Onboarding-Documents_1541537838.html">Onboarding Documents</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            DevOps / Pipeline &amp; Deployment : Introduction To DevOps
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                            
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Joshua Moore</span>, last modified on Dec 12, 2024
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <h2 id="IntroductionToDevOps-Introduction">Introduction</h2><p>Welcome to the DevOps Team! This page is here to help ease your transition into a new team, There will be definitions and explanations of all the new technology you will exploring through your journey at VAR Lab. </p><p>First, let’s start with the basics: <strong>What is DevOps?</strong></p><p>Simply put, DevOps is the intersection of development and IT operations. We help bridge the gap between the code developers create and fully deployed, production-ready applications. This includes ensuring applications are tested, deployed, and monitored effectively, often through the use of automation tools. Below, we’ll dive into some of the key terms and technologies you'll encounter in your day-to-day work, we will keep everything at a high level without digging too deep into details on this page, that can come later.</p><h2 id="IntroductionToDevOps-Definitions">Definitions</h2><p>The tech industry is full of jargon that can feel overwhelming at first, like saying “We automate our CI-CD pipeline, to ensure rapid reliable deployments.” What does this mean? Lets break it down.</p><p><strong>CI/CD Pipeline:</strong> This stands for continuous integration, and continuous deployment. You can think of it as an assembly line for code, where each step along the way, actions are taken on the code (Such as testing), automatically.</p><p><strong>Automation: </strong>There is lots of talk about automation, lets define what we mean. Essentially we want to leverage tools, such as running tests, or building code. Which are repetitive tasks to do by hand, and have it so these tasks are performed automatically.</p><p><strong>Pipeline: </strong>This is how we automate things. Think of it as a piece of code or script that runs when something happens like a Pull Request is made. </p><p><strong>Linting:</strong> We have mentioned tests, but there is also a thing called linting. Linting is a process of analyzing code to ensure it meets a certain standard. As an example we have a style guide where variables are supposed to be named in a certain case based on public, private, etc. We can create a rule set and scan the code to make sure it follows the style guide keeping a consistent well maintained code base!</p><p><strong>Virtual Machine: </strong>A Virtual Machine (VM) is a software-based emulation of a physical computer, we use <strong>Azure</strong> to host our VMs in the cloud, we have both windows and Linux based VMs in use.</p><h2 id="IntroductionToDevOps-WhatDoesOurPipelineLookLike?">What Does Our Pipeline Look Like?</h2><p>Before going over too many definitions lets look at our pipeline. We use Bitbucket to host our remote code repositories. A developer will work on a ticket for a feature than create a pull request. This is the beginning of where DevOps comes in! So what happens then?</p><div class="ap-container" id="ap-com.realtimeboard.plugins.confluence-server-plugin__miro-macro-resizing5358398040859646692">
+
+  <div class="ap-content " id="embedded-com.realtimeboard.plugins.confluence-server-plugin__miro-macro-resizing5358398040859646692"></div>
+  <script nonce="88fd87822338648bb69122381bed6d99" class="ap-iframe-body-script">
+  (function(){
+    var data = {
+    "addon_key":"com.realtimeboard.plugins.confluence-server-plugin",
+    "uniqueKey":"com.realtimeboard.plugins.confluence-server-plugin__miro-macro-resizing5358398040859646692",
+    "key":"miro-macro-resizing",
+     "moduleType":"dynamicContentMacros",      "moduleLocation":"content",         "cp":"/wiki",
+            "general":"",
+    "w":"",
+    "h":"",
+    "url":"https://miro.com/embed/confluence-cloud-app/viewer?hash=&accessLink=https%3A%2F%2Fmiro.com%2Fapp%2Flive-embed%2FuXjVL4_SrjU%3D%2F%3FboardAccessToken%3DeFpP0YfqFx2qmKBfefo9GYuA0efuTGSg%26autoplay%3Dtrue%26embedMode%3Dview_only_without_ui&pageId=1495269397&type=html_export&resize=true&xdm_e=https%3A%2F%2Fvarlab-dev.atlassian.net&xdm_c=channel-com.realtimeboard.plugins.confluence-server-plugin__miro-macro-resizing5358398040859646692&cp=%2Fwiki&xdm_deprecated_addon_key_do_not_use=com.realtimeboard.plugins.confluence-server-plugin&lic=none&cv=1000.0.0-c1c731773e6f&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI3MTIwMjA6OGE2ZDQ5ODAtMWI3YS00ODkwLTk1MGMtZjVkOGI4NjAyY2NlIiwicXNoIjoiZmUwMjMzNGRhMjJkZDQ5ZWNlYTQ2MjA0NGYwZWJlZGM1Y2Q0NzU0NGI3ZjE2OTk2NjEyODdhYzg3NWQ0NDU1NiIsImlzcyI6IjBjNzRjMWFmLTY0YTYtMzY2Zi05NGIwLTMzMzZkOWNhOTU4OCIsImNvbnRleHQiOnt9LCJleHAiOjE3NDgzNTMwODMsImlhdCI6MTc0ODM1MjkwM30.XDgPdv5g2j57CeQv6OGqJ-iKkrtuWcxk89fkej1qev4",
+     "contextJwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI3MTIwMjA6OGE2ZDQ5ODAtMWI3YS00ODkwLTk1MGMtZjVkOGI4NjAyY2NlIiwicXNoIjoiY29udGV4dC1xc2giLCJpc3MiOiIwYzc0YzFhZi02NGE2LTM2NmYtOTRiMC0zMzM2ZDljYTk1ODgiLCJjb250ZXh0Ijp7InVybCI6eyJkaXNwbGF5VXJsIjoiaHR0cHM6XC9cL3ZhcmxhYi1kZXYuYXRsYXNzaWFuLm5ldFwvd2lraSJ9LCJjb25mbHVlbmNlIjp7ImVkaXRvciI6eyJ2ZXJzaW9uIjoidjIifSwibWFjcm8iOnsib3V0cHV0VHlwZSI6Imh0bWxfZXhwb3J0IiwiaGFzaCI6ImJjNGQyZGZmLTNhMzctNDkwMy05ODk4LWQ5OWY2NmVlYjRiMCIsImlkIjoiYmM0ZDJkZmYtM2EzNy00OTAzLTk4OTgtZDk5ZjY2ZWViNGIwIn0sImNvbnRlbnQiOnsidHlwZSI6InBhZ2UiLCJ2ZXJzaW9uIjoiMyIsImlkIjoiMTQ5NTI2OTM5NyJ9LCJzcGFjZSI6eyJrZXkiOiJEUEQiLCJpZCI6IjExNzkzNTMxMjgifX19LCJleHAiOjE3NDgzNTM4MDMsImlhdCI6MTc0ODM1MjkwM30.1MzEl9u349UYCzulOlyU3MsktqlqTWxmDpUF8Q59bUI",    "structuredContext": "{\"confluence\":{\"editor\":{\"version\":\"v2\"},\"macro\":{\"outputType\":\"html_export\",\"hash\":\"bc4d2dff-3a37-4903-9898-d99f66eeb4b0\",\"id\":\"bc4d2dff-3a37-4903-9898-d99f66eeb4b0\"},\"content\":{\"type\":\"page\",\"version\":\"3\",\"id\":\"1495269397\"},\"space\":{\"key\":\"DPD\",\"id\":\"1179353128\"}},\"url\":{\"displayUrl\":\"https://varlab-dev.atlassian.net/wiki\"}}",
+    "contentClassifier":"content",
+    "productCtx":"{\"page.id\":\"1495269397\",\"macro.hash\":\"bc4d2dff-3a37-4903-9898-d99f66eeb4b0\",\"space.key\":\"DPD\",\"page.type\":\"page\",\"content.version\":\"3\",\"page.title\":\"Introduction To DevOps\",\"macro.localId\":\"17bd0fad-3498-4c89-86e5-6c6275c6f8e4\",\"macro.body\":\"\",\": = | RAW | = :\":\"accessLink=https://miro.com/app/live-embed/uXjVL4_SrjU=/?boardAccessToken=eFpP0YfqFx2qmKBfefo9GYuA0efuTGSg&autoplay=true&embedMode=view_only_without_ui\",\"space.id\":\"1179353128\",\"macro.truncated\":\"false\",\"content.type\":\"page\",\"output.type\":\"html_export\",\"page.version\":\"3\",\"macro.fragmentLocalId\":\"\",\"accessLink\":\"https://miro.com/app/live-embed/uXjVL4_SrjU=/?boardAccessToken=eFpP0YfqFx2qmKBfefo9GYuA0efuTGSg&autoplay=true&embedMode=view_only_without_ui\",\"content.id\":\"1495269397\",\"macro.id\":\"bc4d2dff-3a37-4903-9898-d99f66eeb4b0\",\"user.isExternalCollaborator\":\"false\",\"editor.version\":\"v2\"}",
+    "timeZone":"UTC",
+    "origin":"https://miro.com",
+    "hostOrigin":"https://varlab-dev.atlassian.net",
+    "sandbox":"allow-downloads allow-forms allow-modals allow-popups allow-popups-to-escape-sandbox allow-scripts allow-same-origin allow-top-navigation-by-user-activation allow-storage-access-by-user-activation",            "apiMigrations": {
+        "gdpr": true
+    }
+}
+;
+    if(window.AP && window.AP.subCreate) {
+      window._AP.appendConnectAddon(data);
+    } else {
+      require(['ac/create'], function(create){
+        create.appendConnectAddon(data);
+      });
+    }
+
+    // For Confluence App Analytics. This code works in conjunction with CFE's ConnectSupport.js.
+    // Here, we add a listener to the initial HTML page that stores events if the ConnectSupport component
+    // has not mounted yet. In CFE, we process the missed event data and disable this initial listener.
+    const __MAX_EVENT_ARRAY_SIZE__ = 20;
+    const connectAppAnalytics = "ecosystem.confluence.connect.analytics";
+    window.connectHost && window.connectHost.onIframeEstablished((eventData) => {
+      if (!window.__CONFLUENCE_CONNECT_SUPPORT_LOADED__) {
+        let events = JSON.parse(window.localStorage.getItem(connectAppAnalytics)) || [];
+        if (events.length >= __MAX_EVENT_ARRAY_SIZE__) {
+          events.shift();
+        }
+        events.push(eventData);
+        window.localStorage.setItem(connectAppAnalytics, JSON.stringify(events));
+      }
+    });
+
+  }());
+</script>
+
+</div>
+<ol start="1"><li><p>Automatically when a Pull Request(PR) is made it will then send an http request to our pipeline server! This is what triggers the pipeline to run, with associated information such as what repository, branch, etc.</p></li><li><p>The pipeline begins running its associated script for the type of project (Unity or JavaScript).</p><ol start="1"><li><p>Pipeline uses git to pull the code from the PR, and performs a local merge with main to check for conflicts.</p></li><li><p>Linting! Then we scan the code against our style guide. This being Non-critical is allowed to have errors, and we provide a report back to the developers letting them know the files and lines of code that broke the rules.</p><ol start="1"><li><p>For some projects there could also be a static code analysis step here that checks the project for known security risks, etc.</p></li></ol></li><li><p>Tests are then run, this could happen in multiple stages depending on type of project. (Unity has Edit Mode and Play Mode tests). Based on the results we also provide some sort of feedback to the developers, via a report of some sort.</p></li><li><p>We build the project. This ensures the code compiles okay, and may have other steps such as deploying the finished product (A WebGL build for Unity, or Docker container for JavaScript.</p></li><li><p>Lastly the pipeline then informs the developers of the pipeline result, and sends any remaining reports, such as test results, code scanning results, etc.</p></li></ol></li><li><p>When the pipeline is finished it may have passed the built code on to another server, which may do extra things such as deploying a project so there may be additional steps afterwards, but we won’t worry about those right now.</p></li></ol><p>And that is what a pipeline looks like at a high level! <strong>NOTE:</strong> This keeps the explanation simple, however there can be additional context based on how the pipeline runs such as, is this PR still open? (Then it won’t deploy), or if the PR was merged (It will deploy the build). This is just to give you a high level break down of what the pipeline does, later we will cover it in more depth.</p><h2 id="IntroductionToDevOps-AdditionalTools">Additional Tools</h2><p>The DevOps team doesn’t just manage pipelines, we also have some additional things that we work on. Such as managing Virtual Machines that get finished builds deployed to. A major one we have is our <strong>LTI Web Server</strong>. Another acronym?! Lets cover it.</p><p><strong>What is LTI? </strong>LTI stands for “Learning Tools Interoperability”, Which is a fancy way of saying its a standard used for educational tools (such as eConestoga) to communicate with external programs/tools. </p><p><strong>What does it do? </strong>Our learning simulations will be hosted on this web server, the web server uses this standard to communicate with eConestoga to ensure users are authorized and authenticated, as well as provide information to simulations like what is the student’s name, unique identifier, etc. It can also be used to submit grades back to eConestoga!</p><p>So our pipeline will take the finished Unity build, and transfer it onto the Virtual Machine running our web server. Then it can be accessed on eConestoga without having to manually upload any files!</p><p />
+                    </div>
+
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on May 27, 2025 13:35</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

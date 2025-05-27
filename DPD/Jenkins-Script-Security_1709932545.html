@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DevOps / Pipeline &amp; Deployment : Jenkins Script Security</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">DevOps / Pipeline &amp; Deployment</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1179353439.html">DevOps / Pipeline &amp; Deployment Home</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Linux-Jenkins-Documents_1542455384.html">Linux Jenkins Documents</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Security-Management-on-VM_1584594948.html">Security Management on VM</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            DevOps / Pipeline &amp; Deployment : Jenkins Script Security
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                            
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Joshua Moore</span> on Mar 23, 2025
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <style type='text/css'>/*<![CDATA[*/
+div.rbtoc1748352809986 {padding: 0px;}
+div.rbtoc1748352809986 ul {list-style: none;margin-left: 0px;}
+div.rbtoc1748352809986 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style><div class='toc-macro rbtoc1748352809986'>
+<ul class='toc-indentation'>
+<li><a href='#JenkinsScriptSecurity-Securitywithinscripts'>Security within scripts</a>
+<ul class='toc-indentation'>
+<li><a href='#JenkinsScriptSecurity-SudoUsage'>Sudo Usage</a>
+<ul class='toc-indentation'>
+<li><a href='#JenkinsScriptSecurity-Potentialsolution'>Potential solution</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href='#JenkinsScriptSecurity-Securityrelatedtosettings'>Security related to settings</a>
+<ul class='toc-indentation'>
+<li><a href='#JenkinsScriptSecurity-Scriptsignatures'>Script signatures</a>
+<ul class='toc-indentation'>
+<li><a href='#JenkinsScriptSecurity-newjava.io.Filejava.lang.string'>new java.io.File java.lang.string</a>
+<ul class='toc-indentation'>
+<li><a href='#JenkinsScriptSecurity-PotentialVulnerabilities'>Potential Vulnerabilities</a></li>
+<li><a href='#JenkinsScriptSecurity-Solution'>Solution</a></li>
+<li><a href='#JenkinsScriptSecurity-Status'>Status</a></li>
+</ul>
+</li>
+<li><a href='#JenkinsScriptSecurity-staticMethodgroovy.json.JsonOutputtoJsonjava.lang.object'>staticMethod groovy.json.JsonOutput toJson java.lang.object</a>
+<ul class='toc-indentation'>
+<li><a href='#JenkinsScriptSecurity-PotentialVulnerabilities.1'>Potential Vulnerabilities</a></li>
+<li><a href='#JenkinsScriptSecurity-Solution.1'>Solution</a></li>
+<li><a href='#JenkinsScriptSecurity-Status.1'>Status</a></li>
+</ul>
+</li>
+<li><a href='#JenkinsScriptSecurity-staticMethodorg.codehaus.groovy.runtime.DefaultGroovyMethodsexecutejava.lang.string'>staticMethod org.codehaus.groovy.runtime.DefaultGroovyMethods execute java.lang.string</a>
+<ul class='toc-indentation'>
+<li><a href='#JenkinsScriptSecurity-PotentialVulnerabilities.2'>Potential Vulnerabilities</a></li>
+<li><a href='#JenkinsScriptSecurity-Solution.2'>Solution</a></li>
+<li><a href='#JenkinsScriptSecurity-Status.2'>Status</a></li>
+</ul>
+</li>
+<li><a href='#JenkinsScriptSecurity-staticMethodorg.codehaus.groovy.runtime.DefaultGroovyMethodsgetPropertiesjava.lang.object'>staticMethod org.codehaus.groovy.runtime.DefaultGroovyMethods getProperties java.lang.object</a>
+<ul class='toc-indentation'>
+<li><a href='#JenkinsScriptSecurity-PotentialVulnerabilities.3'>Potential Vulnerabilities</a></li>
+<li><a href='#JenkinsScriptSecurity-Solution.3'>Solution</a></li>
+<li><a href='#JenkinsScriptSecurity-Status.3'>Status</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div><h2 id="JenkinsScriptSecurity-Securitywithinscripts">Security within scripts</h2><h3 id="JenkinsScriptSecurity-SudoUsage">Sudo Usage</h3><p>The first concern that was brought up in the ticket 
+
+    
+
+            
+
+
+
+
+    <span class="confluence-jim-macro jira-issue" data-jira-key="CORE-1542"  data-client-id="SINGLE_a5997e8d-c92b-3e2c-a3c8-296b7f0f7c11_1709932545_712020:8a6d4980-1b7a-4890-950c-f5d8b8602cce" >
+                <a href="https://varlab-dev.atlassian.net/browse/CORE-1542" class="jira-issue-key"><span class="aui-icon aui-icon-wait issue-placeholder"></span>CORE-1542</a>
+                    -
+            <span class="summary">Getting issue details...</span>
+                                    <span class="aui-lozenge aui-lozenge-subtle aui-lozenge-default issue-placeholder">STATUS</span>
+            </span>
+  was our usage of Sudo.</p><p>The main concern with usage of Sudo is the level of access it gives to certain commands for either malicious or accidental problems occuring. as an example if a command like </p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">sudo rm -rf ${myDir}</pre>
+</div></div><p>were to be run but the myDir variable had accidentally been set to something like '/' we could destroy our entire file system of the machine that it is running on. </p><p>Sometimes we have need of the command for the execution of certain actions, or performing things like permissions/ownership change.</p><h4 id="JenkinsScriptSecurity-Potentialsolution">Potential solution</h4><p>We can limit our risk exposure by modifying/configuring something like /etc/sudoers with a limited amount of access to certain commands for passwordless sudo execution.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">jenkins ALL=(root) NOPASSWD: /usr/bin/az, /bin/chown, /bin/chmod, /bin/rm -rf /var/www/html/examplefolder/*</pre>
+</div></div><p>The above example limits the usage of Sudo to certain commands and in the case of the rm -rf command, a certain location/set of sub directories to ensure an accident could not remove a location that was u-intended.</p><h2 id="JenkinsScriptSecurity-Securityrelatedtosettings">Security related to settings</h2><p>This section will cover research related to settings within Jenkins that are related to scripts. Below is the section covering the security settings related to approving method signatures.</p><p>Useful pages</p><ul><li><p><a class="external-link" data-card-appearance="inline" href="https://www.jenkins.io/doc/pipeline/steps/workflow-basic-steps/#-readfile-%20read%20file%20from%20workspace" rel="nofollow">https://www.jenkins.io/doc/pipeline/steps/workflow-basic-steps/#-readfile-%20read%20file%20from%20workspace</a>  the pipeline utility plugin with all the helper methods (writeFile, writeJSON, etc)</p></li><li><p><a class="external-link" data-card-appearance="inline" href="https://stackoverflow.com/questions/55785003/scripts-not-permitted-to-use-staticmethod-org-codehaus-groovy-runtime-defaultgro" rel="nofollow">https://stackoverflow.com/questions/55785003/scripts-not-permitted-to-use-staticmethod-org-codehaus-groovy-runtime-defaultgro</a> </p></li></ul><h3 id="JenkinsScriptSecurity-Scriptsignatures">Script signatures</h3><h4 id="JenkinsScriptSecurity-newjava.io.Filejava.lang.string">new java.io.File java.lang.string</h4><p>This signature is related to the instantiation of a new “File” Object, allowing the creation of the object does not automatically read or write data, but then can be used with .write/.read to perform file related actions.</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20250323-084416.png" width="266" loading="lazy" src="attachments/1709932545/1709998098.png?width=266" data-image-src="attachments/1709932545/1709998098.png" data-height="48" data-width="266" data-unresolved-comment-count="0" data-linked-resource-id="1709998098" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20250323-084416.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1709932545" data-linked-resource-container-version="1" data-media-id="95d4fe9d-3d24-4be6-90aa-0bd4a3c3d452" data-media-type="file"></span><h5 id="JenkinsScriptSecurity-PotentialVulnerabilities">Potential Vulnerabilities</h5><p>The security vulnerability related to this, is if a malicious or untrusted pipeline script runs it can instantiate files freely, this could lead to information leakage or unwanted modification of data.</p><h5 id="JenkinsScriptSecurity-Solution">Solution</h5><p>There are 2 potential solutions to this. First leaving it as is, this assumes that all scripts within the pipeline are to be trusted (since they should be developed internally by us)<br/>The second solution which I recommend we try would be using the following built-in Jenkins methods, which have some built in security safeguards.</p><ul><li><p>readFile</p></li><li><p>writeFile</p></li><li><p>fileExists</p></li><li><p>touch (creates an empty file) </p></li></ul><p>Additionally this could aid us in migrating the Jenkins agents in the future if they are to ever run in a more restricted environment where we don’t have admin control.</p><h5 id="JenkinsScriptSecurity-Status">Status</h5><p>Currently approved, will discuss with team about solution and update this section with results.</p><h4 id="JenkinsScriptSecurity-staticMethodgroovy.json.JsonOutputtoJsonjava.lang.object">staticMethod groovy.json.JsonOutput toJson java.lang.object</h4><p>This method signature is related to the conversion of a Java/Groovy object into a JSON object.</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20250323-082902.png" width="407" loading="lazy" src="attachments/1709932545/1709998088.png?width=407" data-image-src="attachments/1709932545/1709998088.png" data-height="101" data-width="407" data-unresolved-comment-count="0" data-linked-resource-id="1709998088" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20250323-082902.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1709932545" data-linked-resource-container-version="1" data-media-id="83aaafa3-0382-4c80-810a-63b9cc745d67" data-media-type="file"></span><h5 id="JenkinsScriptSecurity-PotentialVulnerabilities.1">Potential Vulnerabilities</h5><p>I struggled to find examples on StackOverflow/google of potential issues this signature could cause, ChatGPT suggested that there are only 2 potential vulnerabilities with this signature being</p><ol start="1"><li><p>accidental secret exposure: if we serialize an object containing secrets like credentials/tokens and log the serialized object the secrets will be visible within the log</p></li><li><p>Information Leakage: Expose things like data structures of objects.</p></li></ol><h5 id="JenkinsScriptSecurity-Solution.1">Solution</h5><p>There does not appear to be any “safe” alternatives, however if we wish to get rid of the signature in our script approval security section we can look at using the built in writeJSON provided by the pipeline utility plugin: <a class="external-link" data-card-appearance="inline" href="https://www.jenkins.io/doc/pipeline/steps/pipeline-utility-steps/#writejson-write-json-to-a-file-in-the-workspace" rel="nofollow">https://www.jenkins.io/doc/pipeline/steps/pipeline-utility-steps/#writejson-write-json-to-a-file-in-the-workspace</a>  it also has a “pretty” option</p><h5 id="JenkinsScriptSecurity-Status.1">Status</h5><p>Currently approved, will discuss with team about solution and update this section with results.</p><h4 id="JenkinsScriptSecurity-staticMethodorg.codehaus.groovy.runtime.DefaultGroovyMethodsexecutejava.lang.string">staticMethod org.codehaus.groovy.runtime.DefaultGroovyMethods execute java.lang.string</h4><p>This is related to the .execute() pattern that is used in groovy, which spawns a shell process to run commands.</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20250323-095737.png" width="387" loading="lazy" src="attachments/1709932545/1709899785.png?width=387" data-image-src="attachments/1709932545/1709899785.png" data-height="147" data-width="387" data-unresolved-comment-count="0" data-linked-resource-id="1709899785" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20250323-095737.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1709932545" data-linked-resource-container-version="1" data-media-id="b7fa3ca0-f19f-4c49-aedb-c9f2040af458" data-media-type="file"></span><h5 id="JenkinsScriptSecurity-PotentialVulnerabilities.2">Potential Vulnerabilities</h5><p>There are two main issues that stem from enabling this command.</p><ol start="1"><li><p>Arbitrary code execution, if we were to allow/have untrusted scripts within our Jenkins, this command gives them access to execute OS commands, and potentially remote code execution/leaking of secrets.</p></li><li><p>Bypass logging/tracing, commands run in “execute()” may not properly be captured in the Jenkins console/our logs, which could hide malicious behaviour</p></li></ol><h5 id="JenkinsScriptSecurity-Solution.2">Solution</h5><p>This Method signature should be un-approved and we should rely on the built in pipeline commands (“sh”, “bat”) for execution of code. These will ensure that they are logged properly, and are easier to audit/manage in Jenkins.</p><h5 id="JenkinsScriptSecurity-Status.2">Status</h5><p>Currently approved, will discuss with team about solution and update this section with results.</p><h4 id="JenkinsScriptSecurity-staticMethodorg.codehaus.groovy.runtime.DefaultGroovyMethodsgetPropertiesjava.lang.object">staticMethod org.codehaus.groovy.runtime.DefaultGroovyMethods getProperties java.lang.object</h4><p>This method signature is related to calling getProperties() on an object or map. This is typically used to see meta data about an object, such as fields, etc.</p><h5 id="JenkinsScriptSecurity-PotentialVulnerabilities.3">Potential Vulnerabilities</h5><p>The main vulnerability that seems to be associated with this method signature is data leakage. We may not have control over what is shown by the getProperties call, and it may show more than we expect.</p><h5 id="JenkinsScriptSecurity-Solution.3">Solution</h5><p>I used the find tool in VSCode to search for an example of us using the getProperties() method, and couldn’t find an example, there is potential that this is just an old left over signature that was approved. I believe we can probably remove it from the list.</p><h5 id="JenkinsScriptSecurity-Status.3">Status</h5><p>Currently approved, will discuss with team about solution and update this section with results.</p>
+                    </div>
+
+                                        <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1709932545/1709998088.png">image-20250323-082902.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1709932545/1709998098.png">image-20250323-084416.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1709932545/1709899785.png">image-20250323-095737.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on May 27, 2025 13:33</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

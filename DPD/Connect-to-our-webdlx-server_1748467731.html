@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DevOps / Pipeline &amp; Deployment : Connect to our webdlx server</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">DevOps / Pipeline &amp; Deployment</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1179353439.html">DevOps / Pipeline &amp; Deployment Home</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Onboarding-Documents_1541537838.html">Onboarding Documents</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Before-We-Begin_1733001226.html">Before We Begin</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            DevOps / Pipeline &amp; Deployment : Connect to our webdlx server
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                            
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Jonathan Bezeau</span>, last modified on Apr 14, 2025
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <p>We’re going to go through our entry point server, to <strong>tunnel </strong>a connection to the server where we host our builds. First you need to open a command prompt and establish a local port-forward connection:</p><p><em>ssh -i .ssh/vconkey.pem </em><a class="external-link" href="mailto:vconadmin@vconestoga.com" rel="nofollow"><em>vconadmin@vconestoga.com</em></a><em> -NL 1056:webdlx:22</em></p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20250414-152805.png" width="760" loading="lazy" src="attachments/1748467731/1749123102.png?width=760" data-image-src="attachments/1748467731/1749123102.png" data-height="47" data-width="857" data-unresolved-comment-count="0" data-linked-resource-id="1749123102" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20250414-152805.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1748467731" data-linked-resource-container-version="2" data-media-id="852efef0-64f1-4dfa-8dd0-07d02dee8d6c" data-media-type="file"></span><p>Leave the first command prompt running. What it’s doing is sending every bit of data it sees on port 1056 to <a class="external-link" href="http://vconestoga.com" rel="nofollow">vconestoga.com</a> and from there to webdlx on the normal SSH port (22). This way we don’t have to leave webdlx' SSH port open to the public internet.</p><p>In another command prompt, we’re going to connect to our own computer on port 1056… the port we defined as our local forward:</p><p><em>ssh -i .ssh/vconkey.pem vconadmin@localhost -p 1056</em></p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20250414-153051.png" width="671" loading="lazy" src="attachments/1748467731/1749123109.png?width=671" data-image-src="attachments/1748467731/1749123109.png" data-height="62" data-width="671" data-unresolved-comment-count="0" data-linked-resource-id="1749123109" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20250414-153051.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1748467731" data-linked-resource-container-version="2" data-media-id="2733ea8c-a20f-4a52-8747-9aebc3c835e3" data-media-type="file"></span>
+                    </div>
+
+                                        <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1748467731/1749123102.png">image-20250414-152805.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1748467731/1749123109.png">image-20250414-153051.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on May 27, 2025 13:35</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

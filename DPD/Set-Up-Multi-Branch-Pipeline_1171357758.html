@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DevOps / Pipeline &amp; Deployment : Set Up Multi-Branch-Pipeline</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">DevOps / Pipeline &amp; Deployment</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1179353439.html">DevOps / Pipeline &amp; Deployment Home</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Windows-Jenkins-Documents_1542389772.html">Windows Jenkins Documents</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Set-Up-on-Windows_1541570589.html">Set Up on Windows</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Set-Up-Jenkins-Build-System_819265566.html">Set Up Jenkins Build System</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            DevOps / Pipeline &amp; Deployment : Set Up Multi-Branch-Pipeline
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                            
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Chris Park</span>, last modified on Aug 14, 2024
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <p><br/></p><style type='text/css'>/*<![CDATA[*/
+div.rbtoc1748352871566 {padding: 0px;}
+div.rbtoc1748352871566 ul {list-style: none;margin-left: 0px;}
+div.rbtoc1748352871566 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style><div class='toc-macro rbtoc1748352871566'>
+<ul class='toc-indentation'>
+<li><a href='#SetUpMulti-Branch-Pipeline-ConfigurationSetting'>Configuration Setting</a>
+<ul class='toc-indentation'>
+<li><a href='#SetUpMulti-Branch-Pipeline-1.CreateaNewProject'>1. Create a New Project</a></li>
+<li><a href='#SetUpMulti-Branch-Pipeline-2.CreateMulti-BranchPipelineProject'>2. Create Multi-Branch Pipeline Project</a></li>
+<li><a href='#SetUpMulti-Branch-Pipeline-3.Setthe‘BranchSources’toBitbucket'>3. Set the ‘Branch Sources’ to Bitbucket</a></li>
+<li><a href='#SetUpMulti-Branch-Pipeline-4.Createthe‘AppPasswords’intheBitbucket'>4. Create the ‘App Passwords’ in the Bitbucket</a></li>
+<li><a href='#SetUpMulti-Branch-Pipeline-5.Setthecredentialandselectarepository'>5. Set the credential and select a repository</a></li>
+<li><a href='#SetUpMulti-Branch-Pipeline-6.SetBehavior(Discoverbranches)'>6. Set Behavior (Discover branches)</a></li>
+<li><a href='#SetUpMulti-Branch-Pipeline-7.BuildConfigurationSetting'>7. Build Configuration Setting</a></li>
+<li><a href='#SetUpMulti-Branch-Pipeline-8.ManagetheWebhook'>8. Manage the Webhook</a></li>
+</ul>
+</li>
+</ul>
+</div><h1 id="SetUpMulti-Branch-Pipeline-ConfigurationSetting"><br/><strong>Configuration Setting</strong></h1><hr/><h2 id="SetUpMulti-Branch-Pipeline-1.CreateaNewProject"><strong>1. Create a New Project</strong></h2><span class="confluence-embedded-file-wrapper image-left-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-left" width="204" loading="lazy" src="attachments/1171357758/1171062823.png?width=204" data-image-src="attachments/1171357758/1171062823.png" data-height="200" data-width="214" data-unresolved-comment-count="0" data-linked-resource-id="1171062823" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="att_3_for_1171357758.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1171357758" data-linked-resource-container-version="13" data-media-id="5b95091c-5877-4de3-8379-f0602ba16b23" data-media-type="file"></span><p style="margin-left: 30.0px;">&gt;&gt; Select the ‘New Item’ to add the new project for the muti-branch pipeline.</p><p /><hr/><h2 id="SetUpMulti-Branch-Pipeline-2.CreateMulti-BranchPipelineProject"><strong>2. Create Multi-Branch Pipeline Project</strong></h2><span class="confluence-embedded-file-wrapper image-left-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-left" width="408" loading="lazy" src="attachments/1171357758/1171914800.png?width=408" data-image-src="attachments/1171357758/1171914800.png" data-height="355" data-width="428" data-unresolved-comment-count="0" data-linked-resource-id="1171914800" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="att_33_for_1171357758.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1171357758" data-linked-resource-container-version="13" data-media-id="d8f3e241-07ca-45cf-b298-1bcdcbd7d8bd" data-media-type="file"></span><p style="margin-left: 30.0px;">&gt;&gt; Enter the name of the project(folder) name and select the ‘Multibranch Pipeline’ for the type of project.</p><p /><hr/><h2 id="SetUpMulti-Branch-Pipeline-3.Setthe‘BranchSources’toBitbucket"><strong>3. Set the ‘Branch Sources’ to Bitbucket</strong></h2><span class="confluence-embedded-file-wrapper image-left-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-left" width="578" loading="lazy" src="attachments/1171357758/1171161174.png?width=578" data-image-src="attachments/1171357758/1171161174.png" data-height="302" data-width="602" data-unresolved-comment-count="0" data-linked-resource-id="1171161174" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="att_31_for_1171357758.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1171357758" data-linked-resource-container-version="13" data-media-id="7440ed96-09f7-4a28-b619-752b5f30deb2" data-media-type="file"></span><p /><hr/><h2 id="SetUpMulti-Branch-Pipeline-4.Createthe‘AppPasswords’intheBitbucket"><strong>4. Create the ‘App Passwords’ in the Bitbucket</strong></h2><p>: Follow the steps in this link: <a href="How-To-Set-Bitbucket-App-Password_1279655940.html" data-linked-resource-id="1279655940" data-linked-resource-version="9" data-linked-resource-type="page">How To Set Bitbucket App Password</a> </p><ul><li><p>This setting could be optional, so check whether <strong>'<span style="background-color: rgb(198,237,251);">bitbucket-app-password</span>'</strong> already exists or not <u>like the screenshot below</u>.</p></li></ul><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20240813-143353.png" width="760" loading="lazy" src="attachments/1171357758/1278607447.png?width=760" data-image-src="attachments/1171357758/1278607447.png" data-height="509" data-width="1294" data-unresolved-comment-count="0" data-linked-resource-id="1278607447" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20240813-143353.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1171357758" data-linked-resource-container-version="13" data-media-id="882e8008-fc23-4d03-a7c6-e44f486134e6" data-media-type="file"></span><p /><hr/><h2 id="SetUpMulti-Branch-Pipeline-5.Setthecredentialandselectarepository"><strong>5. Set the credential and select a repository</strong></h2><span class="confluence-embedded-file-wrapper image-left-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-left" width="510" loading="lazy" src="attachments/1171357758/1171816470.png?width=510" data-image-src="attachments/1171357758/1171816470.png" data-height="348" data-width="536" data-unresolved-comment-count="0" data-linked-resource-id="1171816470" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="att_13_for_1171357758.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1171357758" data-linked-resource-container-version="13" data-media-id="784f7c70-829e-4b51-8760-dce695f3de8d" data-media-type="file"></span><p style="margin-left: 30.0px;">&gt;&gt; Select the validated credential (bitbucket-app-password)</p><p>       &gt;&gt; Make sure the owner should be the <span style="background-color: rgb(198,237,251);">‘</span><strong><span style="background-color: rgb(198,237,251);">varlab</span></strong><span style="background-color: rgb(198,237,251);">’ </span></p><p /><span class="confluence-embedded-file-wrapper image-left-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-left" width="510" loading="lazy" src="attachments/1171357758/1172111390.png?width=510" data-image-src="attachments/1171357758/1172111390.png" data-height="202" data-width="538" data-unresolved-comment-count="0" data-linked-resource-id="1172111390" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="att_5_for_1171357758.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1171357758" data-linked-resource-container-version="13" data-media-id="9c9665d5-c873-4aa2-ae84-68be458c2021" data-media-type="file"></span><p style="margin-left: 30.0px;">&gt;&gt; If you enter the Owner, Jenkins will automatically detect the available repositories in the Bitbucket.</p><p style="margin-left: 30.0px;">&gt;&gt; If Jenkins does not show the list of Bitbucket repositories, double-check the credential. (Suggest just go to the previous step and create a new app password if you skipped it)</p><p /><hr/><h2 id="SetUpMulti-Branch-Pipeline-6.SetBehavior(Discoverbranches)"><strong>6. Set Behavior (Discover branches) </strong></h2><p style="margin-left: 30.0px;">: This configuration is about <u>how to discover the branches in a repository</u> and <u>how to build and test the project</u>.</p><p style="margin-left: 30.0px;">Set this configuration following the like below<br/>: <a href="1279557679.html" data-linked-resource-id="1279557679" data-linked-resource-version="11" data-linked-resource-type="page">About Build Behaviors(Strategy) Setting</a> </p><p /><hr/><h2 id="SetUpMulti-Branch-Pipeline-7.BuildConfigurationSetting"><strong>7. Build Configuration Setting</strong></h2><span class="confluence-embedded-file-wrapper image-left-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-left" width="578" loading="lazy" src="attachments/1171357758/1171456043.png?width=578" data-image-src="attachments/1171357758/1171456043.png" data-height="190" data-width="602" data-unresolved-comment-count="0" data-linked-resource-id="1171456043" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="att_6_for_1171357758.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1171357758" data-linked-resource-container-version="13" data-media-id="67532dac-9679-4272-8027-86e4730a7ef4" data-media-type="file"></span><p style="margin-left: 60.0px;">&gt;&gt; Select the ‘by Remote Jenkinsfile Provider Plugin’</p><p style="margin-left: 60.0px;">&gt;&gt; This plug-in allows us to use the Jenkinsfile from a different directory.</p><p style="margin-left: 60.0px;">&gt;&gt; Enter the relative path of the Jenkins file</p><p style="margin-left: 60.0px;"></p><span class="confluence-embedded-file-wrapper image-left-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-left" width="578" loading="lazy" src="attachments/1171357758/1171980336.png?width=578" data-image-src="attachments/1171357758/1171980336.png" data-height="320" data-width="602" data-unresolved-comment-count="0" data-linked-resource-id="1171980336" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="att_16_for_1171357758.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1171357758" data-linked-resource-container-version="13" data-media-id="8ba39edb-a5a4-42c4-b62d-4f317c02aca3" data-media-type="file"></span><p style="margin-left: 30.0px;">&gt;&gt; Select the ‘Git’ as a Jenkinsfile SCM</p><p style="margin-left: 30.0px;">&gt;&gt; Copy and past the git repository which includes the Jenkins file</p><p style="margin-left: 30.0px;">&gt;&gt; Select the valid credential to access to the repository</p><p style="margin-left: 30.0px;">&gt;&gt; Enter the name of the branch you want to get the Jenkins file (e.g. main)</p><p /><hr/><h2 id="SetUpMulti-Branch-Pipeline-8.ManagetheWebhook"><strong>8. Manage the Webhook</strong></h2><p style="margin-left: 30.0px;">: This configuration is about how to send a signal to Jenkins to trigger a Jenkins' build from Bitbucket.<br/>The webhook can be managed in each Bitbucket repository, but an<strong> ‘<u>admin’ </u></strong><u>permission</u> is required to manage it.</p><p style="margin-left: 30.0px;">Create or manage a webhook following the link below<br/>: <a href="How-To-Set-Trigger-Token-and-Bitbucket-Webhook_1278967851.html" data-linked-resource-id="1278967851" data-linked-resource-version="10" data-linked-resource-type="page">How To Set Trigger Token and Bitbucket Webhook</a>   <br/></p>
+                    </div>
+
+                                        <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1171357758/1171882018.png">att_1_for_1171357758.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1171357758/1171423286.png">att_2_for_1171357758.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1171357758/1171816466.png">att_7_for_1171357758.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1171357758/1171062823.png">att_3_for_1171357758.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1171357758/1172111390.png">att_5_for_1171357758.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1171357758/1171357771.png">att_18_for_1171357758.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1171357758/1172111394.png">att_10_for_1171357758.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1171357758/1171521574.png">att_8_for_1171357758.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1171357758/1171456043.png">att_6_for_1171357758.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1171357758/1171521578.png">att_4_for_1171357758.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1171357758/1172111398.png">att_17_for_1171357758.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1171357758/1171750957.png">att_9_for_1171357758.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1171357758/1171423290.png">att_30_for_1171357758.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1171357758/1171947582.png">att_20_for_1171357758.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1171357758/1171816470.png">att_13_for_1171357758.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1171357758/1171882022.png">att_11_for_1171357758.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1171357758/1171161170.png">att_12_for_1171357758.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1171357758/1171423294.png">att_25_for_1171357758.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1171357758/1171161174.png">att_31_for_1171357758.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1171357758/1171193917.png">att_14_for_1171357758.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1171357758/1172176944.png">att_23_for_1171357758.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1171357758/1171521582.png">att_21_for_1171357758.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1171357758/1171226691.png">att_15_for_1171357758.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1171357758/1171980336.png">att_16_for_1171357758.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1171357758/1171488807.png">att_19_for_1171357758.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1171357758/1171619856.png">att_22_for_1171357758.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1171357758/1171947586.png">att_32_for_1171357758.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1171357758/1172078647.png">att_28_for_1171357758.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1171357758/1171783750.png">att_27_for_1171357758.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1171357758/1172013090.png">att_26_for_1171357758.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1171357758/1171292222.png">att_29_for_1171357758.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1171357758/1171914800.png">att_33_for_1171357758.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1171357758/1171685403.png">att_34_for_1171357758.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1171357758/1171062827.png">att_35_for_1171357758.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1171357758/1171587096.png">att_36_for_1171357758.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1171357758/1172144155.png">att_24_for_1171357758.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1171357758/1178206210.docx">Multi-Branch-Pipeline.docx</a> (application/vnd.openxmlformats-officedocument.wordprocessingml.document)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1171357758/1171718210.docx">Multi-Branch-Pipeline.docx</a> (application/vnd.openxmlformats-officedocument.wordprocessingml.document)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1171357758/1278607447.png">image-20240813-143353.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on May 27, 2025 13:34</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

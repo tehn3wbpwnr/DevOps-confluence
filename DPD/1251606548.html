@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DevOps / Pipeline &amp; Deployment : LTI js Server Synchronization: Bitbucket Repository and VM</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">DevOps / Pipeline &amp; Deployment</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1179353439.html">DevOps / Pipeline &amp; Deployment Home</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="DLX-Server-Documents_1541832718.html">DLX Server Documents</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            DevOps / Pipeline &amp; Deployment : LTI js Server Synchronization: Bitbucket Repository and VM
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                            
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Jindo Kim</span>, last modified on Aug 02, 2024
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <style type='text/css'>/*<![CDATA[*/
+div.rbtoc1748352931970 {padding: 0px;}
+div.rbtoc1748352931970 ul {list-style: disc;margin-left: 0px;}
+div.rbtoc1748352931970 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style><div class='toc-macro rbtoc1748352931970'>
+<ul class='toc-indentation'>
+<li><a href='#LTIjsServerSynchronization:BitbucketRepositoryandVM-DocumentHistory'>Document History</a></li>
+<li><a href='#LTIjsServerSynchronization:BitbucketRepositoryandVM-Terminology'>Terminology</a></li>
+<li><a href='#LTIjsServerSynchronization:BitbucketRepositoryandVM-Summary'>Summary</a></li>
+<li><a href='#LTIjsServerSynchronization:BitbucketRepositoryandVM-TheStructure'>The Structure</a>
+<ul class='toc-indentation'>
+<li><a href='#LTIjsServerSynchronization:BitbucketRepositoryandVM-NetworkCommunication(Flow)Diagram'>Network Communication(Flow) Diagram</a></li>
+</ul>
+</li>
+<li><a href='#LTIjsServerSynchronization:BitbucketRepositoryandVM-ConfigurationDetails'>Configuration Details</a>
+<ul class='toc-indentation'>
+<li><a href='#LTIjsServerSynchronization:BitbucketRepositoryandVM-BitbucketRepositorySetting'>Bitbucket Repository Setting</a></li>
+<li><a href='#LTIjsServerSynchronization:BitbucketRepositoryandVM-FeatherVM'>Feather VM</a>
+<ul class='toc-indentation'>
+<li><a href='#LTIjsServerSynchronization:BitbucketRepositoryandVM-NgnixConfiguration'>Ngnix Configuration</a></li>
+</ul>
+</li>
+<li><a href='#LTIjsServerSynchronization:BitbucketRepositoryandVM-WebDLXVM'>Web DLX VM</a>
+<ul class='toc-indentation'>
+<li><a href='#LTIjsServerSynchronization:BitbucketRepositoryandVM-LTIjsServerUpdater'>LTI js Server Updater</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href='#LTIjsServerSynchronization:BitbucketRepositoryandVM-References'>References</a></li>
+</ul>
+</div><h1 id="LTIjsServerSynchronization:BitbucketRepositoryandVM-DocumentHistory">Document History</h1><div class="table-wrap"><table data-table-width="760" data-layout="default" data-local-id="a5197a4b-600f-4a8f-bdb7-2542a639ed43" class="confluenceTable"><colgroup><col style="width: 183.0px;"/><col style="width: 170.0px;"/><col style="width: 405.0px;"/></colgroup><tbody><tr><th class="confluenceTh"><p><strong>Date</strong></p></th><th class="confluenceTh"><p><strong>Author</strong></p></th><th class="confluenceTh"><p><strong>Changes</strong></p></th></tr><tr><td class="confluenceTd"><p>2024-07-31</p></td><td class="confluenceTd"><p>Jindo Kim</p></td><td class="confluenceTd"><p>Initial creation</p></td></tr><tr><td class="confluenceTd"><p>2024-08-01</p></td><td class="confluenceTd"><p>Jindo Kim</p></td><td class="confluenceTd"><p>Added ‘dotenv' package</p></td></tr><tr><td class="confluenceTd"><p>2024-08-02</p></td><td class="confluenceTd"><p>Jindo Kim</p></td><td class="confluenceTd"><p>Moved verifications from application level to Nginx level and added more security configuration on Nginx level</p></td></tr></tbody></table></div><h1 id="LTIjsServerSynchronization:BitbucketRepositoryandVM-Terminology">Terminology</h1><ul><li><p>LTI: Standard specification allows learning management systems (LMS) or platforms to integrate</p></li><li><p>LTI js Server: A server that allows external access and execution of the DLX</p></li></ul><h1 id="LTIjsServerSynchronization:BitbucketRepositoryandVM-Summary">Summary</h1><p style="margin-left: 30.0px;">This document describes the process and structure of synchronizing the LTI js Server between the main branch of the Bitbucket Repository and the running instance of the VM (dlx-web hosting). This can also be considered as the CD (Continous Deployment) pipeline for the LTI js Server.</p><h1 id="LTIjsServerSynchronization:BitbucketRepositoryandVM-TheStructure">The Structure</h1><h2 id="LTIjsServerSynchronization:BitbucketRepositoryandVM-NetworkCommunication(Flow)Diagram">Network Communication(Flow) Diagram</h2><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20240731-161713.png" width="622" loading="lazy" src="attachments/1251606548/1251966987.png?width=622" data-image-src="attachments/1251606548/1251966987.png" data-height="564" data-width="622" data-unresolved-comment-count="0" data-linked-resource-id="1251966987" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20240731-161713.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1251606548" data-linked-resource-container-version="4" data-media-id="0662351f-56f6-416a-9448-e9862c9a6aab" data-media-type="file"></span><h1 id="LTIjsServerSynchronization:BitbucketRepositoryandVM-ConfigurationDetails">Configuration Details</h1><h2 id="LTIjsServerSynchronization:BitbucketRepositoryandVM-BitbucketRepositorySetting">Bitbucket Repository Setting</h2><p /><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20240731-173113.png" width="662" loading="lazy" src="attachments/1251606548/1250394146.png?width=662" data-image-src="attachments/1251606548/1250394146.png" data-height="350" data-width="662" data-unresolved-comment-count="0" data-linked-resource-id="1250394146" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20240731-173113.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1251606548" data-linked-resource-container-version="4" data-media-id="10765d6e-32f5-439d-8965-6c7ef672d328" data-media-type="file"></span><ul><li><p>URL: </p><ul><li><p>Base URL: <code>https://webdlx.vconestoga.com</code></p><ul><li><p>Configured in the nginx configuration to direct traffic to the server.</p></li></ul></li><li><p>Endpoint(Path): <code>/litwebhook</code></p><ul><li><p>Used in the nginx configuration as a location block to specify where to direct the traffic.</p></li><li><p>Used in the LTI js Server Updater to handle POST requests in the Node.js application.</p></li></ul></li></ul></li><li><p>Secret:</p><ul><li><p>Secret token</p><ul><li><p>Bitbucket Cloud will use your secret token to create a HMAC signature, which will be sent to you as the value of the X-Hub-Signature header with each payload.</p></li><li><p>This token is used in the ‘<strong>Data Integrity</strong>’ verification step in <code>LTI js Server Updater</code> to ensure the authenticity and integrity of the incoming webhook requests.</p></li></ul></li></ul></li></ul><p /><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20240731-175137.png" width="504" loading="lazy" src="attachments/1251606548/1252098136.png?width=504" data-image-src="attachments/1251606548/1252098136.png" data-height="212" data-width="504" data-unresolved-comment-count="0" data-linked-resource-id="1252098136" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20240731-175137.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1251606548" data-linked-resource-container-version="4" data-media-id="abbab17a-48e1-4420-bc6f-8a6257e1c401" data-media-type="file"></span><ul><li><p>Trigger Setting</p><ul><li><p>Merged option checked</p><ul><li><p>Allows the Bitbucket Repository to send a POST request to the registered URL (endpoint) only after a completed merge. </p></li></ul></li></ul></li></ul><h2 id="LTIjsServerSynchronization:BitbucketRepositoryandVM-FeatherVM">Feather VM</h2><h3 id="LTIjsServerSynchronization:BitbucketRepositoryandVM-NgnixConfiguration">Ngnix Configuration</h3><ul><li><p><code>server_name webdlx.vconestoga.com;</code></p><ul><li><p>Specifies the domain name that the server will respond to.</p></li></ul></li><li><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence"># Allow only Bitbucket IP ranges
+allow 104.192.136.0/21;
+allow 185.166.140.0/22;
+allow 13.200.41.128/25;
+deny all;</pre>
+</div></div><ul><li><p>Specifies the IP addresses to allow</p><ul><li><p><a class="external-link" data-card-appearance="inline" href="https://support.atlassian.com/bitbucket-cloud/docs/what-are-the-bitbucket-cloud-ip-addresses-i-should-use-to-configure-my-corporate-firewall/" rel="nofollow">https://support.atlassian.com/bitbucket-cloud/docs/what-are-the-bitbucket-cloud-ip-addresses-i-should-use-to-configure-my-corporate-firewall/</a>  </p></li></ul></li></ul></li><li><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">#Method check
+if ($request_method != POST) {
+    return 405;
+}</pre>
+</div></div><ul><li><p>Specify the method to allow</p></li></ul></li><li><p><code>location /ltiwebhook { proxy_pass http://10.5.0.8:4000; }</code></p><ul><li><p>Specifies how to handle requests to the <code>/ltiwebhook</code> path, it is proxied to <code>http://10.5.0.8:4000</code></p></li></ul></li></ul><h2 id="LTIjsServerSynchronization:BitbucketRepositoryandVM-WebDLXVM">Web DLX VM</h2><h3 id="LTIjsServerSynchronization:BitbucketRepositoryandVM-LTIjsServerUpdater">LTI js Server Updater</h3><ul><li><p>Location: <code>/home/vconadmin/DLX-Server/LTI_JS_Server_Updater</code></p></li><li><p>Installed packages</p><ul><li><p>express.js</p><ul><li><p>Is utilized to configure middleware that processes incoming request bodies as JSON.</p></li></ul></li><li><p>node-cache</p><ul><li><p>Used to cache data (signature) locally within the server to improve performance and reduce the need for database queries.</p></li></ul></li><li><p>dotenv</p></li></ul></li><li><p><code>const PORT = 4000;</code></p><ul><li><p>The server is configured to listen on port 4000.</p></li></ul></li><li><p><code>app.post('/ltiwebhook', (req, res) =&gt; {}</code></p><ul><li><p>To handle POST requests to the `/ltiwebhook` endpoint.</p></li></ul></li></ul><p /><h1 id="LTIjsServerSynchronization:BitbucketRepositoryandVM-References">References</h1><ul><li><p>Setting Up A Bitbucket WebHook: <a class="external-link" href="https://dev.to/robbiecahill/learn-how-to-use-webhooks-by-setting-up-a-bitbucket-webhook-in-under-an-hour-33h4" rel="nofollow">Learn How To Use Webhooks By Setting Up A BitBucket WebHook In Under An Hour</a></p></li><li><p>Bitbucket Secret Token: <a class="external-link" href="https://bitbucket.org/blog/enhanced-webhook-security" rel="nofollow">Introducing enhanced webhook security</a></p></li><li><p>Node-Cache Package: </p><ul><li><p><a class="external-link" href="https://www.npmjs.com/package/node-cache" rel="nofollow">Simple and fast NodeJS internal caching</a></p></li><li><p><a class="external-link" href="https://blog.logrocket.com/caching-node-js-optimize-app-performance/#node-cache-package" rel="nofollow">Caching in Node.js to optimize app performance</a></p></li></ul></li></ul>
+                    </div>
+
+                                        <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1251606548/1251966987.png">image-20240731-161713.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1251606548/1251770379.png">image-20240731-172946.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1251606548/1252425737.png">image-20240731-173045.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1251606548/1250394146.png">image-20240731-173113.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1251606548/1251672085.png">image-20240731-174831.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1251606548/1252098136.png">image-20240731-175137.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on May 27, 2025 13:35</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

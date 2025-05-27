@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DevOps / Pipeline &amp; Deployment : Project Version Control</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">DevOps / Pipeline &amp; Deployment</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1179353439.html">DevOps / Pipeline &amp; Deployment Home</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1575288834.html">CI/CD Pipeline</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Web-Development_1728217091.html">Web Development</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            DevOps / Pipeline &amp; Deployment : Project Version Control
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                            
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Chris Park</span>, last modified on Apr 02, 2025
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <p><style>[data-colorid=pkbzl2iu8i]{color:#ff5630} html[data-color-mode=dark] [data-colorid=pkbzl2iu8i]{color:#cf2600}</style> Currently, the deployment pipeline in Jenkins<strong> manages the patch version number</strong> instead of the web developers. This document describes how Jenkins handles patch versioning and container image management.</p><p>Here is a summary of the deployment process on Jenkins:</p><ul><li><p><strong>Manage </strong>the patch version</p></li><li><p><strong>Build </strong>Docker images</p></li><li><p><strong>Push </strong>Docker images to Azure Container Registry</p></li><li><p><strong>Delete </strong>outdated images from Azure Container Registry</p></li><li><p><strong>Update </strong>the Azure Container App</p></li></ul><hr /><style type="text/css">/*<![CDATA[*/
+div.rbtoc1748352825571 {padding: 0px;}
+div.rbtoc1748352825571 ul {list-style: none;margin-left: 0px;}
+div.rbtoc1748352825571 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style><div class="toc-macro rbtoc1748352825571">
+<ul class="toc-indentation">
+<li><a href="#ProjectVersionControl-1.Aboutversions.json">1. About versions.json</a>
+<ul class="toc-indentation">
+<li><a href="#ProjectVersionControl-1.1ListofrelatedfunctionsinJsHelper.groovy:">1.1 List of related functions in JsHelper.groovy:</a></li>
+<li><a href="#ProjectVersionControl-1.2Whereversions.jsonformatcanbefound">1.2 Where versions.json format can be found</a></li>
+<li><a href="#ProjectVersionControl-1.3HowJenkinscreatesversions.jsonduringthepipelinebuild?">1.3 How Jenkins creates versions.json during the pipeline build?</a></li>
+<li><a href="#ProjectVersionControl-1.4Whenversions.jsonisupdated?">1.4 When versions.json is updated?</a></li>
+</ul>
+</li>
+<li><a href="#ProjectVersionControl-2.ACRrepositorymanagement">2. ACR repository management</a>
+<ul class="toc-indentation">
+<li><a href="#ProjectVersionControl-2.1VersionUpdateScenario">2.1 Version Update Scenario</a></li>
+</ul>
+</li>
+<li><a href="#ProjectVersionControl-3.DeploymentReport">3. Deployment Report</a></li>
+</ul>
+</div><hr /><h1 id="ProjectVersionControl-1.Aboutversions.json"><strong>1. About versions.json</strong></h1><p>: The<strong> main purpose of this configuration file is to</strong> <strong>track patch numbers by Jenkins itself</strong>. However, <code>versions.json</code> includes not only patch numbers. </p><div id="expander-88583624" class="expand-container"><div id="expander-control-88583624" class="expand-control"><span class="expand-control-icon"><img style="vertical-align:middle;" class="expand-control-image" src="images/icons/grey_arrow_down.png"/></span><span class="expand-control-text">Sample versions.json format</span></div><div id="expander-content-88583624" class="expand-content"><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">{
+&nbsp; &quot;server_patch_version&quot;: 0,
+&nbsp; &quot;client_patch_version&quot;: 0,
+&nbsp; &quot;latest_server_version&quot;: &quot;1.0.0&quot;,
+&nbsp; &quot;latest_client_version&quot;: &quot;1.0.0&quot;,
+&nbsp; &quot;latest_ticket_number&quot; : &quot;&quot;
+}</pre>
+</div></div></div></div><p>&nbsp;</p><h2 id="ProjectVersionControl-1.1ListofrelatedfunctionsinJsHelper.groovy:"><strong>1.1 List of related functions in JsHelper.groovy:</strong></h2><div class="table-wrap"><table data-table-width="760" data-layout="center" data-local-id="14c759c3-f466-4b72-a54d-19dff366a494" class="confluenceTable"><colgroup><col style="width: 204.0px;" /><col style="width: 222.0px;" /><col style="width: 332.0px;" /></colgroup><tbody><tr><th class="confluenceTh"><p style="text-align: center;"><strong>Function Name</strong></p></th><th class="confluenceTh"><p style="text-align: center;"><strong>Parameters</strong></p></th><th class="confluenceTh"><p style="text-align: center;"><strong>Description</strong></p></th></tr><tr><td class="confluenceTd"><p><strong>createVersionJsonFile</strong></p></td><td class="confluenceTd"><p>&nbsp;</p></td><td class="confluenceTd"><p>Retrieve the <code>versions.json</code> template from Jenkins using the configured <strong>Configuration File ID</strong>, and create the file under <code>${env.WORKSPACE}/JsJenkins</code>.</p></td></tr><tr><td class="confluenceTd"><p><strong>initializeVersionJsonFile</strong></p></td><td class="confluenceTd"><p><strong>String </strong>serverContainerName <strong>String </strong>clientContainerName</p></td><td class="confluenceTd"><p>Fetch the latest container versions from ACR, <strong>update </strong>fields in <code>versions.json</code>, and <strong>save </strong>the file.</p></td></tr><tr><td class="confluenceTd"><p><strong>updateVersionsJson</strong></p></td><td class="confluenceTd"><p><strong>String </strong>serverVersion</p><p><strong>String </strong>clientVersion</p><p><strong>String </strong>ticketNumber</p></td><td class="confluenceTd"><p><strong>Update </strong>all components within the <code>versions.json</code> file.</p></td></tr><tr><td class="confluenceTd"><p><strong>getVersionInfo</strong></p></td><td class="confluenceTd"><p>&nbsp;</p></td><td class="confluenceTd"><p><strong>Read </strong><code>versions.json</code> and <strong>return </strong>all its components as a <code>Map</code> data type.</p></td></tr></tbody></table></div><p /><h2 id="ProjectVersionControl-1.2Whereversions.jsonformatcanbefound"><strong>1.2 Where versions.json format can be found</strong></h2><p>: <code>versions.json</code> configuration format is defined at the</p><p style="text-align: center;">Managed Jenkins &gt;&gt; Managed File &gt;&gt; Config File Management &gt;&gt; versions.json</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20250402-030153.png" width="658" loading="lazy" src="attachments/1728184322/1728217096.png?width=658" data-image-src="attachments/1728184322/1728217096.png" data-height="76" data-width="303" data-unresolved-comment-count="0" data-linked-resource-id="1728217096" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20250402-030153.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1728184322" data-linked-resource-container-version="4" data-media-id="deae9771-a359-4985-bcb8-ada8318d9fe8" data-media-type="file" /></span><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon" /><div class="confluence-information-macro-body"><p><strong>The configuration ID is required</strong> when the Jenkins brings the <code>versions.json</code> format in the deployment build process.</p></div></div><p /><h2 id="ProjectVersionControl-1.3HowJenkinscreatesversions.jsonduringthepipelinebuild?"><strong>1.3 How Jenkins creates versions.json during the pipeline build?</strong></h2><p>: &nbsp;Jenkins checks whether <code>JsJenkins/versions.json</code> exists or not before it reads a file.</p><ul><li><p><strong>If versions.json is not found in {env.WORKSPACE}/JsJenkins:</strong><br />- A new versions.json file is created by calling createVersionJsonFile().<br />- The newly created file is then initialized using initializeVersionJsonFile(). <br />- All version-related data is stored as a Map and shared across the entire pipeline build.<br /></p></li><li><p><strong>If versions.json already exist in {env.WORKSPACE}/JsJenkins</strong><br />- The existing file is read, and its contents are stored as a Map and shared across the entire pipeline build.</p></li></ul><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="스크린샷 2025-04-01 112241-20250401-152241.png" width="382" loading="lazy" src="attachments/1728184322/1728184360.png?width=382" data-image-src="attachments/1728184322/1728184360.png" data-height="131" data-width="382" data-unresolved-comment-count="0" data-linked-resource-id="1728184360" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="스크린샷 2025-04-01 112241-20250401-152241.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1728184322" data-linked-resource-container-version="4" data-media-id="0f5923d3-0b01-40a5-af2a-4ea6abf22fa3" data-media-type="file" /></span><p>We can call <code>versions.json </code>file format using &lsquo;<code>configFileProvider</code>' with <u>Configuration ID</u> and <u>file name.</u></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">configFileProvider([configFile(fileId: 'configuration_id_here', targetLocation: 'versions.json')]) {</pre>
+</div></div><div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon" /><div class="confluence-information-macro-body"><p>We can&rsquo;t just read the configuration format using <code>configFileProvider</code>. It only allows us to CREAT a configuration file based on the format</p></div></div><p /><h2 id="ProjectVersionControl-1.4Whenversions.jsonisupdated?"><strong>1.4 When versions.json is updated?</strong></h2><p>: &nbsp;Each server and client patch number is<strong><span data-colorid="pkbzl2iu8i"> locally incremented</span></strong> <strong>at the end of the &lsquo;Check Build and Deploy Condition&rsquo; stage</strong>, after all deployment conditions have been verified.</p><p>At this point, the updated patch numbers are not yet written to <code>versions.json</code>.</p><p>The <code>updateVersionsJson()</code> function is called at the end of the pipeline only if the build completes with a &lsquo;<strong>SUCCESSFUL</strong>&rsquo; status. This function <strong>updates </strong>the patch numbers, full version numbers, and the associated ticket number in<code> versions.json</code>.</p><div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon" /><div class="confluence-information-macro-body"><p> If either the <u>server or client deployment stage fails</u>, <code>versions.json</code> <strong>will remain unchanged</strong>.</p></div></div><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20250402-031936.png" width="760" loading="lazy" src="attachments/1728184322/1728348171.png?width=760" data-image-src="attachments/1728184322/1728348171.png" data-height="231" data-width="1190" data-unresolved-comment-count="0" data-linked-resource-id="1728348171" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20250402-031936.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1728184322" data-linked-resource-container-version="4" data-media-id="0bb383ad-db29-4045-8503-00d501f95d39" data-media-type="file" /></span><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="스크린샷 2025-04-01 223738-20250402-031729.png" width="760" loading="lazy" src="attachments/1728184322/1728249865.png?width=760" data-image-src="attachments/1728184322/1728249865.png" data-height="250" data-width="1562" data-unresolved-comment-count="0" data-linked-resource-id="1728249865" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="스크린샷 2025-04-01 223738-20250402-031729.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1728184322" data-linked-resource-container-version="4" data-media-id="edf5120f-a8bb-4b1f-96c9-1e47cca17053" data-media-type="file" /></span><p /><p>&nbsp;</p><hr /><h1 id="ProjectVersionControl-2.ACRrepositorymanagement"><strong>2. ACR repository management</strong></h1><p>&nbsp;: Jenkins <strong>JS deployment pipeline</strong> remotely deletes <strong>outdated container images</strong> from ACR repository by calling <code>deleteOutdatedAcrImages()</code>. The detailed explanation logic is described at the next content with example Scenario.</p><h2 id="ProjectVersionControl-2.1VersionUpdateScenario">2.1 <strong>Version Update</strong> <strong>Scenario</strong>&nbsp;</h2><div class="table-wrap"><table data-table-width="760" data-layout="default" data-local-id="544f730b-0b21-4a89-86e4-d28f41c7b74b" data-table-display-mode="fixed" class="confluenceTable"><colgroup><col style="width: 145.0px;" /><col style="width: 237.0px;" /><col style="width: 376.0px;" /></colgroup><tbody><tr><th class="confluenceTh"><p style="text-align: center;"><strong>Before Update</strong></p></th><td class="confluenceTd"><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="ACA_major_version_update_before-20250401-153632.png" width="88" loading="lazy" src="attachments/1728184322/1728282650.png?width=88" data-image-src="attachments/1728184322/1728282650.png" data-height="161" data-width="88" data-unresolved-comment-count="0" data-linked-resource-id="1728282650" data-linked-resource-version="2" data-linked-resource-type="attachment" data-linked-resource-default-alias="ACA_major_version_update_before-20250401-153632.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1728184322" data-linked-resource-container-version="4" data-media-id="956c4458-0a73-4b22-83f9-1ae5983bf8eb" data-media-type="file" /></span></td><td class="confluenceTd"><p><strong>In general</strong>, ACR stores:</p><ul><li><p><strong>All latest major versions</strong> of container images as backups</p></li><li><p><strong>One minor version</strong> of the container image for the in-progress major version</p></li><li><p><strong>One patch version</strong> of the container image for the in-progress major version</p></li></ul></td></tr><tr><th class="confluenceTh"><p style="text-align: center;"><strong>After Major Version Update</strong></p></th><td class="confluenceTd"><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="ACA_major_version_update_after-20250401-153816.png" width="68" loading="lazy" src="attachments/1728184322/1728249898.png?width=68" data-image-src="attachments/1728184322/1728249898.png" data-height="134" data-width="68" data-unresolved-comment-count="0" data-linked-resource-id="1728249898" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="ACA_major_version_update_after-20250401-153816.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1728184322" data-linked-resource-container-version="4" data-media-id="386a66d6-426c-4880-90bc-05ef52cea728" data-media-type="file" /></span></td><td class="confluenceTd"><p>When the <strong>major version is updated</strong>:</p><ul><li><p><strong>Minor and patch version </strong>of images of the previous major version are <strong>deleted</strong></p></li></ul></td></tr><tr><th class="confluenceTh"><p style="text-align: center;"><strong>After Patch Version Update</strong></p></th><td class="confluenceTd"><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="ACA_major_patch_version_update_after-20250401-154214.png" width="58" loading="lazy" src="attachments/1728184322/1728315418.png?width=58" data-image-src="attachments/1728184322/1728315418.png" data-height="163" data-width="58" data-unresolved-comment-count="0" data-linked-resource-id="1728315418" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="ACA_major_patch_version_update_after-20250401-154214.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1728184322" data-linked-resource-container-version="4" data-media-id="9a6b1067-070d-4515-8836-8c7fbd8c2ee2" data-media-type="file" /></span></td><td class="confluenceTd"><p>When a <strong>patch version is updated</strong>:</p><ul><li><p>The <strong>previous patch version </strong>of image is stored as a <strong>backup</strong></p></li></ul></td></tr><tr><th class="confluenceTh"><p style="text-align: center;"><strong>After Another Patch Version Update</strong></p></th><td class="confluenceTd"><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="ACA_major_2patch_version_update_after-20250401-154357.png" width="60" loading="lazy" src="attachments/1728184322/1728315425.png?width=60" data-image-src="attachments/1728184322/1728315425.png" data-height="160" data-width="60" data-unresolved-comment-count="0" data-linked-resource-id="1728315425" data-linked-resource-version="2" data-linked-resource-type="attachment" data-linked-resource-default-alias="ACA_major_2patch_version_update_after-20250401-154357.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1728184322" data-linked-resource-container-version="4" data-media-id="b9bd2c77-c9da-4121-a5c2-0d65512713a7" data-media-type="file" /></span></td><td class="confluenceTd"><p>When <strong>another patch version is updated</strong>:</p><ul><li><p>The <strong>previous patch version </strong>of image<strong> is deleted</strong></p></li><li><p>The<strong> previously latest image</strong> is stored as a <strong>patch version backup</strong></p></li></ul></td></tr><tr><th class="confluenceTh"><p style="text-align: center;"><strong>After Minor Version Update</strong></p></th><td class="confluenceTd"><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="ACA_major_minor_patch_version_update_after-20250401-171130.png" width="62" loading="lazy" src="attachments/1728184322/1728249904.png?width=62" data-image-src="attachments/1728184322/1728249904.png" data-height="194" data-width="62" data-unresolved-comment-count="0" data-linked-resource-id="1728249904" data-linked-resource-version="2" data-linked-resource-type="attachment" data-linked-resource-default-alias="ACA_major_minor_patch_version_update_after-20250401-171130.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1728184322" data-linked-resource-container-version="4" data-media-id="89666505-453b-40c5-8044-2c31c3e5db97" data-media-type="file" /></span></td><td class="confluenceTd"><p>When <strong>minor version is updated</strong>:</p><ul><li><p>The<strong> previously latest image</strong> is stored as a <strong>patch version backup</strong></p></li><li><p><strong>previous patch version </strong>of image is<strong> stored</strong> as a <strong>minor version backup</strong></p></li></ul></td></tr></tbody></table></div><p /><hr /><h1 id="ProjectVersionControl-3.DeploymentReport"><strong>3. Deployment Report</strong></h1><p>The <strong>result of deployment is delivered by Bitbucket Build Status API</strong>. <strong>Each deployed client and server deployed version number will be passed</strong> if all server and client project are successfully pushed to <strong>ACR </strong>and updated on <strong>ACA</strong>.</p><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20250402-195423.png" width="428" loading="lazy" src="attachments/1728184322/1730314287.png?width=428" data-image-src="attachments/1728184322/1730314287.png" data-height="44" data-width="296" data-unresolved-comment-count="0" data-linked-resource-id="1730314287" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20250402-195423.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1728184322" data-linked-resource-container-version="4" data-media-id="b2457f11-c7b1-4e0f-a0be-c3043a3df8a4" data-media-type="file" /></span><p />
+                    </div>
+
+                                        <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1728184322/1728217096.png">image-20250402-030153.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1728184322/1728315395.png">image-20250402-030220.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1728184322/1728282632.png">image-20250402-031451.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1728184322/1728249865.png">스크린샷 2025-04-01 223738-20250402-031729.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1728184322/1728348171.png">image-20250402-031936.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1728184322/1728282639.png">image-20250402-032058.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1728184322/1728184346.png">image-20250402-032132.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1728184322/1728217109.png">image-20250402-032156.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1728184322/1728249873.png">image-20250402-032232.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1728184322/1728380937.png">image-20250402-032240.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1728184322/1728184352.png">image-20250402-032243.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1728184322/1728348180.png">image-20250402-032312.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1728184322/1728217116.png">image-20250402-032316.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1728184322/1728315411.png">image-20250402-032319.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1728184322/1728249880.png">image-20250402-032625.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1728184322/1728380950.png">제목 없음-20250402-032710.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1728184322/1728380956.png">제목 없음-20250402-032727.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1728184322/1728217122.png">image-20250402-032810.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1728184322/1728184360.png">스크린샷 2025-04-01 112241-20250401-152241.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1728184322/1728249886.png">ACA_major_version_update_before-20250401-153632.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1728184322/1728282650.png">ACA_major_version_update_before-20250401-153632.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1728184322/1728249898.png">ACA_major_version_update_after-20250401-153816.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1728184322/1728315418.png">ACA_major_patch_version_update_after-20250401-154214.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1728184322/1728282659.png">ACA_major_minor_patch_version_update_after-20250401-171130.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1728184322/1728380962.png">ACA_major_2patch_version_update_after-20250401-154357.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1728184322/1728249904.png">ACA_major_minor_patch_version_update_after-20250401-171130.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1728184322/1728315425.png">ACA_major_2patch_version_update_after-20250401-154357.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1728184322/1730314287.png">image-20250402-195423.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on May 27, 2025 13:33</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

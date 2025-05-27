@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DevOps / Pipeline &amp; Deployment : Delete and Clean up Pipeline</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">DevOps / Pipeline &amp; Deployment</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1179353439.html">DevOps / Pipeline &amp; Deployment Home</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1575288834.html">CI/CD Pipeline</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            DevOps / Pipeline &amp; Deployment : Delete and Clean up Pipeline
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                            
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Chris Park</span> on Apr 09, 2025
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <p>This documentation outlines the process for cleaning up pipelines of projects that have already been released.</p><hr/><h1 id="DeleteandCleanupPipeline-DeleteprojectfolderintheJenkinswebsite">Delete project folder in the Jenkins website</h1><h2 id="DeleteandCleanupPipeline-1.Selecttheprojectfolderyouwanttodelete"><strong>1. Select the project folder you want to delete</strong></h2><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20250409-141838.png" width="620" loading="lazy" src="attachments/1740931076/1741324289.png?width=620" data-image-src="attachments/1740931076/1741324289.png" data-height="495" data-width="620" data-unresolved-comment-count="0" data-linked-resource-id="1741324289" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20250409-141838.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1740931076" data-linked-resource-container-version="1" data-media-id="aa91a00f-0901-41c0-b0b9-8c94b1800289" data-media-type="file"></span><h2 id="DeleteandCleanupPipeline-2.Click&#39;DeleteFolder&#39;"><strong>2. Click 'Delete Folder'</strong></h2><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20250409-141931.png" width="731" loading="lazy" src="attachments/1740931076/1741422593.png?width=731" data-image-src="attachments/1740931076/1741422593.png" data-height="568" data-width="731" data-unresolved-comment-count="0" data-linked-resource-id="1741422593" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20250409-141931.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1740931076" data-linked-resource-container-version="1" data-media-id="60a9f789-8443-421d-9810-08750402cd99" data-media-type="file"></span><h2 id="DeleteandCleanupPipeline-3.Click&#39;Yes&#39;whendeletefoldermessagepopups"><strong>3. Click 'Yes' when delete folder message pop ups</strong></h2><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20250409-142008.png" width="411" loading="lazy" src="attachments/1740931076/1741258754.png?width=411" data-image-src="attachments/1740931076/1741258754.png" data-height="155" data-width="411" data-unresolved-comment-count="0" data-linked-resource-id="1741258754" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20250409-142008.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1740931076" data-linked-resource-container-version="1" data-media-id="1d3a0b6f-826d-4ddf-a4f5-52baa5736154" data-media-type="file"></span><h2 id="DeleteandCleanupPipeline-4.ConfirmthefolderdeletionattheDashboard"><strong>4. Confirm the folder deletion at the Dashboard</strong></h2><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20250409-142057.png" width="452" loading="lazy" src="attachments/1740931076/1740963852.png?width=452" data-image-src="attachments/1740931076/1740963852.png" data-height="440" data-width="452" data-unresolved-comment-count="0" data-linked-resource-id="1740963852" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20250409-142057.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1740931076" data-linked-resource-container-version="1" data-media-id="afc2abbd-d467-4094-8fe5-167b59d68884" data-media-type="file"></span><hr/><h1 id="DeleteandCleanupPipeline-DeleteprojectfolderintheJenkinsVM">Delete project folder in the Jenkins VM</h1><p>: &quot;Jenkins doesn’t automatically clean up the workspace even if the project is deleted from the Jenkins web interface. Therefore, outdated project folders must be manually removed from the Jenkins VM.</p><h2 id="DeleteandCleanupPipeline-1.ConnecttoJenkinsVMviaSSH"><strong>1. Connect to Jenkins VM via SSH</strong></h2><p>: Open the CMD or PowerShell and connect to the Jenkins VM.</p><div id="expander-1893040014" class="expand-container"><div id="expander-control-1893040014" class="expand-control"><span class="expand-control-icon"><img style="vertical-align:middle;" class="expand-control-image" src="images/icons/grey_arrow_down.png"></span><span class="expand-control-text">SSH Command</span></div><div id="expander-content-1893040014" class="expand-content"><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">ssh -i .ssh/jenkins-ubuntu-dev-test.pem jenkins-ubuntu-dev-test@20.220.22.134</pre>
+</div></div></div></div><h2 id="DeleteandCleanupPipeline-2.NavigatetotheworkingdirectoryofJenkins"><strong>2. Navigate to the working directory of Jenkins </strong></h2><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">cd ~/var/lib/jenkins/workspace</pre>
+</div></div><h2 id="DeleteandCleanupPipeline-3.Verifytheexistenceoftheprojectfolder"><strong>3. Verify the existence of the project folder</strong></h2><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20250409-142158.png" width="760" loading="lazy" src="attachments/1740931076/1741029379.png?width=760" data-image-src="attachments/1740931076/1741029379.png" data-height="72" data-width="922" data-unresolved-comment-count="0" data-linked-resource-id="1741029379" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20250409-142158.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1740931076" data-linked-resource-container-version="1" data-media-id="ece96138-6018-4096-a918-235c86cc82d0" data-media-type="file"></span><h2 id="DeleteandCleanupPipeline-4.Deletetheprojectfolderfromtheworkingdirectory"><strong>4. Delete the project folder from the working directory</strong></h2><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20250409-142252.png" width="760" loading="lazy" src="attachments/1740931076/1740931086.png?width=760" data-image-src="attachments/1740931076/1740931086.png" data-height="72" data-width="1418" data-unresolved-comment-count="0" data-linked-resource-id="1740931086" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20250409-142252.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1740931076" data-linked-resource-container-version="1" data-media-id="c720582e-0248-4355-90cd-3d8cdbb9fa50" data-media-type="file"></span><p />
+                    </div>
+
+                                        <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1740931076/1741324289.png">image-20250409-141838.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1740931076/1741422593.png">image-20250409-141931.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1740931076/1741258754.png">image-20250409-142008.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1740931076/1740963852.png">image-20250409-142057.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1740931076/1741029379.png">image-20250409-142158.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1740931076/1740931086.png">image-20250409-142252.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on May 27, 2025 13:33</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

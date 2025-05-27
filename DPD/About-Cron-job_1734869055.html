@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DevOps / Pipeline &amp; Deployment : About Cron job</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">DevOps / Pipeline &amp; Deployment</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1179353439.html">DevOps / Pipeline &amp; Deployment Home</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="DLX-Server-Documents_1541832718.html">DLX Server Documents</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Web-Server_1734377514.html">Web Server</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="Cron-Job_1735032876.html">Cron Job</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            DevOps / Pipeline &amp; Deployment : About Cron job
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                            
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Chris Park</span>, last modified on Apr 06, 2025
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <hr/><style>[data-colorid=agf35y7824]{color:#ff5630} html[data-color-mode=dark] [data-colorid=agf35y7824]{color:#cf2600}</style><p><strong>Contents</strong></p><style type="text/css">/*<![CDATA[*/
+div.rbtoc1748352977550 {padding: 0px;}
+div.rbtoc1748352977550 ul {list-style: none;margin-left: 0px;}
+div.rbtoc1748352977550 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style><div class="toc-macro rbtoc1748352977550">
+<ul class="toc-indentation">
+<li><a href="#AboutCronjob-1.WhatisCronjob?">1. What is Cron job?</a></li>
+<li><a href="#AboutCronjob-2.HowtosetaCronjob?">2. How to set a Cron job?</a></li>
+<li><a href="#AboutCronjob-3.ListofCronjob">3. List of Cron job</a></li>
+</ul>
+</div><hr/><h1 id="AboutCronjob-1.WhatisCronjob?">1. What is Cron job?</h1><p> <strong>A Cron job</strong> is a <strong>scheduled task</strong> in Unix-like operating systems that runs automatically at specified intervals or times.</p><p> It's managed by the<strong> cron daemon</strong>, which reads configuration files called &quot;<strong>crontabs</strong>&quot; to determine <strong><span data-colorid="agf35y7824">what commands or scripts to execute and when</span></strong>. </p><p>Each cron job is defined using a specific time syntax composed of five fields (minute, hour, day of month, month, day of week), followed by the command to run.</p><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"/><div class="confluence-information-macro-body"><p> For example, [0 2 * * 1] means &quot;run at 2:00 AM every Monday.&quot;</p></div></div><hr/><h1 id="AboutCronjob-2.HowtosetaCronjob?">2. How to set a Cron job?</h1><ul><li><p><strong>Prepare your Shell script file</strong><br/>: Create a shell script file containing the commands you want to run at regular intervals.</p></li></ul><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"/><div class="confluence-information-macro-body"><p>If you have only a few commands to run, you can write them directly in the Cron configuration without creating a separate script file.</p></div></div><p/><ul><li><p><strong>Open</strong> Cron job configuration file</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">sudo crontab -e</pre>
+</div></div><p/></li><li><p><strong>Set </strong>the regular intervals time to run a script file</p></li></ul><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"/><div class="confluence-information-macro-body"><p>Each digit refers: <strong>[Min] [Time] [Day] [Month] [Day of week]</strong></p></div></div><p/><ul><li><p><strong>Check </strong>currently running Cron jobs</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">sudo crontab -l</pre>
+</div></div><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20250406-234753.png" width="736" loading="lazy" src="attachments/1734869055/1736605722.png?width=736" data-image-src="attachments/1734869055/1736605722.png" data-height="117" data-width="475" data-unresolved-comment-count="0" data-linked-resource-id="1736605722" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20250406-234753.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1734869055" data-linked-resource-container-version="3" data-media-id="02487f08-b6f9-4929-b1db-d085705224b8" data-media-type="file"/></span><p/></li></ul><hr/><h1 id="AboutCronjob-3.ListofCronjob">3. List of Cron job</h1><div class="table-wrap"><table data-table-width="1138" data-layout="center" data-local-id="b3a52281-4c3f-482a-abc7-4e46b7ad644b" class="confluenceTable"><colgroup><col style="width: 280.0px;"/><col style="width: 308.0px;"/><col style="width: 357.0px;"/><col style="width: 192.0px;"/></colgroup><tbody><tr><th class="confluenceTh"><p style="text-align: center;"><strong>Bash Script File</strong></p></th><th class="confluenceTh"><p style="text-align: center;"><strong>Scheduled Execution Time</strong></p></th><th class="confluenceTh"><p style="text-align: center;"><strong>Job</strong></p></th><th class="confluenceTh"><p style="text-align: center;"><strong>Log File Location</strong></p></th></tr><tr><td class="confluenceTd"><p><code>~/CronJobScript/CleanUpDLXReport/lean_up_dlx_reports.sh</code></p></td><td class="confluenceTd"><p>Every 1st month at Midnight(00:00) </p></td><td class="confluenceTd"><p><strong>Delete</strong> <u>outdated (older than 1 month)</u> code coverage reports at <code>/var/www/html</code></p></td><td class="confluenceTd"><p><code>~/CronJobScript/CleanUpDLXReports/logs</code></p></td></tr><tr><td class="confluenceTd"><p><code>~/CronJobScript/CleanUpDLXReport/lean_up_pr_webgl_builds.sh</code></p></td><td class="confluenceTd"><p>Every Saturday at midnight(00:00)</p></td><td class="confluenceTd"><p><strong>Delete</strong> <u>outdated (older than 1 week)</u> code coverage reports at <code>/var/www/html</code></p></td><td class="confluenceTd"><p><code>~/CronJobScript/CleanUpPrWebglBuilds/logs</code></p></td></tr></tbody></table></div><p/>
+                    </div>
+
+                                        <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1734869055/1736671238.png">image-20250406-230317.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1734869055/1736605714.png">image-20250406-234608.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1734869055/1736671246.png">image-20250406-234613.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1734869055/1736605722.png">image-20250406-234753.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on May 27, 2025 13:36</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>

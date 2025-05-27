@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DevOps / Pipeline &amp; Deployment : Containerization Project</title>
+        <link rel="stylesheet" href="styles/site.css" type="text/css" />
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body class="theme-default aui-theme-default">
+        <div id="page">
+            <div id="main" class="aui-page-panel">
+                <div id="main-header">
+                    <div id="breadcrumb-section">
+                        <ol id="breadcrumbs">
+                            <li class="first">
+                                <span><a href="index.html">DevOps / Pipeline &amp; Deployment</a></span>
+                            </li>
+                                                    <li>
+                                <span><a href="1179353439.html">DevOps / Pipeline &amp; Deployment Home</a></span>
+                            </li>
+                                                </ol>
+                    </div>
+                    <h1 id="title-heading" class="pagetitle">
+                                                <span id="title-text">
+                            DevOps / Pipeline &amp; Deployment : Containerization Project
+                        </span>
+                    </h1>
+                </div>
+
+                <div id="content" class="view">
+                    <div class="page-metadata">
+                            
+        
+    
+        
+    
+        
+        
+            Created by <span class='author'> Jonathan Bezeau</span>, last modified by <span class='editor'> Jindo Kim</span> on Jan 16, 2025
+                        </div>
+                    <div id="main-content" class="wiki-content group">
+                    <h1 id="ContainerizationProject-Overview">Overview</h1><p>We can manage javascript builds and servers more easily by deploying containers than deploying directly to full-size VMs* or in larger projects by deploying containers on full-size dedicated VMs.</p><p>*within limits for project size and operational requirements TBD</p><h1 id="ContainerizationProject-ProjectPlan">Project Plan</h1><p>Initial uptake will be on the AssetStore project, a limited-use internal nodejs server.</p><h2 id="ContainerizationProject-Build">Build</h2><p>The “deployment” phase of our .js Jenkins pipeline will end with containerizing the service and uploading the new container version to an Azure container repository.</p><h2 id="ContainerizationProject-Deployment">Deployment</h2><p>The Azure Container App for our containerized AssetStore will redeploy with the new container once provided from the build pipeline.</p><h1 id="ContainerizationProject-AdoptionChallenges">Adoption Challenges</h1><h2 id="ContainerizationProject-Jenkins">Jenkins</h2><p>The existing Jenkins server is incompatible with running Docker software because it does not support Nested Virtualization</p><ul><li><p>resize from D8as_v4 to D8as_v3 VCPUs, _v4 does not allow for nested virtualization but _v3 does</p><ul><li><p><a class="external-link" data-card-appearance="inline" href="https://azure.microsoft.com/en-us/blog/nested-virtualization-in-azure/#:~:text=Today%20we%20are%20excited%20to%20announce%20that%20you%20can%20now%20enable%20nested%20virtualization%20using%20the%20Dv3%20and%20Ev3%20VM%20sizes." rel="nofollow">https://azure.microsoft.com/en-us/blog/nested-virtualization-in-azure/#:~:text=Today%20we%20are%20excited%20to%20announce%20that%20you%20can%20now%20enable%20nested%20virtualization%20using%20the%20Dv3%20and%20Ev3%20VM%20sizes.</a> </p></li></ul></li><li><p>downgrade Trusted Launch VM security to Standard, Trusted Launch does not allow nested virtualization</p><ul><li><p><a class="external-link" data-card-appearance="inline" href="https://learn.microsoft.com/en-us/azure/virtual-machines/trusted-launch#:~:text=Unsupported%20features,Linux%20VM%20Hibernation" rel="nofollow">https://learn.microsoft.com/en-us/azure/virtual-machines/trusted-launch#:~:text=Unsupported%20features,Linux%20VM%20Hibernation</a> </p></li></ul></li></ul><p /><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20241106-195453.png" width="760" loading="lazy" src="attachments/1439170564/1446838284.png?width=760" data-image-src="attachments/1439170564/1446838284.png" data-height="1080" data-width="1920" data-unresolved-comment-count="0" data-linked-resource-id="1446838284" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20241106-195453.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1439170564" data-linked-resource-container-version="4" data-media-id="ea2858f0-ac41-44c5-bd03-f76614ec2c5e" data-media-type="file"></span><h3 id="ContainerizationProject-TrustedLaunch">Trusted Launch</h3><p>It is not possible to respec an existing VM from Trusted Launch to Standard. We will use this PowerShell 7 script as a basis for copying the OS disk to blob storage and then from blob storage to a new VM configured with _v3 VCPUs and Standard security.</p><ul><li><p><a href="Convert-Trusted-launch-VM-to-Standard_1447886864.html" data-linked-resource-id="1447886864" data-linked-resource-version="4" data-linked-resource-type="page">Convert Trusted launch VM to Standard</a> </p></li><li><p><a class="external-link" href="https://github.com/haukened/AzCopyVHD/blob/main/AzCopyVHD.ps1" rel="nofollow">AzCopyVHD/AzCopyVHD.ps1 at main · haukened/AzCopyVHD · GitHub</a></p></li></ul><p /><p /><span class="confluence-embedded-file-wrapper image-center-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image image-center" alt="image-20241107-160411.png" width="760" loading="lazy" src="attachments/1439170564/1450967045.png?width=760" data-image-src="attachments/1439170564/1450967045.png" data-height="944" data-width="1687" data-unresolved-comment-count="0" data-linked-resource-id="1450967045" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image-20241107-160411.png" data-base-url="https://varlab-dev.atlassian.net/wiki" data-linked-resource-content-type="image/png" data-linked-resource-container-id="1439170564" data-linked-resource-container-version="4" data-media-id="c5226a60-9d8a-4204-adbc-977fe2e2b19c" data-media-type="file"></span><ul><li><p><em>Sometimes, even if the Security Type and the correct VM size that supports Nested Virtualization are selected, Docker may seem to not function right after the change. In such cases, it is advisable to wait for a moment and try running it again.</em></p></li></ul>
+                    </div>
+
+                                        <div class="pageSection group">
+                        <div class="pageSectionHeader">
+                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
+                        </div>
+
+                        <div class="greybox" align="left">
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1439170564/1446838284.png">image-20241106-195453.png</a> (image/png)
+                                <br/>
+                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
+                                <a href="attachments/1439170564/1450967045.png">image-20241107-160411.png</a> (image/png)
+                                <br/>
+                                                    </div>
+                    </div>
+                    
+                                                      
+                </div>             </div> 
+            <div id="footer" role="contentinfo">
+                <section class="footer-body">
+                    <p>Document generated by Confluence on May 27, 2025 13:32</p>
+                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+                </section>
+            </div>
+        </div>     </body>
+</html>
